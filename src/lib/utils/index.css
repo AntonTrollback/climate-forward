@@ -1,0 +1,67 @@
+/** @define utilities */
+
+/**
+ * Layout
+ */
+
+.u-fill {
+  width: 100% !important;
+}
+
+@media print {
+  .u-printHidden {
+    display: none !important;
+  }
+}
+
+/**
+ * Misc helpers
+ */
+
+[hidden],
+.u-hidden {
+  display: none !important;
+}
+
+.u-hiddenVisually {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+/**
+ * Container
+ */
+
+.u-container {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--doc-margin) !important;
+  padding-right: var(--doc-margin) !important;
+  max-width: calc(var(--doc-max-width) + (var(--doc-margin) * 2)) !important;
+}
+
+@supports (padding-left: env(safe-area-inset-left)) {
+  .u-container {
+    padding-left: calc(var(--doc-margin) + env(safe-area-inset-left)) !important;
+    padding-right: calc(var(--doc-margin) + env(safe-area-inset-right)) !important;
+  }
+}
+
+/**
+ * Text
+ */
+
+.u-title {
+  width: 100% !important;
+  font-family: var(--doc-display-font-family) !important;
+  font-size: 1.35rem !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.01em !important;
+  font-weight: 900 !important;
+}
