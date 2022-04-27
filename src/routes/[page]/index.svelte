@@ -10,10 +10,8 @@
     if (!document) return attrs
 
     switch (document.type) {
-      case 'event': {
-        const href = resolve(document, page)
-        return { ...attrs, href: href }
-      }
+      case 'event':
+        return { ...attrs, href: resolve(document, page) }
       default:
         return { ...attrs, href: resolve(document) }
     }
