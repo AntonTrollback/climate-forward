@@ -1,5 +1,7 @@
 <script context="module">
-  export const query = `
+  import { graphQuery as sessionFields } from '$lib/Session.svelte'
+
+  export const graphQuery = `
     {
       ...on rich_text {
         non-repeat {
@@ -21,9 +23,7 @@
           ...non-repeatFields
         }
         repeat {
-          session {
-            ...sessionFields
-          }
+          session ${sessionFields}
         }
       }
     }

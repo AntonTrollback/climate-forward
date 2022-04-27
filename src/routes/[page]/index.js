@@ -1,11 +1,11 @@
 import { createClient } from '@prismicio/client'
-import { query as slicesQuery } from '$lib/Slices.svelte'
+import { graphQuery as bodyFields } from '$lib/Slices.svelte'
 
 const graphQuery = `
   {
     event {
       ...eventFields
-      body ${slicesQuery}
+      body ${bodyFields}
     }
   }
 `

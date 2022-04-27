@@ -2,6 +2,19 @@
   export const translations = {
     en: {}
   }
+
+  export const graphQuery = `
+    {
+      ...sessionFields
+      speakers {
+        speaker {
+          ...on speaker {
+            ...speakerFields
+          }
+        }
+      }
+    }
+  `
 </script>
 
 <script>
@@ -21,5 +34,16 @@
   {@html asHTML(session.data.name)}
   {#if type === 'link'}
     <Link document={session}>{text`Learn more`}</Link>
+  {:else}
+    <h3>Speakers</h3>
+    <ul>
+      {#each session.data.speakers as item}
+        <li>
+          <Link document={item.speaker}>
+            {@html asHTML(item.speaker.data.name)}
+          </Link>
+        </li>
+      {/each}
+    </ul>
   {/if}
 </article>

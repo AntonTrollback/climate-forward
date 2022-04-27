@@ -42,6 +42,7 @@
           href: href,
           'sveltekit:reload': '',
           'on:click': function (event) {
+            session = null
             speaker = document
             window.history.replaceState({}, null, href)
             event.preventDefault()
@@ -55,6 +56,7 @@
           href: href,
           'sveltekit:reload': '',
           'on:click': function (event) {
+            speaker = null
             session = document
             window.history.replaceState({}, null, href)
             event.preventDefault()
@@ -73,12 +75,25 @@
   export let speaker
   export let session
   export const text = gettext(translations)
+
+  function getSessionsForSpeaker () {
+    return event.data.body
+      .filter((slice) => slice.slice_type === 'program')
+      .flatMap(
+        (slice) => slice.items
+          .map((item) => item.session)
+          .filter((session) => session.data.speakers.some(
+            (item) => item.speaker.id === speaker.  id
+          )
+        )
+      )
+  }
 </script>
 
 <Event document={event} />
 {#if speaker}
   <Modal>
-    <Speaker {speaker} />
+    <Speaker speaker={speaker} sessions={getSessionsForSpeaker()} />
     <Link slot="close" document={event}>
       {text`Close`}
     </Link>
