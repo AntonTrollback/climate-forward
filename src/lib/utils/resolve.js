@@ -16,6 +16,7 @@ export default function resolve(doc, prefix = null) {
   } else if (typeof prefix !== 'string') {
     prefix = resolve(prefix)
   }
+
   switch (doc.type) {
     case 'Web':
     case 'Media':
