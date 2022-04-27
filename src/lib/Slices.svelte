@@ -40,7 +40,10 @@
 </script>
 
 {#each slices as slice, index}
-  <div class="u-container" id={slice.primary.slice_id || `${slice.slice_type}-${index}`}>
+  <div
+    class="u-container"
+    id={slice.primary.slice_id || `${slice.slice_type}-${index}`}
+  >
     {#if slice.slice_type === 'events'}
       <ol>
         {#each slice.items.filter((item) => !item.event.isBroken) as item}
@@ -69,9 +72,11 @@
     {#if slice.slice_type === 'program'}
       <RichText fields={slice.primary.heading} />
       <RichText fields={slice.primary.text} />
-      <Program sessions={slice.items
-        .map((item) => item.session)
-        .filter((session) => !session.isBroken)} />
+      <Program
+        sessions={slice.items
+          .map((item) => item.session)
+          .filter((session) => !session.isBroken)}
+      />
     {/if}
   </div>
 {/each}

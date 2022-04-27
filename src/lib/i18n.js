@@ -22,7 +22,9 @@ export function gettext(translations = defaults) {
 
     const numbers = values.filter((value) => typeof value === 'number')
     if (numbers.length) {
-      const pluralization = numbers.map((value) => (value === 1 ? 'one' : 'other')).join(':')
+      const pluralization = numbers
+        .map((value) => (value === 1 ? 'one' : 'other'))
+        .join(':')
       value = value?.[pluralization] || key
       console.assert(value !== key, `Missing pluralization for "${key}"`)
     } else if (lang !== 'en') {

@@ -48,8 +48,12 @@
 
 @supports (padding-left: env(safe-area-inset-left)) {
   .u-container {
-    padding-left: calc(var(--doc-margin) + env(safe-area-inset-left)) !important;
-    padding-right: calc(var(--doc-margin) + env(safe-area-inset-right)) !important;
+    padding-left: calc(
+      var(--doc-margin) + env(safe-area-inset-left)
+    ) !important;
+    padding-right: calc(
+      var(--doc-margin) + env(safe-area-inset-right)
+    ) !important;
   }
 }
 

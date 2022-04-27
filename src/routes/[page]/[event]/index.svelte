@@ -76,16 +76,15 @@
   export let session
   export const text = gettext(translations)
 
-  function getSessionsForSpeaker () {
+  function getSessionsForSpeaker() {
     return event.data.body
       .filter((slice) => slice.slice_type === 'program')
-      .flatMap(
-        (slice) => slice.items
+      .flatMap((slice) =>
+        slice.items
           .map((item) => item.session)
-          .filter((session) => session.data.speakers.some(
-            (item) => item.speaker.id === speaker.  id
+          .filter((session) =>
+            session.data.speakers.some((item) => item.speaker.id === speaker.id)
           )
-        )
       )
   }
 </script>
@@ -93,7 +92,7 @@
 <Event document={event} />
 {#if speaker}
   <Modal>
-    <Speaker speaker={speaker} sessions={getSessionsForSpeaker()} />
+    <Speaker {speaker} sessions={getSessionsForSpeaker()} />
     <Link slot="close" document={event}>
       {text`Close`}
     </Link>

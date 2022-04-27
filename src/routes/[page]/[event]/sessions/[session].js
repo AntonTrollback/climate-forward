@@ -8,7 +8,7 @@ const graphQuery = `
   }
 `
 
-export async function get ({ fetch, params }) {
+export async function get({ fetch, params }) {
   const client = createClient('climateforward', { fetch })
   const [session, { body }] = await Promise.all([
     client.getByUID('session', params.session, { graphQuery }),
