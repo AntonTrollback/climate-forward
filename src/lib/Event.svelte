@@ -5,6 +5,8 @@
   export let document
 </script>
 
-<h1 class="u-title">{asText(document.data.name)}</h1>
-<Menu slices={document.data.menu} />
-<Slices slices={document.data.body} />
+<slot>
+  <h1 class="u-title">{asText(document.data.name)}</h1>
+  <Menu slices={document.data.menu} />
+  <Slices slices={document.data.body} />
+</slot>

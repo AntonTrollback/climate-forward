@@ -1,6 +1,6 @@
 <script>
   import Page from '$lib/Page.svelte'
-  export let document
+  export let page
 </script>
 
-<Page document={document} />
+<Page document={page} />

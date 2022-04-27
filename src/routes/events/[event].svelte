@@ -1,6 +1,6 @@
 <script>
   import Event from '$lib/Event.svelte'
-  export let document
+  export let event
 </script>
 
-<Event document={document} />
+<Event document={event} />

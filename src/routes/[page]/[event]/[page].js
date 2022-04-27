@@ -6,6 +6,9 @@ import { createClient } from '@prismicio/client'
  */
 export async function get({ fetch, params }) {
   const client = createClient('climateforward', { fetch })
-  const document = await client.getByUID('page', params.page)
-  return document ? { body: { document } } : { status: 404 }
+  const [page, event] = await Promise.all([
+    client.getByUID('page', params.page),
+    client.getByUID('event', params.event)
+  ])
+  return page && event ? { body: { page, event } } : { status: 404 }
 }

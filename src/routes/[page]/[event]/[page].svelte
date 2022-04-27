@@ -1,6 +1,10 @@
 <script>
   import Page from '$lib/Page.svelte'
-  export let document
+  import Event from '$lib/Event.svelte'
+  export let page
+  export let event
 </script>
 
-<Page document={document} />
+<Event document={event}>
+  <Page document={page} />
+</Event>
