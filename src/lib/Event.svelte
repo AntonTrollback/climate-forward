@@ -1,5 +1,5 @@
 <script>
-  import { asText, asHTML } from '@prismicio/helpers'
+  import { asText } from '@prismicio/helpers'
   import Slices from '$lib/Slices.svelte'
   import Menu from '$lib/Menu.svelte'
   export let document

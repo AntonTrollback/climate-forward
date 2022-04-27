@@ -12,9 +12,11 @@
   )
   $: events = Object.fromEntries(Object.entries(props).filter(([key]) => key.startsWith('on:')))
 
-  function getProps(props) {
-    const resolver = getContext(LINK) || resolve
-    return resolver(props)
+  function getProps (props) {
+    const resolver = getContext(LINK)
+    if (resolver) return resolver(props)
+    if (props.document) return { ...props, href: resolve(props.document) }
+    return props
   }
 
   function addEventListener(node, events) {

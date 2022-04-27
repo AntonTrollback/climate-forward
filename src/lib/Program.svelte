@@ -5,7 +5,7 @@
 </script>
 
 <script>
-  import { asText, asHTML, asDate } from '@prismicio/helpers'
+  import { asDate } from '@prismicio/helpers'
   import { gettext, language } from '$lib/i18n.js'
   import Session from '$lib/Session.svelte'
   import { format, parse } from 'date-fns'

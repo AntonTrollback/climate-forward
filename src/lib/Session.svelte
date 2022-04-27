@@ -18,8 +18,8 @@
 </script>
 
 <script>
-  import { asText, asHTML } from '@prismicio/helpers'
-  import { gettext, language } from '$lib/i18n.js'
+  import RichText from '$lib/RichText.svelte'
+  import { gettext } from '$lib/i18n.js'
   import Link from '$lib/Link.svelte'
 
   export const text = gettext(translations)
@@ -31,7 +31,7 @@
 </script>
 
 <article class="Speaker--{type}">
-  {@html asHTML(session.data.name)}
+  <RichText fields={session.data.name} />
   {#if type === 'link'}
     <Link document={session}>{text`Learn more`}</Link>
   {:else}
@@ -40,7 +40,7 @@
       {#each session.data.speakers as item}
         <li>
           <Link document={item.speaker}>
-            {@html asHTML(item.speaker.data.name)}
+            <RichText fields={item.speaker.data.name} />
           </Link>
         </li>
       {/each}

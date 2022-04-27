@@ -31,8 +31,7 @@
 </script>
 
 <script>
-  import { asText, asHTML } from '@prismicio/helpers'
-  import resolve from '$lib/utils/resolve.js'
+  import RichText from '$lib/RichText.svelte'
   import Speaker from '$lib/Speaker.svelte'
   import Program from '$lib/Program.svelte'
   import Link from '$lib/Link.svelte'
@@ -52,11 +51,11 @@
       </ol>
     {/if}
     {#if slice.slice_type === 'rich_text'}
-      {@html asHTML(slice.primary.text, resolve)}
+      <RichText fields={slice.primary.text} />
     {/if}
     {#if slice.slice_type === 'speakers'}
-      {@html asHTML(slice.primary.heading)}
-      {@html asHTML(slice.primary.text, resolve)}
+      <RichText fields={slice.primary.heading} />
+      <RichText fields={slice.primary.text} />
       <ol>
         {#each slice.items
           .map((item) => item.speaker)
@@ -68,11 +67,11 @@
       </ol>
     {/if}
     {#if slice.slice_type === 'program'}
-      {@html asHTML(slice.primary.heading)}
-      {@html asHTML(slice.primary.text, resolve)}
-      <Program
-        sessions={slice.items.map((item) => item.session).filter((session) => !session.isBroken)}
-      />
+      <RichText fields={slice.primary.heading} />
+      <RichText fields={slice.primary.text} />
+      <Program sessions={slice.items
+        .map((item) => item.session)
+        .filter((session) => !session.isBroken)} />
     {/if}
   </div>
 {/each}
