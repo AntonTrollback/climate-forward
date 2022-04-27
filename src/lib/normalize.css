@@ -1,14 +1,14 @@
 @import "modern-normalize";
 
 /**
-  * Document styles
-  * 1. Guard for horizontal scrolling
-  * 2. Prefered instead of global 'text' cursor
-  * 4. Prefered text rendering
-  * 5. Prefered svg text sizing
-  * 6. Disable Chrome on Android refreshing the page at scroll end
-  * 7. Enfoce smooth scrolling
-  */
+ * Document styles
+ * 1. Guard for horizontal scrolling
+ * 2. Prefered instead of global 'text' cursor
+ * 4. Prefered text rendering
+ * 5. Prefered svg text sizing
+ * 6. Disable Chrome on Android refreshing the page at scroll end
+ * 7. Enfoce smooth scrolling
+ */
 
 :root {
   width: 100%; /* 1 */
@@ -38,8 +38,8 @@ body {
 }
 
 /**
-* Reset specific user agent styles and add sensible defaults
-*/
+ * Reset specific user agent styles and add sensible defaults
+ */
 
 h1,
 h2,
@@ -108,8 +108,8 @@ button {
 }
 
 /**
-* Limit touch screen tap delays
-*/
+ * Limit touch screen tap delays
+ */
 
 a,
 area,
@@ -125,8 +125,8 @@ textarea,
 }
 
 /**
-* Provide emphasized focus styles for tab navigation
-*/
+ * Provide emphasized focus styles for tab navigation
+ */
 
 :focus-visible {
   outline: solid var(--focus-ring-width) !important;
@@ -134,10 +134,26 @@ textarea,
 }
 
 /**
-* Disable default focus styles for pointer events, when :focus-visible is
-* supported by the browser or via github.com/WICG/focus-visible
-*/
+ * Disable default focus styles for pointer events, when :focus-visible is
+ * supported by the browser or via github.com/WICG/focus-visible
+ */
 
 :focus:not(:focus-visible) {
   outline: 0 !important;
+}
+
+/**
+ * Strack trace
+ */
+
+pre {
+  overflow: scroll;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0;
+  background: #000;
+  color: #fff;
+  border-radius: 4px;
 }
