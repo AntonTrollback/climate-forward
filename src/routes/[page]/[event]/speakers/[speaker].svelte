@@ -5,4 +5,4 @@
   export let speaker
 </script>
 
-<EventPage page={page} event={event} speaker={speaker} />
+<EventPage {page} {event} {speaker} />

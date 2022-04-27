@@ -1,8 +1,6 @@
 <script context="module">
   export const translations = {
-    en: {
-
-    }
+    en: {}
   }
 </script>
 

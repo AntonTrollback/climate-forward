@@ -14,7 +14,8 @@
         const href = resolve(document, page)
         return { ...attrs, href: href }
       }
-      default: return { ...attrs, href: resolve(document) }
+      default:
+        return { ...attrs, href: resolve(document) }
     }
   })
 

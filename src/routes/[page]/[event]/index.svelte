@@ -1,8 +1,6 @@
 <script context="module">
   export const translations = {
-    en: {
-
-    }
+    en: {}
   }
 </script>
 
@@ -63,8 +61,10 @@
           }
         }
       }
-      case 'page': return { ...attrs, href: resolve(document, [page, event]) }
-      default: return { ...attrs, href: resolve(document) }
+      case 'page':
+        return { ...attrs, href: resolve(document, [page, event]) }
+      default:
+        return { ...attrs, href: resolve(document) }
     }
   })
 
@@ -78,7 +78,7 @@
 <Event document={event} />
 {#if speaker}
   <Modal>
-    <Speaker speaker={speaker} />
+    <Speaker {speaker} />
     <Link slot="close" document={event}>
       {text`Close`}
     </Link>
@@ -86,7 +86,7 @@
 {/if}
 {#if session}
   <Modal>
-    <Session session={session} />
+    <Session {session} />
     <Link slot="close" document={event}>
       {text`Close`}
     </Link>

@@ -5,4 +5,4 @@
   export let session
 </script>
 
-<EventPage page={page} event={event} session={session} />
+<EventPage {page} {event} {session} />

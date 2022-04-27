@@ -8,18 +8,18 @@
 
     return () => media.removeEventListener('change', setFavicon)
 
-    function setFavicon () {
+    function setFavicon() {
       const href = `/favicon-${media.matches ? 'dark' : 'light'}.ico`
       document.querySelector('link[rel="icon"]').href = href
     }
   })
 </script>
 
-<style>
-  @import "$lib/config.css";
-  @import "$lib/normalize.css";
-  @import "$lib/fonts/index.css";
-  @import "$lib/utils/index.css";
-</style>
+<slot />
 
-<slot></slot>
+<style>
+  @import '$lib/config.css';
+  @import '$lib/normalize.css';
+  @import '$lib/fonts/index.css';
+  @import '$lib/utils/index.css';
+</style>

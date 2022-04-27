@@ -10,18 +10,16 @@
   $: attributes = Object.fromEntries(
     Object.entries(props).filter(([key]) => !key.startsWith('on:'))
   )
-  $: events = Object.fromEntries(
-    Object.entries(props).filter(([key]) => key.startsWith('on:'))
-  )
+  $: events = Object.fromEntries(Object.entries(props).filter(([key]) => key.startsWith('on:')))
 
-  function getProps (props) {
+  function getProps(props) {
     const resolver = getContext(LINK) || resolve
     return resolver(props)
   }
 
-  function addEventListener (node, events) {
+  function addEventListener(node, events) {
     const listener = {
-      handleEvent (event) {
+      handleEvent(event) {
         return events[`on:${event.type}`](event)
       }
     }
@@ -31,10 +29,10 @@
     }
 
     return {
-      update (newEvents) {
+      update(newEvents) {
         events = newEvents
       },
-      destroy () {
+      destroy() {
         for (const event of Object.keys(events)) {
           node.removeEventListener(event.slice(3), listener)
         }

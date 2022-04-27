@@ -5,7 +5,7 @@
  * @param {string} [prefix='']
  * @returns {string}
  */
-export default function resolve (doc, prefix = null) {
+export default function resolve(doc, prefix = null) {
   if (Array.isArray(prefix)) {
     prefix = prefix.reduce(function (prefix, next) {
       if (typeof next === 'string') return prefix + next
@@ -18,8 +18,11 @@ export default function resolve (doc, prefix = null) {
   }
   switch (doc.type) {
     case 'Web':
-    case 'Media': return doc.url?.replace(/^https?:\/\/#/, '#')
-    case 'event': return `${prefix || '/events'}/${doc.uid}`
-    default: return `${prefix}/${doc.uid}`
+    case 'Media':
+      return doc.url?.replace(/^https?:\/\/#/, '#')
+    case 'event':
+      return `${prefix || '/events'}/${doc.uid}`
+    default:
+      return `${prefix}/${doc.uid}`
   }
 }

@@ -1,39 +1,39 @@
 @font-face {
-  font-family: "NYTFranklin";
+  font-family: 'NYTFranklin';
   font-display: auto;
   font-style: normal;
   font-weight: 400;
-  src: url("./nytfranklinmedium.woff2") format("woff2");
+  src: url('./nytfranklinmedium.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "NYTFranklin";
+  font-family: 'NYTFranklin';
   font-display: auto;
   font-style: normal;
   font-weight: 700;
-  src: url("./nytfranklinbold.woff2") format("woff2");
+  src: url('./nytfranklinbold.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "NYTFranklin";
+  font-family: 'NYTFranklin';
   font-display: auto;
   font-style: normal;
   font-weight: 900;
-  src: url("./nytfranklinextrabold.woff2") format("woff2");
+  src: url('./nytfranklinextrabold.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "NYTCheltenham";
+  font-family: 'NYTCheltenham';
   font-display: auto;
   font-style: normal;
   font-weight: 200;
-  src: url("./nytcheltenhamextralight.woff2") format("woff2");
+  src: url('./nytcheltenhamextralight.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: "NYTCheltenham";
+  font-family: 'NYTCheltenham';
   font-display: auto;
   font-style: normal;
   font-weight: 400;
-  src: url("./nytcheltenhamlight.woff2") format("woff2");
+  src: url('./nytcheltenhamlight.woff2') format('woff2');
 }

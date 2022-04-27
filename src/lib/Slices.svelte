@@ -41,7 +41,7 @@
 </script>
 
 {#each slices as slice, index}
-  <div id="{slice.primary.slice_id || `${slice.slice_type}-${index}`}">
+  <div class="u-container" id={slice.primary.slice_id || `${slice.slice_type}-${index}`}>
     {#if slice.slice_type === 'events'}
       <ol>
         {#each slice.items.filter((item) => !item.event.isBroken) as item}
@@ -62,7 +62,7 @@
           .map((item) => item.speaker)
           .filter((speaker) => !speaker.isBroken) as speaker}
           <li>
-            <Speaker type="link" speaker={speaker} />
+            <Speaker type="link" {speaker} />
           </li>
         {/each}
       </ol>
@@ -70,9 +70,9 @@
     {#if slice.slice_type === 'program'}
       {@html asHTML(slice.primary.heading)}
       {@html asHTML(slice.primary.text, resolve)}
-      <Program sessions={slice.items
-        .map((item) => item.session)
-        .filter((session) => !session.isBroken)} />
+      <Program
+        sessions={slice.items.map((item) => item.session).filter((session) => !session.isBroken)}
+      />
     {/if}
   </div>
 {/each}

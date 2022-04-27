@@ -2,6 +2,15 @@
   export const MODAL = Symbol('MODAL')
 </script>
 
+<section class="Modal">
+  <div class="Modal-window">
+    <div class="Modal-close">
+      <slot name="close" />
+    </div>
+    <slot />
+  </div>
+</section>
+
 <style>
   .Modal {
     position: fixed;
@@ -26,12 +35,3 @@
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   }
 </style>
-
-<section class="Modal">
-  <div class="Modal-window">
-    <div class="Modal-close">
-      <slot name="close" />
-    </div>
-    <slot />
-  </div>
-</section>

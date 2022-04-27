@@ -1,8 +1,6 @@
 <script context="module">
   export const translations = {
-    en: {
-
-    }
+    en: {}
   }
 </script>
 
@@ -38,11 +36,17 @@
 <ol>
   {#each days as day}
     <li>
-      <h3>{text`Date`}: {day.date.toLocaleString($language, { weekday: 'long', month: 'long', day: 'numeric' })}</h3>
+      <h3>
+        {text`Date`}: {day.date.toLocaleString($language, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+        })}
+      </h3>
       <ol>
         {#each day.sessions as session}
           <li>
-            <Session type="link" session={session} />
+            <Session type="link" {session} />
           </li>
         {/each}
       </ol>
