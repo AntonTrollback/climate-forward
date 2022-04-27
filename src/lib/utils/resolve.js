@@ -2,10 +2,10 @@
 
 /**
  * @param {PrismicDocument} doc
- * @param {string} [prefix='']
+ * @param {string} [prefix]
  * @returns {string}
  */
-export default function resolve(doc, prefix = null) {
+export default function resolve(doc, prefix) {
   if (Array.isArray(prefix)) {
     prefix = prefix.reduce(function (prefix, next) {
       if (typeof next === 'string') return prefix + next
