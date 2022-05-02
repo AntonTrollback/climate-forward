@@ -9,13 +9,14 @@ export const language = writable('en')
 /**
  * Create i18n text utility with given translation object
  * @param {object} translations
- * @returns {function(string[], ...any): any[]}
+ * @returns {function(TemplateStringsArray, ...any): any[]}
  */
 export function gettext(translations = defaults) {
   const lang = get(language)
   const defaultTranslations = defaults[lang]
   translations = translations[lang] || defaultTranslations
 
+  /** @type {function(TemplateStringsArray, ...any): any[]} */
   return function text(strings, ...values) {
     const key = strings.join('%s')
     let value = translations[key] || defaultTranslations[key] || key
