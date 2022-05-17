@@ -1,11 +1,3 @@
-<script context="module">
-  export const graphQuery = `
-    {
-      ...eventFields
-    }
-  `
-</script>
-
 <script>
   import { asText } from '@prismicio/helpers'
   import Slices from '$lib/Slices.svelte'
@@ -22,4 +14,4 @@
   branding={document.data.branding}
   links={document.data.links}
   copyright={document.data.copyright}
-  width={document.data.max_width}/>
+  width={document.data.max_width} />
