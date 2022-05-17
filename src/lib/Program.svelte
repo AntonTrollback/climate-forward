@@ -7,7 +7,7 @@
 <script>
   import { asDate } from '@prismicio/helpers'
   import { gettext, language } from '$lib/i18n.js'
-  import Session from '$lib/Session.svelte'
+  import Session, { getTimestamps } from '$lib/Session.svelte'
   import { format, parse } from 'date-fns'
 
   export let sessions
@@ -15,10 +15,11 @@
 
   $: days = sessions
     .reduce(function (days, session) {
-      const date = format(asDate(session.data.starts), 'yyyy-MM-dd')
-      let day = days.find((day) => day.date === date)
+      const { start: date } = getTimestamps(session)
+      const datestamp = format(date, 'yyyy-MM-dd')
+      let day = days.find((day) => day.date === datestamp)
       if (!day) {
-        day = { date, sessions: [session] }
+        day = { date: datestamp, sessions: [session] }
         days.push(day)
       } else {
         day.sessions.push(session)
