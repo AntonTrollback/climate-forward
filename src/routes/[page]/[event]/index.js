@@ -10,10 +10,6 @@ const graphQuery = `
   }
 `
 
-/**
- * @param {any} event
- * @returns
- */
 export async function get({ fetch, params }) {
   const client = createClient('climateforward', { fetch })
   const [page, event] = await Promise.all([
