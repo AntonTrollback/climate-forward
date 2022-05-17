@@ -12,7 +12,7 @@ export default function resolve(doc, prefix) {
 
   switch (doc.type) {
     case 'event':
-      return `${prefix || '/events'}/${doc.uid}`
+      return `${prefix || '/' + (doc.data.parent?.uid || 'events')}/${doc.uid}`
     case 'Web':
     case 'Media':
       return doc.url?.replace(/^https?:\/\/#/, '#')
