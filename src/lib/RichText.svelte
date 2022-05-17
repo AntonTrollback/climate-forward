@@ -27,7 +27,7 @@
 {#if title}
   <div class="layout">
     <div class="aside">
-      <div class="Text Text--xl"><p>{asText(title)}<p></div>
+      <div class="Text Text--xl"><p>{asText(title)}</p></div>
     </div>
     <div class="main">
       <div class="Text">{@html asHTML(fields, resolveLink)}</div>

@@ -36,6 +36,12 @@
           sponsor ${sponsorFields}
         }
       }
+      ...on sponsors {
+        repeat {
+          ...repeatFields
+          sponsor ${sponsorFields}
+        }
+      }
       ...on events {
         non-repeat {
           ...non-repeatFields
@@ -90,10 +96,12 @@
   import SectionIntro from '$lib/SectionIntro.svelte'
   import EventList from '$lib/EventList.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
+  import Sponsors from '$lib/Sponsors.svelte'
   import LegalList from '$lib/LegalList.svelte'
   import Speaker from '$lib/Speaker.svelte'
   import Program from '$lib/Program.svelte'
   export let slices
+  console.log(slices)
 </script>
 
 {#each slices as slice, index}
@@ -114,6 +122,10 @@
           label={slice.primary.sponsor_label}
           org={slice.primary.sponsor.data} />
       </div>
+    {/if}
+
+    {#if slice.slice_type === 'sponsors'}
+      <Sponsors items={slice.items.filter((sponsor) => !sponsor.isBroken)} />
     {/if}
 
     {#if slice.slice_type === 'rich_text'}
