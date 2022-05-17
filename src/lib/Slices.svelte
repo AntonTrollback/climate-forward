@@ -1,7 +1,6 @@
 <script context="module">
   import { graphQuery as sessionFields } from '$lib/Session.svelte'
   import { graphQuery as sponsorFields } from '$lib/Sponsor.svelte'
-  import { graphQuery as eventFields } from '$lib/Event.svelte'
 
   export const pageBody = `
     {
@@ -43,7 +42,9 @@
         }
         repeat {
           ...repeatFields
-          event ${eventFields}
+          event {
+            ...eventFields
+          }
         }
       }
       ...on legal_numbered_text {
@@ -109,7 +110,9 @@
 
     {#if slice.slice_type === 'sponsor'}
       <div class="u-container">
-        <Sponsor label={slice.primary.sponsor_label} org={slice.primary.sponsor.data} />
+        <Sponsor
+          label={slice.primary.sponsor_label}
+          org={slice.primary.sponsor.data} />
       </div>
     {/if}
 
