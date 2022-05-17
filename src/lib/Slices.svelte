@@ -15,6 +15,16 @@
           ...non-repeatFields
         }
       }
+      ...on scroll_target {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on about_text {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on section_intro {
         non-repeat {
           ...non-repeatFields
@@ -114,6 +124,12 @@
             ? 'xl'
             : ''}
           fields={slice.primary.text} />
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'about_text'}
+      <div class="u-container">
+        <RichText title={slice.primary.heading} fields={slice.primary.main_text} />
       </div>
     {/if}
 

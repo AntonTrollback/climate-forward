@@ -143,7 +143,7 @@
 
 .Text h1,
 .Text-h1 {
-  font-size: 4rem !important;
+  font-size: 3rem !important;
   line-height: 1 !important;
   letter-spacing: 0 !important;
   margin-bottom: 0.5rem !important;
@@ -151,13 +151,26 @@
 
 .Text h2,
 .Text-h2 {
-  font-size: 2.5rem !important;
+  font-size: 2rem !important;
   line-height: 1 !important;
   letter-spacing: 0 !important;
   margin-bottom: 0.5rem !important;
 }
 
 @media (min-width: 800px) {
+  .Text h1,
+  .Text-h1 {
+    line-height: 0.88 !important;
+    font-size: 5rem !important;
+  }
+
+  .Text h2,
+  .Text-h2 {
+    font-size: 3rem !important;
+  }
+}
+
+@media (min-width: 1200px) {
   .Text h1,
   .Text-h1 {
     line-height: 0.88 !important;
