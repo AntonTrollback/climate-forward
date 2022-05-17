@@ -11,12 +11,18 @@ export default function resolve(doc, prefix) {
   }
 
   switch (doc.type) {
+    case 'event':
+      return `${prefix || '/events'}/${doc.uid}`
     case 'Web':
     case 'Media':
       return doc.url?.replace(/^https?:\/\/#/, '#')
-    case 'event':
-      return `${prefix || '/events'}/${doc.uid}`
     default:
-      return `${prefix}/${doc.uid}`
+      switch (doc.link_type) {
+        case 'Web':
+        case 'Media':
+          return doc.url?.replace(/^https?:\/\/#/, '#')
+        default:
+          return `${prefix}/${doc.uid}`.replace('homepage', '')
+      }
   }
 }

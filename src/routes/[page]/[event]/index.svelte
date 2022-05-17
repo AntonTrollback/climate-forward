@@ -1,12 +1,5 @@
-<script context="module">
-  export const translations = {
-    en: {}
-  }
-</script>
-
 <script>
   import Event from '$lib/Event.svelte'
-  import { gettext } from '$lib/i18n.js'
   import Speaker from '$lib/Speaker.svelte'
   import Session from '$lib/Session.svelte'
   import resolve from '$lib/utils/resolve.js'
@@ -74,7 +67,6 @@
   export let event
   export let speaker
   export let session
-  export const text = gettext(translations)
 
   function getSessionsForSpeaker() {
     return event.data.body
@@ -93,16 +85,12 @@
 {#if speaker}
   <Modal>
     <Speaker {speaker} sessions={getSessionsForSpeaker()} />
-    <Link slot="close" document={event}>
-      {text`Close`}
-    </Link>
+    <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}
 {#if session}
   <Modal>
     <Session {session} />
-    <Link slot="close" document={event}>
-      {text`Close`}
-    </Link>
+    <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}

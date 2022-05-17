@@ -1,7 +1,50 @@
 <script context="module">
   import { graphQuery as sessionFields } from '$lib/Session.svelte'
+  import { graphQuery as sponsorFields } from '$lib/Sponsor.svelte'
+  import { graphQuery as eventFields } from '$lib/Event.svelte'
 
-  export const graphQuery = `
+  export const pageBody = `
+    {
+      ...on rich_text {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on line {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on section_intro {
+        non-repeat {
+          ...non-repeatFields
+          sponsor ${sponsorFields}
+        }
+      }
+      ...on sponsor {
+        non-repeat {
+          ...non-repeatFields
+          sponsor ${sponsorFields}
+        }
+      }
+      ...on events {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          ...repeatFields
+          event ${eventFields}
+        }
+      }
+      ...on legal_numbered_text {
+        repeat {
+          ...repeatFields
+        }
+      }
+    }
+  `
+
+  export const eventBody = `
     {
       ...on rich_text {
         non-repeat {
@@ -32,51 +75,102 @@
 
 <script>
   import RichText from '$lib/RichText.svelte'
+  import Divider from '$lib/Divider.svelte'
+  import SectionIntro from '$lib/SectionIntro.svelte'
+  import EventList from '$lib/EventList.svelte'
+  import Sponsor from '$lib/Sponsor.svelte'
+  import LegalList from '$lib/LegalList.svelte'
   import Speaker from '$lib/Speaker.svelte'
   import Program from '$lib/Program.svelte'
-  import Link from '$lib/Link.svelte'
-
   export let slices
 </script>
 
 {#each slices as slice, index}
-  <div
-    class="u-container"
-    id={slice.primary.slice_id || `${slice.slice_type}-${index}`}
-  >
+  <div id={slice.primary.slice_id || `${slice.slice_type}-${index}`}>
     {#if slice.slice_type === 'events'}
-      <ol>
-        {#each slice.items.filter((item) => !item.event.isBroken) as item}
-          <li>
-            <Link document={item.event}>{item.event.uid}</Link>
-          </li>
-        {/each}
-      </ol>
+      <div class="u-container">
+        <EventList
+          props={slice.primary}
+          events={slice.items
+            .filter((event) => !event.isBroken)
+            .map((item) => item.event)} />
+      </div>
     {/if}
+
+    {#if slice.slice_type === 'sponsor'}
+      <div class="u-container">
+        <Sponsor label={slice.primary.sponsor_label} org={slice.primary.sponsor.data} />
+      </div>
+    {/if}
+
     {#if slice.slice_type === 'rich_text'}
-      <RichText fields={slice.primary.text} />
+      <div class="u-container">
+        <RichText
+          size={slice.primary.size === 'Small'
+            ? 'sm'
+            : slice.primary.size === 'Large'
+            ? 'lg'
+            : slice.primary.size === 'Extra large'
+            ? 'xl'
+            : ''}
+          fields={slice.primary.text} />
+      </div>
     {/if}
+
+    {#if slice.slice_type === 'line'}
+      <Divider
+        size={slice.primary.size === 'Extra small'
+          ? 'xs'
+          : slice.primary.size === 'Small'
+          ? 'sm'
+          : slice.primary.size === 'Medium'
+          ? 'md'
+          : slice.primary.size === 'Large'
+          ? 'lg'
+          : slice.primary.size === 'Extra large'
+          ? 'xl'
+          : ''}
+        solid={slice.primary.solid}
+        contain={slice.primary.contain} />
+    {/if}
+
+    {#if slice.slice_type === 'section_intro'}
+      <div class="u-container">
+        <SectionIntro content={slice.primary} />
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'legal_numbered_text'}
+      <div class="u-container">
+        <LegalList items={slice.items} />
+      </div>
+    {/if}
+
     {#if slice.slice_type === 'speakers'}
-      <RichText fields={slice.primary.heading} />
-      <RichText fields={slice.primary.text} />
-      <ol>
-        {#each slice.items
-          .map((item) => item.speaker)
-          .filter((speaker) => !speaker.isBroken) as speaker}
-          <li>
-            <Speaker type="link" {speaker} />
-          </li>
-        {/each}
-      </ol>
+      <div class="u-container">
+        <RichText fields={slice.primary.heading} />
+        <RichText fields={slice.primary.text} />
+        <ol>
+          {#each slice.items
+            .map((item) => item.speaker)
+            .filter((speaker) => !speaker.isBroken) as speaker}
+            <li>
+              <Speaker type="link" {speaker} />
+            </li>
+          {/each}
+        </ol>
+      </div>
     {/if}
+
     {#if slice.slice_type === 'program'}
-      <RichText fields={slice.primary.heading} />
-      <RichText fields={slice.primary.text} />
-      <Program
-        sessions={slice.items
-          .map((item) => item.session)
-          .filter((session) => !session.isBroken)}
-      />
+      <div class="u-container">
+        <RichText fields={slice.primary.heading} />
+        <RichText fields={slice.primary.text} />
+        <Program
+          sessions={slice.items
+            .map((item) => item.session)
+            .filter((session) => !session.isBroken)} />
+      </div>
     {/if}
   </div>
 {/each}

@@ -16,8 +16,15 @@
 
   function getProps(props) {
     const resolver = getContext(LINK)
+    if (props.document?.target === '_blank') {
+      props = {
+        ...props,
+        target: '_blank',
+        rel: 'noopener noreferrer'
+      }
+    }
     if (resolver) return resolver(props)
-    if (props.document) return { ...props, href: resolve(props.document) }
+    if (props.document) return { ...props, document: null, href: resolve(props.document) }
     return props
   }
 

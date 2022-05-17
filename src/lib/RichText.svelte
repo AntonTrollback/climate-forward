@@ -5,6 +5,16 @@
   import resolve from '$lib/utils/resolve.js'
 
   export let fields
+  export let size
+
+  size =
+    size === 'sm'
+      ? 'Text--sm'
+      : size === 'lg'
+      ? 'Text--lg'
+      : size === 'xl'
+      ? 'Text--xl'
+      : ''
 
   function resolveLink(document) {
     const resolver = getContext(LINK)
@@ -13,4 +23,4 @@
   }
 </script>
 
-{@html asHTML(fields, resolveLink)}
+<div class="Text {size}">{@html asHTML(fields, resolveLink)}</div>

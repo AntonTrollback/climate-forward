@@ -7,10 +7,10 @@
   --doc-display-font-family: 'NYTFranklin', arial, helvetica, sans-serif;
   --doc-line-height: 1.35;
   --doc-font-weight: 400;
-  --doc-letter-spacing: 0.01em;
+  --doc-letter-spacing: 0.005em;
   --doc-color: #000;
   --doc-color-muted: #808080;
-  --doc-color-border: #d4d4d4;
+  --doc-color-border: #ccc;
   --doc-color-background: #fff;
   --doc-color-highlight: #ffb154;
   --doc-color-placeholder: rgba(0, 0, 0, 0.1);
@@ -21,6 +21,14 @@
   --doc-border-width: 8px;
   --doc-max-width: 80rem;
   --doc-narrow: 1;
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.875rem;
+  --space-md: 2.5rem;
+  --space-lg: 3.75rem;
+  --space-xl: 6.875rem;
+
+  --scroll-offset: 100;
 
   --current-color: var(--doc-color);
   --current-color-muted: var(--doc-color-muted);
@@ -56,12 +64,6 @@
 @media (min-width: 1650px) {
   :root {
     --root-font-size: 110%;
-  }
-}
-
-@media (min-width: 1800px) {
-  :root {
-    --root-font-size: 115%;
   }
 }
 

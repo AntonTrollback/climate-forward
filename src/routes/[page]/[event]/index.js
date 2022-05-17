@@ -1,17 +1,22 @@
 import { createClient } from '@prismicio/client'
-import { graphQuery as bodyFields } from '$lib/Slices.svelte'
+import { eventBody, pageBody } from '$lib/Slices.svelte'
 
 const graphQuery = `
   {
     event {
       ...eventFields
-      body ${bodyFields}
+      body ${eventBody}
+    }
+    page {
+      ...pageFields
+      body ${pageBody}
     }
   }
 `
 
 export async function get({ fetch, params }) {
   const client = createClient('climateforward', { fetch })
+  console.log(graphQuery)
   const [page, event] = await Promise.all([
     client.getByUID('page', params.page, { graphQuery }),
     client.getByUID('event', params.event, { graphQuery })
