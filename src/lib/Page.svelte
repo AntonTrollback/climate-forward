@@ -7,11 +7,14 @@
 </script>
 
 <slot>
-  <Menu branding={document.data.branding} slices={document.data.menu} />
+  <Menu
+    branding={document.data.branding}
+    keeptop={document.data.keeptop}
+    slices={document.data.menu} />
   <Slices slices={document.data.body} />
   <Footer
     branding={document.data.branding}
     links={document.data.links}
     copyright={document.data.copyright}
-    width={document.data.max_width}/>
+    width={document.data.max_width} />
 </slot>

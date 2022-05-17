@@ -2,8 +2,8 @@
   import Link from '$lib/Link.svelte'
   import { onMount } from 'svelte'
   export let slices
+  export let keeptop
   export let branding
-
   let checked
   let sticky
   let scroll
@@ -15,6 +15,7 @@
   }
 
   function onscroll() {
+    if (keeptop) return
     const { scrollY } = window
     if (scrollY > 100) {
       sticky = true
@@ -39,8 +40,12 @@
   }
 
   function jump(event) {
-    let target = document.getElementById(event.currentTarget.getAttribute('href').slice(1))
-    let offset = getComputedStyle(document.documentElement).getPropertyValue('--scroll-offset')
+    let target = document.getElementById(
+      event.currentTarget.getAttribute('href').slice(1)
+    )
+    let offset = getComputedStyle(document.documentElement).getPropertyValue(
+      '--scroll-offset'
+    )
 
     console.log(offset)
 
@@ -77,7 +82,7 @@
 
 <svelte:window on:resize={onresize} on:scroll|passive={onscroll} />
 
-<header class="Menu" class:sticky style="--scroll: {scroll}">
+<header class="Menu {keeptop ? 'keeptop' : ''}" class:sticky style="--scroll: {scroll || 0}">
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
@@ -170,7 +175,10 @@
                     ></Link>
                 {/if}
                 {#if slice.slice_type === 'scroll_link'}
-                  <a class="link" on:click={jump} href="#{slice.primary.slice_id}"
+                  <a
+                    class="link"
+                    on:click={jump}
+                    href="#{slice.primary.slice_id}"
                     ><span data-text={slice.primary.label}
                       >{slice.primary.label}</span
                     ></a>
@@ -211,6 +219,10 @@
     height: var(--menu-height);
     user-select: none;
     pointer-events: none;
+  }
+
+  .keeptop {
+    position: absolute;
   }
 
   .space {
