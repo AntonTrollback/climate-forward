@@ -14,11 +14,12 @@
   export let document
 </script>
 
-<Menu slices={document.data.menu} />
+<Menu branding={document.data.branding} slices={document.data.menu} />
 <slot>
   <Slices slices={document.data.body} />
 </slot>
 <Footer
+  branding={document.data.branding}
   links={document.data.links}
   copyright={document.data.copyright}
   width={document.data.max_width}/>

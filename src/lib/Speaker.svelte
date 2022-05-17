@@ -14,7 +14,6 @@
   export let speaker
   export let sessions
 
-  /** @type {'card'|'link'} */
   export let type = 'card'
 </script>
 
