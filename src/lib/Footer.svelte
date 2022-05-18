@@ -1,10 +1,21 @@
 <script>
-  import { page } from '$app/stores'
-  import Link from '$lib/Link.svelte'
+  import { setContext } from 'svelte'
   import Divider from '$lib/Divider.svelte'
+  import resolve from '$lib/utils/resolve.js'
+  import Link, { LINK } from '$lib/Link.svelte'
+
+  export let prefix
   export let links
   export let copyright
   export let branding
+
+  if (prefix) {
+    setContext(LINK, function (props) {
+      const { document, ...attrs } = props
+      if (document) attrs.href = resolve(document, prefix)
+      return attrs
+    })
+  }
 
   function scrollTop(event) {
     if (event.currentTarget.getAttribute('href') !== window.location.pathname) {
@@ -55,9 +66,9 @@
         </svg>
       </a>
     {/if}
-    {#if links && links[0].text}
+    {#if links.some((item) => item.text && !item.link.isBroken)}
       <ul class="list">
-        {#each links as item}
+        {#each links.filter((item) => item.text && !item.link.isBroken) as item}
           <li class="item">
             <Link class="link" document={item.link}>{item.text}</Link>
           </li>

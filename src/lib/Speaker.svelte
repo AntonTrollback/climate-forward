@@ -5,7 +5,7 @@
 </script>
 
 <script>
-  import { gettext, language } from '$lib/i18n.js'
+  import { gettext } from '$lib/utils/i18n.js'
   import RichText from '$lib/RichText.svelte'
   import Link from '$lib/Link.svelte'
 

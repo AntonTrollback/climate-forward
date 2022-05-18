@@ -1,13 +1,25 @@
 <script>
-  import Link from '$lib/Link.svelte'
-  import { onMount } from 'svelte'
+  import resolve from '$lib/utils/resolve.js'
+  import { onMount, setContext } from 'svelte'
+  import Link, { LINK } from '$lib/Link.svelte'
+
+  export let prefix
   export let slices
   export let keeptop
   export let branding
+
   let checked
   let sticky
   let scroll
   let locked
+
+  if (prefix) {
+    setContext(LINK, function (props) {
+      const { document, ...attrs } = props
+      if (document) attrs.href = resolve(document, prefix)
+      return attrs
+    })
+  }
 
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)

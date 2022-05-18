@@ -1,4 +1,5 @@
 <script>
+  import { asText } from '@prismicio/helpers'
   import RichText from '$lib/RichText.svelte'
   import Button from '$lib/Button.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
@@ -8,7 +9,7 @@
 
 <div class="u-relative">
   <h2 class="Text-h1">
-    {@html content.heading[0].text.replace('\n', '<br />')}
+    {@html asText(content.heading).replace(/\n/g, '<br>')}
   </h2>
   <RichText size="lg" fields={content.text} />
   {#if link_text}

@@ -1,9 +1,26 @@
+<script context="module">
+  import { createClient } from '@prismicio/client'
+  import { pageBody } from '$lib/Slices.svelte'
+
+  const graphQuery = `
+    {
+      page {
+        ...pageFields
+        body ${pageBody}
+      }
+    }
+  `
+
+  export async function load({ fetch }) {
+    const client = createClient('climateforward', { fetch })
+    const page = await client.getByUID('page', 'homepage', { graphQuery })
+    return page ? { props: { page } } : { status: 404 }
+  }
+</script>
+
 <script>
   import Page from '$lib/Page.svelte'
-  import { setContext } from 'svelte'
-  import { LINK } from '$lib/Link.svelte'
-  import resolve from '$lib/utils/resolve.js'
   export let page
 </script>
 
-<Page document={page} />
+<Page {page} />

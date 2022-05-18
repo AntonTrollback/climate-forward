@@ -74,7 +74,9 @@
         }
         repeat {
           speaker {
-            ...speakerFields
+            ...on speaker {
+              ...speakerFields
+            }
           }
         }
       }
