@@ -36,7 +36,7 @@
 </script>
 
 <script>
-  import { formatInTimeZone } from 'date-fns-tz'
+  import { formatInTimeZone } from 'date-fns-tz/esm'
   import RichText from '$lib/RichText.svelte'
   import { asDate } from '@prismicio/helpers'
   import { format } from 'date-fns'
