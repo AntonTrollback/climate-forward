@@ -133,7 +133,7 @@
 
     {#if slice.slice_type === 'iframe'}
       <div class="u-container">
-        <Iframe url={slice.primary.url} />
+        <Iframe src={slice.primary.url} />
       </div>
     {/if}
 
