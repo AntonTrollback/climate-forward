@@ -29,6 +29,7 @@
 <style>
   figure {
     margin-top: var(--space-sm);
+    user-select: none;
   }
 
   .inline {
@@ -43,7 +44,7 @@
   img {
     display: block;
     width: 100%;
-    max-width: 7.25rem;
+    max-width: 8.75rem;
     margin-left: 1px;
   }
 

@@ -54,6 +54,7 @@
     font-weight: 400;
     margin-bottom: 0.1875rem;
     white-space: nowrap;
+    user-select: none;
   }
 
   .items {
