@@ -24,6 +24,11 @@
           ...non-repeatFields
         }
       }
+      ...on iframe {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on section_intro {
         non-repeat {
           ...non-repeatFields
@@ -102,6 +107,7 @@
   import LegalList from '$lib/LegalList.svelte'
   import Speaker from '$lib/Speaker.svelte'
   import Program from '$lib/Program.svelte'
+  import Iframe from '$lib/Iframe.svelte'
   export let slices
 </script>
 
@@ -122,6 +128,12 @@
         <Sponsor
           label={slice.primary.sponsor_label}
           org={slice.primary.sponsor.data} />
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'iframe'}
+      <div class="u-container">
+        <Iframe url={slice.primary.url} />
       </div>
     {/if}
 
