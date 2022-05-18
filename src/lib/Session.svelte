@@ -36,12 +36,14 @@
 </script>
 
 <script>
-  import { formatInTimeZone } from 'date-fns-tz'
+  import tz from 'date-fns-tz'
   import RichText from '$lib/RichText.svelte'
   import { asDate } from '@prismicio/helpers'
   import { format } from 'date-fns'
   import { gettext } from '$lib/i18n.js'
   import Link from '$lib/Link.svelte'
+
+  const { formatInTimeZone } = tz
 
   /** @type {'card'|'link'} */
   export let type = 'card'

@@ -24,7 +24,9 @@
       }
     }
     if (resolver) return resolver(props)
-    if (props.document) return { ...props, document: null, href: resolve(props.document) }
+    if (props.document) {
+      return { ...props, document: null, href: resolve(props.document) }
+    }
     return props
   }
 

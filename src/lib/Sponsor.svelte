@@ -28,7 +28,7 @@
 
 <style>
   figure {
-    margin-top: var(--space-sm)
+    margin-top: var(--space-sm);
   }
 
   .inline {

@@ -6,12 +6,12 @@
   let second = 0
   let third = 0
 
-  function className (item, index) {
+  function className(item, index) {
     if (item.indentation.includes('(N.N)')) return 'item second'
     if (item.indentation.includes('(N.N.N)')) return 'item third'
     return 'item first'
   }
-  function number (item, index) {
+  function number(item, index) {
     if (item.indentation.includes('(N)')) {
       first = first + 1
       second = 0
