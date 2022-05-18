@@ -5,14 +5,18 @@
   let script
   let iframe
 
-  onMount(async () => {
-    script.addEventListener('load', () => {
-      resizer = window.iframeResize(iframe)
+  function init() {
+    window.iFrameResize({ log: true }, iframe)
+  }
 
-      onDestroy(function () {
-        iframe?.iFrameResizer && iframe.iFrameResizer.removeListeners()
-      })
-    })
+  onMount(async () => {
+    console.log(window.iFrameResize)
+    if (!window.iFrameResize) return script.addEventListener('load', init)
+    init()
+  })
+
+  onDestroy(function () {
+    iframe?.iFrameResizer && iframe.iFrameResizer.removeListeners()
   })
 </script>
 
@@ -23,8 +27,8 @@
 </svelte:head>
 
 <iframe
-  bind:this={iframe}
   {src}
+  bind:this={iframe}
   allowpaymentrequest="true"
   allow="payment"
   fetchpriority="high"
