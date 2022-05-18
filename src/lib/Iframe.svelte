@@ -1,6 +1,6 @@
 <script>
   import iframeResize from 'iframe-resizer/js/iframeResizer'
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from 'svelte'
   export let url
   let iframe
 
@@ -8,14 +8,14 @@
     resizer = iframeResize(iframe)
   })
 
-	onDestroy(function () {
+  onDestroy(function () {
     iframe?.iFrameResizer && iframe.iFrameResizer.removeListeners()
   })
 </script>
 
 <iframe
   bind:this={iframe}
-  src='https://codeandconspire.com'
+  src={url}
   allowpaymentrequest="true"
   allow="payment"
   fetchpriority="high"
