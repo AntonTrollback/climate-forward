@@ -552,7 +552,6 @@
 
     .link {
       display: inline-block;
-      font-family: var(--doc-display-font-family);
       font-size: 2.15rem;
       font-weight: 400;
       line-height: 1.1;
@@ -633,7 +632,6 @@
     .link {
       display: block;
       padding: 0.5rem 0.5rem;
-      font-family: var(--doc-display-font-family);
       font-weight: 400;
       font-size: 0.75rem;
       line-height: 1.05;
