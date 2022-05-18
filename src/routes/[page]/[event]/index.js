@@ -16,7 +16,6 @@ const graphQuery = `
 
 export async function get({ fetch, params }) {
   const client = createClient('climateforward', { fetch })
-  console.log(graphQuery)
   const [page, event] = await Promise.all([
     client.getByUID('page', params.page, { graphQuery }),
     client.getByUID('event', params.event, { graphQuery })

@@ -66,11 +66,11 @@
  */
 
 .u-spaceTopSm {
-  margin-top: var(--space-sm) !important
+  margin-top: var(--space-sm) !important;
 }
 
 .u-spaceTopXl {
-  margin-top: var(--space-xl) !important
+  margin-top: var(--space-xl) !important;
 }
 
 /**
@@ -187,7 +187,7 @@
 .Text-h3 {
   font-size: 2rem !important;
   line-height: 1.1 !important;
-  letter-spacing: -.025em !important;
+  letter-spacing: -0.025em !important;
   margin-bottom: 0.75rem !important;
 }
 
@@ -203,7 +203,7 @@
 .Text-h4 {
   font-size: 1.35rem !important;
   line-height: 1.05 !important;
-  letter-spacing: -.01em !important;
+  letter-spacing: -0.01em !important;
   margin-bottom: 0.75rem !important;
 }
 

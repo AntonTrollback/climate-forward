@@ -33,7 +33,9 @@
     <li class:shuffle={!large}>
       <Divider solid="true" size={large ? 'xl' : 'md'} />
       <div class="content">
-        <h2 class="{large ? 'Text-h1 Text-full' : 'Text-h2 Text-full'}">{asText(event.data.name)}</h2>
+        <h2 class={large ? 'Text-h1 Text-full' : 'Text-h2 Text-full'}>
+          {asText(event.data.name)}
+        </h2>
         {#if large}
           <span class="Text-h1 Text-full"><em>{event.data.date}</em></span>
         {:else}

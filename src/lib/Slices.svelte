@@ -101,7 +101,6 @@
   import Speaker from '$lib/Speaker.svelte'
   import Program from '$lib/Program.svelte'
   export let slices
-  console.log(slices)
 </script>
 
 {#each slices as slice, index}
@@ -144,7 +143,9 @@
 
     {#if slice.slice_type === 'about_text'}
       <div class="u-container">
-        <RichText title={slice.primary.heading} fields={slice.primary.main_text} />
+        <RichText
+          title={slice.primary.heading}
+          fields={slice.primary.main_text} />
       </div>
     {/if}
 

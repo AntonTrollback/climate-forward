@@ -4,7 +4,7 @@
   export let document
 </script>
 
-<Link class="Button" document={document}>{text}</Link>
+<Link class="Button" {document}>{text}</Link>
 
 <style>
   :global(.Button) {
