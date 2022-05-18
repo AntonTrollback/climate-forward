@@ -8,7 +8,13 @@
 
   $: props = getProps($$props)
   $: attributes = Object.fromEntries(
-    Object.entries(props).filter(([key]) => !key.startsWith('on:'))
+    Object.entries(props)
+      .filter(([key]) => !key.startsWith('on:'))
+      .concat(
+        [props.href.startsWith('/') ? ['sveltekit:prefetch', ''] : null].filter(
+          Boolean
+        )
+      )
   )
   $: events = Object.fromEntries(
     Object.entries(props).filter(([key]) => key.startsWith('on:'))

@@ -1,6 +1,7 @@
 export default function resolve(doc, prefix) {
   if (Array.isArray(prefix)) {
     prefix = prefix.reduce(function (prefix, next) {
+      if (!next) return prefix
       if (typeof next === 'string') return prefix + next
       return resolve(next, prefix)
     }, '')
@@ -11,8 +12,10 @@ export default function resolve(doc, prefix) {
   }
 
   switch (doc.type) {
-    case 'event':
-      return `${prefix || '/' + (doc.data.parent?.uid || 'events')}/${doc.uid}`
+    case 'event': {
+      const root = prefix || (doc.data.parent ? `/${doc.data.parent.uid}` : '')
+      return `${root}/events/${doc.uid}`
+    }
     case 'Web':
     case 'Media':
       return doc.url?.replace(/^https?:\/\/#/, '#')
