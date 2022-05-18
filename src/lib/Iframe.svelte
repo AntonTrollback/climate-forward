@@ -6,11 +6,10 @@
   let iframe
 
   function init() {
-    window.iFrameResize({ log: true }, iframe)
+    window.iFrameResize(iframe)
   }
 
   onMount(async () => {
-    console.log(window.iFrameResize)
     if (!window.iFrameResize) return script.addEventListener('load', init)
     init()
   })
