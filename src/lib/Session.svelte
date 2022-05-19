@@ -44,7 +44,6 @@
 
   const { formatInTimeZone } = tz
 
-  /** @type {'card'|'link'} */
   export let type = 'card'
   export let session
 

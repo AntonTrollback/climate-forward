@@ -12,7 +12,7 @@
   import Divider from '$lib/Divider.svelte'
   import { asText } from '@prismicio/helpers'
   export let events
-  export let props
+  export let props = { large: false }
   let { large } = props
 
   // if (props.link_external) {

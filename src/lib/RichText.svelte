@@ -5,20 +5,22 @@
   import resolve from '$lib/utils/resolve.js'
 
   export let fields
-  export let title
-  export let size
-  export let collapsed
-  export let questions
-  export let limit
-  export let open
+  export let title = null
+  export let size = 'md'
+  export let collapsed = null
+  export let questions = null
+  export let limit = null
 
   if (fields?.length < 1) fields = null
   if (collapsed?.length < 1) collapsed = null
-  if (questions) questions = questions.filter((item) => item && item.text.length)
+  if (questions)
+    questions = questions.filter((item) => item && item.text.length)
   if (questions?.length < 1) questions = null
 
   if (questions?.length > limit) {
-    questions = [ questions.slice(0, limit), questions.slice(limit) ]
+    questions = [questions.slice(0, limit), questions.slice(limit)]
+  } else if (questions?.length) {
+    questions = [questions]
   }
 
   size =
@@ -57,12 +59,14 @@
           {#each questions[0] as question}
             {@html asHTML(question.text, resolveLink)}
           {/each}
-          <details>
-            <summary>Show {questions[1].length} more</summary>
-            {#each questions[1] as question}
-              {@html asHTML(question.text, resolveLink)}
-            {/each}
-          </details>
+          {#if questions[1]}
+            <details>
+              <summary>Show {questions[1].length} more</summary>
+              {#each questions[1] as question}
+                {@html asHTML(question.text, resolveLink)}
+              {/each}
+            </details>
+          {/if}
         {/if}
       </div>
     </div>

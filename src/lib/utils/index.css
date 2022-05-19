@@ -65,12 +65,61 @@
  * Space
  */
 
+.u-spaceTopXs {
+  margin-top: var(--space-xs) !important;
+}
+
 .u-spaceTopSm {
   margin-top: var(--space-sm) !important;
 }
 
 .u-spaceTopXl {
   margin-top: var(--space-xl) !important;
+}
+
+/**
+ * Trigger
+ */
+
+.u-trigger {
+  display: inline-block;
+  font-size: 0.6875rem;
+  line-height: 110%;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+  -webkit-touch-callout: none;
+  user-select: none;
+  transition: opacity 150ms var(--ease-out);
+  color: var(--current-color-muted);
+  cursor: pointer;
+}
+
+.u-trigger:active {
+  transition: none;
+  opacity: 0.6;
+}
+
+.u-trigger:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.175em;
+  text-decoration-thickness: 1px;
+  color: inherit;
+}
+
+@media (min-width: 600px) {
+  .u-trigger {
+    font-size: 0.8125rem;
+  }
+}
+
+.u-triggerBlock::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 /**
@@ -140,11 +189,11 @@
 .Text-h3 em {
   display: block !important;
   font-style: normal !important;
-  font-family: var(--doc-heading-font-family) !important;
+  font-family: var(--doc-font-family) !important;
   font-weight: 200 !important;
   margin-top: -0.1em !important;
   /* margin-bottom: -0.1em !important; */
-  font-size: 90% !important;
+  font-size: 94% !important;
   line-height: 1 !important;
 }
 

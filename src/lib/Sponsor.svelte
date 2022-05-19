@@ -9,10 +9,10 @@
 <script>
   import { asText } from '@prismicio/helpers'
   export let org
-  export let label
-  export let inline
-  export let size
-  let { name, logo, dimensions } = org
+  export let label = null
+  export let inline = false
+  export let size = 'md'
+  let { name, logo } = org
 </script>
 
 <figure class="Sponsor {inline ? 'inline' : ''}">

@@ -149,7 +149,7 @@
   import Program from '$lib/Program.svelte'
   import RichText from '$lib/RichText.svelte'
   import SectionIntro from '$lib/SectionIntro.svelte'
-  import Speaker from '$lib/Speaker.svelte'
+  import Speakers from '$lib/Speakers.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
   import Sponsors from '$lib/Sponsors.svelte'
   export let slices
@@ -162,8 +162,8 @@
         <EventList
           props={slice.primary}
           events={slice.items
-            .filter((event) => !event.isBroken)
-            .map((item) => item.event)} />
+            .map((item) => item.event)
+            .filter((event) => !event.isBroken)} />
       </div>
     {/if}
 
@@ -247,17 +247,9 @@
 
     {#if slice.slice_type === 'speakers'}
       <div class="u-container">
-        <RichText fields={slice.primary.heading} />
-        <RichText fields={slice.primary.text} />
-        <ol>
-          {#each slice.items
-            .map((item) => item.speaker)
-            .filter((speaker) => !speaker.isBroken) as speaker}
-            <li>
-              <Speaker type="link" {speaker} />
-            </li>
-          {/each}
-        </ol>
+        <Speakers limit={slice.primary.limit} items={slice.items
+          .map((item) => item.speaker)
+          .filter((speaker) => !speaker.isBroken)} />
       </div>
     {/if}
 

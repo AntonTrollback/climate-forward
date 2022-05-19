@@ -1,5 +1,4 @@
 <script>
-  import { asText } from '@prismicio/helpers'
   import Slices from '$lib/Slices.svelte'
   import Menu from '$lib/Menu.svelte'
   import Footer from '$lib/Footer.svelte'

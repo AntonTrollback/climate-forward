@@ -1,7 +1,7 @@
 <script>
-  export let size
-  export let solid
-  export let contain
+  export let size = 'md'
+  export let solid = false
+  export let contain = false
 
   let className = `${size} ${solid ? 'solid' : ''} ${
     contain ? 'u-container' : ''

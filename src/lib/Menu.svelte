@@ -3,9 +3,9 @@
   import { onMount, setContext } from 'svelte'
   import Link, { LINK } from '$lib/Link.svelte'
 
-  export let prefix
+  export let prefix = null
   export let slices
-  export let keeptop
+  export let keeptop = true
   export let branding
 
   let checked

@@ -1,5 +1,4 @@
 <script>
-  import { asText } from '@prismicio/helpers'
   import Sponsor from '$lib/Sponsor.svelte'
   import Divider from '$lib/Divider.svelte'
   export let items

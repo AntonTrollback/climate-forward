@@ -1,14 +1,13 @@
 <script>
   import Menu from '$lib/Menu.svelte'
-  import Event from '$lib/Event.svelte'
   import Footer from '$lib/Footer.svelte'
   import Slices from '$lib/Slices.svelte'
   import Speaker from '$lib/Speaker.svelte'
   import Session from '$lib/Session.svelte'
   import resolve from '$lib/utils/resolve.js'
   import Link, { LINK } from '$lib/Link.svelte'
-  import { setContext, getContext } from 'svelte'
-  import Modal, { MODAL } from '$lib/Modal.svelte'
+  import { setContext } from 'svelte'
+  import Modal from '$lib/Modal.svelte'
 
   setContext(LINK, function (props) {
     const { document, ...attrs } = props
@@ -73,7 +72,7 @@
 
   export let parent
   export let event
-  export let speaker
+  export let speaker = null
   export let session
 
   function getSessionsForSpeaker() {
