@@ -87,7 +87,9 @@
   font-weight: 500 !important;
 }
 
-.Text p + p {
+.Text p + p,
+.Text p + details,
+.Text details + p {
   margin-top: 0.6em !important;
 }
 

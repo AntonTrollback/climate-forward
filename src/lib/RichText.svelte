@@ -7,6 +7,19 @@
   export let fields
   export let title
   export let size
+  export let collapsed
+  export let questions
+  export let limit
+  export let open
+
+  if (fields?.length < 1) fields = null
+  if (collapsed?.length < 1) collapsed = null
+  if (questions) questions = questions.filter((item) => item && item.text.length)
+  if (questions?.length < 1) questions = null
+
+  if (questions?.length > limit) {
+    questions = [ questions.slice(0, limit), questions.slice(limit) ]
+  }
 
   size =
     size === 'sm'
@@ -30,7 +43,28 @@
       <div class="Text Text--xl"><p>{asText(title)}</p></div>
     </div>
     <div class="main">
-      <div class="Text">{@html asHTML(fields, resolveLink)}</div>
+      <div class="Text">
+        {#if fields}
+          {@html asHTML(fields, resolveLink)}
+        {/if}
+        {#if collapsed}
+          <details>
+            <summary>Read more</summary>
+            {@html asHTML(collapsed, resolveLink)}
+          </details>
+        {/if}
+        {#if questions}
+          {#each questions[0] as question}
+            {@html asHTML(question.text, resolveLink)}
+          {/each}
+          <details>
+            <summary>Show {questions[1].length} more</summary>
+            {#each questions[1] as question}
+              {@html asHTML(question.text, resolveLink)}
+            {/each}
+          </details>
+        {/if}
+      </div>
     </div>
   </div>
 {:else}
@@ -38,6 +72,22 @@
 {/if}
 
 <style>
+  summary {
+    border-top: 1px solid var(--current-color-border);
+    padding-top: var(--space-xs);
+    margin-top: var(--space-md);
+    user-select: none;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+  }
+
+  details[open] summary {
+    display: none;
+  }
+
   @media (min-width: 1000px) {
     .layout {
       display: flex;

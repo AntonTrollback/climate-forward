@@ -9,6 +9,14 @@
           ...non-repeatFields
         }
       }
+      ...on about_text {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          ...repeatFields
+        }
+      }
       ...on line {
         non-repeat {
           ...non-repeatFields
@@ -19,7 +27,7 @@
           ...non-repeatFields
         }
       }
-      ...on about_text {
+      ...on button {
         non-repeat {
           ...non-repeatFields
         }
@@ -73,6 +81,41 @@
           ...non-repeatFields
         }
       }
+      ...on about_text {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          ...repeatFields
+        }
+      }
+      ...on line {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on scroll_target {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on button {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
+      ...on sponsor {
+        non-repeat {
+          ...non-repeatFields
+          sponsor ${sponsorFields}
+        }
+      }
+      ...on sponsors {
+        repeat {
+          ...repeatFields
+          sponsor ${sponsorFields}
+        }
+      }
       ...on speakers {
         non-repeat {
           ...non-repeatFields
@@ -98,16 +141,17 @@
 </script>
 
 <script>
-  import RichText from '$lib/RichText.svelte'
+  import Button from '$lib/Button.svelte'
   import Divider from '$lib/Divider.svelte'
-  import SectionIntro from '$lib/SectionIntro.svelte'
   import EventList from '$lib/EventList.svelte'
+  import Iframe from '$lib/Iframe.svelte'
+  import LegalList from '$lib/LegalList.svelte'
+  import Program from '$lib/Program.svelte'
+  import RichText from '$lib/RichText.svelte'
+  import SectionIntro from '$lib/SectionIntro.svelte'
+  import Speaker from '$lib/Speaker.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
   import Sponsors from '$lib/Sponsors.svelte'
-  import LegalList from '$lib/LegalList.svelte'
-  import Speaker from '$lib/Speaker.svelte'
-  import Program from '$lib/Program.svelte'
-  import Iframe from '$lib/Iframe.svelte'
   export let slices
 </script>
 
@@ -141,6 +185,12 @@
       <Sponsors items={slice.items.filter((sponsor) => !sponsor.isBroken)} />
     {/if}
 
+    {#if slice.slice_type === 'button'}
+      <div class="u-container">
+        <Button class="u-spaceTopSm" document={slice.primary.link} text={slice.primary.link_text} />
+      </div>
+    {/if}
+
     {#if slice.slice_type === 'rich_text'}
       <div class="u-container">
         <RichText
@@ -159,7 +209,10 @@
       <div class="u-container">
         <RichText
           title={slice.primary.heading}
-          fields={slice.primary.main_text} />
+          fields={slice.primary.main_text}
+          collapsed={slice.primary.extra_text}
+          questions={slice.items}
+          limit={slice.primary.item_limit} />
       </div>
     {/if}
 

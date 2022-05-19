@@ -34,7 +34,7 @@
   loading="eager"
   referrerpolicy="origin-when-cross-origin"
   frameborder="0"
-  title="Climate Events Registration Iframe" />
+  title="" />
 
 <style>
   iframe {
