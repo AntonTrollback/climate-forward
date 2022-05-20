@@ -11,9 +11,9 @@
     Object.entries(props)
       .filter(([key]) => !key.startsWith('on:'))
       .concat(
-        [props.href.startsWith('/') ? ['sveltekit:prefetch', ''] : null].filter(
-          Boolean
-        )
+        [
+          props.href?.startsWith('/') ? ['sveltekit:prefetch', ''] : null
+        ].filter(Boolean)
       )
   )
   $: events = Object.fromEntries(
@@ -61,4 +61,8 @@
 </script>
 
 <!-- svelte-ignore a11y-missing-attribute -->
-<a {...attributes} use:addEventListener={events}><slot /></a>
+{#if 'href' in attributes}
+  <a {...attributes} use:addEventListener={events}><slot /></a>
+{:else}
+  <button {...attributes} use:addEventListener={events}><slot /></button>
+{/if}

@@ -5,9 +5,9 @@
   let speakers
 
   if (items.length > limit) {
-    speakers = [ items.slice(0, limit), items.slice(limit) ]
+    speakers = [items.slice(0, limit), items.slice(limit)]
   } else {
-    speakers = [ items ]
+    speakers = [items]
   }
 </script>
 

@@ -1,10 +1,13 @@
 <script>
   import Link from '$lib/Link.svelte'
-  export let text
-  export let document
+  export let solid
+  $: attrs = {
+    ...$$props,
+    class: `Button ${solid ? 'Button--solid' : ''} ${$$props.class || ''}`
+  }
 </script>
 
-<Link class="Button {$$props.class ? $$props.class : ''}" {document}>{text}</Link>
+<Link {...attrs}><slot /></Link>
 
 <style>
   :global(.Button) {
