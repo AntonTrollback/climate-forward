@@ -91,6 +91,7 @@
 <slot>
   <Menu
     slices={event.data.menu}
+    keeptop={event.data.keeptop}
     branding={event.data.branding || parent.data.branding} />
 
   <Slices slices={event.data.body} />

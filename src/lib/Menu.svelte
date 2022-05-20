@@ -5,7 +5,7 @@
 
   export let prefix = null
   export let slices
-  export let keeptop = true
+  export let keeptop
   export let branding
 
   let checked

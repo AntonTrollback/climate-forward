@@ -176,9 +176,7 @@
     {/if}
 
     {#if slice.slice_type === 'iframe'}
-      <div class="u-container">
-        <Iframe src={slice.primary.url} />
-      </div>
+      <Iframe src={slice.primary.url} />
     {/if}
 
     {#if slice.slice_type === 'sponsors'}
