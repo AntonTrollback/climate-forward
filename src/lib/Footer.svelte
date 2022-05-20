@@ -1,6 +1,7 @@
 <script>
-  import { setContext } from 'svelte'
   import { page } from '$app/stores'
+  import { setContext } from 'svelte'
+  import Purr from '$lib/Purr.svelte'
   import Divider from '$lib/Divider.svelte'
   import resolve from '$lib/utils/resolve.js'
   import Link, { LINK } from '$lib/Link.svelte'
@@ -67,7 +68,10 @@
         </svg>
       </a>
     {:else if branding === 'A New Climate'}
-      <a class="logo" href="/a-new-climate/events/san-francisco" on:click={scrollTop}>
+      <a
+        class="logo"
+        href="/a-new-climate/events/san-francisco"
+        on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <svg
           role="presentation"
@@ -105,6 +109,7 @@
       </ul>
     {/if}
     <p>{copyright ? copyright : ''}</p>
+    <p><Purr /></p>
   </div>
 </footer>
 

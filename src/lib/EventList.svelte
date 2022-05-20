@@ -39,7 +39,7 @@
         <RichText fields={event.data.description} />
 
         <div class="action">
-          <Button document={event} target="_blank" text="See event" />
+          <Button document={event} target="_blank">See event</Button>
         </div>
       </div>
     </li>

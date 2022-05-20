@@ -19,7 +19,7 @@
   <RichText size="lg" fields={content.text} />
   {#if link_text}
     <div class="action">
-      <Button document={link} text={link_text} />
+      <Button document={link}>{link_text}</Button>
     </div>
   {/if}
   {#if !content.sponsor.isBroken}

@@ -187,7 +187,9 @@
 
     {#if slice.slice_type === 'button'}
       <div class="u-container">
-        <Button class="u-spaceTopSm" document={slice.primary.link} text={slice.primary.link_text} />
+        <Button class="u-spaceTopSm" document={slice.primary.link}>
+          {slice.primary.link_text}
+        </Button>
       </div>
     {/if}
 
@@ -247,9 +249,11 @@
 
     {#if slice.slice_type === 'speakers'}
       <div class="u-container">
-        <Speakers limit={slice.primary.limit} items={slice.items
-          .map((item) => item.speaker)
-          .filter((speaker) => !speaker.isBroken)} />
+        <Speakers
+          limit={slice.primary.limit}
+          items={slice.items
+            .map((item) => item.speaker)
+            .filter((speaker) => !speaker.isBroken)} />
       </div>
     {/if}
 
