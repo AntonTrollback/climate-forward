@@ -255,8 +255,6 @@
 
     {#if slice.slice_type === 'program'}
       <div class="u-container">
-        <RichText fields={slice.primary.heading} />
-        <RichText fields={slice.primary.text} />
         <Program
           sessions={slice.items
             .map((item) => item.session)

@@ -1,10 +1,6 @@
 <script context="module">
   import { parseJSON } from 'date-fns'
 
-  export const translations = {
-    en: {}
-  }
-
   export const graphQuery = `
     {
       ...sessionFields
@@ -38,8 +34,8 @@
 <script>
   import tz from 'date-fns-tz'
   import RichText from '$lib/RichText.svelte'
+  import { asText } from '@prismicio/helpers'
   import { asDate } from '@prismicio/helpers'
-  import { gettext } from '$lib/utils/i18n.js'
   import Link from '$lib/Link.svelte'
 
   const { formatInTimeZone } = tz
@@ -47,12 +43,11 @@
   export let type = 'card'
   export let session
 
-  const text = gettext(translations)
   const { start, end } = getTimestamps(session)
 </script>
 
-<article class="Speaker--{type}">
-  <RichText fields={session.data.name} />
+<article class="Speaker Speaker--{type}">
+  <h1>{asText(session.data.name)}</h1>
   <time datetime={start.toJSON()}>
     {formatInTimeZone(start, 'UTC', 'HH.mm a')} – {formatInTimeZone(
       end,
@@ -62,15 +57,13 @@
     {formatInTimeZone(start, 'UTC', 'MMM., d, yyyy')}
   </time>
   {#if type === 'link'}
-    <Link document={session}>{text`Learn more`}</Link>
+    <Link document={session}>Learn more</Link>
   {:else}
     <h3>Speakers</h3>
     <ul>
       {#each session.data.speakers as item}
         <li>
-          <Link document={item.speaker}>
-            <RichText fields={item.speaker.data.name} />
-          </Link>
+          <Link document={item.speaker}>{asText(item.speaker.data.name)}</Link>
         </li>
       {/each}
     </ul>

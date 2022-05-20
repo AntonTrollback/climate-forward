@@ -15,17 +15,12 @@
   export let props = { large: false }
   let { large } = props
 
-  // if (props.link_external) {
-  //   events = events.map(function (item) {
-  //     return {
-  //       ...item,
-  //       link: {
-  //         ...item.link,
-  //         target: '_blank',
-  //       }
-  //     }
-  //   })
-  // }
+  if (props.link_external) {
+    events = events.map(function (event) {
+      event.target = '_blank'
+      return event
+    })
+  }
 </script>
 
 <ol>
@@ -44,7 +39,7 @@
         <RichText fields={event.data.description} />
 
         <div class="action">
-          <Button document={event} text="See event" />
+          <Button document={event} target="_blank" text="See event" />
         </div>
       </div>
     </li>

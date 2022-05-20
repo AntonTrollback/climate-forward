@@ -9,7 +9,6 @@
   } else {
     speakers = [ items ]
   }
-  console.log(speakers)
 </script>
 
 <div class="Speakers">

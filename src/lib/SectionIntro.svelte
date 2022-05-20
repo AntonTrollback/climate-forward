@@ -4,7 +4,12 @@
   import Button from '$lib/Button.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
   export let content
-  var { link, link_text } = content
+  var { link, link_text, link_external } = content
+
+
+  if (link_external) {
+    link.target = '_blank'
+  }
 </script>
 
 <div class="u-relative">

@@ -2,9 +2,11 @@
   import Link from '$lib/Link.svelte'
   export let text
   export let document
+
+  console.log(document)
 </script>
 
-<Link class="Button {$$props.class}" {document}>{text}</Link>
+<Link class="Button {$$props.class ? $$props.class : ''}" {document}>{text}</Link>
 
 <style>
   :global(.Button) {

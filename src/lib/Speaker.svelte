@@ -25,7 +25,10 @@
     </figure>
     <div class="details">
       <h4 class="name">{asText(speaker.data.name)}</h4>
-      <RichText fields={speaker.data.bio} />
+      <h4 class="desc">{speaker.data.title}</h4>
+      {#if type === 'card'}
+        <RichText fields={speaker.data.bio} />
+      {/if}
       {#if type === 'link'}
         <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={speaker}>{text`Learn more`}</Link>
       {/if}
@@ -98,6 +101,10 @@
     transition: opacity 150ms var(--ease-out);
   }
 
+  .Speaker--card .details {
+    max-width: none;
+  }
+
   .Speaker--link:active .details {
     transition: none;
     opacity: 0.6;
@@ -113,10 +120,16 @@
   }
 
   .desc {
-    font-weight: 400;
-    font-size: 1.25rem;
-    line-height: 1.1;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.2;
     letter-spacing: 0;
+  }
+
+  .Speaker--card .desc {
+    font-size: 1.35rem;
+    font-family: var(--doc-heading-font-family);
+    margin-bottom: 1rem;
   }
 
   @media (min-width: 1000px) {
@@ -125,7 +138,7 @@
     }
 
     .desc {
-      font-size: 1.5rem;
+      font-size: 1.125rem;
     }
   }
 </style>
