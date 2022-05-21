@@ -18,7 +18,7 @@
 <figure class="Sponsor {inline ? 'inline' : ''}">
   {#if label}<figcaption>{label}</figcaption>{/if}
   <img
-    class={size}
+    class="{size} {(logo.dimensions.height * 1.1) > logo.dimensions.width  ? 'portrait' : ''}"
     src={logo.url}
     width={logo.dimensions.width}
     height={logo.dimensions.height}
@@ -48,11 +48,21 @@
     margin-left: 1px;
   }
 
+  .portrait {
+    max-height: 4rem;
+    width: auto;
+  }
+
   img.sm {
     max-width: 5rem;
   }
 
   img.lg {
     max-width: 12rem;
+  }
+
+  .portrait.lg {
+    max-height: 5rem;
+    width: auto;
   }
 </style>
