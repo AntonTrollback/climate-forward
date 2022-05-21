@@ -11,35 +11,40 @@
   import Button from '$lib/Button.svelte'
   import Divider from '$lib/Divider.svelte'
   import { asText } from '@prismicio/helpers'
-  export let events
+  export let items
   export let props = { large: false }
   let { large } = props
 
   if (props.link_external) {
-    events = events.map(function (event) {
-      event.target = '_blank'
-      return event
+    items = items.map(function (item) {
+      item.event.target = '_blank'
+      return item
     })
   }
 </script>
 
 <ol>
-  {#each events as event}
+  {#each items as item, index}
     <li class:shuffle={!large}>
-      <Divider solid="true" size={large ? 'xl' : 'md'} />
+      {#if index !== 0}
+        <Divider solid="true" size={large ? 'xl' : 'md'} />
+      {/if}
       <div class="content">
         <h2 class={large ? 'Text-h1 Text-full' : 'Text-h2 Text-full'}>
-          {asText(event.data.name)}
+          {asText(item.event.data.name)}
         </h2>
         {#if large}
-          <span class="Text-h1 Text-full"><em>{event.data.date}</em></span>
+          <span class="Text-h1 Text-full"><em>{item.event.data.date}</em></span>
         {:else}
-          <div class="u-text"><p><strong>{event.data.date}</strong></p></div>
+          <div class="u-text"><p><strong>{item.event.data.date}</strong></p></div>
         {/if}
-        <RichText fields={event.data.description} />
-
+        <RichText fields={item.event.data.description} />
         <div class="action">
-          <Button document={event} target="_blank">See event</Button>
+          {#if item.override_link?.url}
+            <Button solid={item.solid_button} document={item.override_link}>{item.override_link_text}</Button>
+          {:else}
+            <Button solid={item.solid_button} document={item.event} target="_blank">See event</Button>
+          {/if}
         </div>
       </div>
     </li>

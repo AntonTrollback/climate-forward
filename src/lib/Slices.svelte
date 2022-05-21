@@ -66,6 +66,11 @@
           }
         }
       }
+      ...on video_banner {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on legal_numbered_text {
         repeat {
           ...repeatFields
@@ -152,6 +157,7 @@
   import Speakers from '$lib/Speakers.svelte'
   import Sponsor from '$lib/Sponsor.svelte'
   import Sponsors from '$lib/Sponsors.svelte'
+  import VideoBanner from '$lib/VideoBanner.svelte'
   export let slices
 </script>
 
@@ -161,9 +167,7 @@
       <div class="u-container">
         <EventList
           props={slice.primary}
-          events={slice.items
-            .map((item) => item.event)
-            .filter((event) => !event.isBroken)} />
+          items={slice.items} />
       </div>
     {/if}
 
@@ -237,6 +241,10 @@
       <div class="u-container">
         <SectionIntro content={slice.primary} />
       </div>
+    {/if}
+
+    {#if slice.slice_type === 'video_banner'}
+      <VideoBanner version={slice.primary.version} />
     {/if}
 
     {#if slice.slice_type === 'legal_numbered_text'}

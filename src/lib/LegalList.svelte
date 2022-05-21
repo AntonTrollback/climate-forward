@@ -44,9 +44,9 @@
     display: flex;
   }
 
-  .item > * {
+  /* .item > * {
     flex-grow: 1;
-  }
+  } */
 
   .item + .item {
     margin: 0.5em 0 0;

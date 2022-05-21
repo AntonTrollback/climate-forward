@@ -38,6 +38,7 @@
 <Menu
   branding={page.data.branding}
   keeptop={page.data.keeptop}
+  stacked={page.data.stacked}
   slices={page.data.menu} />
 
 <Slices slices={page.data.body} />

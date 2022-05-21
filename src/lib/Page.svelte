@@ -4,12 +4,14 @@
   import Footer from '$lib/Footer.svelte'
   export let page
   export let parent
+
 </script>
 
 <Menu
   prefix={parent}
   slices={page.data.menu}
   keeptop={page.data.keeptop}
+  stacked={page.data.stacked}
   branding={page.data.branding || parent.data.branding} />
 
 <Slices slices={page.data.body} />

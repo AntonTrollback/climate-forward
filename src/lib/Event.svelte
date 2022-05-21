@@ -92,6 +92,8 @@
   <Menu
     slices={event.data.menu}
     keeptop={event.data.keeptop}
+    stacked={event.data.stacked}
+    button={{ link: event.data.link, text: event.data.button_text }}
     branding={event.data.branding || parent.data.branding} />
 
   <Slices slices={event.data.body} />
