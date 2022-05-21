@@ -33,7 +33,6 @@
 
 <script>
   import tz from 'date-fns-tz'
-  import RichText from '$lib/RichText.svelte'
   import { asText } from '@prismicio/helpers'
   import { asDate } from '@prismicio/helpers'
   import Link from '$lib/Link.svelte'

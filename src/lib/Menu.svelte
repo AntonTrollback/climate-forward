@@ -609,7 +609,7 @@
       text-underline-offset: 0.11em;
     }
 
-    .active {
+    :global(.Menu .active) {
       font-weight: 900;
     }
   }
