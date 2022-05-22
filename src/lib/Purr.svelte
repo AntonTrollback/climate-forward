@@ -18,7 +18,7 @@
   let dataProcessingConsent
   let dataProcessingChanged = false
 
-  const ops = {
+  const options = {
     env: import.meta.PROD ? 'prd' : 'dev',
     useNytRegiCookie: false
   }
@@ -26,12 +26,13 @@
   function onupdate(directives) {
     salesOptOutPref = directives.PURR_DataSaleOptOutUI_v2
     dataProcessingChanged =
-      directives.PURR_DataProcessingConsentUI !== dataProcessingConsent
+      dataProcessingConsent &&
+      dataProcessingConsent !== directives.PURR_DataProcessingConsentUI
     dataProcessingConsent = directives.PURR_DataProcessingConsentUI
   }
 
   function fetchDirectives() {
-    return window.Purr.fetchPurrDirectives({ ops }).catch(function () {
+    return window.Purr.fetchPurrDirectives(options).catch(function () {
       return window.Purr.fetchPurrDirectivesWithoutAPI()
     })
   }
@@ -53,7 +54,7 @@
   onMount(function () {
     const script = document.createElement('script')
     script.onload = function () {
-      window.Purr.refreshPurrCache({ ops })
+      window.Purr.refreshPurrCache(options)
         .then(fetchDirectives, fetchDirectives)
         .then(onupdate)
     }
