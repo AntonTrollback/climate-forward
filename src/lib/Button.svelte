@@ -1,6 +1,6 @@
 <script>
   import Link from '$lib/Link.svelte'
-  export let solid
+  export let solid = false
   $: attrs = {
     ...$$props,
     class: `Button ${solid ? 'Button--solid' : ''} ${$$props.class || ''}`

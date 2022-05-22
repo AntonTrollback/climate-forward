@@ -3,7 +3,7 @@
   import Menu from '$lib/Menu.svelte'
   import Footer from '$lib/Footer.svelte'
   export let page
-  export let parent
+  export let parent = null
 </script>
 
 <Menu
@@ -17,7 +17,6 @@
 
 <Footer
   prefix={parent}
-  width={page.data.max_width}
   branding={page.data.branding || parent.data.branding}
   copyright={page.data.copyright || parent.data.copyright}
   links={page.data.links.length ? page.data.links : parent.data.links} />

@@ -16,19 +16,23 @@
 
   let salesOptOutPref
   let dataProcessingConsent
+  let dataProcessingChanged = false
 
-  const ops = {
+  const options = {
     env: import.meta.PROD ? 'prd' : 'dev',
     useNytRegiCookie: false
   }
 
   function onupdate(directives) {
     salesOptOutPref = directives.PURR_DataSaleOptOutUI_v2
+    dataProcessingChanged =
+      dataProcessingConsent &&
+      dataProcessingConsent !== directives.PURR_DataProcessingConsentUI
     dataProcessingConsent = directives.PURR_DataProcessingConsentUI
   }
 
   function fetchDirectives() {
-    return window.Purr.fetchPurrDirectives({ ops }).catch(function () {
+    return window.Purr.fetchPurrDirectives(options).catch(function () {
       return window.Purr.fetchPurrDirectivesWithoutAPI()
     })
   }
@@ -50,7 +54,7 @@
   onMount(function () {
     const script = document.createElement('script')
     script.onload = function () {
-      window.Purr.refreshPurrCache({ ops })
+      window.Purr.refreshPurrCache(options)
         .then(fetchDirectives, fetchDirectives)
         .then(onupdate)
     }
@@ -72,7 +76,7 @@
   <div class="popup popup--hint">{text`Your preference has been saved.`}</div>
 {/if}
 
-{#if dataProcessingConsent === 'hide'}
+{#if dataProcessingChanged}
   <div class="popup popup--hint popup--long">
     {text`Your preference will be stored for this browser and device. If you clear your cookies, your preference will be forgotten.`}
   </div>
@@ -139,7 +143,7 @@
         </p>
       </div>
       <div class="actions">
-        <Button solid on:click={save({ gdpr_pref: 'opt-in' })}>
+        <Button solid onclick={save({ gdpr_pref: 'opt-in' })}>
           {text`Accept`}
         </Button>
         <Button
@@ -163,7 +167,6 @@
     padding: 1.2rem 1rem;
     background: var(--current-color-background);
     border-top: 1px solid;
-    text-align: left;
     display: flex;
     flex-direction: column;
     z-index: 2;
@@ -182,38 +185,37 @@
   }
 
   .popup--hint {
+    display: inline-block;
+    height: auto;
+    width: auto;
+    max-width: calc(100vw - (var(--doc-margin) * 2));
+    padding: 0.75em 0.9em;
     bottom: 0.75rem;
     left: 0.75rem;
     border: 0;
     font-size: 0.8125rem;
     line-height: 1.08;
-    text-align: right;
-    width: auto;
     white-space: nowrap;
-    max-width: calc(100vw - (var(--doc-margin) * 2));
     letter-spacing: 0.065em;
     user-select: none;
+    pointer-events: none;
     border-radius: 0.125rem;
     background: var(--current-color);
     color: var(--current-color-background);
-    padding: 0.75em 0.9em;
-    animation: popup-hide 250ms 2000ms var(--ease-in) forwards;
-    pointer-events: none;
+    animation: popup-show 250ms var(--ease-out) forwards,
+      popup-hide 250ms 2000ms var(--ease-in) forwards;
     will-change: opacity;
-    display: inline-block;
-    height: auto;
-    text-align: left;
   }
 
   .popup--hint.popup--long {
     width: 30em;
     white-space: inherit;
-    animation: popup-hide 250ms 4250ms var(--ease-in) forwards;
+    animation: popup-show 250ms var(--ease-out) forwards,
+      popup-hide 250ms 4250ms var(--ease-in) forwards;
   }
 
   @media (min-width: 500px) {
     .popup--hint {
-      text-align: left;
       right: 0.75rem;
       left: auto;
     }
@@ -225,6 +227,16 @@
       bottom: 1.5rem;
       right: 1.6rem;
       font-size: 0.875rem;
+    }
+  }
+
+  @keyframes popup-show {
+    from {
+      opacity: 0;
+      transform: translateY(2rem);
+    }
+    to {
+      opacity: 1;
     }
   }
 
