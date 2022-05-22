@@ -59,6 +59,10 @@
     max-width: 5rem;
   }
 
+  img.md {
+    max-width: 7rem;
+  }
+
   img.lg {
     max-width: 12rem;
   }

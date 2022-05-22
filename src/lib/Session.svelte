@@ -42,6 +42,7 @@
   import { asText } from '@prismicio/helpers'
   import Link from '$lib/Link.svelte'
   import RichText from '$lib/RichText.svelte'
+  import Sponsor from '$lib/Sponsor.svelte'
   import Button from '$lib/Button.svelte'
   import Divider from '$lib/Divider.svelte'
 
@@ -118,7 +119,9 @@
       </time>
       <span class="wrap">
         <span class="location">{session.data.location}</span>
-        <span class="format">{session.data.format}</span>
+        {#if session.data.format}
+          <span class="format">{session.data.format}</span>
+        {/if}
       </span>
 
       {#if !session.data.branding && session.data.sponsor}
@@ -136,6 +139,14 @@
           href="https://nytuk.swoogo.com/climate-forward-london/tickets"
           target="_blank">Get tickets</Button>
       </div>
+
+      {#if session.data.branding && session.data.sponsor}
+        <div class="supporter">
+          <Divider size="sm" />
+          <p>{asText(session.data.smallprint)}</p>
+          <Sponsor org={session.data.sponsor.data} inline size="md" />
+        </div>
+      {/if}
     </div>
 
     <div class="main">
@@ -157,7 +168,9 @@
         </time>
         <span class="wrap">
           <span class="location">{session.data.location}</span>
-          <span class="format">{session.data.format}</span>
+          {#if session.data.format}
+            <span class="format">{session.data.format}</span>
+          {/if}
         </span>
       </div>
 
@@ -176,6 +189,14 @@
         <div class="sponsor">
           {session.data.kicker}<br />
           {asText(session.data.sponsor.data.name)}
+        </div>
+      {/if}
+
+      {#if session.data.branding && session.data.sponsor}
+        <div class="supporter">
+          <Divider size="sm" />
+          <p>{asText(session.data.smallprint)}</p>
+          <Sponsor org={session.data.sponsor.data} inline size="md" />
         </div>
       {/if}
     </div>
@@ -207,6 +228,10 @@
 </article>
 
 <style>
+  .Session--partner.Session--card {
+    background: var(--current-color-ad);
+    box-shadow: 0 0 0 5rem var(--current-color-ad);
+  }
   @media (min-width: 700px) {
     .Session--card {
       display: grid;
@@ -249,12 +274,19 @@
     font-size: 0.875rem;
   }
 
+  .supporter p {
+    max-width: 30em;
+    font-size: 0.75rem;
+    width: 80%
+  }
+
   @media (min-width: 700px) {
     .meta {
       display: none;
     }
 
     .sponsor,
+    .supporter,
     .button {
       display: none;
       font-size: inherit;
@@ -262,6 +294,7 @@
 
     .aside,
     .aside .sponsor,
+    .aside .supporter,
     .aside .button {
       display: block;
     }
@@ -315,6 +348,12 @@
     background: var(--doc-color-ad);
     font-size: 0.875rem;
     padding: 0.25rem 0.5rem;
+  }
+
+  .Session--card .kicker {
+    margin: 0.15rem 0 var(--space-xs);
+    font-weight: 700;
+    padding-right: 2rem;
   }
 
   /* Speaker grid */
