@@ -45,6 +45,5 @@
 
 <Footer
   links={page.data.links}
-  width={page.data.max_width}
   branding={page.data.branding}
   copyright={page.data.copyright} />

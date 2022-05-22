@@ -102,7 +102,6 @@
     <Footer
       prefix={parent}
       links={parent.data.links}
-      width={parent.data.max_width}
       branding={parent.data.branding}
       copyright={parent.data.copyright} />
   {/if}

@@ -62,10 +62,9 @@
 </script>
 
 <article
-  class="Session Session--{type} {simple ? 'Session--simple' : ''} {session.data
-    .branding
-    ? 'Session--partner'
-    : ''}">
+  class="Session Session--{type}"
+  class:Session--simple={simple}
+  class:Session--partner={session.data.branding}>
   {#if type === 'link'}
     {#if !simple}
       {#if session.data.kicker && session.data.branding}

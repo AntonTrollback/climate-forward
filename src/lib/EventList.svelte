@@ -43,8 +43,9 @@
         <RichText fields={item.event.data.description} />
         <div class="action">
           {#if item.override_link?.url}
-            <Button solid={item.solid_button} document={item.override_link}
-              >{item.override_link_text}</Button>
+            <Button solid={item.solid_button} document={item.override_link}>
+              {item.override_link_text}
+            </Button>
           {:else}
             <Button
               solid={item.solid_button}
