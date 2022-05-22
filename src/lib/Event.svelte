@@ -20,7 +20,7 @@
         ...attrs,
         href: href,
         'sveltekit:reload': '',
-        'on:click': function (event) {
+        onclick(event) {
           speaker = null
           session = null
           window.history.replaceState({}, null, href)
@@ -36,7 +36,7 @@
           ...attrs,
           href: href,
           'sveltekit:reload': '',
-          'on:click': function (event) {
+          onclick(event) {
             session = null
             speaker = document
             window.history.replaceState({}, null, href)
@@ -50,7 +50,7 @@
           ...attrs,
           href: href,
           'sveltekit:reload': '',
-          'on:click': function (event) {
+          onclick(event) {
             speaker = null
             session = document
             window.history.replaceState({}, null, href)

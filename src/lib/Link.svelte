@@ -9,7 +9,7 @@
   $: props = getProps($$props)
   $: attributes = Object.fromEntries(
     Object.entries(props)
-      .filter(([key]) => !key.startsWith('on:'))
+      .filter(([key]) => !key.startsWith('on'))
       .concat(
         [
           props.href?.startsWith('/') ? ['sveltekit:prefetch', ''] : null
@@ -17,7 +17,7 @@
       )
   )
   $: events = Object.fromEntries(
-    Object.entries(props).filter(([key]) => key.startsWith('on:'))
+    Object.entries(props).filter(([key]) => key.startsWith('on'))
   )
 
   function getProps(props) {
@@ -39,12 +39,12 @@
   function addEventListener(node, events) {
     const listener = {
       handleEvent(event) {
-        return events[`on:${event.type}`](event)
+        return events[`on${event.type}`](event)
       }
     }
 
     for (const event of Object.keys(events)) {
-      node.addEventListener(event.slice(3), listener)
+      node.addEventListener(event.slice(2), listener)
     }
 
     return {
@@ -53,7 +53,7 @@
       },
       destroy() {
         for (const event of Object.keys(events)) {
-          node.removeEventListener(event.slice(3), listener)
+          node.removeEventListener(event.slice(2), listener)
         }
       }
     }

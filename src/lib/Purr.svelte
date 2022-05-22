@@ -16,6 +16,7 @@
 
   let salesOptOutPref
   let dataProcessingConsent
+  let dataProcessingChanged = false
 
   const ops = {
     env: import.meta.PROD ? 'prd' : 'dev',
@@ -24,6 +25,8 @@
 
   function onupdate(directives) {
     salesOptOutPref = directives.PURR_DataSaleOptOutUI_v2
+    dataProcessingChanged =
+      directives.PURR_DataProcessingConsentUI !== dataProcessingConsent
     dataProcessingConsent = directives.PURR_DataProcessingConsentUI
   }
 
@@ -72,7 +75,7 @@
   <div class="popup popup--hint">{text`Your preference has been saved.`}</div>
 {/if}
 
-{#if dataProcessingConsent === 'hide'}
+{#if dataProcessingChanged}
   <div class="popup popup--hint popup--long">
     {text`Your preference will be stored for this browser and device. If you clear your cookies, your preference will be forgotten.`}
   </div>
@@ -139,7 +142,7 @@
         </p>
       </div>
       <div class="actions">
-        <Button solid on:click={save({ gdpr_pref: 'opt-in' })}>
+        <Button solid onclick={save({ gdpr_pref: 'opt-in' })}>
           {text`Accept`}
         </Button>
         <Button
