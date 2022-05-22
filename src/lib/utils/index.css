@@ -78,7 +78,63 @@
 }
 
 /**
- * Trigger
+ * Expand button
+ */
+
+.u-expand {
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  -webkit-touch-callout: none;
+  user-select: none;
+  font-weight: 700;
+  transition: opacity 350ms var(--ease-out);
+  cursor: pointer;
+}
+
+.u-expand:active {
+  transition: none;
+  opacity: 0.7;
+}
+
+.u-expand:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.175em;
+  text-decoration-thickness: 1px;
+  color: inherit;
+}
+
+.u-expand::-webkit-details-marker {
+  display: none;
+}
+
+.u-expand::before {
+  content: "";
+  width: 1.6875rem;
+  height: 1.6875rem;
+  margin: -2px 0.5rem 0 -1px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='27' height='27' fill='none'%3E%3Ccircle cx='13.39' cy='13.75' r='13' fill='%23000'/%3E%3Cpath d='m8.44 11.7 4.95 4.94 4.95-4.95' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  transition: transform 350ms var(--ease-out);
+}
+
+details[open] > .u-expand::before {
+  transform: rotate(-0.5turn);
+}
+
+@media (min-width: 600px) {
+  .u-expand {
+    font-size: 0.9375rem;
+  }
+}
+
+/**
+ * Trigger label
  */
 
 .u-trigger {
@@ -260,9 +316,15 @@
 .Text h4,
 .Text-h4 {
   font-size: 1.35rem !important;
-  line-height: 1.05 !important;
+  line-height: 1.1 !important;
   letter-spacing: -0.01em !important;
   margin-bottom: 0.75rem !important;
+}
+
+.Text h4 em,
+.Text-h4 em {
+  font-weight: 400 !important;
+  font-style: normal !important;
 }
 
 @media (min-width: 500px) {
@@ -292,7 +354,6 @@
     font-size: 1.125rem !important;
   }
 }
-
 
 /* Large text */
 
@@ -325,7 +386,7 @@
 
 .Text--xl p {
   font-size: 1.73rem !important;
-  max-width: 18em !important;
+  max-width: 22.3em !important;
 }
 
 @media (min-width: 400px) {
@@ -340,6 +401,12 @@
   }
 }
 
+/* Text helpers */
+
 .Text-full {
   max-width: none !important;
+}
+
+.Text-single {
+  margin: 0 !important;
 }

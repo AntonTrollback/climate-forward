@@ -22,7 +22,7 @@
     {/each}
     {#if speakers[1]?.length}
       <details>
-        <summary>Show all speakers</summary>
+        <summary class="u-expand">Show all speakers</summary>
         <div class="grid">
           {#each speakers[1] as speaker}
             <section class="item">
@@ -40,6 +40,16 @@
 <style>
   .Speakers {
     margin-top: var(--space-lg);
+  }
+
+  summary {
+    margin-top: calc(var(--space-grid) * -1 - 1px);
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--current-color-border);
+  }
+
+  details[open] summary {
+    display: none;
   }
 
   .grid {
