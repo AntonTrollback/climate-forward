@@ -24,7 +24,7 @@
       {/if}
     </figure>
     <div class="details">
-      <h4 class="name">{asText(speaker.data.name)}</h4>
+      <h4 class="Text-h4 Text-single">{asText(speaker.data.name)}</h4>
       <h4 class="desc">{speaker.data.title}</h4>
       {#if type === 'card'}
         <RichText fields={speaker.data.bio} />
@@ -110,20 +110,21 @@
     opacity: 0.6;
   }
 
-  .name {
+  /* .name {
     width: 100%;
     font-size: 1.35rem;
     line-height: 1.05;
     letter-spacing: -0.01em;
     font-weight: 900;
     margin: 0 0 0.375rem 0;
-  }
+  } */
 
   .desc {
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.2;
     letter-spacing: 0;
+    margin-top: var(--space-xs);
   }
 
   .Speaker--card .desc {
@@ -133,9 +134,9 @@
   }
 
   @media (min-width: 1000px) {
-    .name {
+    /* .name {
       font-size: 1.625rem;
-    }
+    } */
 
     .desc {
       font-size: 1.125rem;

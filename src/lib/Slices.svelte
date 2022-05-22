@@ -121,6 +121,11 @@
           sponsor ${sponsorFields}
         }
       }
+      ...on gallery {
+        repeat {
+          ...repeatFields
+        }
+      }
       ...on speakers {
         non-repeat {
           ...non-repeatFields
@@ -149,6 +154,7 @@
   import Button from '$lib/Button.svelte'
   import Divider from '$lib/Divider.svelte'
   import EventList from '$lib/EventList.svelte'
+  import Gallery from '$lib/Gallery.svelte'
   import Iframe from '$lib/Iframe.svelte'
   import LegalList from '$lib/LegalList.svelte'
   import Program from '$lib/Program.svelte'
@@ -165,9 +171,7 @@
   <div id={slice.primary.slice_id || `${slice.slice_type}-${index}`}>
     {#if slice.slice_type === 'events'}
       <div class="u-container">
-        <EventList
-          props={slice.primary}
-          items={slice.items} />
+        <EventList props={slice.primary} items={slice.items} />
       </div>
     {/if}
 
@@ -245,6 +249,10 @@
 
     {#if slice.slice_type === 'video_banner'}
       <VideoBanner version={slice.primary.version} />
+    {/if}
+
+    {#if slice.slice_type === 'gallery'}
+      <Gallery photos={slice.items} />
     {/if}
 
     {#if slice.slice_type === 'legal_numbered_text'}
