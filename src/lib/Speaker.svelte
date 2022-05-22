@@ -31,8 +31,8 @@
   {/if}
   <div class="details">
     {#if type === 'card'}
-      <h4 class="Text-h3 Text-single title">{asText(speaker.data.name)}</h4>
-      <h4 class="Text-h3"><em>{speaker.data.title}</em></h4>
+      <h2 class="Text-h3 title">{asText(speaker.data.name)}</h2>
+      <h2 class="Text-h3"><em>{speaker.data.title}</em></h2>
       <figure class="portrait">
         {#if speaker.data.image?.url}
           <img
@@ -86,12 +86,6 @@
   .Speaker--link .portrait {
     flex: 0 0 8.5rem;
     margin: 0 1.5rem 0 0;
-    transition: opacity 150ms var(--ease-out);
-  }
-
-  .Speaker--link:active .portrait {
-    transition: none;
-    opacity: 0.85;
   }
 
   .portrait img {
@@ -136,7 +130,6 @@
 
   .details {
     max-width: 19rem;
-    transition: opacity 150ms var(--ease-out);
   }
 
   @media (min-width: 700px) {
@@ -160,11 +153,6 @@
 
   .Speaker--card .details {
     max-width: none;
-  }
-
-  .Speaker--link:active .details {
-    transition: none;
-    opacity: 0.6;
   }
 
   /* .name {

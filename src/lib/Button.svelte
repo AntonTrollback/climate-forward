@@ -26,7 +26,8 @@
     text-transform: uppercase;
     user-select: none;
     border-radius: 0.125rem;
-    transition: opacity 150ms var(--ease-out);
+    transition: opacity 250ms var(--ease-out);
+    opacity: 1;
     -webkit-touch-callout: none;
     -webkit-appearance: none;
   }

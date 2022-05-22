@@ -192,7 +192,7 @@
 
   :global(.Footer .link),
   .logo {
-    transition: opacity 150ms var(--ease-out);
+    transition: opacity 250ms var(--ease-out);
   }
 
   :global(.Footer .link:active),

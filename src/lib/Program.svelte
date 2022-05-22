@@ -66,6 +66,7 @@
     user-select: none;
     font-weight: 700;
     transition: opacity 350ms var(--ease-out);
+    opacity: 1;
     cursor: pointer;
     border-top: 1px solid;
     padding: var(--title-padding) 0;

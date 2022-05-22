@@ -5,6 +5,11 @@
   export const graphQuery = `
     {
       ...sessionFields
+      sponsor {
+        ...on sponsor {
+          ...sponsorFields
+        }
+      }
       speakers {
         speaker {
           ...on speaker {
@@ -36,6 +41,9 @@
   import tz from 'date-fns-tz'
   import { asText } from '@prismicio/helpers'
   import Link from '$lib/Link.svelte'
+  import RichText from '$lib/RichText.svelte'
+  import Button from '$lib/Button.svelte'
+  import Divider from '$lib/Divider.svelte'
 
   const { formatInTimeZone } = tz
 
@@ -45,9 +53,13 @@
 
   let { start, end } = getTimestamps(session)
 
+  let day = formatInTimeZone(start, 'UTC', 'EEEE, LLLL d')
+
   let datetime = start.toJSON()
-  start = formatInTimeZone(start, 'UTC', 'h:mm bbbb')
-  end = formatInTimeZone(end, 'UTC', 'h:mm bbbb')
+  start = formatInTimeZone(start, 'UTC', 'h:mm aaaa')
+  end = formatInTimeZone(end, 'UTC', 'h:mm aaaa')
+  start = start.replace('12:00 p.m.', 'Noon')
+  end = end.replace('12:00 p.m.', 'Noon')
   if (start.includes('a.m.') && end.includes('a.m.'))
     start = start.replace(' a.m.', '')
   if (start.includes('p.m.') && end.includes('p.m.'))
@@ -62,8 +74,7 @@
 </script>
 
 <article
-  class="Session Session--{type} {simple ? 'Session--simple' : ''} {session.data
-    .branding
+  class="Session Session--{type} {session.data.branding
     ? 'Session--partner'
     : ''}">
   {#if type === 'link'}
@@ -100,52 +111,195 @@
       </div>
     {/if}
   {:else}
-    <h3 class="Text-h3 Text-single title">
-      {#if session.data.branding}
-        <em>{asText(session.data.name)}</em>
-      {:else}
-        {asText(session.data.name)}
+    <div class="aside">
+      <time class="wrap" {datetime}>
+        <span>{day}</span>
+        <span>{start}–{end} B.S.T.</span>
+      </time>
+      <span class="wrap">
+        <span class="location">{session.data.location}</span>
+        <span class="format">{session.data.format}</span>
+      </span>
+
+      {#if !session.data.branding && session.data.sponsor}
+        <span class="wrap">
+          <div class="sponsor">
+            {session.data.kicker}<br />
+            {asText(session.data.sponsor.data.name)}
+          </div>
+        </span>
       {/if}
-    </h3>
-    {#if speakers}
-      <h3>Speakers</h3>
-      <ul>
-        {#each speakers as speaker}
-          <li>
-            <Link document={speaker}>{asText(speaker.data.name)}</Link>
-          </li>
-        {/each}
-      </ul>
+
+      <div class="wrap button">
+        <Button
+          solid
+          href="https://nytuk.swoogo.com/climate-forward-london/tickets"
+          target="_blank">Get tickets</Button>
+      </div>
+    </div>
+
+    <div class="main">
+      {#if session.data.kicker && session.data.branding}
+        <div class="kicker">{session.data.kicker}</div>
+      {/if}
+      <h2 class="Text-h3 Text-single title">
+        {#if session.data.branding}
+          <em>{asText(session.data.name)}</em>
+        {:else}
+          {asText(session.data.name)}
+        {/if}
+      </h2>
+
+      <div class="meta">
+        <time class="wrap" {datetime}>
+          <span>{day}</span>
+          <span>{start}–{end} B.S.T.</span>
+        </time>
+        <span class="wrap">
+          <span class="location">{session.data.location}</span>
+          <span class="format">{session.data.format}</span>
+        </span>
+      </div>
+
+      {#if session.data.description?.length}
+        <RichText fields={session.data.description} />
+      {/if}
+
+      <div class="button">
+        <Button
+          solid
+          href="https://nytuk.swoogo.com/climate-forward-london/tickets"
+          target="_blank">Get tickets</Button>
+      </div>
+
+      {#if !session.data.branding && session.data.sponsor}
+        <div class="sponsor">
+          {session.data.kicker}<br />
+          {asText(session.data.sponsor.data.name)}
+        </div>
+      {/if}
+    </div>
+
+    {#if speakers?.length}
+      <div class="speakers">
+        <Divider size="md" />
+        <h3 class="Text-h5">Speakers</h3>
+        <ul class="grid">
+          {#each speakers as speaker}
+            <li class="item">
+              <div class="body">
+                <Link class="speaker" document={speaker}>
+                  <img
+                    src={speaker.data.image.url}
+                    alt="Portrait of {asText(speaker.data.name)}" />
+                  <div>
+                    <strong>{asText(speaker.data.name)}</strong>
+                    {speaker.data.title}
+                  </div>
+                </Link>
+              </div>
+            </li>
+          {/each}
+        </ul>
+      </div>
     {/if}
   {/if}
 </article>
 
 <style>
-  .Session--link {
-    transition: opacity 150ms var(--ease-out);
+  @media (min-width: 700px) {
+    .Session--card {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 0 2rem;
+    }
+
+    .main {
+      grid-column: 2 / 4;
+    }
   }
 
-  .Session--link:active {
-    transition: none;
-    opacity: 0.6;
+  .meta {
+    margin: var(--space-xs) 0;
+    font-size: 0.875rem;
   }
 
-  time,
-  .location {
-    font-size: 0.9375rem;
+  .meta time {
+    font-weight: 700;
   }
 
-  time {
-    margin-right: 1rem;
+  .wrap {
+    display: block;
     white-space: nowrap;
   }
 
-  .location {
-    white-space: nowrap;
+  .wrap span + span {
+    margin-left: 1rem;
+  }
+
+  .aside {
+    display: none;
+  }
+
+  .button {
+    margin: var(--space-sm) 0;
+  }
+
+  .sponsor {
+    font-size: 0.875rem;
+  }
+
+  @media (min-width: 700px) {
+    .meta {
+      display: none;
+    }
+
+    .sponsor,
+    .button {
+      display: none;
+      font-size: inherit;
+    }
+
+    .aside,
+    .aside .sponsor,
+    .aside .button {
+      display: block;
+    }
+
+    .aside {
+      margin-top: 0.15rem;
+    }
+
+    .aside span + span {
+      display: block;
+      margin: 0;
+    }
+
+    .aside .wrap + .wrap {
+      margin-top: var(--space-xs);
+    }
+
+    .aside time {
+      font-weight: 700;
+    }
+
+    .aside .button {
+      margin: var(--space-sm) 0 !important;
+    }
   }
 
   .title {
-    max-width: 23em;
+    max-width: 17em;
+  }
+
+  .Session--card .title {
+    padding-right: 2rem;
+  }
+
+  @media (min-width: 700px) {
+    .Session--card .title {
+      padding-bottom: var(--space-xs);
+    }
   }
 
   :global(.simple-link:hover + .title) {
@@ -161,5 +315,67 @@
     background: var(--doc-color-ad);
     font-size: 0.875rem;
     padding: 0.25rem 0.5rem;
+  }
+
+  /* Speaker grid */
+
+  .speakers {
+    width: 100%;
+    grid-column: 1 / 4;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .item {
+    position: relative;
+  }
+
+  :global(.Session .speaker) {
+    display: flex;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    transition: opacity 250ms var(--ease-out);
+  }
+
+  :global(.Session .speaker:hover strong) {
+    text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.11em;
+  }
+
+  :global(.Session .speaker:active) {
+    opacity: 0.6;
+    transition: none;
+  }
+
+  :global(.Session .speaker strong) {
+    display: block;
+  }
+
+  :global(.Session .speaker img) {
+    flex-shrink: 0;
+    width: 2.875rem;
+    height: 2.875rem;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  @media (min-width: 450px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 </style>

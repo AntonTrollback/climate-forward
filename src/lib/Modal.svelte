@@ -91,7 +91,7 @@
     color: transparent;
     -webkit-touch-callout: none;
     user-select: none;
-    transition: opacity 150ms var(--ease-out);
+    transition: opacity 250ms var(--ease-out);
     background-image: url("data:image/svg+xml,%3Csvg width='27' height='27' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='13.7' cy='13' r='13' transform='rotate(90 13.7 13)' fill='%23000'/%3E%3Cpath d='m8.81 8.46 9.44 9.43M18.25 8.46l-9.43 9.43' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-size: 1.625rem;

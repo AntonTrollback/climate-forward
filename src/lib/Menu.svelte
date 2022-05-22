@@ -301,6 +301,7 @@
 
   .keeptop {
     position: absolute;
+    --x: var(--doc-margin);
   }
 
   .space {
@@ -353,7 +354,7 @@
   .logo,
   :global(.Menu .link),
   .toggle {
-    transition: opacity 150ms var(--ease-out);
+    transition: opacity 250ms var(--ease-out);
     cursor: pointer;
   }
 
@@ -501,6 +502,10 @@
       --y-shrinked: 0.05rem;
     }
 
+    .keeptop {
+      --x: var(--doc-margin);
+    }
+
     .logo {
       height: 1.3rem;
     }
@@ -515,6 +520,12 @@
       --y: 1.55rem;
       --x-offset: 0.85rem;
       --y-shrinked: -0.5rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .keeptop {
+      --x: 3rem;
     }
   }
 

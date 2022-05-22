@@ -145,7 +145,7 @@ details[open] > .u-expand::before {
   text-transform: uppercase;
   -webkit-touch-callout: none;
   user-select: none;
-  transition: opacity 150ms var(--ease-out);
+  transition: opacity 250ms var(--ease-out);
   color: var(--current-color-muted);
   cursor: pointer;
 }
@@ -168,6 +168,11 @@ details[open] > .u-expand::before {
   }
 }
 
+.u-triggerBlock {
+  transition: none;
+  opacity: 1 !important;
+}
+
 .u-triggerBlock::after {
   content: '';
   position: absolute;
@@ -176,6 +181,14 @@ details[open] > .u-expand::before {
   z-index: 1;
   width: 100%;
   height: 100%;
+  transition: opacity 250ms var(--ease-out);
+  opacity: 0;
+  background: var(--current-color-background);
+}
+
+.u-triggerBlock:active::after {
+  opacity: 0.35;
+  transition: none;
 }
 
 /**
@@ -210,7 +223,7 @@ details[open] > .u-expand::before {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.05em;
-  transition: opacity 150ms var(--ease-out);
+  transition: opacity 250ms var(--ease-out);
 }
 
 .Text a:active {
@@ -311,10 +324,25 @@ details[open] > .u-expand::before {
   margin-bottom: 0.75rem !important;
 }
 
+.Text-h3 + .Text-h3,
+.Text h3 + .Text h3,
+.Text-h3 + .Text h3,
+.Text h3 + .Text-h3 {
+  margin-top: -0.2em !important;
+}
+
 @media (min-width: 500px) {
   .Text h3,
   .Text-h3 {
+    font-size: 2.25rem !important;
+  }
+}
+
+@media (min-width: 800px) {
+  .Text h3,
+  .Text-h3 {
     font-size: 2.75rem !important;
+    line-height: 0.95 !important;
     margin-bottom: 1rem !important;
   }
 }
