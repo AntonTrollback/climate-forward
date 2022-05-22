@@ -111,6 +111,10 @@
       padding-right: 2rem;
     }
 
+    .aside > * {
+      max-width: 23rem;
+    }
+
     .main {
       padding-left: 2rem;
       flex-grow: 1;

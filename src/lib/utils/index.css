@@ -373,7 +373,7 @@ details[open] > .u-expand::before {
 
 @media (min-width: 1100px) {
   .Text--sm p {
-    font-size: 1.125rem !important;
+    /* font-size: 1.125rem !important; */
   }
 }
 

@@ -16,7 +16,7 @@
   --doc-color-placeholder: rgba(0, 0, 0, 0.1);
   --doc-color-ad: #f5f4f0;
 
-  --doc-margin: 2rem;
+  --doc-margin: 1.25rem;
   --doc-border-width: 8px;
   --doc-max-width: 80rem;
   --doc-narrow: 1;
@@ -61,9 +61,9 @@
 * Visually scale up the app on wide viewports
 */
 
-@media (min-width: 1650px) {
+@media (min-width: 1700px) {
   :root {
-    --root-font-size: 110%;
+    --root-font-size: 105%;
   }
 }
 
@@ -71,19 +71,25 @@
 * Control page margins
 */
 
+@media (min-width: 400px) {
+  :root {
+    --doc-margin: 1.75rem;
+  }
+}
+
 @media (min-width: 600px) {
   :root {
-    --doc-margin: 4rem;
+    --doc-margin: 3.5rem;
   }
 }
 
 @media (min-width: 700px) {
   :root {
-    --doc-margin: 5rem;
+    --doc-margin: 4.5rem;
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   :root {
     --doc-margin: 6rem;
   }

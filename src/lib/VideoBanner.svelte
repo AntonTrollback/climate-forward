@@ -77,7 +77,7 @@
 </script>
 
 <div class="VideoBanner">
-  <picture bind:this={picture} class="js-picture">
+  <picture bind:this={picture}>
     <source
       srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1000,h_1400,so_0,q_65,f_auto/v1653133121/climate-events/climate-forward-{version}-1000x1400.mp4"
       media="(max-width: 499px)"
@@ -91,13 +91,13 @@
       height="1080"
       type="video/mp4" />
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1800,h_1200,so_0,q_70,f_auto/v1653133223/climate-events/climate-forward-{version}-1800x1200.mp4"
+      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1800,h_1200,so_0,q_80,f_auto/v1653133223/climate-events/climate-forward-{version}-1800x1200.mp4"
       media="(min-width: 700px) and (max-width: 1099px)"
       width="1800"
       height="1200"
       type="video/mp4" />
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_2200,h_990,so_0,q_70,f_auto/v1653133180/climate-events/climate-forward-{version}-2200x990.mp4"
+      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_2200,h_990,so_0,q_80,f_auto/v1653133180/climate-events/climate-forward-{version}-2200x990.mp4"
       media="(min-width: 1100px)"
       width="2200"
       height="990"

@@ -11,7 +11,7 @@
   export let branding
   export let stacked
 
-  let checked
+  let checked = false
   let sticky
   let scroll
   let locked
@@ -46,6 +46,9 @@
   function scrollTop(event) {
     if (event.currentTarget.getAttribute('href') !== window.location.pathname)
       return
+
+    close()
+
     window.scrollTo({
       top: 0,
       left: 0,
@@ -61,6 +64,8 @@
     let offset = getComputedStyle(document.documentElement).getPropertyValue(
       '--scroll-offset'
     )
+
+    close()
 
     window.scrollTo({
       top: target.offsetTop - offset,
@@ -80,6 +85,7 @@
   }
 
   function close() {
+    console.log('close', checked)
     window.requestAnimationFrame(function () {
       checked = false
     })
@@ -157,9 +163,9 @@
       </a>
     {/if}
 
-    <input id="switch" class="switch" {checked} type="checkbox" />
+    <input id="switch" class="switch" bind:checked={checked} type="checkbox" />
     <label
-      class="toggle js-toggle"
+      class="toggle"
       for="switch"
       on:touchstart={removetapdelay}
       on:click={toggle}>
@@ -169,7 +175,7 @@
       <svg role="presentation" class="line" viewBox="0 0 24 1">
         <path fill="currentColor" d="M0 0h24v1.75H0z" />
       </svg>
-      Toggle
+      Toggle menu
     </label>
 
     <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
