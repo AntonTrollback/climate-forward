@@ -6,7 +6,6 @@
   export let content
   var { link, link_text, link_external } = content
 
-
   if (link_external) {
     link.target = '_blank'
   }

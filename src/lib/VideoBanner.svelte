@@ -54,9 +54,9 @@
     if (typeof window.matchMedia !== 'function') return
     let isPlaying = false
 
-    image = Array
-      .from(picture.querySelectorAll('img'))
-      .find((img) => window.getComputedStyle(img, null).display !== 'none')
+    image = Array.from(picture.querySelectorAll('img')).find(
+      (img) => window.getComputedStyle(img, null).display !== 'none'
+    )
     sources = [...picture.querySelectorAll('source')]
     const srcsets = sources.map((source) => source.srcset)
     supportsPicture = srcsets.includes(image.currentSrc)

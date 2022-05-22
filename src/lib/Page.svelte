@@ -4,7 +4,6 @@
   import Footer from '$lib/Footer.svelte'
   export let page
   export let parent
-
 </script>
 
 <Menu

@@ -111,7 +111,7 @@
 }
 
 .u-expand::before {
-  content: "";
+  content: '';
   width: 1.6875rem;
   height: 1.6875rem;
   margin: -2px 0.5rem 0 -1px;
@@ -227,7 +227,9 @@ details[open] > .u-expand::before {
 .Text h3,
 .Text-h3,
 .Text h4,
-.Text-h4 {
+.Text-h4,
+.Text h5,
+.Text-h5 {
   display: block !important;
   width: 100% !important;
   font-family: var(--doc-font-family) !important;
@@ -235,6 +237,10 @@ details[open] > .u-expand::before {
   line-height: 1.1 !important;
   letter-spacing: -0.01em !important;
   font-weight: 900 !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 0.1em !important;
+  position: relative;
+  left: -0.05em;
 }
 
 .Text h1 em,
@@ -314,7 +320,9 @@ details[open] > .u-expand::before {
 }
 
 .Text h4,
-.Text-h4 {
+.Text-h4,
+.Text h5,
+.Text-h5 {
   font-size: 1.35rem !important;
   line-height: 1.1 !important;
   letter-spacing: -0.01em !important;
@@ -322,16 +330,30 @@ details[open] > .u-expand::before {
 }
 
 .Text h4 em,
-.Text-h4 em {
+.Text-h4 em,
+.Text h5 em,
+.Text-h5 em {
   font-weight: 400 !important;
   font-style: normal !important;
 }
 
+.Text h5,
+.Text-h5 {
+  font-size: 1rem !important;
+}
+
 @media (min-width: 500px) {
   .Text h4,
-  .Text-h4 {
+  .Text-h4,
+  .Text h5,
+  .Text-h5 {
     font-size: 1.65rem !important;
     margin-bottom: 1rem !important;
+  }
+
+  .Text h5,
+  .Text-h5 {
+    font-size: 1.125rem !important;
   }
 }
 
@@ -408,5 +430,6 @@ details[open] > .u-expand::before {
 }
 
 .Text-single {
-  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }

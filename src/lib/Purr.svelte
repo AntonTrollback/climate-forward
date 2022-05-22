@@ -35,7 +35,9 @@
 
   function save(props) {
     return function (event) {
-      Purr.postUserPrivacyPref(props).then(fetchDirectives).then(onupdate)
+      window.Purr.postUserPrivacyPref(props)
+        .then(fetchDirectives)
+        .then(onupdate)
       event.preventDefault()
     }
   }

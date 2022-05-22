@@ -1,5 +1,6 @@
 <script context="module">
   import { parseJSON } from 'date-fns'
+  import { asDate } from '@prismicio/helpers'
 
   export const graphQuery = `
     {
@@ -34,12 +35,12 @@
 <script>
   import tz from 'date-fns-tz'
   import { asText } from '@prismicio/helpers'
-  import { asDate } from '@prismicio/helpers'
   import Link from '$lib/Link.svelte'
 
   const { formatInTimeZone } = tz
 
   export let type = 'card'
+  export let simple = false
   export let session
 
   let { start, end } = getTimestamps(session)
@@ -54,23 +55,32 @@
   start = start.replace(':00', '')
   end = end.replace(':00', '')
 
-  let speakers = session.data.speakers.filter((item) => item.speaker.id).map((item) => item.speaker)
+  let speakers = session.data.speakers
+    .filter((item) => item.speaker.id)
+    .map((item) => item.speaker)
   if (!speakers.length) speakers = null
-  console.log(speakers)
 </script>
 
 <article
-  class="Session Session--{type} {session.data.branding
+  class="Session Session--{type} {simple ? 'Session--simple' : ''} {session.data
+    .branding
     ? 'Session--partner'
     : ''}">
   {#if type === 'link'}
-    {#if session.data.kicker && session.data.branding}
-      <div class="kicker"><span>{session.data.kicker}</span></div>
-    {:else}
-      <span class="format"
-        >{session.data.format ? session.data.format : '—'}</span>
+    {#if !simple}
+      {#if session.data.kicker && session.data.branding}
+        <div class="kicker"><span>{session.data.kicker}</span></div>
+      {:else}
+        <span class="format"
+          >{session.data.format ? session.data.format : '—'}</span>
+      {/if}
     {/if}
-    <div class="u-spaceTopXs title">
+    <div class="u-spaceTopXs">
+      {#if simple}
+        <Link class="simple-link u-triggerBlock" document={session}>
+          <span class="u-hiddenVisually">Learn more</span>
+        </Link>
+      {/if}
       <h4 class="Text-h4 Text-single title">
         {#if session.data.branding}
           <em>{asText(session.data.name)}</em>
@@ -83,10 +93,12 @@
       <time {datetime}>{start}–{end} B.S.T.</time>
       <span class="location">{session.data.location}</span>
     </div>
-    <div>
-      <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}
-        >Learn more</Link>
-    </div>
+    {#if !simple}
+      <div>
+        <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}
+          >Learn more</Link>
+      </div>
+    {/if}
   {:else}
     <h3 class="Text-h3 Text-single title">
       {#if session.data.branding}
@@ -109,6 +121,15 @@
 </article>
 
 <style>
+  .Session--link {
+    transition: opacity 150ms var(--ease-out);
+  }
+
+  .Session--link:active {
+    transition: none;
+    opacity: 0.6;
+  }
+
   time,
   .location {
     font-size: 0.9375rem;
@@ -125,6 +146,10 @@
 
   .title {
     max-width: 23em;
+  }
+
+  :global(.simple-link:hover + .title) {
+    text-decoration: underline;
   }
 
   .kicker {

@@ -90,7 +90,7 @@
     }
   }
 
-  @media (max-width: 1399px) {
+  @media (max-width: 1299px) {
     .item:nth-child(odd) .body::before {
       content: none;
     }
@@ -102,7 +102,7 @@
     }
   }
 
-  @media (min-width: 1400px) {
+  @media (min-width: 1300px) {
     .grid {
       grid-template-columns: 1fr 1fr 1fr;
     }

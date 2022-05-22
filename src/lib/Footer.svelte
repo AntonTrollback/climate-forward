@@ -54,7 +54,12 @@
         </svg>
       </a>
     {:else if branding === 'Climate Forward'}
-      <a class="logo" href={$page.url.pathname === '/climate-forward/events/london' ? $page.url.pathname : '/climate-forward'} on:click={scrollTop}>
+      <a
+        class="logo"
+        href={$page.url.pathname === '/climate-forward/events/london'
+          ? $page.url.pathname
+          : '/climate-forward'}
+        on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Forward</span>
         <svg
           role="presentation"

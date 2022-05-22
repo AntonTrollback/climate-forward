@@ -36,14 +36,20 @@
         {#if large}
           <span class="Text-h1 Text-full"><em>{item.event.data.date}</em></span>
         {:else}
-          <div class="u-text"><p><strong>{item.event.data.date}</strong></p></div>
+          <div class="u-text">
+            <p><strong>{item.event.data.date}</strong></p>
+          </div>
         {/if}
         <RichText fields={item.event.data.description} />
         <div class="action">
           {#if item.override_link?.url}
-            <Button solid={item.solid_button} document={item.override_link}>{item.override_link_text}</Button>
+            <Button solid={item.solid_button} document={item.override_link}
+              >{item.override_link_text}</Button>
           {:else}
-            <Button solid={item.solid_button} document={item.event} target="_blank">See event</Button>
+            <Button
+              solid={item.solid_button}
+              document={item.event}
+              target="_blank">See event</Button>
           {/if}
         </div>
       </div>

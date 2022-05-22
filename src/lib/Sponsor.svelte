@@ -18,7 +18,9 @@
 <figure class="Sponsor {inline ? 'inline' : ''}">
   {#if label}<figcaption>{label}</figcaption>{/if}
   <img
-    class="{size} {(logo.dimensions.height * 1.1) > logo.dimensions.width  ? 'portrait' : ''}"
+    class="{size} {logo.dimensions.height * 1.1 > logo.dimensions.width
+      ? 'portrait'
+      : ''}"
     src={logo.url}
     width={logo.dimensions.width}
     height={logo.dimensions.height}

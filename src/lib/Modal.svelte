@@ -3,13 +3,11 @@
 </script>
 
 <section class="Modal">
-  <div class="window">
-    <div class="container">
-      <div class="close">
-        <slot name="close" />
-      </div>
-      <slot />
+  <div class="container">
+    <div class="close">
+      <slot name="close" />
     </div>
+    <slot />
   </div>
 </section>
 
@@ -41,7 +39,7 @@
     position: relative;
     background: #fff;
     color: #000;
-    width: 50rem;
+    width: 54rem;
     max-width: 100%;
     margin: auto;
     padding: 1.5rem 1.5rem 2rem;
@@ -77,7 +75,7 @@
 
   @media (min-width: 1000px) {
     .container {
-      padding: 3rem 3rem 4rem;
+      padding: 3rem;
     }
   }
 

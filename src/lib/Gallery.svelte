@@ -7,7 +7,9 @@
   <div class="cols">
     {#each photos as photo}
       <figure class="col">
-        <img src={photo.image.url} alt={photo.image.url ? photo.image.url : ''}  />
+        <img
+          src={photo.image.url}
+          alt={photo.image.url ? photo.image.url : ''} />
         <figcaption>
           <RichText size="sm" fields={photo.text} />
         </figcaption>
