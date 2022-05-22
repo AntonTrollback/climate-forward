@@ -4,6 +4,7 @@
   import Purr from '$lib/Purr.svelte'
   import Divider from '$lib/Divider.svelte'
   import resolve from '$lib/utils/resolve.js'
+  import whitespace from '$lib/utils/whitespace.js'
   import Link, { LINK } from '$lib/Link.svelte'
 
   export let prefix = null
@@ -108,8 +109,8 @@
         {/each}
       </ul>
     {/if}
-    <p>{copyright ? copyright : ''}</p>
     <p><Purr /></p>
+    <p>{@html copyright ? whitespace(copyright) : ''}</p>
   </div>
 </footer>
 

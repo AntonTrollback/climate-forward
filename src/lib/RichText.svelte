@@ -3,6 +3,7 @@
   import { LINK } from '$lib/Link.svelte'
   import { asHTML, asText } from '@prismicio/helpers'
   import resolve from '$lib/utils/resolve.js'
+  import whitespace from '$lib/utils/whitespace.js'
 
   export let fields
   export let title = null
@@ -22,6 +23,7 @@
   } else if (questions?.length) {
     questions = [questions]
   }
+  collapsed = collapsed && collapsed[0].text.length ? collapsed : null
 
   size =
     size === 'sm'
@@ -37,6 +39,13 @@
     if (resolver) return resolver({ document }).href
     return resolve(document)
   }
+
+  function serialize(type, element, content, children) {
+    if (type === 'paragraph') {
+      return `<p>${whitespace(children)}</p>`
+    }
+    return null
+  }
 </script>
 
 {#if title}
@@ -47,23 +56,23 @@
     <div class="main">
       <div class="Text">
         {#if fields}
-          {@html asHTML(fields, resolveLink)}
+          {@html asHTML(fields, resolveLink, serialize)}
         {/if}
         {#if collapsed}
           <details>
             <summary>Read more</summary>
-            {@html asHTML(collapsed, resolveLink)}
+            {@html asHTML(collapsed, resolveLink, serialize)}
           </details>
         {/if}
         {#if questions}
           {#each questions[0] as question}
-            {@html asHTML(question.text, resolveLink)}
+            {@html asHTML(question.text, resolveLink, serialize)}
           {/each}
           {#if questions[1]}
             <details>
               <summary>Show {questions[1].length} more</summary>
               {#each questions[1] as question}
-                {@html asHTML(question.text, resolveLink)}
+                {@html asHTML(question.text, resolveLink, serialize)}
               {/each}
             </details>
           {/if}
@@ -72,7 +81,7 @@
     </div>
   </div>
 {:else}
-  <div class="Text {size}">{@html asHTML(fields, resolveLink)}</div>
+  <div class="Text {size}">{@html asHTML(fields, resolveLink, serialize)}</div>
 {/if}
 
 <style>

@@ -207,7 +207,7 @@
   .VideoBanner {
     position: relative;
     width: 100%;
-    margin: 0 0 var(--space-sm);
+    margin: 0 0 var(--space-md);
     background: var(--doc-color);
   }
 

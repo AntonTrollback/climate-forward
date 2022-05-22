@@ -13,6 +13,7 @@
   :global(.Button) {
     position: relative;
     display: inline-flex;
+    white-space: nowrap;
     align-items: center;
     justify-content: center;
     padding: 0.875rem 1.25em;
