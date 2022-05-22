@@ -121,7 +121,7 @@
 
 <style>
   .Footer {
-    padding-bottom: 3rem;
+    padding-bottom: var(--space-lg);
     text-align: center;
     font-size: 0.65rem;
   }
@@ -134,16 +134,29 @@
 
   .logo {
     display: block;
-    width: 100%;
-    max-width: 26rem;
-    max-height: 13rem;
+    height: 100%;
+    width: auto;
+    height: 1.15rem;
     margin: 1rem auto 0;
   }
 
   .logo svg {
     display: block;
-    width: 100%;
-    height: auto;
+    height: 100%;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 400px) {
+    .logo {
+      height: 1.3rem;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .logo {
+      height: 1.65rem;
+    }
   }
 
   .list {
