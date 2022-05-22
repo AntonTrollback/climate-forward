@@ -1,9 +1,9 @@
 <script>
   import { getContext } from 'svelte'
-  import { LINK } from '$lib/Link.svelte'
+  import { LINK } from './Link.svelte'
   import { asHTML, asText } from '@prismicio/helpers'
-  import resolve from '$lib/utils/resolve.js'
-  import whitespace from '$lib/utils/whitespace.js'
+  import resolve from './utils/resolve.js'
+  import whitespace from './utils/whitespace.js'
 
   export let fields
   export let title = null

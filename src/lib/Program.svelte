@@ -1,6 +1,6 @@
 <script>
-  import { language } from '$lib/utils/i18n.js'
-  import Session, { getTimestamps } from '$lib/Session.svelte'
+  import { language } from './utils/i18n.js'
+  import Session, { getTimestamps } from './Session.svelte'
   import { format, parse } from 'date-fns'
 
   export let sessions

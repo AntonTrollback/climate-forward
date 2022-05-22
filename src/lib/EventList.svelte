@@ -7,9 +7,9 @@
 </script>
 
 <script>
-  import RichText from '$lib/RichText.svelte'
-  import Button from '$lib/Button.svelte'
-  import Divider from '$lib/Divider.svelte'
+  import RichText from './RichText.svelte'
+  import Button from './Button.svelte'
+  import Divider from './Divider.svelte'
   import { asText } from '@prismicio/helpers'
   export let items
   export let props = { large: false }

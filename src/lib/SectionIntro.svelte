@@ -1,8 +1,8 @@
 <script>
   import { asText } from '@prismicio/helpers'
-  import RichText from '$lib/RichText.svelte'
-  import Button from '$lib/Button.svelte'
-  import Sponsor from '$lib/Sponsor.svelte'
+  import RichText from './RichText.svelte'
+  import Button from './Button.svelte'
+  import Sponsor from './Sponsor.svelte'
   export let content
   var { link, link_text, link_external } = content
 

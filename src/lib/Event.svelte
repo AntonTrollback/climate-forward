@@ -1,13 +1,13 @@
 <script>
-  import Menu from '$lib/Menu.svelte'
-  import Footer from '$lib/Footer.svelte'
-  import Slices from '$lib/Slices.svelte'
-  import Speaker from '$lib/Speaker.svelte'
-  import Session from '$lib/Session.svelte'
-  import resolve from '$lib/utils/resolve.js'
-  import Link, { LINK } from '$lib/Link.svelte'
+  import Menu from './Menu.svelte'
+  import Footer from './Footer.svelte'
+  import Slices from './Slices.svelte'
+  import Speaker from './Speaker.svelte'
+  import Session from './Session.svelte'
+  import resolve from './utils/resolve.js'
+  import Link, { LINK } from './Link.svelte'
   import { setContext } from 'svelte'
-  import Modal from '$lib/Modal.svelte'
+  import Modal from './Modal.svelte'
 
   setContext(LINK, function (props) {
     const { document, ...attrs } = props

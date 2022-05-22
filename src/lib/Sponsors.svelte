@@ -1,6 +1,6 @@
 <script>
-  import Sponsor from '$lib/Sponsor.svelte'
-  import Divider from '$lib/Divider.svelte'
+  import Sponsor from './Sponsor.svelte'
+  import Divider from './Divider.svelte'
   export let items
   let cols = []
 

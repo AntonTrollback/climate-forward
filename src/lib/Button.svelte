@@ -1,5 +1,5 @@
 <script>
-  import Link from '$lib/Link.svelte'
+  import Link from './Link.svelte'
   export let solid = false
   $: attrs = {
     ...$$props,

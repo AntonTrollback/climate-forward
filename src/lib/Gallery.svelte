@@ -1,5 +1,5 @@
 <script>
-  import RichText from '$lib/RichText.svelte'
+  import RichText from './RichText.svelte'
   export let photos
 </script>
 

@@ -1,6 +1,6 @@
 <script context="module">
-  import { graphQuery as sessionFields } from '$lib/Session.svelte'
-  import { graphQuery as sponsorFields } from '$lib/Sponsor.svelte'
+  import { graphQuery as sessionFields } from './Session.svelte'
+  import { graphQuery as sponsorFields } from './Sponsor.svelte'
 
   export const pageBody = `
     {
@@ -151,19 +151,19 @@
 </script>
 
 <script>
-  import Button from '$lib/Button.svelte'
-  import Divider from '$lib/Divider.svelte'
-  import EventList from '$lib/EventList.svelte'
-  import Gallery from '$lib/Gallery.svelte'
-  import Iframe from '$lib/Iframe.svelte'
-  import LegalList from '$lib/LegalList.svelte'
-  import Program from '$lib/Program.svelte'
-  import RichText from '$lib/RichText.svelte'
-  import SectionIntro from '$lib/SectionIntro.svelte'
-  import Speakers from '$lib/Speakers.svelte'
-  import Sponsor from '$lib/Sponsor.svelte'
-  import Sponsors from '$lib/Sponsors.svelte'
-  import VideoBanner from '$lib/VideoBanner.svelte'
+  import Button from './Button.svelte'
+  import Divider from './Divider.svelte'
+  import EventList from './EventList.svelte'
+  import Gallery from './Gallery.svelte'
+  import Iframe from './Iframe.svelte'
+  import LegalList from './LegalList.svelte'
+  import Program from './Program.svelte'
+  import RichText from './RichText.svelte'
+  import SectionIntro from './SectionIntro.svelte'
+  import Speakers from './Speakers.svelte'
+  import Sponsor from './Sponsor.svelte'
+  import Sponsors from './Sponsors.svelte'
+  import VideoBanner from './VideoBanner.svelte'
   export let slices
 </script>
 

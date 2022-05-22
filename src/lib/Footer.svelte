@@ -1,11 +1,11 @@
 <script>
   import { page } from '$app/stores'
   import { setContext } from 'svelte'
-  import Purr from '$lib/Purr.svelte'
-  import Divider from '$lib/Divider.svelte'
-  import resolve from '$lib/utils/resolve.js'
-  import whitespace from '$lib/utils/whitespace.js'
-  import Link, { LINK } from '$lib/Link.svelte'
+  import Purr from './Purr.svelte'
+  import Divider from './Divider.svelte'
+  import resolve from './utils/resolve.js'
+  import whitespace from './utils/whitespace.js'
+  import Link, { LINK } from './Link.svelte'
 
   export let prefix = null
   export let links
@@ -114,7 +114,7 @@
         {/each}
       </ul>
     {/if}
-    <p><Purr /></p>
+    <Purr />
     <p>{@html copyright ? whitespace(copyright) : ''}</p>
   </div>
 </footer>
