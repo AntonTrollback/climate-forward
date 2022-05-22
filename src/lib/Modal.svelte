@@ -43,7 +43,6 @@
     max-width: 100%;
     margin: auto;
     padding: 1.5rem 1.5rem 2rem;
-    overflow: hidden;
   }
 
   @media (min-width: 400px) {

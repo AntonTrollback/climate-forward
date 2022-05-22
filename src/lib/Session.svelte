@@ -230,8 +230,21 @@
 <style>
   .Session--partner.Session--card {
     background: var(--current-color-ad);
-    box-shadow: 0 0 0 5rem var(--current-color-ad);
+    box-shadow: 0 0 0 1.5rem var(--current-color-ad);
   }
+
+  @media (min-width: 500px) {
+    .Session--partner.Session--card {
+      box-shadow: 0 0 0 2rem var(--current-color-ad);
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .Session--partner.Session--card {
+      box-shadow: 0 0 0 3rem var(--current-color-ad);
+    }
+  }
+
   @media (min-width: 700px) {
     .Session--card {
       display: grid;
