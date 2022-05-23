@@ -1,8 +1,8 @@
 <script>
   import { page } from '$app/stores'
-  import resolve from '$lib/utils/resolve.js'
+  import resolve from './utils/resolve.js'
   import { onMount, setContext } from 'svelte'
-  import Link, { LINK } from '$lib/Link.svelte'
+  import Link, { LINK } from './Link.svelte'
 
   export let prefix = null
   export let slices
@@ -166,7 +166,7 @@
       </a>
     {/if}
 
-    <input id="switch" class="switch" bind:checked={checked} type="checkbox" />
+    <input id="switch" class="switch" bind:checked type="checkbox" />
     <label
       class="toggle"
       for="switch"

@@ -4,7 +4,7 @@
 
 <script>
   import { getContext } from 'svelte'
-  import resolve from '$lib/utils/resolve.js'
+  import resolve from './utils/resolve.js'
 
   $: props = getProps($$props)
   $: attributes = Object.fromEntries(

@@ -1,5 +1,5 @@
 <script>
-  import Speaker from '$lib/Speaker.svelte'
+  import Speaker from './Speaker.svelte'
   export let items
   export let limit = 6
   let speakers

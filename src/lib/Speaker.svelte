@@ -5,12 +5,12 @@
 </script>
 
 <script>
-  import { gettext } from '$lib/utils/i18n.js'
-  import RichText from '$lib/RichText.svelte'
-  import Divider from '$lib/Divider.svelte'
-  import Session from '$lib/Session.svelte'
+  import { gettext } from './utils/i18n.js'
+  import RichText from './RichText.svelte'
+  import Divider from './Divider.svelte'
+  import Session from './Session.svelte'
   import { asText } from '@prismicio/helpers'
-  import Link from '$lib/Link.svelte'
+  import Link from './Link.svelte'
 
   export const text = gettext(translations)
 

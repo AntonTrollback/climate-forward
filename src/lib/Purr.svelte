@@ -9,8 +9,8 @@
 
 <script>
   import { onMount } from 'svelte'
-  import Button from '$lib/Button.svelte'
-  import { gettext } from '$lib/utils/i18n.js'
+  import Button from './Button.svelte'
+  import { gettext } from './utils/i18n.js'
 
   const text = gettext(translations)
 

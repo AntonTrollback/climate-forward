@@ -1,7 +1,7 @@
 <script>
-  import Slices from '$lib/Slices.svelte'
-  import Menu from '$lib/Menu.svelte'
-  import Footer from '$lib/Footer.svelte'
+  import Slices from './Slices.svelte'
+  import Menu from './Menu.svelte'
+  import Footer from './Footer.svelte'
   export let page
   export let parent = null
 </script>

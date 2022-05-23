@@ -40,11 +40,11 @@
 <script>
   import tz from 'date-fns-tz'
   import { asText } from '@prismicio/helpers'
-  import Link from '$lib/Link.svelte'
-  import RichText from '$lib/RichText.svelte'
-  import Sponsor from '$lib/Sponsor.svelte'
-  import Button from '$lib/Button.svelte'
-  import Divider from '$lib/Divider.svelte'
+  import Link from './Link.svelte'
+  import RichText from './RichText.svelte'
+  import Sponsor from './Sponsor.svelte'
+  import Button from './Button.svelte'
+  import Divider from './Divider.svelte'
 
   const { formatInTimeZone } = tz
 
@@ -290,7 +290,7 @@
   .supporter p {
     max-width: 30em;
     font-size: 0.75rem;
-    width: 80%
+    width: 80%;
   }
 
   @media (min-width: 700px) {
@@ -396,8 +396,8 @@
 
   :global(.Session .speaker:hover strong) {
     text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 0.11em;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.11em;
   }
 
   :global(.Session .speaker:active) {
