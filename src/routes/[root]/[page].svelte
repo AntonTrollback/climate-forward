@@ -11,7 +11,21 @@
     }
   `
 
+  const redirects = {
+    'climate-forward/london': '/climate-forward/events/london',
+    'climateforward/london': '/climate-forward/events/london',
+    'a-new-climate/san-francisco': '/a-new-climate/events/san-francisco',
+    'anewclimate/san-francisco': '/a-new-climate/events/san-francisco',
+    'anewclimate/sanfrancisco': '/a-new-climate/events/san-francisco',
+    'climate-forward/new-york': '/climate-forward/events/new-york',
+    'climate-forward/newyork': '/climate-forward/events/new-york'
+  }
+
   export async function load({ fetch, params }) {
+    const path = [params.root, params.page].join('/')
+    if (path in redirects) {
+      return { redirect: redirects[path], status: 301 }
+    }
     const client = createClient('climateforward', { fetch })
     const [parent, page] = await Promise.all([
       client.getByUID('page', params.root, { graphQuery }),
