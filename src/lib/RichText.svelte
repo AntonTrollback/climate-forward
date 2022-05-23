@@ -36,7 +36,7 @@
 
   function resolveLink(document) {
     const resolver = getContext(LINK)
-    if (resolver) return resolver({ document }).href
+    if (resolver) return resolver(document).href
     return resolve(document)
   }
 

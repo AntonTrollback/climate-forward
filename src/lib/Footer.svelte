@@ -13,10 +13,8 @@
   export let branding
 
   if (prefix) {
-    setContext(LINK, function (props) {
-      const { document, ...attrs } = props
-      if (document) attrs.href = resolve(document, prefix)
-      return attrs
+    setContext(LINK, function (document) {
+      return { href: resolve(document, prefix) }
     })
   }
 

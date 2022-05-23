@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "npm run build:app && npm run build:purr",
+    "build": "npm run build:purr && npm run build:app",
     "build:app": "svelte-kit build",
     "build:purr": "rollup -c rollup.config.js",
     "package": "svelte-kit package",

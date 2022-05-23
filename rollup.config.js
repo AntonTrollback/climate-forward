@@ -7,7 +7,7 @@ import autoprefixer from 'autoprefixer'
 export default {
   input: './src/lib/Purr.svelte',
   output: {
-    file: 'build/purr.js'
+    file: 'static/nyt-purr.js'
   },
   plugins: [
     svelte({
@@ -17,8 +17,7 @@ export default {
         }
       }),
       compilerOptions: {
-        customElement: true,
-        tag: 'purr-element'
+        customElement: true
       }
     }),
     resolve({ browser: true }),

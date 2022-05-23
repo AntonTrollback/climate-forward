@@ -42,18 +42,14 @@
   import { LINK } from '$lib/Link.svelte'
   import resolve from '$lib/utils/resolve.js'
 
-  setContext(LINK, function (props) {
-    const { document, ...attrs } = props
-
-    if (!document) return attrs
-
+  setContext(LINK, function (document) {
     switch (document.type) {
       case 'event':
-        return { ...attrs, href: resolve(document, parent) }
+        return { href: resolve(document, parent) }
       case 'page':
-        return { ...attrs, href: resolve(document, [parent, event]) }
+        return { href: resolve(document, [parent, event]) }
       default:
-        return { ...attrs, href: resolve(document) }
+        return { href: resolve(document) }
     }
   })
 

@@ -164,6 +164,7 @@
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
   import VideoBanner from './VideoBanner.svelte'
+
   export let slices
 </script>
 
