@@ -41,7 +41,10 @@
     align-items: flex-start;
     flex-wrap: wrap;
     grid-gap: 1rem 4rem;
-    margin-bottom: calc((var(--space-xl) * -1) + var(--space-lg));
+  }
+
+  :global([id*="sponsors"] + .Footer) {
+    margin-top: calc((var(--space-xl) * -1) + var(--space-lg));
   }
 
   .large {
