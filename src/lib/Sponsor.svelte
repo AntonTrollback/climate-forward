@@ -40,7 +40,7 @@
 
   figcaption {
     font-size: 0.75rem;
-    margin-bottom: 0.1875rem;
+    margin-bottom: 0.25rem;
   }
 
   img {
@@ -51,7 +51,7 @@
   }
 
   .portrait {
-    max-height: 4rem;
+    max-height: 3.5rem;
     width: auto;
   }
 

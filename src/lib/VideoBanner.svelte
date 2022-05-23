@@ -213,7 +213,7 @@
     }
   }
 
-  @media (min-width: 1050px) {
+  @media (min-width: 1100px) {
     .logo svg {
       top: 50%;
     }

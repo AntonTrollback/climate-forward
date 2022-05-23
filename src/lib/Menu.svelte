@@ -7,6 +7,7 @@
   export let prefix = null
   export let slices
   export let keeptop
+  export let adaptive
   export let button = null
   export let branding
   export let stacked
@@ -102,8 +103,10 @@
 <svelte:window on:resize={onresize} on:scroll|passive={onscroll} />
 
 <header
-  class="Menu {keeptop ? 'keeptop' : ''}"
+  class="Menu"
   class:sticky
+  class:adaptive
+  class:keeptop
   style="--scroll: {scroll || 0}">
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
@@ -274,7 +277,7 @@
   </div>
 </header>
 
-<div class="space {stacked ? 'stacked' : ''}" />
+<div class="space" class:stacked class:adaptive />
 
 <style>
   :root {
@@ -283,7 +286,7 @@
 
   .Menu {
     --scroll: 0;
-    --x: 2rem;
+    --x: var(--doc-margin);
     --x-shrinked: 1.25rem;
     --y: 1.75rem;
     --y-shrinked: -0.75rem;
@@ -301,15 +304,18 @@
 
   .keeptop {
     position: absolute;
-    --x: var(--doc-margin);
   }
 
   .space {
     margin-bottom: calc(var(--menu-height) * 2 + 12vh);
   }
 
-  .stacked {
+  .space.stacked {
     margin-bottom: var(--menu-height);
+  }
+
+  .space.adaptive {
+    display: none;
   }
 
   .container {
@@ -424,6 +430,10 @@
     transform: translateY(calc((var(--y-shrinked) * 0.35) - 1rem));
   }
 
+  .Menu.adaptive .list li {
+    /* color: #fff; */
+  }
+
   @media (min-width: 700px) {
     .Menu::before {
       opacity: var(--scroll);
@@ -443,6 +453,14 @@
       calc((var(--x) * -1 + var(--x-shrinked)) * var(--scroll)),
       calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)) * var(--scroll))
     );
+  }
+
+  .Menu.adaptive .logo {
+    opacity: var(--scroll);
+  }
+
+  .Menu.adaptive nav .logo {
+    opacity: 1;
   }
 
   .Menu.sticky .logo {
@@ -529,7 +547,7 @@
     }
   }
 
-  @media (min-width: 1030px) {
+  @media (min-width: 1100px) {
     .Menu {
       --y: 1.4rem;
     }
@@ -690,7 +708,8 @@
 
     .list {
       display: flex;
-      align-items: baseline;
+      align-items: center;
+      min-height: 2.2725rem;
     }
 
     .list li:last-child {
@@ -750,7 +769,7 @@
     }
   }
 
-  @media (min-width: 1030px) {
+  @media (min-width: 1100px) {
     :global(.Menu .link),
     :global(.Menu .button) {
       font-size: 0.875rem;
@@ -759,6 +778,12 @@
     :global(.Menu .button) {
       padding: 0.75rem 1rem;
       margin: 0 0 0 0.5rem;
+      position: relative;
+      top: -0.5px;
+    }
+
+    .list {
+      min-height: 2.5rem;
     }
 
     .list li + li {
