@@ -54,11 +54,11 @@
 
   let { start, end } = getTimestamps(session)
 
-  let day = formatInTimeZone(start, 'Europe/London', 'EEEE, LLLL d')
+  let day = formatInTimeZone(start, 'UTC', 'EEEE, LLLL d')
 
   let datetime = start.toJSON()
-  start = formatInTimeZone(start, 'Europe/London', 'h:mm aaaa')
-  end = formatInTimeZone(end, 'Europe/London', 'h:mm aaaa')
+  start = formatInTimeZone(start, 'UTC', 'h:mm aaaa')
+  end = formatInTimeZone(end, 'UTC', 'h:mm aaaa')
   start = start.replace('12:00 p.m.', 'Noon')
   end = end.replace('12:00 p.m.', 'Noon')
   if (start.includes('a.m.') && end.includes('a.m.'))
