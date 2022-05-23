@@ -97,6 +97,7 @@
     background-size: 1.625rem;
     background-position: center;
     cursor: pointer;
+    z-index: 1;
   }
 
   :global(.close a):active {

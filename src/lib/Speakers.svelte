@@ -69,6 +69,11 @@
     display: flex;
   }
 
+  .item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
   @media (min-width: 800px) {
     .grid {
       grid-template-columns: 1fr 1fr;
@@ -90,7 +95,7 @@
     }
   }
 
-  @media (max-width: 1299px) {
+  @media (min-width: 800px) and (max-width: 1299px) {
     .item:nth-child(odd) .body::before {
       content: none;
     }
