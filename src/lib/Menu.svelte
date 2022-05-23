@@ -35,6 +35,7 @@
     const { scrollY } = window
     if (scrollY > 100) {
       sticky = true
+      scroll = 1
       return
     } else if (scrollY < 100 && scrollY > 0) {
       scroll = (scrollY / 100).toFixed(3)
@@ -107,7 +108,7 @@
   class:sticky
   class:adaptive
   class:keeptop
-  style="--scroll: {scroll || 0}">
+  style="--scroll: {scroll || 0};">
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
@@ -288,9 +289,9 @@
     --scroll: 0;
     --x: var(--doc-margin);
     --x-shrinked: 1.25rem;
-    --y: 1.75rem;
+    --y: 1.6rem;
     --y-shrinked: -0.75rem;
-    --x-offset: 1rem;
+    --y-offset: 1rem;
 
     width: 100%;
     position: fixed;
@@ -300,6 +301,7 @@
     height: var(--menu-height);
     user-select: none;
     pointer-events: none;
+    color: var(--current-color);
   }
 
   .keeptop {
@@ -316,6 +318,11 @@
 
   .space.adaptive {
     display: none;
+  }
+
+  .Menu.adaptive[style*=':0;'],
+  .Menu.adaptive[style*=': 0;'] {
+    --current-color: #fff;
   }
 
   .container {
@@ -430,10 +437,6 @@
     transform: translateY(calc((var(--y-shrinked) * 0.35) - 1rem));
   }
 
-  .Menu.adaptive .list li {
-    /* color: #fff; */
-  }
-
   @media (min-width: 700px) {
     .Menu::before {
       opacity: var(--scroll);
@@ -451,8 +454,13 @@
   .logo {
     transform: translate(
       calc((var(--x) * -1 + var(--x-shrinked)) * var(--scroll)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)) * var(--scroll))
+      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
     );
+  }
+
+  .Menu.adaptive[style*=':0;'] .logo,
+  .Menu.adaptive[style*=': 0;'] .logo {
+    opacity: 0;
   }
 
   .Menu.adaptive .logo {
@@ -466,21 +474,21 @@
   .Menu.sticky .logo {
     transform: translate(
       calc(var(--x) * -1 + var(--x-shrinked)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)))
+      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
     );
   }
 
   .toggle {
     transform: translate(
       calc((var(--x) - var(--x-shrinked)) * var(--scroll)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)) * var(--scroll))
+      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
     );
   }
 
   .Menu.sticky .toggle {
     transform: translate(
       calc(var(--x) - var(--x-shrinked)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)))
+      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
     );
   }
 
@@ -488,14 +496,14 @@
     .content {
       transform: translate(
         calc((var(--x) - var(--x-shrinked)) * var(--scroll)),
-        calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)) * var(--scroll))
+        calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
       );
     }
 
     .Menu.sticky .content {
       transform: translate(
         calc(var(--x) - var(--x-shrinked)),
-        calc(((var(--y-shrinked) / 2 * -1) - var(--x-offset)))
+        calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
       );
     }
   }
@@ -513,10 +521,10 @@
     }
 
     .Menu {
-      --y: 1.75rem;
+      --y: 1.7rem;
       --x: 3rem;
       --x-shrinked: 1.9rem;
-      --x-offset: 0.6rem;
+      --y-offset: 0.6rem;
       --y-shrinked: 0.05rem;
     }
 
@@ -535,8 +543,8 @@
     }
 
     .Menu {
-      --y: 1.55rem;
-      --x-offset: 0.85rem;
+      --y: 1.3rem;
+      --y-offset: 0.6rem;
       --y-shrinked: -0.5rem;
     }
   }
@@ -549,7 +557,7 @@
 
   @media (min-width: 1100px) {
     .Menu {
-      --y: 1.4rem;
+      --y: 1.2rem;
     }
   }
 
@@ -793,7 +801,7 @@
 
   @media (min-width: 1100px) {
     /* .Menu {
-      --x-offset: 0rem;
+      --y-offset: 0rem;
       --x: 4rem;
       --y: 2.5rem;
     } */
