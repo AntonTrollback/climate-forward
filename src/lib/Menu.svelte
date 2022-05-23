@@ -85,7 +85,6 @@
   }
 
   function close() {
-    console.log('close', checked)
     window.requestAnimationFrame(function () {
       checked = false
     })

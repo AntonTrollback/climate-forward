@@ -1,6 +1,7 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
   import { load as eventLoader } from '../index.svelte'
+  import Meta from '$lib/Meta.svelte'
 
   export async function load({ fetch, params }) {
     const client = createClient('climateforward', { fetch })

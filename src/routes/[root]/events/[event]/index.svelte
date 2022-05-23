@@ -1,6 +1,7 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
   import { eventBody, pageBody } from '$lib/Slices.svelte'
+  import Meta from '$lib/Meta.svelte'
 
   const graphQuery = `
     {
@@ -37,5 +38,9 @@
   export let parent
   export let event
 </script>
+
+<svelte:head>
+  <Meta document={event} {parent} />
+</svelte:head>
 
 <Event {parent} {event} />

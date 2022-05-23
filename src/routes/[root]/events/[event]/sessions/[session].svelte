@@ -2,6 +2,7 @@
   import { createClient } from '@prismicio/client'
   import { graphQuery as sessionFields } from '$lib/Session.svelte'
   import { load as eventLoader } from '../index.svelte'
+  import Meta from '$lib/Meta.svelte'
 
   const graphQuery = `
     {
@@ -25,5 +26,9 @@
   export let event
   export let session
 </script>
+
+<svelte:head>
+  <Meta document={session} {event} />
+</svelte:head>
 
 <EventPage {parent} {event} {session} />

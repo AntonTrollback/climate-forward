@@ -1,6 +1,7 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
   import { pageBody } from '$lib/Slices.svelte'
+  import Meta from '$lib/Meta.svelte'
 
   const graphQuery = `
     {
@@ -55,5 +56,9 @@
   export let page
   export let parent
 </script>
+
+<svelte:head>
+  <Meta document={page} {parent} />
+</svelte:head>
 
 <Page {page} {parent} />
