@@ -18,8 +18,8 @@
 <slot />
 
 <style>
+  @import '$lib/fonts.css';
   @import '$lib/config.css';
   @import '$lib/normalize.css';
-  @import '$lib/fonts/index.css';
   @import '$lib/utils/index.css';
 </style>
