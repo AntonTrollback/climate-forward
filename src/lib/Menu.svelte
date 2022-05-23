@@ -464,7 +464,8 @@
   }
 
   .Menu.adaptive .logo {
-    opacity: var(--scroll);
+    opacity: calc(var(--scroll) * 1.5);
+    transition: none;
   }
 
   .Menu.adaptive .nav .logo {
