@@ -467,7 +467,7 @@
     opacity: var(--scroll);
   }
 
-  .Menu.adaptive nav .logo {
+  .Menu.adaptive .nav .logo {
     opacity: 1;
   }
 
@@ -567,6 +567,9 @@
 
   @media (max-width: 899px) {
     .nav {
+      --current-color: var(--doc-color) !important;
+
+      color: var(--current-color);
       display: none;
       position: fixed;
       z-index: 1;
@@ -620,13 +623,17 @@
       opacity: 0;
     }
 
-    .switch:checked ~ .toggle .line {
+    .switch:checked + .toggle {
+      color: var(--doc-color);
+    }
+
+    .switch:checked + .toggle .line {
       top: 48%;
       transform: rotate(45deg);
       transform-origin: center;
     }
 
-    .switch:checked ~ .toggle .line:nth-child(2) {
+    .switch:checked + .toggle .line:nth-child(2) {
       transform: rotate(-45deg);
       transform-origin: center;
     }
