@@ -1,18 +1,9 @@
-<script context="module">
-  export const translations = {
-    en: {}
-  }
-</script>
-
 <script>
-  import { gettext } from './utils/i18n.js'
   import RichText from './RichText.svelte'
   import Divider from './Divider.svelte'
   import Session from './Session.svelte'
   import { asText } from '@prismicio/helpers'
   import Link from './Link.svelte'
-
-  export const text = gettext(translations)
 
   export let speaker
   export let sessions = null
@@ -50,7 +41,7 @@
     {/if}
     {#if type === 'link'}
       <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={speaker}
-        >{text`Learn more`}</Link>
+        >Learn more <span class="u-hiddenVisually">about {asText(speaker.data.name)}</span></Link>
     {/if}
   </div>
   {#if sessions?.length}

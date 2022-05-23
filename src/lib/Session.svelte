@@ -90,7 +90,8 @@
     <div class="u-spaceTopXs">
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
-          <span class="u-hiddenVisually">Learn more</span>
+          <span class="u-hiddenVisually"
+            >Learn more about the session: {asText(session.data.name)}</span>
         </Link>
       {/if}
       <h4 class="Text-h4 Text-single title">
@@ -108,7 +109,8 @@
     {#if !simple}
       <div>
         <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}>
-          Learn more
+          Learn more <span class="u-hiddenVisually"
+            >about the session: {asText(session.data.name)}</span>
         </Link>
       </div>
     {/if}

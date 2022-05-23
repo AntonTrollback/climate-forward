@@ -158,7 +158,7 @@
   }
 
   .list {
-    max-width: 18rem;
+    max-width: 25rem;
     margin: 0.875rem auto 0.1rem;
     user-select: none;
   }
