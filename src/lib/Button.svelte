@@ -14,7 +14,7 @@
   }
 </script>
 
-{#if document}
+{#if document || attrs.href}
   <!-- svelte-ignore a11y-missing-attribute -->
   <a
     {...attrs}
