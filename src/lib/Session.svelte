@@ -107,8 +107,9 @@
     </div>
     {#if !simple}
       <div>
-        <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}
-          >Learn more</Link>
+        <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}>
+          Learn more
+        </Link>
       </div>
     {/if}
   {:else}

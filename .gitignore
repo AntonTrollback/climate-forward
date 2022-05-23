@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+/static/nyt-purr.js
 /build
 /.svelte-kit
 /.netlify

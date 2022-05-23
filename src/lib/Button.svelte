@@ -1,16 +1,40 @@
+<svelte:options tag="nyt-button" />
+
 <script>
-  import Link from './Link.svelte'
+  import { linkResolver } from './Link.svelte'
+
   export let solid = false
+  export let onclick = null
+  export let document
+
   $: attrs = {
-    ...$$props,
-    class: `Button ${solid ? 'Button--solid' : ''} ${$$props.class || ''}`
+    ...$$restProps,
+    ...linkResolver(document),
+    class: `Button ${$$props.class || ''}`
   }
 </script>
 
-<Link {...attrs}><slot /></Link>
+{#if document}
+  <!-- svelte-ignore a11y-missing-attribute -->
+  <a
+    {...attrs}
+    class="Button {$$props.class || ''}"
+    class:Button--solid={solid}
+    on:click={onclick}>
+    <slot />
+  </a>
+{:else}
+  <button
+    {...attrs}
+    class="Button {$$props.class || ''}"
+    class:Button--solid={solid}
+    on:click={onclick}>
+    <slot />
+  </button>
+{/if}
 
 <style>
-  :global(.Button) {
+  .Button {
     position: relative;
     display: inline-flex;
     white-space: nowrap;
@@ -33,35 +57,34 @@
   }
 
   @media print {
-    :global(.Button) {
+    .Button {
       display: none !important;
     }
   }
 
-  :global(.Button:hover) {
+  .Button:hover {
     background: var(--current-color);
     color: var(--current-color-background);
     border-color: var(--current-color);
   }
 
-  :global(.Button:active) {
+  .Button:active {
     transition: none;
     opacity: 0.6;
   }
 
-  :global(.Button--solid) {
+  .Button--solid {
     background: var(--current-color);
     color: var(--current-color-background);
     border-color: var(--current-color);
   }
 
-  :global(.Button:focus-visible) {
+  .Button:focus-visible {
     outline-width: var(--focus-ring-width) !important;
     outline-color: var(--focus-ring-color) !important;
   }
 
-  :global(.Button[disabled]),
-  :global(.Button.disabled) {
+  .Button:disabled {
     --current-color: var(--current-color-border);
     --current-color-background: var(--current-color-muted);
     pointer-events: none;

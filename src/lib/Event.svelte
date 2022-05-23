@@ -9,15 +9,10 @@
   import { setContext } from 'svelte'
   import Modal from './Modal.svelte'
 
-  setContext(LINK, function (props) {
-    const { document, ...attrs } = props
-
-    if (!document) return attrs
-
+  setContext(LINK, function (document) {
     if (document === event) {
       const href = resolve(document, parent)
       return {
-        ...attrs,
         href: href,
         'sveltekit:reload': '',
         onclick(event) {
@@ -33,7 +28,6 @@
       case 'speaker': {
         const href = resolve(document, [parent, event, '/speakers'])
         return {
-          ...attrs,
           href: href,
           'sveltekit:reload': '',
           onclick(event) {
@@ -47,7 +41,6 @@
       case 'session': {
         const href = resolve(document, [parent, event, '/sessions'])
         return {
-          ...attrs,
           href: href,
           'sveltekit:reload': '',
           onclick(event) {
@@ -61,12 +54,12 @@
       case 'page': {
         const prefix =
           document.id === parent.id ? null : parent ? [parent, event] : event
-        return { ...attrs, href: resolve(document, prefix) }
+        return { href: resolve(document, prefix) }
       }
       case 'event':
-        return { ...attrs, href: resolve(document, parent) }
+        return { href: resolve(document, parent) }
       default:
-        return { ...attrs, href: resolve(document) }
+        return { href: resolve(document) }
     }
   })
 

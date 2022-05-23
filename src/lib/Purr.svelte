@@ -1,3 +1,5 @@
+<svelte:options tag="nyt-purr" />
+
 <script context="module">
   export const translations = {
     en: {}
@@ -13,15 +15,14 @@
   import { gettext } from './utils/i18n.js'
 
   const text = gettext(translations)
+  const env = import.meta?.env?.DEV ? 'dev' : 'prd'
 
   let salesOptOutPref
   let dataProcessingConsent
   let dataProcessingChanged = false
 
-  const options = {
-    env: import.meta.PROD ? 'prd' : 'dev',
-    useNytRegiCookie: false
-  }
+  export let useNytRegiCookie = true
+  export let autoManageAgentPrefs = env === 'dev'
 
   function onupdate(directives) {
     salesOptOutPref = directives.PURR_DataSaleOptOutUI_v2
@@ -32,7 +33,11 @@
   }
 
   function fetchDirectives() {
-    return window.Purr.fetchPurrDirectives(options).catch(function () {
+    return window.Purr.fetchPurrDirectives({
+      env,
+      useNytRegiCookie,
+      autoManageAgentPrefs
+    }).catch(function () {
       return window.Purr.fetchPurrDirectivesWithoutAPI()
     })
   }
@@ -54,7 +59,11 @@
   onMount(function () {
     const script = document.createElement('script')
     script.onload = function () {
-      window.Purr.refreshPurrCache(options)
+      window.Purr.refreshPurrCache({
+        env,
+        useNytRegiCookie,
+        autoManageAgentPrefs
+      })
         .then(fetchDirectives, fetchDirectives)
         .then(onupdate)
     }
@@ -301,12 +310,14 @@
 
   .body {
     flex: 0 1 auto;
-    height: 100%;
+    min-height: 100%;
+    min-height: min-content;
     max-width: 34rem;
     margin-right: auto;
     font-size: 0.7rem;
     line-height: 1.4;
     overflow: auto;
+    text-align: left;
     -webkit-overflow-scrolling: touch;
     -webkit-font-smoothing: antialiased;
   }

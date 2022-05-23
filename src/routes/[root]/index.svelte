@@ -26,10 +26,8 @@
   import Footer from '$lib/Footer.svelte'
   import resolve from '$lib/utils/resolve.js'
 
-  setContext(LINK, function (props) {
-    const { document, ...attrs } = props
-    if (document) attrs.href = resolve(document, page)
-    return attrs
+  setContext(LINK, function (document) {
+    return { href: resolve(document, page) }
   })
 
   export let page
