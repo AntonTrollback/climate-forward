@@ -21,7 +21,7 @@
       <Button document={link}>{link_text}</Button>
     </div>
   {/if}
-  {#if !content.sponsor.isBroken}
+  {#if content.sponsor?.data}
     <div class="u-spaceTopSm">
       <Sponsor label={content.sponsor_label} org={content.sponsor.data} />
     </div>
