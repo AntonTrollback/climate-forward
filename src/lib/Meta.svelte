@@ -1,10 +1,9 @@
 <script context="module">
   import { asText } from '@prismicio/helpers'
 
-  export const setMeta = function (doc, parent)  {
-    console.log(doc, parent)
+  export const setMeta = function (doc, parent) {
     let { title, desc, image } = define(doc, parent)
-    function set (query, content) {
+    function set(query, content) {
       let el = document.head.querySelector(query)
       if (el) el.setAttribute('content', content)
     }
@@ -23,7 +22,7 @@
     }
   }
 
-  function define (doc, parent) {
+  function define(doc, parent) {
     let title = getTitle(doc)
     if (doc.type === 'speaker' || doc.type === 'session') {
       title = `${title} | ${getTitle(parent)}`
@@ -33,14 +32,13 @@
 
     let desc = doc.data.seo_description
     if (!desc && doc.type === 'speaker') desc = asText(doc.data.bio)
-    if (!desc && doc.type === 'session')
-      desc = asText(doc.data.description)
+    if (!desc && doc.type === 'session') desc = asText(doc.data.description)
     if (!desc) desc = ''
 
     let image = getImage(doc)
     if (parent && !image) image = getImage(parent)
 
-    return { title, desc, image}
+    return { title, desc, image }
   }
 
   function getTitle(doc) {
