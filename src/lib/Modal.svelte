@@ -27,7 +27,7 @@
     display: flex !important;
     flex-direction: column;
     width: 100vw;
-    height: var(--window-height, 100vh);
+    height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
@@ -38,6 +38,12 @@
     user-select: text;
     pointer-events: initial;
     text-decoration: none;
+  }
+
+  @supports (min-height: 100dvh) {
+    .Modal {
+      height: 100dvh;
+    }
   }
 
   @media (min-width: 1000px) {
