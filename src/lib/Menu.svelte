@@ -91,7 +91,7 @@
   }
 
   function lockscroll(event) {
-    if (locked) return
+    if (!locked) return
     event.preventDefault()
   }
 
@@ -639,14 +639,14 @@
     .switch:checked ~ .nav {
       display: block;
       overflow: hidden;
-      min-height: var(--window-height, 100vh);
+      min-height: 100vh;
       padding: var(--y) var(--x);
       box-shadow: 0 0 0 1rem var(--current-color-background);
     }
 
-    @supports (min-height: -webkit-fill-available) {
+    @supports (min-height: 100dvh) {
       .switch:checked ~ .nav {
-        min-height: var(--window-height, -webkit-fill-available);
+        min-height: 100dvh;
       }
     }
 
