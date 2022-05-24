@@ -52,6 +52,8 @@
   export let simple = false
   export let session
 
+  $: hasSponsor = session.data.sponsor?.id && !session.data.sponsor.isBroken
+
   let { start, end } = getTimestamps(session)
 
   let day = formatInTimeZone(start, 'UTC', 'EEEE, LLLL d')
@@ -109,8 +111,10 @@
     {#if !simple}
       <div>
         <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}>
-          Learn more <span class="u-hiddenVisually"
-            >about the session: {asText(session.data.name)}</span>
+          Learn more
+          <span class="u-hiddenVisually">
+            about the session: {asText(session.data.name)}
+          </span>
         </Link>
       </div>
     {/if}
@@ -127,7 +131,7 @@
         {/if}
       </span>
 
-      {#if !session.data.branding && session.data.sponsor}
+      {#if !session.data.branding && hasSponsor}
         <span class="wrap">
           <div class="sponsor">
             {session.data.kicker}<br />
@@ -143,7 +147,7 @@
           target="_blank">Get tickets</Button>
       </div>
 
-      {#if session.data.branding && session.data.sponsor}
+      {#if session.data.branding && hasSponsor}
         <div class="supporter">
           <Divider size="sm" />
           <p>{asText(session.data.smallprint)}</p>
@@ -188,14 +192,14 @@
           target="_blank">Get tickets</Button>
       </div>
 
-      {#if !session.data.branding && session.data.sponsor}
+      {#if !session.data.branding && hasSponsor}
         <div class="sponsor">
           {session.data.kicker}<br />
           {asText(session.data.sponsor.data.name)}
         </div>
       {/if}
 
-      {#if session.data.branding && session.data.sponsor}
+      {#if session.data.branding && hasSponsor}
         <div class="supporter">
           <Divider size="sm" />
           <p>{asText(session.data.smallprint)}</p>

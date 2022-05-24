@@ -33,14 +33,16 @@
   }
 </script>
 
-<svelte:head>
-  <Meta source={event} parent={parent} />
-</svelte:head>
-
 <script>
   import Event from '$lib/Event.svelte'
   export let parent
   export let event
+  export let session = null
+  export let speaker = null
 </script>
 
-<Event {parent} {event} />
+<svelte:head>
+  <Meta source={event} {parent} />
+</svelte:head>
+
+<Event {parent} {event} {session} {speaker} />
