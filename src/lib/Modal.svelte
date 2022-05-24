@@ -2,6 +2,17 @@
   export const MODAL = Symbol('MODAL')
 </script>
 
+<script>
+  import { onMount } from 'svelte'
+
+  onMount(function () {
+    document.documentElement.style.setProperty('overflow', 'hidden')
+    return function () {
+      document.documentElement.style.removeProperty('overflow')
+    }
+  })
+</script>
+
 <section class="Modal">
   <div class="container">
     <slot />

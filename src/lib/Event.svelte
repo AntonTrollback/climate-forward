@@ -1,14 +1,27 @@
 <script>
   import Menu from './Menu.svelte'
+  import Modal from './Modal.svelte'
   import Footer from './Footer.svelte'
   import Slices from './Slices.svelte'
   import Speaker from './Speaker.svelte'
-  import { setMeta } from './Meta.svelte'
   import Session from './Session.svelte'
+  import { setMeta } from './Meta.svelte'
   import resolve from './utils/resolve.js'
   import Link, { LINK } from './Link.svelte'
-  import { setContext } from 'svelte'
-  import Modal from './Modal.svelte'
+  import { setContext, onMount } from 'svelte'
+
+  export let parent
+  export let event
+  export let speaker = null
+  export let session = null
+
+  onMount(function () {
+    if (session) {
+      document.getElementById('program')?.scrollIntoView()
+    } else if (speaker) {
+      document.getElementById('speakers')?.scrollIntoView()
+    }
+  })
 
   setContext(LINK, function (document) {
     if (document === event) {
@@ -66,11 +79,6 @@
         return { href: resolve(document) }
     }
   })
-
-  export let parent
-  export let event
-  export let speaker = null
-  export let session
 
   function getSessionsForSpeaker() {
     return event.data.body
