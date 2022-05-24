@@ -1,6 +1,7 @@
 .DS_Store
 node_modules
 /static/nyt-purr.js
+/static/swoogo-theme.css
 /build
 /.svelte-kit
 /.netlify
