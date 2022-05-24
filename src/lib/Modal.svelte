@@ -4,10 +4,10 @@
 
 <section class="Modal">
   <div class="container">
+    <slot />
     <div class="close">
       <slot name="close" />
     </div>
-    <slot />
   </div>
 </section>
 
@@ -97,7 +97,6 @@
     background-size: 1.625rem;
     background-position: center;
     cursor: pointer;
-    z-index: 1;
   }
 
   :global(.close a):active {

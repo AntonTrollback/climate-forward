@@ -20,4 +20,8 @@
   export let speaker
 </script>
 
+<svelte:head>
+  <Meta source={speaker} parent={event} />
+</svelte:head>
+
 <Event {parent} {event} {speaker} />

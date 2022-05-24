@@ -58,7 +58,7 @@
 </script>
 
 <svelte:head>
-  <Meta document={page} {parent} />
+  <Meta source={page} {parent} />
 </svelte:head>
 
 <Page {page} {parent} />

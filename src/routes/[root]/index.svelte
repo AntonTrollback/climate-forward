@@ -51,7 +51,7 @@
 </script>
 
 <svelte:head>
-  <Meta document={page} />
+  <Meta source={page} />
 </svelte:head>
 
 <Menu

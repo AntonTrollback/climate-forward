@@ -28,7 +28,7 @@
 </script>
 
 <svelte:head>
-  <Meta document={session} {event} />
+  <Meta source={session} parent={event} />
 </svelte:head>
 
 <EventPage {parent} {event} {session} />

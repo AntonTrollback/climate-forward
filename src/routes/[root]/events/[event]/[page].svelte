@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-  <Meta document={page} parent={event} />
+  <Meta source={page} parent={event} />
 </svelte:head>
 
 <Event {parent} {event}>

@@ -3,6 +3,7 @@
   import Footer from './Footer.svelte'
   import Slices from './Slices.svelte'
   import Speaker from './Speaker.svelte'
+  import { setMeta } from './Meta.svelte'
   import Session from './Session.svelte'
   import resolve from './utils/resolve.js'
   import Link, { LINK } from './Link.svelte'
@@ -15,11 +16,12 @@
       return {
         href: href,
         'sveltekit:reload': '',
-        onclick(event) {
+        onclick(e) {
           speaker = null
           session = null
+          setMeta(document, parent)
           window.history.replaceState({}, null, href)
-          event.preventDefault()
+          e.preventDefault()
         }
       }
     }
@@ -30,11 +32,12 @@
         return {
           href: href,
           'sveltekit:reload': '',
-          onclick(event) {
+          onclick(e) {
             session = null
             speaker = document
+            setMeta(speaker, event)
             window.history.replaceState({}, null, href)
-            event.preventDefault()
+            e.preventDefault()
           }
         }
       }
@@ -43,11 +46,12 @@
         return {
           href: href,
           'sveltekit:reload': '',
-          onclick(event) {
+          onclick(e) {
             speaker = null
             session = document
+            setMeta(session, event)
             window.history.replaceState({}, null, href)
-            event.preventDefault()
+            e.preventDefault()
           }
         }
       }
