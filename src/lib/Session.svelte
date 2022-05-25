@@ -63,13 +63,15 @@
   end = formatInTimeZone(end, 'UTC', 'h:mm aaaa')
   start = start.replace('12:00 p.m.', 'Noon')
   end = end.replace('12:00 p.m.', 'Noon')
-  if (start.includes('a.m.') && end.includes('a.m.'))
-    start = start.replace(' a.m.', '')
-  if (start.includes('p.m.') && end.includes('p.m.'))
-    start = start.replace(' p.m.', '')
   start = start.replace(':00', '')
   end = end.replace(':00', '')
-
+  if (start === end) start = ''
+  if (start.includes('a.m.') && end.includes('a.m.')) {
+    start = start.replace(' a.m.', '')
+  }
+  if (start.includes('p.m.') && end.includes('p.m.')) {
+    start = start.replace(' p.m.', '')
+  }
   let speakers = session.data.speakers
     .filter((item) => item.speaker.id)
     .map((item) => item.speaker)
@@ -105,8 +107,10 @@
       </h4>
     </div>
     <div class="u-spaceTopXs">
-      <time {datetime}>{start}–{end} B.S.T.</time>
-      <span class="location">{session.data.location}</span>
+      <time {datetime}>{start ? `${start}–${end}` : end} B.S.T.</time>
+      {#if session.data.location}
+        <span class="location">{session.data.location}</span>
+      {/if}
     </div>
     {#if !simple}
       <div>
@@ -122,10 +126,12 @@
     <div class="aside">
       <time class="wrap" {datetime}>
         <span>{day}</span>
-        <span>{start}–{end} B.S.T.</span>
+        <span>{start ? `${start}–${end}` : end} B.S.T.</span>
       </time>
       <span class="wrap">
-        <span class="location">{session.data.location}</span>
+        {#if session.data.location}
+          <span class="location">{session.data.location}</span>
+        {/if}
         {#if session.data.format}
           <span class="format">{session.data.format}</span>
         {/if}
@@ -141,10 +147,17 @@
       {/if}
 
       <div class="wrap button">
-        <Button
+        {#if session.data.link?.url}
+          <Button
           solid
-          href="https://nytuk.swoogo.com/climate-forward-london/tickets"
-          target="_blank">Get tickets</Button>
+          href={session.data.link.url}
+          target="_blank">{session.data.button_text}</Button>
+        {:else}
+          <Button
+            solid
+            href="https://nytuk.swoogo.com/climate-forward-london/tickets"
+            target="_blank">Get tickets</Button>
+        {/if}
       </div>
 
       {#if session.data.branding && hasSponsor}
@@ -171,10 +184,12 @@
       <div class="meta">
         <time class="wrap" {datetime}>
           <span>{day}</span>
-          <span>{start}–{end} B.S.T.</span>
+          <span>{start ? `${start}–${end}` : end} B.S.T.</span>
         </time>
         <span class="wrap">
-          <span class="location">{session.data.location}</span>
+          {#if session.data.location}
+            <span class="location">{session.data.location}</span>
+            {/if}
           {#if session.data.format}
             <span class="format">{session.data.format}</span>
           {/if}
@@ -186,10 +201,17 @@
       {/if}
 
       <div class="button">
-        <Button
+        {#if session.data.link?.url}
+          <Button
           solid
-          href="https://nytuk.swoogo.com/climate-forward-london/tickets"
-          target="_blank">Get tickets</Button>
+          href={session.data.link.url}
+          target="_blank">{session.data.button_text}</Button>
+        {:else}
+          <Button
+            solid
+            href="https://nytuk.swoogo.com/climate-forward-london/tickets"
+            target="_blank">Get tickets</Button>
+        {/if}
       </div>
 
       {#if !session.data.branding && hasSponsor}
