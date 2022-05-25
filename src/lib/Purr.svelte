@@ -178,7 +178,7 @@
     border-top: 1px solid;
     display: flex;
     flex-direction: column;
-    z-index: 2;
+    z-index: 3;
   }
 
   @media (min-width: 400px) {

@@ -140,8 +140,12 @@
       {#if !session.data.branding && hasSponsor}
         <span class="wrap">
           <div class="sponsor">
-            {session.data.kicker}<br />
-            {asText(session.data.sponsor.data.name)}
+            {#if session.data.show_logo}
+              <Sponsor org={session.data.sponsor.data} label={session.data.kicker} size="md" />
+            {:else}
+              {session.data.kicker}<br />
+              {asText(session.data.sponsor.data.name)}
+            {/if}
           </div>
         </span>
       {/if}
@@ -216,8 +220,12 @@
 
       {#if !session.data.branding && hasSponsor}
         <div class="sponsor">
-          {session.data.kicker}<br />
-          {asText(session.data.sponsor.data.name)}
+          {#if session.data.show_logo}
+            <Sponsor org={session.data.sponsor.data} label={session.data.kicker} size="md" />
+          {:else}
+            {session.data.kicker}<br />
+            {asText(session.data.sponsor.data.name)}
+          {/if}
         </div>
       {/if}
 
