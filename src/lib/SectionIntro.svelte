@@ -15,30 +15,31 @@
   <h2 class="Text-h1">
     {@html asText(content.heading).replace(/\n/g, '<br>')}
   </h2>
-  <RichText size="lg" fields={content.text} />
+  <RichText class="u-spaceSm" size="lg" fields={content.text} />
   {#if link_text}
     <div class="action">
       <Button document={link}>{link_text}</Button>
     </div>
   {/if}
   {#if content.sponsor?.data}
-    <div class="u-spaceTopSm">
-      <Sponsor label={content.sponsor_label} org={content.sponsor.data} />
-    </div>
+    <Sponsor
+      class="u-spaceXl"
+      label={content.sponsor_label}
+      org={content.sponsor.data} />
   {/if}
 </div>
 
 <style>
   .action {
-    padding-top: var(--space-sm);
+    margin-top: var(--space-xl);
   }
 
   @media (min-width: 1000px) {
     .action {
       position: absolute;
-      padding-top: var(--space-xs);
       top: 0;
       right: 0;
+      margin-top: var(--space-sm);
     }
   }
 </style>

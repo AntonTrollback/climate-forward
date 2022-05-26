@@ -24,7 +24,6 @@
   font-weight: var(--doc-font-weight);
   line-height: var(--doc-line-height);
   letter-spacing: var(--doc-letter-spacing);
-  word-spacing: -0.05em;
 }
 
 body {

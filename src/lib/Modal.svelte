@@ -4,16 +4,18 @@
 
 <script>
   import { onMount } from 'svelte'
+  let modal
 
   onMount(function () {
     document.documentElement.style.setProperty('overflow', 'hidden')
+    modal.focus()
     return function () {
       document.documentElement.style.removeProperty('overflow')
     }
   })
 </script>
 
-<section class="Modal">
+<section bind:this={modal} class="Modal" tabindex="-1" role="dialog">
   <div class="container">
     <slot />
     <div class="close">
@@ -33,11 +35,15 @@
     top: 0;
     z-index: 4;
     background: rgba(0, 0, 0, 0.2);
-    padding: 2.5rem 1rem 5rem;
+    padding: 3.8rem 1.25rem 6rem;
     overflow: scroll;
     user-select: text;
     pointer-events: initial;
     text-decoration: none;
+  }
+
+  .Modal:focus-visible {
+    outline: var(--focus-color);
   }
 
   @supports (min-height: 100dvh) {
@@ -46,17 +52,11 @@
     }
   }
 
-  @media (min-width: 1000px) {
-    .Modal {
-      background: rgba(0, 0, 0, 0.15);
-    }
-  }
-
   .container {
     position: relative;
     background: #fff;
     color: #000;
-    width: 54rem;
+    width: 59.5rem;
     max-width: 100%;
     margin: auto;
     padding: 1.5rem 1.5rem 2rem;
@@ -64,13 +64,13 @@
 
   @media (min-width: 400px) {
     .Modal {
-      padding: 2.5rem 2rem 5rem;
+      padding: 3.8rem 1.2rem 5rem;
     }
   }
 
   @media (min-width: 500px) {
     .Modal {
-      padding: 2.5rem 4rem 5rem;
+      padding: 4.2rem 2.75rem 5rem;
     }
 
     .container {
@@ -91,6 +91,10 @@
   }
 
   @media (min-width: 1000px) {
+    .Modal {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
     .container {
       padding: 3rem;
     }
@@ -114,6 +118,8 @@
     background-size: 1.625rem;
     background-position: center;
     cursor: pointer;
+    border-radius: 50%;
+    outline-offset: -0.25rem;
   }
 
   :global(.close a):active {

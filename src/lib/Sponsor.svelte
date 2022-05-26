@@ -10,17 +10,16 @@
   import { asText } from '@prismicio/helpers'
   export let org
   export let label = null
-  export let inline = false
   export let size = 'md'
   let { name, logo } = org
 </script>
 
-<figure class="Sponsor {inline ? 'inline' : ''}">
+<figure class="Sponsor {size} {$$props.class || ''} ">
   {#if label}<figcaption>{label}</figcaption>{/if}
   <img
-    class="{size} {logo.dimensions.height * 1.1 > logo.dimensions.width
+    class={logo.dimensions.height * 1.1 > logo.dimensions.width
       ? 'portrait'
-      : ''}"
+      : ''}
     src={logo.url}
     width={logo.dimensions.width}
     height={logo.dimensions.height}
@@ -30,17 +29,12 @@
 
 <style>
   figure {
-    margin-top: var(--space-sm);
     user-select: none;
-  }
-
-  .inline {
-    margin-top: 0.875rem;
   }
 
   figcaption {
     font-size: 0.75rem;
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--space-xs);
   }
 
   img {
@@ -50,24 +44,28 @@
     margin-left: 1px;
   }
 
+  .sm img {
+    max-width: 5rem;
+  }
+
+  .md img {
+    max-width: 7rem;
+  }
+
+  .lg img {
+    max-width: 12rem;
+  }
+
+  .lg figcaption {
+    margin-bottom: var(--space-sm);
+  }
+
   .portrait {
     max-height: 3.5rem;
     width: auto;
   }
 
-  img.sm {
-    max-width: 5rem;
-  }
-
-  img.md {
-    max-width: 7rem;
-  }
-
-  img.lg {
-    max-width: 12rem;
-  }
-
-  .portrait.lg {
+  .lg .portrait {
     max-height: 5rem;
     width: auto;
   }

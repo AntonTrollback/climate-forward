@@ -354,7 +354,7 @@ a:not(.btn):not(.close):focus-visible {
   font-size: 0.875rem;
   line-height: 1;
   text-align: center;
-  letter-spacing: 0.065em;
+  letter-spacing: var(--doc-letter-spacing-wide);
   text-transform: uppercase;
   -webkit-user-select: none;
   user-select: none;
@@ -420,7 +420,11 @@ a:not(.btn):not(.close):focus-visible {
   height: 1.5rem;
   border-radius: 50%;
   background: var(--current-color-background);
-  background: linear-gradient(to right, var(--current-color-background) 10%, rgba(0, 0, 0, 0) 42%);
+  background: linear-gradient(
+    to right,
+    var(--current-color-background) 10%,
+    rgba(0, 0, 0, 0) 42%
+  );
   position: relative;
   animation: Button-spin 1000ms infinite linear;
   transform: translate(-50%, -50%);
@@ -493,7 +497,7 @@ a:not(.btn):not(.close):focus-visible {
   font-size: 0.6875rem;
   text-transform: uppercase;
   line-height: 1.1;
-  letter-spacing: 0.065em;
+  letter-spacing: var(--doc-letter-spacing-wide);
   width: 100%;
 }
 
@@ -1414,7 +1418,8 @@ input[type='checkbox'] + span .terms-link {
   width: calc(100% - 2px);
   top: calc(3rem - 0px);
   left: 2px;
-  box-shadow: 0px 0px 0px 1px var(--current-color), 0px -1px 0px 0px var(--current-color-background);
+  box-shadow: 0px 0px 0px 1px var(--current-color),
+    0px -1px 0px 0px var(--current-color-background);
   border: 0;
   max-height: 60vh;
   height: 14.8rem;

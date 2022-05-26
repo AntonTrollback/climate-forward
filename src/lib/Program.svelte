@@ -31,7 +31,7 @@
     <li>
       <details open={index === 0}>
         <summary>
-          <h3 class="Text-h4 Text-single">
+          <h3 class="Text-h4">
             {day.date.toLocaleString($language, {
               weekday: 'long',
               month: 'long',
@@ -56,7 +56,7 @@
 <style>
   .Program {
     --title-padding: 0.875rem;
-    margin-top: var(--space-lg);
+    margin-top: var(--space-block-md);
   }
 
   summary {
@@ -70,7 +70,7 @@
     cursor: pointer;
     border-top: 1px solid;
     padding: var(--title-padding) 0;
-    margin-top: var(--space-md);
+    margin-top: var(--space-block-sm);
   }
 
   summary:active {
@@ -104,7 +104,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: var(--space-grid);
-    margin-top: calc(var(--space-md) - var(--title-padding));
+    margin-top: calc(var(--space-block-sm) - var(--title-padding));
   }
 
   .item {

@@ -179,6 +179,7 @@
     {#if slice.slice_type === 'sponsor'}
       <div class="u-container">
         <Sponsor
+          class="u-spaceXl"
           label={slice.primary.sponsor_label}
           org={slice.primary.sponsor.data} />
       </div>
@@ -194,7 +195,7 @@
 
     {#if slice.slice_type === 'button'}
       <div class="u-container">
-        <Button class="u-spaceTopSm" document={slice.primary.link}>
+        <Button class="u-spaceXl" document={slice.primary.link}>
           {slice.primary.link_text}
         </Button>
       </div>

@@ -16,7 +16,7 @@
     display: block;
     width: 100%;
     height: 1px;
-    margin: var(--space-md) 0 var(--space-xs);
+    margin: var(--space-block-sm) 0 var(--space-sm);
     background: var(--current-color-border);
   }
 
@@ -33,14 +33,14 @@
   }
 
   .md::after {
-    margin-top: var(--space-md) !important;
+    margin-top: var(--space-block-sm) !important;
   }
 
   .lg::after {
-    margin-top: var(--space-lg) !important;
+    margin-top: var(--space-block-md) !important;
   }
 
   .xl::after {
-    margin-top: var(--space-xl) !important;
+    margin-top: var(--space-block-xl) !important;
   }
 </style>

@@ -20,10 +20,10 @@
 
 <style>
   .cols {
-    margin-top: var(--space-lg);
+    margin-top: var(--space-block-md);
     display: flex;
     flex-wrap: wrap;
-    grid-gap: var(--space-md) 4rem;
+    grid-gap: var(--space-block-sm) 4rem;
   }
 
   .col {
@@ -31,7 +31,7 @@
   }
 
   figcaption {
-    margin-top: var(--space-sm);
+    margin-top: var(--space-md);
   }
 
   @media (min-width: 1000px) {

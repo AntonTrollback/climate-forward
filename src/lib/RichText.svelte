@@ -41,8 +41,26 @@
   }
 
   function serialize(type, element, content, children) {
+    if (type === 'heading1') {
+      return `<h2 class="Text-h1">${children}</h2>`
+    }
+    if (type === 'heading2') {
+      return `<h2 class="Text-h2">${children}</h2>`
+    }
+    if (type === 'heading3') {
+      return `<h3 class="Text-h3">${children}</h2>`
+    }
+    if (type === 'heading4') {
+      return `<h4 class="Text-h4">${children}</h2>`
+    }
+    if (type === 'heading5') {
+      return `<h5 class="Text-h5">${children}</h2>`
+    }
+    if (type === 'heading6') {
+      return `<h6 class="Text-h6">${children}</h2>`
+    }
     if (type === 'paragraph') {
-      return `<p>${whitespace(children)}</p>`
+      return `<p class="Text-p">${whitespace(children)}</p>`
     }
     return null
   }
@@ -51,10 +69,12 @@
 {#if title}
   <div class="layout">
     <div class="aside">
-      <div class="Text Text--xl"><p>{asText(title)}</p></div>
+      <div class="Text Text--xl Text--spaced">
+        <h2 class="Text-p">{asText(title)}</h2>
+      </div>
     </div>
     <div class="main">
-      <div class="Text">
+      <div class="Text Text--spaced">
         {#if fields}
           {@html asHTML(fields, resolveLink, serialize)}
         {/if}
@@ -81,19 +101,25 @@
     </div>
   </div>
 {:else}
-  <div class="Text {size}">{@html asHTML(fields, resolveLink, serialize)}</div>
+  <div class="Text Text--spaced {size} {$$props.class || ''}">
+    {@html asHTML(fields, resolveLink, serialize)}
+  </div>
 {/if}
 
 <style>
+  :global([id*='rich_text'] + [id*='rich_text']) {
+    margin-top: var(--space-md);
+  }
+
   summary {
     border-top: 1px solid var(--current-color-border);
     padding-top: var(--space-xs);
-    margin-top: var(--space-md);
+    margin-top: var(--space-block-sm);
     user-select: none;
     font-size: 0.9375rem;
     font-weight: 700;
     line-height: 1;
-    letter-spacing: 0.065em;
+    letter-spacing: var(--doc-letter-spacing-wide);
     text-transform: uppercase;
   }
 

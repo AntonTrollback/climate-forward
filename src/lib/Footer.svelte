@@ -119,7 +119,7 @@
 
 <style>
   .Footer {
-    padding-bottom: var(--space-lg);
+    padding-bottom: var(--space-block-md);
     text-align: center;
     font-size: 0.65rem;
   }
@@ -131,11 +131,12 @@
   }
 
   .logo {
-    display: block;
     height: 100%;
     width: auto;
     height: 1.15rem;
-    margin: 1rem auto 0;
+    margin: 0.75rem auto 0;
+    display: inline-block;
+    vertical-align: bottom;
   }
 
   .logo svg {
@@ -158,12 +159,12 @@
   }
 
   .list {
-    max-width: 25rem;
+    max-width: 19rem;
     margin: 0.875rem auto 0.1rem;
     user-select: none;
   }
 
-  @media (min-width: 700px) {
+  @media (min-width: 500px) {
     .list {
       max-width: 33rem;
     }
@@ -179,13 +180,15 @@
   }
 
   :global(.Footer .link) {
-    display: block;
+    display: inline-block;
+    vertical-align: bottom;
     white-space: nowrap;
     padding: 0.1rem 0.25rem;
     text-underline-offset: 0.05em;
     text-decoration-thickness: 0.25px;
     text-decoration-skip-ink: none;
     text-decoration: underline;
+    outline-offset: -2px;
   }
 
   :global(.Footer .link),

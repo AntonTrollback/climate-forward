@@ -46,7 +46,7 @@
     font-size: 0.875rem;
     line-height: 1;
     text-align: center;
-    letter-spacing: 0.065em;
+    letter-spacing: var(--doc-letter-spacing-wide);
     text-transform: uppercase;
     user-select: none;
     border-radius: 0.125rem;
@@ -82,6 +82,7 @@
   .Button:focus-visible {
     outline-width: var(--focus-ring-width) !important;
     outline-color: var(--focus-ring-color) !important;
+    outline-offset: var(--focus-ring-width);
   }
 
   .Button:disabled {

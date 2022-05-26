@@ -91,14 +91,14 @@
           >{session.data.format ? session.data.format : '—'}</span>
       {/if}
     {/if}
-    <div class="u-spaceTopXs">
+    <div class="u-spaceXs">
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
           <span class="u-hiddenVisually"
             >Learn more about the session: {asText(session.data.name)}</span>
         </Link>
       {/if}
-      <h4 class="Text-h4 Text-single title">
+      <h4 class="Text-h4 title">
         {#if session.data.branding}
           <em>{asText(session.data.name)}</em>
         {:else}
@@ -106,7 +106,7 @@
         {/if}
       </h4>
     </div>
-    <div class="u-spaceTopXs">
+    <div class="u-spaceXs">
       <time {datetime}>{start ? `${start}–${end}` : end} B.S.T.</time>
       {#if session.data.location}
         <span class="location">{session.data.location}</span>
@@ -114,7 +114,7 @@
     </div>
     {#if !simple}
       <div>
-        <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={session}>
+        <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
           Learn more
           <span class="u-hiddenVisually">
             about the session: {asText(session.data.name)}
@@ -141,7 +141,11 @@
         <span class="wrap">
           <div class="sponsor">
             {#if session.data.show_logo}
-              <Sponsor org={session.data.sponsor.data} label={session.data.kicker} size="md" />
+              <Sponsor
+                class="u-spaceSm"
+                org={session.data.sponsor.data}
+                label={session.data.kicker}
+                size="md" />
             {:else}
               {session.data.kicker}<br />
               {asText(session.data.sponsor.data.name)}
@@ -152,10 +156,8 @@
 
       <div class="wrap button">
         {#if session.data.link?.url}
-          <Button
-          solid
-          href={session.data.link.url}
-          target="_blank">{session.data.button_text}</Button>
+          <Button solid href={session.data.link.url} target="_blank"
+            >{session.data.button_text}</Button>
         {:else}
           <Button
             solid
@@ -166,9 +168,11 @@
 
       {#if session.data.branding && hasSponsor}
         <div class="supporter">
-          <Divider size="sm" />
           <p>{asText(session.data.smallprint)}</p>
-          <Sponsor org={session.data.sponsor.data} inline size="md" />
+          <Sponsor
+            class="u-spaceSm"
+            org={session.data.sponsor.data}
+            size="md" />
         </div>
       {/if}
     </div>
@@ -177,7 +181,7 @@
       {#if session.data.kicker && session.data.branding}
         <div class="kicker">{session.data.kicker}</div>
       {/if}
-      <h2 class="Text-h3 Text-single title">
+      <h2 class="Text-h3 title">
         {#if session.data.branding}
           <em>{asText(session.data.name)}</em>
         {:else}
@@ -193,7 +197,7 @@
         <span class="wrap">
           {#if session.data.location}
             <span class="location">{session.data.location}</span>
-            {/if}
+          {/if}
           {#if session.data.format}
             <span class="format">{session.data.format}</span>
           {/if}
@@ -201,18 +205,20 @@
       </div>
 
       {#if session.data.description?.length}
-        <RichText fields={session.data.description} />
+        <RichText class="u-spaceMd" fields={session.data.description} />
       {/if}
 
       <div class="button">
         {#if session.data.link?.url}
           <Button
-          solid
-          href={session.data.link.url}
-          target="_blank">{session.data.button_text}</Button>
+            solid
+            class="u-spaceXl"
+            href={session.data.link.url}
+            target="_blank">{session.data.button_text}</Button>
         {:else}
           <Button
             solid
+            class="u-spaceXl"
             href="https://nytuk.swoogo.com/climate-forward-london/tickets"
             target="_blank">Get tickets</Button>
         {/if}
@@ -221,7 +227,11 @@
       {#if !session.data.branding && hasSponsor}
         <div class="sponsor">
           {#if session.data.show_logo}
-            <Sponsor org={session.data.sponsor.data} label={session.data.kicker} size="md" />
+            <Sponsor
+              class="u-spaceSm"
+              org={session.data.sponsor.data}
+              label={session.data.kicker}
+              size="md" />
           {:else}
             {session.data.kicker}<br />
             {asText(session.data.sponsor.data.name)}
@@ -231,15 +241,17 @@
 
       {#if session.data.branding && hasSponsor}
         <div class="supporter">
-          <Divider size="sm" />
           <p>{asText(session.data.smallprint)}</p>
-          <Sponsor org={session.data.sponsor.data} inline size="md" />
+          <Sponsor
+            class="u-spaceSm"
+            org={session.data.sponsor.data}
+            size="md" />
         </div>
       {/if}
     </div>
 
     {#if speakers?.length}
-      <div class="speakers">
+      <div class="speakers {speakers.length < 3 ? 'inline' : ''}">
         <Divider size="md" />
         <h3 class="Text-h5">Speakers</h3>
         <ul class="grid">
@@ -285,7 +297,7 @@
   @media (min-width: 700px) {
     .Session--card {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 13.35rem 1fr 1fr;
       grid-gap: 0 2rem;
     }
 
@@ -295,7 +307,7 @@
   }
 
   .meta {
-    margin: var(--space-xs) 0;
+    margin: var(--space-md) 0;
     font-size: 0.875rem;
   }
 
@@ -305,11 +317,12 @@
 
   .wrap {
     display: block;
-    white-space: nowrap;
   }
 
-  .wrap span + span {
-    margin-left: 1rem;
+  .wrap > * {
+    white-space: nowrap;
+    margin-right: 1rem;
+    line-height: 1.3;
   }
 
   .aside {
@@ -324,10 +337,16 @@
     font-size: 0.875rem;
   }
 
+  .supporter {
+    padding: var(--space-sm) 0 0;
+    margin-top: 2rem;
+    border-top: 1px solid var(--current-color-border);
+  }
+
   .supporter p {
     max-width: 30em;
     font-size: 0.75rem;
-    width: 80%;
+    width: 90%;
   }
 
   @media (min-width: 700px) {
@@ -359,7 +378,7 @@
     }
 
     .aside .wrap + .wrap {
-      margin-top: var(--space-xs);
+      margin-top: var(--space-md);
     }
 
     .aside time {
@@ -367,7 +386,7 @@
     }
 
     .aside .button {
-      margin: var(--space-sm) 0 !important;
+      margin: var(--space-xl) 0 !important;
     }
   }
 
@@ -379,31 +398,35 @@
     padding-right: 2rem;
   }
 
-  @media (min-width: 700px) {
-    .Session--card .title {
-      padding-bottom: var(--space-xs);
-    }
-  }
-
   :global(.simple-link:hover + .title) {
     text-decoration: underline;
   }
 
+  :global(.simple-link:focus-visible + .title) {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  }
+
   .kicker {
     margin: -0.1rem -0.5rem -0.21rem;
+    font-size: 0.875rem;
   }
 
   .kicker span {
     display: inline-block;
     background: var(--doc-color-ad);
-    font-size: 0.875rem;
     padding: 0.25rem 0.5rem;
   }
 
   .Session--card .kicker {
-    margin: 0.15rem 0 var(--space-xs);
+    margin: 0.15rem 0 var(--space-sm);
     font-weight: 700;
     padding-right: 2rem;
+  }
+
+  @media (min-width: 700px) {
+    .Session--card .kicker {
+      font-size: 1rem;
+    }
   }
 
   /* Speaker grid */
@@ -413,10 +436,14 @@
     grid-column: 1 / 4;
   }
 
+  .speakers.inline {
+    grid-column: 2 / 4;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     margin-top: 1.5rem;
   }
 
@@ -429,6 +456,7 @@
     font-size: 0.875rem;
     line-height: 1.2;
     transition: opacity 250ms var(--ease-out);
+    max-width: 25rem;
   }
 
   :global(.Session .speaker:hover strong) {
@@ -456,15 +484,33 @@
     margin-right: 1rem;
   }
 
-  @media (min-width: 450px) {
+  @media (min-width: 500px) {
     .grid {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .grid .item:only-child {
+      grid-column: 1 / 3;
     }
   }
 
   @media (min-width: 700px) {
     .grid {
       grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .grid .item:only-child {
+      grid-column: 1 / 4;
+    }
+
+    .speakers.inline .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-gap: 2rem;
     }
   }
 </style>

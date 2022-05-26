@@ -348,6 +348,7 @@
     position: relative;
     top: 0.12rem;
     -webkit-touch-callout: none;
+    outline-offset: var(--focus-ring-width);
   }
 
   .logo svg {
@@ -382,12 +383,13 @@
     font-size: 0.875rem;
     line-height: 1;
     text-align: center;
-    letter-spacing: 0.065em;
+    letter-spacing: var(--doc-letter-spacing-wide);
     text-transform: uppercase;
     margin-top: 0.9rem;
     border-radius: 0.125rem;
     -webkit-touch-callout: none;
     user-select: none;
+    outline-offset: var(--focus-ring-width);
   }
 
   :global(.Menu .button:hover) {
@@ -739,7 +741,7 @@
       font-weight: 400;
       font-size: 0.75rem;
       line-height: 1.05;
-      letter-spacing: 0.065em;
+      letter-spacing: var(--doc-letter-spacing-wide);
       text-transform: uppercase;
     }
 

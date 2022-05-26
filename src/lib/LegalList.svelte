@@ -33,7 +33,9 @@
 <ul class="list">
   {#each items as item, index}
     <li class={className(item, index)}>
-      <div class="Text"><p class="number">{number(item, index)}</p></div>
+      <div class="Text">
+        <p class="number">{number(item, index)}</p>
+      </div>
       <RichText fields={item.item} />
     </li>
   {/each}

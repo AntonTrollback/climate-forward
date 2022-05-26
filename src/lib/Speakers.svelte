@@ -39,7 +39,7 @@
 
 <style>
   .Speakers {
-    margin-top: var(--space-lg);
+    margin-top: var(--space-block-md);
   }
 
   summary {

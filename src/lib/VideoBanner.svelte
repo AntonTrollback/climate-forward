@@ -10,6 +10,12 @@
 
   let supportsPicture = true
 
+  function getSrc(props) {
+    let { w, h, q, f } = props
+    if (!f) f = 'mp4'
+    return `https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_${w},h_${h},so_0,q_${q},f_auto/v1653133121/climate-events/climate-forward-${version}-${w}x${h}.${f}`
+  }
+
   function debounce(fn) {
     let timeout
     return function (...args) {
@@ -79,52 +85,48 @@
 <div class="VideoBanner">
   <picture bind:this={picture}>
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1000,h_1400,so_0,q_65,f_auto/v1653133121/climate-events/climate-forward-{version}-1000x1400.mp4"
+      srcset={getSrc({ w: 1000, h: 1400, q: 65 })}
       media="(max-width: 499px)"
       width="1000"
       height="1400"
       type="video/mp4" />
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1080,h_1080,so_0,q_70,f_auto/v1653133223/climate-events/climate-forward-{version}-1080x1080.mp4"
+      srcset={getSrc({ w: 1080, h: 1080, q: 70 })}
       media="(min-width: 500px) and (max-width: 699px)"
       width="1080"
       height="1080"
       type="video/mp4" />
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1800,h_1200,so_0,q_80,f_auto/v1653133223/climate-events/climate-forward-{version}-1800x1200.mp4"
+      srcset={getSrc({ w: 1800, h: 1200, q: 80 })}
       media="(min-width: 700px) and (max-width: 1099px)"
       width="1800"
       height="1200"
       type="video/mp4" />
     <source
-      srcset="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_2200,h_990,so_0,q_80,f_auto/v1653133180/climate-events/climate-forward-{version}-2200x990.mp4"
+      srcset={getSrc({ w: 2200, h: 990, q: 80 })}
       media="(min-width: 1100px)"
       width="2200"
       height="990"
       type="video/mp4" />
     <img
       loading="lazy"
-      src="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1000,h_1400,so_0,q_65,f_auto/v1653133121/climate-events/climate-forward-{version}-1000x1400.jpg"
+      src={getSrc({ w: 1000, h: 1400, q: 65, f: 'jpg' })}
       alt="" />
     <img
       loading="lazy"
-      src="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1080,h_1080,so_0,q_70,f_auto/v1653133223/climate-events/climate-forward-{version}-1080x1080.jpg"
+      src={getSrc({ w: 1080, h: 1080, q: 70, f: 'jpg' })}
       alt="" />
     <img
       loading="lazy"
-      src="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_1800,h_1200,so_0,q_70,f_auto/v1653133223/climate-events/climate-forward-{version}-1800x1200.jpg"
+      src={getSrc({ w: 1800, h: 1200, q: 70, f: 'jpg' })}
       alt="" />
     <img
       loading="lazy"
-      src="https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_2200,h_990,so_0,q_70,f_auto/v1653133180/climate-events/climate-forward-{version}-2200x990.jpg"
+      src={getSrc({ w: 2200, h: 990, q: 70, f: 'jpg' })}
       alt="" />
   </picture>
   <div class="logo">
-    <svg
-      fill="none"
-      height="57"
-      viewBox="0 0 638 57"
-      width="638"
+    <svg fill="none" height="57" viewBox="0 0 638 57" width="638"
       ><g fill="#fff"
         ><path
           d="m21.0759 25.8314c0-9.081 2.7942-13.0394 6.9854-13.0394 3.7255 0 5.4331 3.1046 5.9764 9.3914h14.5917v-20.8785h-14.2037v2.25084c-2.8717-2.32846-6.2092-3.259842-10.5556-3.259842-13.0394 0-23.362288 10.090002-23.362288 27.010202 0 8.8481 2.949388 16.2216 8.149618 21.3442 5.27787 5.1226 12.72897 8.072 21.80997 8.072 6.442 0 11.7975-1.0866 17.7739-4.3465v-14.9021c-5.5107 3.8031-9.081 4.8121-13.0394 4.8121-3.3375 0-6.8302-1.3194-9.4691-3.9584-2.7941-2.7941-4.6569-6.9077-4.6569-12.496z" /><path
@@ -149,8 +151,11 @@
   .VideoBanner {
     position: relative;
     width: 100%;
-    margin: 0 0 var(--space-md);
+    margin: 0 0 var(--space-block-sm);
     background: var(--doc-color);
+    max-height: 90vh;
+    min-height: 19rem;
+    overflow: hidden;
   }
 
   picture,
@@ -180,7 +185,7 @@
   }
 
   .logo::after {
-    content: "";
+    content: '';
     width: 4rem;
     height: 4rem;
     background: #fff;

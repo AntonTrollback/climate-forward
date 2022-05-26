@@ -25,22 +25,24 @@
 
 <ol>
   {#each items as item, index}
-    <li class:shuffle={!large}>
+    <li class:shift={!large}>
       {#if index !== 0}
         <Divider solid="true" size={large ? 'xl' : 'md'} />
       {/if}
       <div class="content">
-        <h2 class={large ? 'Text-h1 Text-full' : 'Text-h2 Text-full'}>
+        <h2 class="{large ? 'Text-h1' : 'Text-h2'} u-fill">
           {asText(item.event.data.name)}
         </h2>
         {#if large}
-          <span class="Text-h1 Text-full"><em>{item.event.data.date}</em></span>
+          <span class="Text-h1 u-fill"><em>{item.event.data.date}</em></span>
         {:else}
-          <div class="u-text">
+          <div class="Text u-spaceSm">
             <p><strong>{item.event.data.date}</strong></p>
           </div>
         {/if}
-        <RichText fields={item.event.data.description} />
+        <RichText
+          class={large ? 'u-spaceXl' : ''}
+          fields={item.event.data.description} />
         <div class="action">
           {#if item.override_link?.url}
             <Button solid={item.solid_button} document={item.override_link}>
@@ -64,18 +66,19 @@
   }
 
   .action {
-    padding-top: var(--space-sm);
+    margin-top: var(--space-xl);
   }
 
-  .shuffle .action {
-    padding-top: var(--space-xs);
+  .shift .action {
+    margin-top: var(--space-md);
   }
 
   @media (min-width: 1000px) {
-    .shuffle .action {
+    .shift .action {
       position: absolute;
       top: 0;
       right: 0;
+      margin-top: var(--space-sm);
     }
   }
 </style>

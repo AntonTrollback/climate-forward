@@ -25,7 +25,7 @@
         <div class="items">
           {#each col.sponsors as sponsor}
             <div class="item">
-              <Sponsor org={sponsor} inline size={col.large ? 'lg' : 'sm'} />
+              <Sponsor org={sponsor} size={col.large ? 'lg' : 'sm'} />
             </div>
           {/each}
         </div>
@@ -43,8 +43,8 @@
     grid-gap: 1rem 4rem;
   }
 
-  :global([id*="sponsors"] + .Footer) {
-    margin-top: calc((var(--space-xl) * -1) + var(--space-lg));
+  :global([id*='sponsors'] + .Footer) {
+    margin-top: calc((var(--space-block-xl) * -1) + var(--space-block-md));
   }
 
   .large {
@@ -52,9 +52,10 @@
   }
 
   .label {
+    display: block;
     font-size: 0.75rem;
     font-weight: 400;
-    margin-bottom: 0.1875rem;
+    margin-bottom: var(--space-sm);
     white-space: nowrap;
     user-select: none;
   }

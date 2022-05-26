@@ -205,7 +205,7 @@
     font-size: 0.8125rem;
     line-height: 1.08;
     white-space: nowrap;
-    letter-spacing: 0.065em;
+    letter-spacing: var(--doc-letter-spacing-wide);
     user-select: none;
     pointer-events: none;
     border-radius: 0.125rem;

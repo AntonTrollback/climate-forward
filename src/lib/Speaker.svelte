@@ -32,16 +32,18 @@
         {/if}
       </figure>
     {:else}
-      <h4 class="Text-h4 Text-single">{asText(speaker.data.name)}</h4>
+      <h4 class="Text-h4">{asText(speaker.data.name)}</h4>
       <h4 class="desc">{speaker.data.title}</h4>
     {/if}
 
     {#if type === 'card'}
-      <RichText size="sm" fields={speaker.data.bio} />
+      <RichText class="u-spaceMd" size="sm" fields={speaker.data.bio} />
     {/if}
     {#if type === 'link'}
-      <Link class="u-spaceTopXs u-trigger u-triggerBlock" document={speaker}
-        >Learn more <span class="u-hiddenVisually">about {asText(speaker.data.name)}</span></Link>
+      <Link class="u-spaceXs u-trigger u-triggerBlock" document={speaker}
+        >Learn more <span class="u-hiddenVisually"
+          >about {asText(speaker.data.name)}</span
+        ></Link>
     {/if}
   </div>
   {#if sessions?.length}
@@ -72,6 +74,25 @@
 
   .portrait {
     margin: 1.25rem 0;
+  }
+
+  @media (max-width: 699px) {
+    .Speaker--card .portrait {
+      margin: 1.25rem 0;
+      height: 0;
+      padding-bottom: 110%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .Speaker--card .portrait img {
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-position: center;
+      object-fit: cover;
+    }
   }
 
   .Speaker--link .portrait {
@@ -133,7 +154,7 @@
 
   @media (min-width: 800px) {
     .Speaker--card .details {
-      grid-template-columns: 14.5rem 1fr;
+      grid-template-columns: 12.3rem 1fr;
       grid-gap: 0 3rem;
     }
   }
