@@ -7,9 +7,12 @@
   let modal
 
   onMount(function () {
+    var theme = document.head.querySelector('[name="theme-color"]').getAttribute('content')
+    document.head.querySelector('[name="theme-color"]').setAttribute('content', '#d6d6d6')
     document.documentElement.style.setProperty('overflow', 'hidden')
     modal.focus()
     return function () {
+      document.head.querySelector('[name="theme-color"]').setAttribute('content', theme)
       document.documentElement.style.removeProperty('overflow')
     }
   })
@@ -34,16 +37,13 @@
     left: 0;
     top: 0;
     z-index: 4;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.16);
     padding: 3.8rem 1.25rem 6rem;
     overflow: scroll;
     user-select: text;
     pointer-events: initial;
     text-decoration: none;
-  }
-
-  .Modal:focus-visible {
-    outline: var(--focus-color);
+    outline: 0 !important;
   }
 
   @supports (min-height: 100dvh) {
@@ -92,7 +92,7 @@
 
   @media (min-width: 1000px) {
     .Modal {
-      background: rgba(0, 0, 0, 0.15);
+      background: rgba(0, 0, 0, 0.16);
     }
 
     .container {
