@@ -7,6 +7,7 @@
 
   export let fields
   export let title = null
+  export let wide = null
   export let size = 'md'
   export let collapsed = null
   export let questions = null
@@ -74,7 +75,7 @@
       </div>
     </div>
     <div class="main">
-      <div class="Text Text--spaced">
+      <div class="Text Text--spaced {wide ? 'Text--wide' : ''}">
         {#if fields}
           {@html asHTML(fields, resolveLink, serialize)}
         {/if}
@@ -101,7 +102,7 @@
     </div>
   </div>
 {:else}
-  <div class="Text Text--spaced {size} {$$props.class || ''}">
+  <div class="Text Text--spaced {size} {$$props.class || ''} {wide ? 'Text--wide' : ''}">
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}

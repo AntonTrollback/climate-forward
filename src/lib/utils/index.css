@@ -405,15 +405,6 @@ details[open] > .u-expand::before {
   max-width: 26em;
 }
 
-.Text--lg .Text-p strong,
-.Text--xl .Text-p strong {
-  font-family: var(--doc-heading-font-family);
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.15;
-  max-width: 26em;
-}
-
 @media (min-width: 800px) {
   .Text--lg .Text-p,
   .Text--xl .Text-p {
@@ -430,6 +421,10 @@ details[open] > .u-expand::before {
 .Text--xl .Text-p {
   font-size: 1.73rem;
   max-width: 19.7em;
+}
+
+.Text--wide.Text--xl .Text-p {
+  max-width: 23em;
 }
 
 @media (min-width: 400px) {
