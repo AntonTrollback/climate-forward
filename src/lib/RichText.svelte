@@ -128,6 +128,10 @@
     display: none;
   }
 
+  .aside {
+    margin-bottom: var(--space-md);
+  }
+
   @media (min-width: 1000px) {
     .layout {
       display: flex;
