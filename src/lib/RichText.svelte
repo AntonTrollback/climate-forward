@@ -140,6 +140,7 @@
     .aside {
       width: calc(100% / 3);
       padding-right: 2rem;
+      flex-shrink: 0;
     }
 
     .aside > * {

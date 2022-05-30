@@ -23,6 +23,13 @@
   width: 100% !important;
 }
 
+@media (min-width: 1000px) {
+  .u-pushRight {
+    padding-left: calc((100% / 3) + 2rem) !important;
+    margin-top: var(--space-sm);
+  }
+}
+
 /**
  * Misc helpers
  */

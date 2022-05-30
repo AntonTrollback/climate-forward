@@ -195,9 +195,11 @@
 
     {#if slice.slice_type === 'button'}
       <div class="u-container">
-        <Button class="u-spaceXl" document={slice.primary.link}>
-          {slice.primary.link_text}
-        </Button>
+        <div class:u-pushRight={slice.primary.push}>
+          <Button class="u-spaceXl" solid={slice.primary.solid} document={slice.primary.link}>
+            {slice.primary.link_text}
+          </Button>
+        </div>
       </div>
     {/if}
 
