@@ -37,7 +37,7 @@
     {/if}
 
     {#if type === 'card'}
-      <RichText class="u-spaceMd" size="sm" fields={speaker.data.bio} />
+      <RichText class="u-spaceMd" fields={speaker.data.bio} />
     {/if}
     {#if type === 'link'}
       <Link class="u-spaceXs u-trigger u-triggerBlock" document={speaker}
@@ -154,8 +154,8 @@
 
   @media (min-width: 800px) {
     .Speaker--card .details {
-      grid-template-columns: 12.3rem 1fr;
-      grid-gap: 0 3rem;
+      grid-template-columns: 12.7rem 1fr;
+      grid-gap: 0 2.5rem;
     }
   }
 
