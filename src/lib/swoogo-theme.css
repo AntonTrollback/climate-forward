@@ -1233,6 +1233,7 @@ input[type='checkbox'] + span .terms-link {
   background: rgba(255, 255, 255, 0.8);
   padding: 2.5rem 1rem 5rem;
   overflow: scroll;
+  -webkit-user-select: text;
   user-select: text;
   pointer-events: initial;
   text-decoration: none;

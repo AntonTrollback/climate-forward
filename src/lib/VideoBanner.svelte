@@ -163,8 +163,9 @@
     display: block;
     width: 100%;
     height: auto;
-    user-select: none;
+    -webkit-user-select: none;
     -webkit-touch-callout: none;
+    user-select: none;
     pointer-events: none;
   }
 

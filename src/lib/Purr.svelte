@@ -206,6 +206,7 @@
     line-height: 1.08;
     white-space: nowrap;
     letter-spacing: var(--doc-letter-spacing-wide);
+    -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
     border-radius: 0.125rem;

@@ -40,6 +40,7 @@
     background: rgba(0, 0, 0, 0.16);
     padding: 3.8rem 1.25rem 6rem;
     overflow: scroll;
+    -webkit-user-select: text;
     user-select: text;
     pointer-events: initial;
     text-decoration: none;
@@ -111,6 +112,7 @@
     font-size: 0;
     color: transparent;
     -webkit-touch-callout: none;
+    -webkit-user-select: none;
     user-select: none;
     transition: opacity 250ms var(--ease-out);
     background-image: url("data:image/svg+xml,%3Csvg width='27' height='27' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='13.7' cy='13' r='13' transform='rotate(90 13.7 13)' fill='%23000'/%3E%3Cpath d='m8.81 8.46 9.44 9.43M18.25 8.46l-9.43 9.43' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");

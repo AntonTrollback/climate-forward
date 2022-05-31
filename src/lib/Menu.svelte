@@ -286,6 +286,7 @@
     left: 0;
     z-index: 3;
     height: var(--menu-height);
+    -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
     color: var(--current-color);
@@ -378,6 +379,7 @@
     margin-top: 0.9rem;
     border-radius: 0.125rem;
     -webkit-touch-callout: none;
+    -webkit-user-select: none;
     user-select: none;
     outline-offset: var(--focus-ring-width);
   }

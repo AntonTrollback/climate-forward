@@ -57,6 +57,7 @@
     font-weight: 400;
     margin-bottom: var(--space-sm);
     white-space: nowrap;
+    -webkit-user-select: none;
     user-select: none;
   }
 

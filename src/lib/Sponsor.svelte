@@ -29,6 +29,7 @@
 
 <style>
   figure {
+    -webkit-user-select: none;
     user-select: none;
   }
 

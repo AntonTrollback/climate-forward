@@ -48,6 +48,7 @@
     text-align: center;
     letter-spacing: var(--doc-letter-spacing-wide);
     text-transform: uppercase;
+    -webkit-user-select: none;
     user-select: none;
     border-radius: 0.125rem;
     transition: opacity 250ms var(--ease-out);

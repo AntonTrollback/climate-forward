@@ -63,6 +63,7 @@
     display: flex;
     align-items: center;
     -webkit-touch-callout: none;
+    -webkit-user-select: none;
     user-select: none;
     font-weight: 700;
     transition: opacity 350ms var(--ease-out);

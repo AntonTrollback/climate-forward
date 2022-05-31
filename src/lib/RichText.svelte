@@ -116,6 +116,7 @@
     border-top: 1px solid var(--current-color-border);
     padding-top: var(--space-xs);
     margin-top: var(--space-block-sm);
+    -webkit-user-select: none;
     user-select: none;
     font-size: 0.9375rem;
     font-weight: 700;

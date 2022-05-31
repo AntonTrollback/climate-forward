@@ -156,6 +156,7 @@
   .list {
     max-width: 19rem;
     margin: 0.875rem auto 0.1rem;
+    -webkit-user-select: none;
     user-select: none;
   }
 
