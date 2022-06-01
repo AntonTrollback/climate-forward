@@ -1,11 +1,21 @@
 <script>
   import Speaker from './Speaker.svelte'
+  import { asText } from '@prismicio/helpers'
   export let items
   export let limit = 6
   let speakers
 
+  function lastnameSort(a, b) {
+    a = asText(a.data.name).split(' ').pop()
+    b = asText(b.data.name).split(' ').pop()
+    return a.localeCompare(b)
+  }
+
   if (items.length > limit) {
-    speakers = [items.slice(0, limit), items.slice(limit)]
+    speakers = [
+      items.slice(0, limit),
+      items.slice(limit).sort(lastnameSort)
+    ]
   } else {
     speakers = [items]
   }

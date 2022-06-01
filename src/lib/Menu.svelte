@@ -7,7 +7,7 @@
   export let prefix = null
   export let slices
   export let keeptop
-  export let adaptive
+  export let adaptive = null
   export let button = null
   export let branding
   export let stacked
