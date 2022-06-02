@@ -7,12 +7,18 @@
   let modal
 
   onMount(function () {
-    var theme = document.head.querySelector('[name="theme-color"]').getAttribute('content')
-    document.head.querySelector('[name="theme-color"]').setAttribute('content', '#d6d6d6')
+    var theme = document.head
+      .querySelector('[name="theme-color"]')
+      .getAttribute('content')
+    document.head
+      .querySelector('[name="theme-color"]')
+      .setAttribute('content', '#d6d6d6')
     document.documentElement.style.setProperty('overflow', 'hidden')
     modal.focus()
     return function () {
-      document.head.querySelector('[name="theme-color"]').setAttribute('content', theme)
+      document.head
+        .querySelector('[name="theme-color"]')
+        .setAttribute('content', theme)
       document.documentElement.style.removeProperty('overflow')
     }
   })

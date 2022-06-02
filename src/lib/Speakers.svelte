@@ -12,10 +12,7 @@
   }
 
   if (items.length > limit) {
-    speakers = [
-      items.slice(0, limit),
-      items.slice(limit).sort(lastnameSort)
-    ]
+    speakers = [items.slice(0, limit), items.slice(limit).sort(lastnameSort)]
   } else {
     speakers = [items]
   }

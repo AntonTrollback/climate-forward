@@ -102,7 +102,10 @@
     </div>
   </div>
 {:else}
-  <div class="Text Text--spaced {size} {$$props.class || ''} {wide ? 'Text--wide' : ''}">
+  <div
+    class="Text Text--spaced {size} {$$props.class || ''} {wide
+      ? 'Text--wide'
+      : ''}">
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}
