@@ -24,7 +24,11 @@
 
   function define(doc, parent) {
     let title = getTitle(doc)
-    if (doc.type === 'speaker' || doc.type === 'session') {
+    if (
+      doc.type === 'speaker' ||
+      doc.type === 'session' ||
+      doc.type === 'dialog'
+    ) {
       title = `${title} | ${getTitle(parent)}`
     } else if (parent && !doc.data.seo_title) {
       title = `${title} | ${getTitle(parent)}`

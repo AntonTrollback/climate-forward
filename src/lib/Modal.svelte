@@ -107,7 +107,8 @@
     }
   }
 
-  :global(.close a) {
+  :global(.close a),
+  :global(.close button) {
     position: absolute;
     right: 1.25rem;
     top: 1.25rem;
@@ -130,19 +131,22 @@
     outline-offset: -0.25rem;
   }
 
-  :global(.close a):active {
+  :global(.close a):active,
+  :global(.close button):active {
     transition: none;
     opacity: 0.6;
   }
 
   @media (min-width: 1000px) {
-    :global(.close a) {
+    :global(.close a),
+    :global(.close button) {
       top: 2rem;
       right: 2rem;
     }
   }
 
-  :global(.close a)::before {
+  :global(.close a)::before,
+  :global(.close button)::before {
     content: '';
     position: fixed;
     top: 0;

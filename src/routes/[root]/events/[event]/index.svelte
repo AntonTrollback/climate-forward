@@ -39,10 +39,11 @@
   export let event
   export let session = null
   export let speaker = null
+  export let dialog = null
 </script>
 
 <svelte:head>
   <Meta source={event} {parent} />
 </svelte:head>
 
-<Event {parent} {event} {session} {speaker} />
+<Event {parent} {event} {session} {speaker} {dialog} />

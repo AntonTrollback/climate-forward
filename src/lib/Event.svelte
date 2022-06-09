@@ -5,6 +5,7 @@
   import Slices from './Slices.svelte'
   import Speaker from './Speaker.svelte'
   import Session from './Session.svelte'
+  import Dialog from './Dialog.svelte'
   import { setMeta } from './Meta.svelte'
   import resolve from './utils/resolve.js'
   import Link, { LINK } from './Link.svelte'
@@ -14,6 +15,7 @@
   export let event
   export let speaker = null
   export let session = null
+  export let dialog = null
 
   onMount(function () {
     if (session) {
@@ -32,6 +34,7 @@
         onclick(e) {
           speaker = null
           session = null
+          dialog = null
           setMeta(document, parent)
           window.history.replaceState({}, null, href)
           e.preventDefault()
@@ -46,6 +49,7 @@
           href: href,
           'sveltekit:reload': '',
           onclick(e) {
+            dialog = null
             session = null
             speaker = document
             setMeta(speaker, event)
@@ -60,9 +64,25 @@
           href: href,
           'sveltekit:reload': '',
           onclick(e) {
+            dialog = null
             speaker = null
             session = document
             setMeta(session, event)
+            window.history.replaceState({}, null, href)
+            e.preventDefault()
+          }
+        }
+      }
+      case 'dialog': {
+        const href = resolve(document, [parent, event, '/dialog'])
+        return {
+          href: href,
+          'sveltekit:reload': '',
+          onclick(e) {
+            speaker = null
+            session = null
+            dialog = document
+            setMeta(dialog, event)
             window.history.replaceState({}, null, href)
             e.preventDefault()
           }
@@ -122,6 +142,13 @@
 {#if session}
   <Modal>
     <Session {session} />
+    <Link slot="close" document={event}>Close</Link>
+  </Modal>
+{/if}
+
+{#if dialog}
+  <Modal>
+    <Dialog {dialog} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}

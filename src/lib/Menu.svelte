@@ -1,5 +1,4 @@
 <script>
-  import { page } from '$app/stores'
   import resolve from './utils/resolve.js'
   import logo from './utils/logo.js'
   import { onMount, setContext } from 'svelte'
