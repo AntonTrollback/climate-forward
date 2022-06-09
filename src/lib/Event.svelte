@@ -141,7 +141,7 @@
 
 {#if session}
   <Modal>
-    <Session {session} />
+    <Session {session} {event} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}

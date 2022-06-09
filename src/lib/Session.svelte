@@ -51,6 +51,7 @@
   export let type = 'card'
   export let simple = false
   export let session
+  export let event
 
   $: hasSponsor = session.data.sponsor?.id && !session.data.sponsor.isBroken
 
@@ -156,13 +157,13 @@
 
       <div class="wrap button">
         {#if session.data.link?.url}
-          <Button solid href={session.data.link.url} target="_blank"
-            >{session.data.button_text}</Button>
-        {:else}
-          <Button
-            solid
-            href="https://nytuk.swoogo.com/climate-forward-london/tickets"
-            target="_blank">Get tickets</Button>
+          <Button solid href={session.data.link.url} target="_blank">
+            {session.data.button_text}
+          </Button>
+        {:else if event.data.link}
+          <Button solid document={event.data.link}>
+            {event.data.button_text}
+          </Button>
         {/if}
       </div>
 
