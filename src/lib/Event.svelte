@@ -114,8 +114,6 @@
   }
 </script>
 
-<Animation />
-
 <slot>
   <Menu
     slices={event.data.menu}

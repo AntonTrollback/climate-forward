@@ -4,12 +4,14 @@
   let root
   let picture
   let image
-  let video
   let canplay
   let sources
   let anchors
+  let whitedot
+  let blackdot
+  let video = null
   let began = false
-  let locked = true
+  let scrolldelay = 500
 
   let supportsPicture = true
 
@@ -31,7 +33,28 @@
     event.preventDefault()
   }
 
-  function animate() {
+  function startNavObserver() {
+    anchors = Array.from(
+      document.documentElement.querySelectorAll('.Menu a')
+    ).filter((link) => {
+      return link.href.includes('#')
+    })
+
+    for (const link of anchors) {
+      link.dataset.delay = scrolldelay
+      link.addEventListener('click', stop)
+    }
+  }
+
+  function endNavObserver() {
+    if (!anchors) return
+    for (const link of anchors) {
+      link.dataset.delay = 0
+      link.removeEventListener('click', stop)
+    }
+  }
+
+  function start() {
     began = true
 
     window.scrollTo(0, 0)
@@ -42,48 +65,77 @@
     startNavObserver()
     window.addEventListener('touchmove', lockscroll, { passive: false })
     window.addEventListener('wheel', lockscroll, { passive: false })
-    root.classList.add('in')
-    setTimeout(function () {
-      root.classList.add('out')
 
-      setTimeout(function () {
-        done()
-      }, 3000)
-    }, 3000)
-  }
+    let figure = video ? video : picture
 
-  function startNavObserver() {
-    anchors = Array.from(
-      document.documentElement.querySelectorAll('.Menu a')
-    ).filter((link) => {
-      return link.href.includes('#')
-    })
-
-    for (const link of anchors) {
-      link.addEventListener('click', stop)
-    }
-  }
-
-  function endNavObserver() {
-    if (!anchors) return
-    for (const link of anchors) {
-      link.removeEventListener('click', stop)
-    }
-  }
-
-  function done(opts = {}) {
-    window.removeEventListener('touchmove', lockscroll)
-    window.removeEventListener('wheel', lockscroll)
-    endNavObserver()
-    root.classList.add('done')
-    if (opts?.force) root.classList.add('fast')
-    root.addEventListener('transitionend', function () {
-      root.classList.add('remove')
-    })
+    Promise.all([
+      figure.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 800,
+        delay: 0,
+        fill: 'forwards',
+        easing: 'cubic-bezier(0.2, 0, 0.4, 1)'
+      }).finished,
+      whitedot.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: 900,
+        delay: 400,
+        fill: 'forwards',
+        easing: 'cubic-bezier(0.2, 0, 0.5, 1)'
+      }).finished
+    ])
+      .then(function () {
+        return Promise.all([
+          whitedot.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 800,
+            delay: 2900,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
+          }),
+          blackdot.animate([{ opacity: 0 }, { opacity: 1 }], {
+            duration: 800,
+            delay: 2900,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
+          }),
+          figure.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 900,
+            delay: 2900,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
+          }).finished,
+          blackdot.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 800,
+            delay: 3700,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
+          }),
+          root.animate([{ opacity: 1 }, { opacity: 0 }], {
+            duration: 1000,
+            delay: 3700,
+            fill: 'forwards',
+            easing: 'cubic-bezier(0.4, 0, 0.6, 1)'
+          }).finished
+        ])
+      })
+      .then(cleanup, cleanup)
   }
 
   function stop() {
-    done({ force: true })
+    root.style = 'position: absolute;'
+    Promise.all([
+      root.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: scrolldelay,
+        delay: 0,
+        fill: 'forwards',
+        easing: 'cubic-bezier(0.4, 0, 1, 1)'
+      }).finished
+    ]).then(cleanup, cleanup)
+  }
+
+  function cleanup() {
+    window.removeEventListener('touchmove', lockscroll)
+    window.removeEventListener('wheel', lockscroll)
+    endNavObserver()
+    root.classList.add('remove')
   }
 
   function createVideo() {
@@ -115,7 +167,7 @@
       })
     })
 
-    video.addEventListener('play', animate)
+    video.addEventListener('play', start)
 
     return video
   }
@@ -133,8 +185,11 @@
 
     if (supportsPicture) {
       // Safari mp4 in img tag
-      if (image.complete) return animate()
-      image.addEventListener('load', animate)
+      if (image.complete) return start()
+      image.addEventListener('load', function onload() {
+        image.removeEventListener('load', onload)
+        start()
+      })
     } else {
       picture.replaceWith(createVideo())
       window.addEventListener(
@@ -189,7 +244,8 @@
         src={getSrc({ w: 2200, h: 990, q: 70, f: 'jpg' })}
         alt="" />
     </picture>
-    <div class="dot" />
+    <div class="dot blackdot" bind:this={blackdot} />
+    <div class="dot whitedot" bind:this={whitedot} />
   </div>
 </div>
 
@@ -203,15 +259,7 @@
     height: 100vh;
     overflow: hidden;
     background: var(--doc-color-background);
-  }
-
-  :global(.Animation.done) {
-    opacity: 0;
-    transition: opacity 3000ms var(--ease-out) !important;
-  }
-
-  :global(.Animation.fast) {
-    transition: opacity 250ms var(--ease-out) !important;
+    will-change: opacity;
   }
 
   :global(.Animation.remove) {
@@ -254,18 +302,7 @@
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 1300ms var(--ease);
-  }
-
-  :global(.Animation.in picture),
-  :global(.Animation.in video) {
-    opacity: 1 !important;
-  }
-
-  :global(.Animation.out picture),
-  :global(.Animation.out video) {
-    opacity: 0 !important;
-    transition: opacity 1200ms 700ms var(--ease-out) !important;
+    will-change: opacity;
   }
 
   picture img {
@@ -275,8 +312,7 @@
     object-fit: cover;
   }
 
-  .dot,
-  .dot::after {
+  .dot {
     width: 2rem;
     height: 2rem;
     background: #fff;
@@ -286,38 +322,24 @@
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     opacity: 0;
-    transition: opacity 1200ms 700ms var(--ease);
+    will-change: opacity;
   }
 
-  .dot::after {
-    content: '';
+  .blackdot {
     background: #000;
     opacity: 0;
-    transform: none;
-    top: 0;
-    left: 0;
-  }
-
-  :global(.Animation.in .dot) {
-    opacity: 1 !important;
-  }
-
-  :global(.Animation.out .dot::after) {
-    opacity: 1 !important;
-    transition: opacity 1200ms 700ms var(--ease) !important;
+    z-index: 1;
   }
 
   @media (min-width: 700px) {
-    .dot,
-    .dot::after {
+    .dot {
       width: 3rem;
       height: 3rem;
     }
   }
 
   @media (min-width: 1000px) {
-    .dot,
-    .dot::after {
+    .dot {
       width: 3.5rem;
       height: 3.5rem;
     }

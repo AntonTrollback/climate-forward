@@ -108,6 +108,10 @@
     margin-top: calc(var(--space-block-sm) - var(--title-padding));
   }
 
+  .Program > li:not(:last-child) .grid {
+    margin-bottom: var(--space-block-md);
+  }
+
   .item {
     position: relative;
     padding-bottom: var(--space-grid);
