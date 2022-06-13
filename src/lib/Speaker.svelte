@@ -16,6 +16,8 @@
       {#if speaker.data.image?.url}
         <img
           src={speaker.data.image.url}
+          width={speaker.data.image.dimensions.width}
+          height={speaker.data.image.dimensions.height}
           alt="Portrait of {asText(speaker.data.name)}" />
       {/if}
     </figure>
@@ -28,6 +30,8 @@
         {#if speaker.data.image?.url}
           <img
             src={speaker.data.image.url}
+            width={speaker.data.image.dimensions.width}
+            height={speaker.data.image.dimensions.height}
             alt="Portrait of {asText(speaker.data.name)}" />
         {/if}
       </figure>

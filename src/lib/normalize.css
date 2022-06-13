@@ -72,7 +72,7 @@ img {
   height: auto;
   font-size: 0.8rem;
   color: var(--current-color-muted);
-  text-indent: 0.4rem;
+  line-height: 1.1;
 }
 
 a {

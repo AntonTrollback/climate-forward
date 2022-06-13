@@ -42,7 +42,7 @@
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 4;
+    z-index: 5;
     background: rgba(0, 0, 0, 0.16);
     padding: 3.8rem 1.25rem 6rem;
     overflow: scroll;

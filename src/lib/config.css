@@ -83,25 +83,25 @@
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 350px) {
   :root {
     --doc-margin: 3.5rem;
   }
 }
 
-@media (min-width: 700px) {
+@media (min-width: 700px) and (min-height: 500px) {
   :root {
     --doc-margin: 4.5rem;
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1000px) and (min-height: 500px) {
   :root {
     --doc-margin: 6rem;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (min-height: 700px) {
   :root {
     --doc-margin: 7.5rem;
   }

@@ -1,15 +1,16 @@
 <script>
+  import { setContext, onMount } from 'svelte'
+  import { setMeta } from './Meta.svelte'
+  import Animation from './Animation.svelte'
+  import Dialog from './Dialog.svelte'
+  import Footer from './Footer.svelte'
+  import Link, { LINK } from './Link.svelte'
   import Menu from './Menu.svelte'
   import Modal from './Modal.svelte'
-  import Footer from './Footer.svelte'
+  import resolve from './utils/resolve.js'
+  import Session from './Session.svelte'
   import Slices from './Slices.svelte'
   import Speaker from './Speaker.svelte'
-  import Session from './Session.svelte'
-  import Dialog from './Dialog.svelte'
-  import { setMeta } from './Meta.svelte'
-  import resolve from './utils/resolve.js'
-  import Link, { LINK } from './Link.svelte'
-  import { setContext, onMount } from 'svelte'
 
   export let parent
   export let event
@@ -112,6 +113,8 @@
       )
   }
 </script>
+
+<Animation />
 
 <slot>
   <Menu
