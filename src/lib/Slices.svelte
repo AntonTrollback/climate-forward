@@ -126,18 +126,6 @@
           ...repeatFields
         }
       }
-      ...on speakers {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          speaker {
-            ...on speaker {
-              ...speakerFields
-            }
-          }
-        }
-      }
       ...on program {
         non-repeat {
           ...non-repeatFields
@@ -160,7 +148,6 @@
   import Program from './Program.svelte'
   import RichText from './RichText.svelte'
   import SectionIntro from './SectionIntro.svelte'
-  import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
   import VideoBanner from './VideoBanner.svelte'
@@ -266,16 +253,6 @@
     {#if slice.slice_type === 'legal_numbered_text'}
       <div class="u-container">
         <LegalList items={slice.items} />
-      </div>
-    {/if}
-
-    {#if slice.slice_type === 'speakers'}
-      <div class="u-container">
-        <Speakers
-          limit={slice.primary.limit}
-          items={slice.items
-            .map((item) => item.speaker)
-            .filter((speaker) => !speaker.isBroken)} />
       </div>
     {/if}
 
