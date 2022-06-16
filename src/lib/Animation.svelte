@@ -262,6 +262,16 @@
     will-change: opacity;
   }
 
+  .Animation::after {
+    content: "";
+    background: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--menu-height);
+  }
+
   :global(.Animation.remove) {
     display: none;
   }
