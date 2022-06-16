@@ -239,6 +239,12 @@
     margin-bottom: calc(var(--menu-height) * 2 + 12vh);
   }
 
+  @media (max-width: 500px) {
+    .space {
+      margin-bottom: calc(var(--menu-height) * 2 + 2vh);
+    }
+  }
+
   .space.stacked {
     margin-bottom: var(--menu-height);
   }

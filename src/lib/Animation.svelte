@@ -18,7 +18,7 @@
   function getSrc(props) {
     let { w, h, q, f } = props
     if (!f) f = 'mp4'
-    return `https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_${w},h_${h},so_0,q_${q},f_auto/v1653133121/climate-events/climate-forward-${version}-${w}x${h}.${f}`
+    return `https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_${w},h_${h},so_0,q_${q},f_auto/v1653133121/climate-events/climate-forward-${version}-2200x990.${f}`
   }
 
   function debounce(fn) {
@@ -95,7 +95,7 @@
             delay: 2900,
             fill: 'forwards',
             easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
-          }),
+          }).finished,
           figure.animate([{ opacity: 1 }, { opacity: 0 }], {
             duration: 900,
             delay: 2900,
@@ -103,14 +103,14 @@
             easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
           }).finished,
           blackdot.animate([{ opacity: 1 }, { opacity: 0 }], {
-            duration: 800,
-            delay: 3700,
+            duration: 500,
+            delay: 3450,
             fill: 'forwards',
-            easing: 'cubic-bezier(0.4, 0, 0.4, 1)'
+            easing: 'cubic-bezier(0.2, 0, 1, 1)'
           }),
           root.animate([{ opacity: 1 }, { opacity: 0 }], {
-            duration: 1000,
-            delay: 3700,
+            duration: 700,
+            delay: 3950,
             fill: 'forwards',
             easing: 'cubic-bezier(0.4, 0, 0.6, 1)'
           }).finished
@@ -214,16 +214,16 @@
   <div class="canvas">
     <picture bind:this={picture}>
       <source
-        srcset={getSrc({ w: 1080, h: 1080, q: 70 })}
+        srcset={getSrc({ w: 990, h: 990, q: 70 })}
         media="(max-width: 699px)"
-        width="1080"
-        height="1080"
+        width="990"
+        height="990"
         type="video/mp4" />
       <source
-        srcset={getSrc({ w: 1800, h: 1200, q: 80 })}
+        srcset={getSrc({ w: 1485, h: 990, q: 80 })}
         media="(min-width: 700px) and (max-width: 1099px)"
-        width="1800"
-        height="1200"
+        width="1485"
+        height="990"
         type="video/mp4" />
       <source
         srcset={getSrc({ w: 2200, h: 990, q: 80 })}
@@ -233,11 +233,11 @@
         type="video/mp4" />
       <img
         loading="lazy"
-        src={getSrc({ w: 1080, h: 1080, q: 70, f: 'jpg' })}
+        src={getSrc({ w: 990, h: 990, q: 70, f: 'jpg' })}
         alt="" />
       <img
         loading="lazy"
-        src={getSrc({ w: 1800, h: 1200, q: 70, f: 'jpg' })}
+        src={getSrc({ w: 1485, h: 990, q: 70, f: 'jpg' })}
         alt="" />
       <img
         loading="lazy"
@@ -313,8 +313,8 @@
   }
 
   .dot {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background: #fff;
     border-radius: 50%;
     position: absolute;
@@ -329,6 +329,7 @@
     background: #000;
     opacity: 0;
     z-index: 1;
+    will-change: opacity, transform;
   }
 
   @media (min-width: 700px) {
