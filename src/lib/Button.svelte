@@ -7,11 +7,15 @@
   export let onclick = null
   export let document
 
-  $: attrs = {
-    ...$$restProps,
-    ...linkResolver(document),
-    class: `Button ${$$props.class || ''}`
-  }
+  $: props = linkResolver(document)
+  $: _onclick = props.onclick || onclick
+  $: attrs = Object.fromEntries(
+    Object.entries({
+      ...$$restProps,
+      ...props,
+      class: `Button ${$$props.class || ''}`
+    }).filter(([key]) => key !== 'onclick')
+  )
 </script>
 
 {#if attrs.href}
@@ -20,7 +24,7 @@
     {...attrs}
     class="Button {$$props.class || ''}"
     class:Button--solid={solid}
-    on:click={onclick}>
+    on:click={_onclick}>
     <slot />
   </a>
 {:else}
@@ -28,7 +32,7 @@
     {...attrs}
     class="Button {$$props.class || ''}"
     class:Button--solid={solid}
-    on:click={onclick}>
+    on:click={_onclick}>
     <slot />
   </button>
 {/if}

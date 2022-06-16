@@ -30,6 +30,11 @@
       ...on button {
         non-repeat {
           ...non-repeatFields
+          link {
+            ...on dialog {
+              ...dialogFields
+            }
+          }
         }
       }
       ...on iframe {
@@ -107,6 +112,11 @@
       ...on button {
         non-repeat {
           ...non-repeatFields
+          link {
+            ...on dialog {
+              ...dialogFields
+            }
+          }
         }
       }
       ...on sponsor {
@@ -196,7 +206,10 @@
     {/if}
 
     {#if slice.slice_type === 'sponsors'}
-      <Sponsors items={slice.items.filter((sponsor) => !sponsor.isBroken)} />
+      <Sponsors
+        items={slice.items.filter(
+          (sponsor) => sponsor.id && !sponsor.isBroken
+        )} />
     {/if}
 
     {#if slice.slice_type === 'button'}
@@ -285,7 +298,7 @@
           limit={slice.primary.limit}
           items={slice.items
             .map((item) => item.speaker)
-            .filter((speaker) => !speaker.isBroken)} />
+            .filter((speaker) => speaker.id && !speaker.isBroken)} />
       </div>
     {/if}
 
@@ -294,7 +307,7 @@
         <Program
           sessions={slice.items
             .map((item) => item.session)
-            .filter((session) => !session.isBroken)} />
+            .filter((session) => session.id && !session.isBroken)} />
       </div>
     {/if}
   </div>
