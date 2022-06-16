@@ -82,10 +82,10 @@
   </div>
 
   <div class="u-hidden">
-    <a href="https://climate-events.nytimes.com/thank-you">.</>
-    <a href="https://climate-events.nytimes.com/climate-forward/press-thank-you">.</>
-    <a href="https://climate-events.nytimes.com/climate-forward/london-thank-you">.</>
-    <a href="https://climate-events.nytimes.com/climate-forward/london-video-test">.</>
+    <a href="https://climate-events.nytimes.com/thank-you">.</a>
+    <a href="https://climate-events.nytimes.com/climate-forward/press-thank-you">.</a>
+    <a href="https://climate-events.nytimes.com/climate-forward/london-thank-you">.</a>
+    <a href="https://climate-events.nytimes.com/climate-forward/london-video-test">.</a>
   </div>
 </footer>
 
