@@ -10,6 +10,11 @@
           ...sponsorFields
         }
       }
+      link {
+        ...on dialog {
+          ...dialogFields
+        }
+      }
       speakers {
         speaker {
           ...on speaker {

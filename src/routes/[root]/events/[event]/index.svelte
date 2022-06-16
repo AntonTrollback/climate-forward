@@ -13,6 +13,11 @@
             body ${pageBody}
           }
         }
+        link {
+          ...on dialog {
+            ...dialogFields
+          }
+        }
         body ${eventBody}
       }
       page {
