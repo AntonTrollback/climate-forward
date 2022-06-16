@@ -208,7 +208,7 @@
     {#if slice.slice_type === 'sponsors'}
       <Sponsors
         items={slice.items.filter(
-          (sponsor) => sponsor.id && !sponsor.isBroken
+          (item) => item.sponsor.id && !item.sponsor.isBroken
         )} />
     {/if}
 
