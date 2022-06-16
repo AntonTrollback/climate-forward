@@ -1,8 +1,12 @@
-import adapter from '@sveltejs/adapter-netlify'
+import adapter from '@sveltejs/adapter-static'
 
 const config = {
   kit: {
-    adapter: adapter({ edge: true })
+    adapter: adapter(),
+    prerender: {
+      default: true,
+      enabled: true
+    }
   }
 }
 
