@@ -164,7 +164,7 @@
   }
 
   .Speaker--card .title {
-    margin-right: 2.5rem;
+    padding-right: 2.5rem;
   }
 
   .Speaker--card .details {
