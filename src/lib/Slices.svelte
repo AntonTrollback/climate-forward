@@ -30,6 +30,11 @@
       ...on button {
         non-repeat {
           ...non-repeatFields
+          link {
+            ...on dialog {
+              ...dialogFields
+            }
+          }
         }
       }
       ...on iframe {
@@ -107,6 +112,11 @@
       ...on button {
         non-repeat {
           ...non-repeatFields
+          link {
+            ...on dialog {
+              ...dialogFields
+            }
+          }
         }
       }
       ...on sponsor {
