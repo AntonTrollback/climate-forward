@@ -9,6 +9,8 @@
       <figure class="col">
         <img
           src={photo.image.url}
+          width={photo.image.dimensions.width}
+          height={photo.image.dimensions.height}
           alt={photo.image.url ? photo.image.url : ''} />
         <figcaption>
           <RichText size="sm" fields={photo.text} />

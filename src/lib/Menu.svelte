@@ -70,9 +70,9 @@
     let delay = parseInt(event.currentTarget.dataset.delay || 0)
     setTimeout(function () {
       window.scrollTo({
-      top: target.offsetTop - offset,
-      left: 0,
-      behavior: 'smooth'
+        top: target.offsetTop - offset,
+        left: 0,
+        behavior: 'smooth'
       })
     }, delay)
     event.preventDefault()

@@ -269,7 +269,7 @@ details[open] > .u-expand::before {
   line-height: var(--line-height);
   letter-spacing: -0.01em;
   font-weight: 900;
-  text-decoration-thickness: 1px;
+  text-decoration-thickness: 1px !important;
   text-underline-offset: 0.1em;
   word-spacing: -0.03em;
 }

@@ -1,7 +1,6 @@
 <script>
   import { setContext, onMount } from 'svelte'
   import { setMeta } from './Meta.svelte'
-  import Animation from './Animation.svelte'
   import Dialog from './Dialog.svelte'
   import Footer from './Footer.svelte'
   import Link, { LINK } from './Link.svelte'
