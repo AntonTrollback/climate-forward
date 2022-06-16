@@ -54,7 +54,7 @@
         {@html logo('a-new-climate')}
       </a>
     {/if}
-    {#if links.some((item) => item.text && item.link.id && !item.link.isBroken)}
+    {#if links.some((item) => item.text && (item.link.link_type !== 'Web' ? item.link.id && !item.link.isBroken : true))}
       <ul class="list">
         {#if branding === 'Climate Forward' && ($page.url.pathname === '/climate-forward/' || $page.url.pathname === '/climate-forward')}
           <li class="item strong">
@@ -70,7 +70,7 @@
             <a class="link" href="/">See all Climate Events</a>
           </li>
         {/if}
-        {#each links.filter((item) => item.text && item.link.id && !item.link.isBroken) as item}
+        {#each links.filter((item) => item.text && (item.link.link_type !== 'Web' ? item.link.id && !item.link.isBroken : true)) as item}
           <li class="item {item.strong ? 'strong' : ''}">
             <Link class="link" document={item.link}>{item.text}</Link>
           </li>
