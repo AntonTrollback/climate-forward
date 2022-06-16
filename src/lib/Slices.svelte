@@ -121,11 +121,6 @@
           sponsor ${sponsorFields}
         }
       }
-      ...on animation {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
       ...on gallery {
         repeat {
           ...repeatFields
@@ -156,7 +151,6 @@
 </script>
 
 <script>
-  import Animation from './Animation.svelte'
   import Button from './Button.svelte'
   import Divider from './Divider.svelte'
   import EventList from './EventList.svelte'
@@ -263,10 +257,6 @@
 
     {#if slice.slice_type === 'video_banner'}
       <VideoBanner version={slice.primary.version} />
-    {/if}
-
-    {#if slice.slice_type === 'animation'}
-      <Animation />
     {/if}
 
     {#if slice.slice_type === 'gallery'}
