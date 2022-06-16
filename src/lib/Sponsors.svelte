@@ -69,6 +69,7 @@
     margin-right: 1.875rem;
     margin-bottom: 1rem;
     flex-shrink: 0;
+    flex-grow: 1;
   }
 
   .item:last-child {
