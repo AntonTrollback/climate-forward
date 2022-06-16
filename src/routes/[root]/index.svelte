@@ -29,9 +29,14 @@
     if (params.root in redirects) {
       return { redirect: redirects[params.root], status: 301 }
     }
-    const client = createClient('climateforward', { fetch })
-    const page = await client.getByUID('page', params.root, { graphQuery })
-    return page ? { props: { page } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const page = await client.getByUID('page', params.root, { graphQuery })
+      return { props: { page } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 

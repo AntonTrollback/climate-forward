@@ -13,9 +13,14 @@
   `
 
   export async function load({ fetch }) {
-    const client = createClient('climateforward', { fetch })
-    const page = await client.getByUID('page', 'homepage', { graphQuery })
-    return page ? { props: { page } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const page = await client.getByUID('page', 'homepage', { graphQuery })
+      return { props: { page } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 

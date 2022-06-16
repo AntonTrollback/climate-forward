@@ -4,12 +4,17 @@
   import Meta from '$lib/Meta.svelte'
 
   export async function load({ fetch, params }) {
-    const client = createClient('climateforward', { fetch })
-    const [speaker, { props }] = await Promise.all([
-      client.getByUID('speaker', params.speaker),
-      eventLoader(...arguments)
-    ])
-    return speaker && props ? { props: { ...props, speaker } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const [speaker, { props }] = await Promise.all([
+        client.getByUID('speaker', params.speaker),
+        eventLoader(...arguments)
+      ])
+      return { props: { ...props, speaker } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 

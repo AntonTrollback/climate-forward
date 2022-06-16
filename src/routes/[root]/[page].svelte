@@ -27,12 +27,17 @@
     if (path in redirects) {
       return { redirect: redirects[path], status: 301 }
     }
-    const client = createClient('climateforward', { fetch })
-    const [parent, page] = await Promise.all([
-      client.getByUID('page', params.root, { graphQuery }),
-      client.getByUID('page', params.page, { graphQuery })
-    ])
-    return page && parent ? { props: { parent, page } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const [parent, page] = await Promise.all([
+        client.getByUID('page', params.root, { graphQuery }),
+        client.getByUID('page', params.page, { graphQuery })
+      ])
+      return { props: { parent, page } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 

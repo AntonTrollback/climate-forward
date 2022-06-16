@@ -23,13 +23,18 @@
   `
 
   export async function load({ fetch, params }) {
-    const client = createClient('climateforward', { fetch })
-    const [root, event] = await Promise.all([
-      client.getByUID('page', params.root, { graphQuery }),
-      client.getByUID('event', params.event, { graphQuery })
-    ])
-    const parent = event.data.parent || root
-    return parent && event ? { props: { parent, event } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const [root, event] = await Promise.all([
+        client.getByUID('page', params.root, { graphQuery }),
+        client.getByUID('event', params.event, { graphQuery })
+      ])
+      const parent = event.data.parent || root
+      return { props: { parent, event } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 

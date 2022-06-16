@@ -11,12 +11,17 @@
   `
 
   export async function load({ fetch, params }) {
-    const client = createClient('climateforward', { fetch })
-    const [session, { props }] = await Promise.all([
-      client.getByUID('session', params.session, { graphQuery }),
-      eventLoader(...arguments)
-    ])
-    return session && props ? { props: { ...props, session } } : { status: 404 }
+    try {
+      const client = createClient('climateforward', { fetch })
+      const [session, { props }] = await Promise.all([
+        client.getByUID('session', params.session, { graphQuery }),
+        eventLoader(...arguments)
+      ])
+      return { props: { ...props, session } }
+    } catch (err) {
+      console.error(err)
+      return { status: 400 }
+    }
   }
 </script>
 
