@@ -37,7 +37,7 @@
   export let document
 
   $: props = linkResolver(document)
-  $: _onclick = props.onclick || onclick
+  $: _onclick = props?.onclick || onclick
   $: attrs = Object.fromEntries(
     Object.entries({
       ...$$restProps,
