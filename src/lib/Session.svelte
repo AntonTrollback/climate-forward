@@ -211,17 +211,13 @@
 
       <div class="button">
         {#if session.data.link?.url}
-          <Button
-            solid
-            class="u-spaceXl"
-            href={session.data.link.url}
-            target="_blank">{session.data.button_text}</Button>
-        {:else}
-          <Button
-            solid
-            class="u-spaceXl"
-            href="https://nytuk.swoogo.com/climate-forward-london/tickets"
-            target="_blank">Get tickets</Button>
+          <Button solid href={session.data.link.url} target="_blank">
+            {session.data.button_text}
+          </Button>
+        {:else if event.data.link}
+          <Button solid document={event.data.link}>
+            {event.data.button_text}
+          </Button>
         {/if}
       </div>
 
