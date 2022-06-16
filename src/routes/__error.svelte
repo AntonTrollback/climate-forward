@@ -6,5 +6,5 @@
 </script>
 
 <svelte:head>
-  <title>Oops!</title>
+  <title>404, Not found</title>
 </svelte:head>
