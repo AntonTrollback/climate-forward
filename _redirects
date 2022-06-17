@@ -11,6 +11,8 @@
 /climate-forward/fashion-opportunity      /climate-forward/the-fashion-opportunity
 /fashion-opportunity                      /climate-forward/the-fashion-opportunity
 /the-fashion-opportunity                  /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity/speakers/*       /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity/speakers         /climate-forward/the-fashion-opportunity
 
 /climate-forward/*                        /climate-forward-404 404
 /a-new-climate/*                          /a-new-climate-404 404
