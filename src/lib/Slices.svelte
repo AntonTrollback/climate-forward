@@ -71,6 +71,18 @@
           }
         }
       }
+      ...on session_speakers {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          speaker {
+            ...on speaker {
+              ...speakerFields
+            }
+          }
+        }
+      }
       ...on video_banner {
         non-repeat {
           ...non-repeatFields
@@ -177,6 +189,7 @@
   import RichText from './RichText.svelte'
   import SectionIntro from './SectionIntro.svelte'
   import Speakers from './Speakers.svelte'
+  import SessionSpeakers from './SessionSpeakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
   import VideoBanner from './VideoBanner.svelte'
@@ -296,6 +309,15 @@
       <div class="u-container">
         <Speakers
           limit={slice.primary.limit}
+          items={slice.items
+            .map((item) => item.speaker)
+            .filter((speaker) => speaker.id && !speaker.isBroken)} />
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'session_speakers'}
+      <div class="u-container">
+        <SessionSpeakers
           items={slice.items
             .map((item) => item.speaker)
             .filter((speaker) => speaker.id && !speaker.isBroken)} />

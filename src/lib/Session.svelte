@@ -263,6 +263,8 @@
                 <Link class="speaker" document={speaker}>
                   <img
                     src={speaker.data.image.url}
+                    width="100"
+                    height="100"
                     alt="Portrait of {asText(speaker.data.name)}" />
                   <div>
                     <strong>{asText(speaker.data.name)}</strong>
