@@ -1,0 +1,9 @@
+/a-new-climate                            /a-new-climate/events/san-francisco
+/climate-forward/london                   /climate-forward/events/london
+/climate-forward/events/london/venue      /climate-forward/events/london
+/climate-forward/events/london/program    /climate-forward/events/london
+/climate-forward/events/london/speakers   /climate-forward/events/london
+/climate-forward/events/london/tickets    /climate-forward/events/london/dialog/ticketing
+/climate-forward/events/london/ticketing  /climate-forward/events/london/dialog/ticketing
+
+/* /404 404
