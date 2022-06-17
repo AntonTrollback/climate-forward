@@ -1,7 +1,9 @@
 <script>
   import { asText } from '@prismicio/helpers'
-  import Link from './Link.svelte'
+  import Speaker from './Speaker.svelte'
+  import Modal from './Modal.svelte'
   export let items
+  export let current
   let speakers
 
   function lastnameSort(a, b) {
@@ -13,6 +15,13 @@
   if (items.length) {
     speakers = items.sort(lastnameSort)
   }
+
+  function open(event) {
+    current = speakers[event.currentTarget.dataset.index]
+  }
+  function close() {
+    current = null
+  }
 </script>
 
 {#if speakers?.length}
@@ -23,10 +32,10 @@
       </div>
     </div>
     <ul class="grid">
-      {#each speakers as speaker}
+      {#each speakers as speaker, index}
         <li class="item">
           <div class="body">
-            <Link class="speaker" document={speaker}>
+            <button class="speaker" data-index={index} on:click={open}>
               <img
                 src={speaker.data.image.url}
                 width="100"
@@ -36,12 +45,19 @@
                 <strong>{asText(speaker.data.name)}</strong>
                 {speaker.data.title}
               </div>
-            </Link>
+            </button>
           </div>
         </li>
       {/each}
     </ul>
   </div>
+{/if}
+
+{#if current}
+  <Modal>
+    <Speaker speaker={current} />
+    <button slot="close" on:click={close}>Close</button>
+  </Modal>
 {/if}
 
 <style>
@@ -67,6 +83,7 @@
     line-height: 1.2;
     transition: opacity 250ms var(--ease-out);
     max-width: 25rem;
+    text-align: left;
   }
 
   :global(.SessionSpeakers .speaker:hover strong) {
