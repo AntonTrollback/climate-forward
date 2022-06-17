@@ -45,10 +45,6 @@
 {/if}
 
 <style>
-  .SessionSpeakers {
-
-  }
-
   .aside {
     margin-bottom: var(--space-md);
   }
@@ -57,7 +53,8 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    max-width: 45rem;
   }
 
   .item {
@@ -108,39 +105,45 @@
   }
 
   @media (min-width: 700px) {
-    .grid {
-      grid-template-columns: 1fr 1fr 1fr;
+    .grid .item:only-child {
+      grid-column: 1 / 3;
     }
 
-    .grid .item:only-child {
-      grid-column: 1 / 4;
+    :global(.SessionSpeakers .speaker) {
+      font-size: 1rem;
+    }
+
+    :global(.SessionSpeakers .speaker img) {
+      width: 3.6rem;
+      height: 3.6rem;
     }
   }
 
   @media (min-width: 900px) {
     .grid {
-      grid-gap: 2rem;
+      grid-gap: 2.5rem;
     }
   }
 
-@media (min-width: 1000px) {
-  .SessionSpeakers {
-    display: flex;
-  }
+  @media (min-width: 1000px) {
+    .SessionSpeakers {
+      display: flex;
+    }
 
-  .aside {
-    width: calc(100% / 3);
-    padding-right: 2rem;
-    flex-shrink: 0;
-  }
+    .aside {
+      width: calc(100% / 3);
+      padding-right: 2rem;
+      flex-shrink: 0;
+    }
 
-  .aside > * {
-    max-width: 23rem;
-  }
+    .aside > * {
+      max-width: 23rem;
+    }
 
-  .grid {
-    padding-left: 2rem;
-    flex-grow: 1;
+    .grid {
+      padding-left: 2rem;
+      flex-grow: 1;
+      margin-top: 0.35rem;
+    }
   }
-}
 </style>

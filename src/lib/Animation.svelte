@@ -263,7 +263,7 @@
   }
 
   .Animation::after {
-    content: "";
+    content: '';
     background: white;
     position: absolute;
     top: 0;
