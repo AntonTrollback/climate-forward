@@ -8,4 +8,10 @@
 /climate-forward/events/london/tickets    /climate-forward/events/london/dialog/ticketing
 /climate-forward/events/london/ticketing  /climate-forward/events/london/dialog/ticketing
 
-/* /404 404
+/climate-forward/fashion-opportunity      /climate-forward/the-fashion-opportunity
+/fashion-opportunity                      /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity                  /climate-forward/the-fashion-opportunity
+
+/* /climate-forward/404                   /climate-forward
+/* /a-new-climate/404                     /a-new-climate
+/* /404 /
