@@ -1,6 +1,8 @@
 /a-new-climate                            /a-new-climate/events/san-francisco
+/a-new-climate/events                   /climate-forward/
 /climate-forward/london                   /climate-forward/events/london
 /climate-forward/events/london/venue      /climate-forward/events/london
+/climate-forward/events                   /climate-forward/
 /climate-forward/events/london/program    /climate-forward/events/london
 /climate-forward/events/london/speakers   /climate-forward/events/london
 /climate-forward/events/london/tickets    /climate-forward/events/london/dialog/ticketing
