@@ -21,7 +21,13 @@
     .sort((a, b) => a.date - b.date)
     .map(function ({ date, sessions }) {
       date = parse(date, 'yyyy-MM-dd', new Date())
-      sessions = sessions.sort((a, b) => a.data.starts - b.data.starts)
+      sessions = sessions
+        .sort(
+          (a, b) =>
+            Date.parse(a.data.start_date_time) -
+            Date.parse(b.data.start_date_time)
+        )
+        .sort((a) => a.data.branding)
       return { date, sessions }
     })
 </script>
