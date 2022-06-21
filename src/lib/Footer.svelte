@@ -86,6 +86,7 @@
     <a href="/climate-forward/press-thank-you">.</a>
     <a href="/climate-forward/london-thank-you">.</a>
     <a href="/climate-forward/the-fashion-opportunity">.</a>
+    <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
     <a href="/the-fashion-opportunity">.</a>
     <a href="/404">.</a>
   </div>
