@@ -22,12 +22,21 @@
     .map(function ({ date, sessions }) {
       date = parse(date, 'yyyy-MM-dd', new Date())
       sessions = sessions
-        .sort(
-          (a, b) =>
+        .sort((a, b) => {
+          if (a.data.start_date_time === b.data.start_date_time) {
+            return (
+              Date.parse(a.data.end_date_time) -
+              Date.parse(b.data.end_date_time)
+            )
+          }
+          return (
             Date.parse(a.data.start_date_time) -
             Date.parse(b.data.start_date_time)
+          )
+        })
+        .sort((a, b) =>
+          a.data.branding === b.data.branding ? 0 : a.data.branding ? 1 : -1
         )
-        .sort((a) => a.data.branding)
       return { date, sessions }
     })
 </script>
