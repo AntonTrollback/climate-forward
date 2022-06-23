@@ -257,10 +257,7 @@
       <div class="u-container">
         <RichText
           title={slice.primary.heading}
-          fields={slice.primary.main_text}
-          collapsed={slice.primary.extra_text}
-          questions={slice.items}
-          limit={slice.primary.item_limit} />
+          fields={slice.primary.main_text} />
       </div>
     {/if}
 
