@@ -106,8 +106,12 @@
       .flatMap((slice) =>
         slice.items
           .map((item) => item.session)
-          .filter((session) =>
-            session.data.speakers.some((item) => item.speaker.id === speaker.id)
+          .filter(
+            (session) =>
+              !session.isBroken &&
+              session.data.speakers.some(
+                (item) => item.speaker.id === speaker.id
+              )
           )
       )
   }
