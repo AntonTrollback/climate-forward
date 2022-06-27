@@ -121,6 +121,11 @@
           ...non-repeatFields
         }
       }
+      ...on venue_map {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on button {
         non-repeat {
           ...non-repeatFields
@@ -185,11 +190,12 @@
   import Gallery from './Gallery.svelte'
   import Iframe from './Iframe.svelte'
   import LegalList from './LegalList.svelte'
+  import Map from './Map.svelte'
   import Program from './Program.svelte'
   import RichText from './RichText.svelte'
   import SectionIntro from './SectionIntro.svelte'
-  import Speakers from './Speakers.svelte'
   import SessionSpeakers from './SessionSpeakers.svelte'
+  import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
   import VideoBanner from './VideoBanner.svelte'
@@ -216,6 +222,12 @@
 
     {#if slice.slice_type === 'iframe'}
       <Iframe src={slice.primary.url} />
+    {/if}
+
+    {#if slice.slice_type === 'venue_map'}
+      <div class="u-container">
+        <Map title={slice.primary.heading} />
+      </div>
     {/if}
 
     {#if slice.slice_type === 'sponsors'}
