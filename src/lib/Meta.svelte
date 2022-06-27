@@ -3,6 +3,7 @@
 
   export const setMeta = function (doc, parent) {
     let { title, desc, image } = define(doc, parent)
+
     function set(query, content) {
       let el = document.head.querySelector(query)
       if (el) el.setAttribute('content', content)
@@ -42,7 +43,9 @@
     let image = getImage(doc)
     if (parent && !image) image = getImage(parent)
 
-    return { title, desc, image }
+    let noindex = doc.data.noindex || parent?.data.noindex
+
+    return { title, desc, image, noindex }
   }
 
   function getTitle(doc) {
@@ -70,7 +73,7 @@
   export let source
   export let parent
 
-  let { title, desc, image } = define(source, parent)
+  let { title, desc, image, noindex } = define(source, parent)
 
   onMount(() => {
     // svelte:head appends rather then updating existing
@@ -93,6 +96,9 @@
 <title>{title}</title>
 <meta property="og:title" content={title} />
 <meta name="description" content={desc} />
+{#if noindex}
+  <meta name="robots" content="noindex" />
+{/if}
 {#if image}
   <meta property="og:image" content={image.url} />
   <meta property="og:image:width" content={image.dimensions.width} />
