@@ -288,7 +288,7 @@
 
   @media (min-width: 500px) {
     .Session--partner.Session--card {
-      box-shadow: 0 0 0 2rem var(--current-color-ad);
+      box-shadow: 0 0 0 3rem var(--current-color-ad);
     }
   }
 

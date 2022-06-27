@@ -120,6 +120,7 @@
   }
 
   function stop() {
+    if (!root) return
     root.style = 'position: absolute;'
     Promise.all([
       root.animate([{ opacity: 1 }, { opacity: 0 }], {

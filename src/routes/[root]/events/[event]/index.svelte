@@ -1,31 +1,6 @@
 <script context="module">
+  import { graphQuery } from '$lib/Event.svelte'
   import { createClient } from '@prismicio/client'
-  import { eventBody, pageBody } from '$lib/Slices.svelte'
-  import Meta from '$lib/Meta.svelte'
-
-  const graphQuery = `
-    {
-      event {
-        ...eventFields
-        parent {
-          ...on page {
-            ...pageFields
-            body ${pageBody}
-          }
-        }
-        link {
-          ...on dialog {
-            ...dialogFields
-          }
-        }
-        body ${eventBody}
-      }
-      page {
-        ...pageFields
-        body ${pageBody}
-      }
-    }
-  `
 
   export async function load({ fetch, params }) {
     try {
@@ -45,6 +20,7 @@
 
 <script>
   import Event from '$lib/Event.svelte'
+  import Meta from '$lib/Meta.svelte'
   export let parent
   export let event
   export let session = null
