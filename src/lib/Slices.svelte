@@ -204,7 +204,6 @@
   import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
-  import Stream from './Stream.svelte'
   import VideoBanner from './VideoBanner.svelte'
 
   export let slices
@@ -355,14 +354,6 @@
               .map((item) => item.session)
               .filter((session) => session.id && !session.isBroken)} />
         </slot>
-      </div>
-    {/if}
-
-    {#if slice.slice_type === 'live_stream'}
-      <div class="u-container">
-        <Stream
-          source={slice.primary.live_stream_url}
-          placeholder={slice.primary.placeholder_text} />
       </div>
     {/if}
   </div>
