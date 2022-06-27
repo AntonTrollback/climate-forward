@@ -173,28 +173,42 @@
           session ${sessionFields}
         }
       }
+      ...on live_stream {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
     }
   `
 </script>
 
 <script>
-  import Animation from './Animation.svelte'
+  import { onMount } from 'svelte'
+  import Stream from './Stream.svelte'
   import Button from './Button.svelte'
-  import Divider from './Divider.svelte'
-  import EventList from './EventList.svelte'
-  import Gallery from './Gallery.svelte'
   import Iframe from './Iframe.svelte'
-  import LegalList from './LegalList.svelte'
+  import Divider from './Divider.svelte'
+  import Gallery from './Gallery.svelte'
+  import Sponsor from './Sponsor.svelte'
   import Program from './Program.svelte'
   import RichText from './RichText.svelte'
-  import SectionIntro from './SectionIntro.svelte'
   import Speakers from './Speakers.svelte'
-  import SessionSpeakers from './SessionSpeakers.svelte'
-  import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
+  import Animation from './Animation.svelte'
+  import EventList from './EventList.svelte'
+  import LegalList from './LegalList.svelte'
   import VideoBanner from './VideoBanner.svelte'
+  import SectionIntro from './SectionIntro.svelte'
+  import SessionSpeakers from './SessionSpeakers.svelte'
 
   export let slices
+
+  let enableAnimation = true
+
+  onMount(function () {
+    const value = window.localStorage.getItem('DISABLE_ANIMATION')
+    enableAnimation = !value || !JSON.parse(value)
+  })
 </script>
 
 {#each slices as slice, index}
@@ -288,7 +302,7 @@
       <VideoBanner version={slice.primary.version} />
     {/if}
 
-    {#if slice.slice_type === 'animation'}
+    {#if slice.slice_type === 'animation' && enableAnimation}
       <Animation />
     {/if}
 
@@ -323,10 +337,20 @@
 
     {#if slice.slice_type === 'program'}
       <div class="u-container">
-        <Program
-          sessions={slice.items
-            .map((item) => item.session)
-            .filter((session) => session.id && !session.isBroken)} />
+        <slot name="program">
+          <Program
+            sessions={slice.items
+              .map((item) => item.session)
+              .filter((session) => session.id && !session.isBroken)} />
+        </slot>
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'live_stream'}
+      <div class="u-container">
+        <Stream
+          source={slice.primary.live_stream_url}
+          placeholder={slice.primary.placeholder_text} />
       </div>
     {/if}
   </div>

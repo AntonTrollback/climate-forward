@@ -1,15 +1,55 @@
+<script context="module">
+  import { writable } from 'svelte/store'
+  import { eventBody, pageBody } from './Slices.svelte'
+  import { graphQuery as sessionFields } from './Session.svelte'
+
+  export const current = writable()
+
+  export const graphQuery = `
+    {
+      event {
+        ...eventFields
+        sessions {
+          session {
+            ...on session ${sessionFields}
+          }
+        }
+        parent {
+          ...on page {
+            ...pageFields
+            body ${pageBody}
+          }
+        }
+        link {
+          ...on dialog {
+            ...dialogFields
+          }
+        }
+        body ${eventBody}
+      }
+      page {
+        ...pageFields
+        body ${pageBody}
+      }
+    }
+  `
+</script>
+
 <script>
-  import { setContext, onMount } from 'svelte'
-  import { setMeta } from './Meta.svelte'
-  import Dialog from './Dialog.svelte'
-  import Footer from './Footer.svelte'
-  import Link, { LINK } from './Link.svelte'
   import Menu from './Menu.svelte'
   import Modal from './Modal.svelte'
-  import resolve from './utils/resolve.js'
-  import Session from './Session.svelte'
+  import Dialog from './Dialog.svelte'
+  import Footer from './Footer.svelte'
   import Slices from './Slices.svelte'
   import Speaker from './Speaker.svelte'
+  import Program from './Program.svelte'
+  import Session from './Session.svelte'
+  import { setMeta } from './Meta.svelte'
+  import resolve from './utils/resolve.js'
+  import Link, { LINK } from './Link.svelte'
+  import { asDate } from '@prismicio/helpers'
+  import { setContext, onMount } from 'svelte'
+  import { createClient } from '@prismicio/client'
 
   export let parent
   export let event
@@ -17,12 +57,29 @@
   export let session = null
   export let dialog = null
 
-  onMount(function () {
+  current.set(event)
+
+  onMount(async function () {
     if (session) {
       document.getElementById('program')?.scrollIntoView()
     } else if (speaker) {
       document.getElementById('speakers')?.scrollIntoView()
     }
+
+    ;(function ontick() {
+      const next = event.data.sessions
+        .map((item) => item.session)
+        .filter((session) => session.id && !session.isBroken)
+        .find((session) => asDate(session.data.start_date_time) > Date.now())
+
+      if (next) {
+        setTimeout(async function () {
+          const client = createClient('climateforward', { fetch: window.fetch })
+          event = await client.getByID(event.id, { graphQuery })
+          ontick()
+        }, Math.min(asDate(next.data.start_date_time) - Date.now(), 1000 * 60))
+      }
+    })()
   })
 
   setContext(LINK, function (document) {
@@ -119,13 +176,19 @@
 
 <slot>
   <Menu
-    slices={event.data.menu}
-    keeptop={event.data.keeptop}
-    stacked={event.data.stacked}
-    button={{ link: event.data.link, text: event.data.button_text }}
-    branding={event.data.branding || parent.data.branding} />
+    slices={$current.data.menu}
+    keeptop={$current.data.keeptop}
+    stacked={$current.data.stacked}
+    button={{ link: $current.data.link, text: $current.data.button_text }}
+    branding={$current.data.branding || parent.data.branding} />
 
-  <Slices slices={event.data.body} />
+  <Slices slices={$current.data.body}>
+    <Program
+      slot="program"
+      sessions={$current.data.sessions
+        .map((item) => item.session)
+        .filter((session) => session.id && !session.isBroken)} />
+  </Slices>
 
   {#if parent}
     <Footer
