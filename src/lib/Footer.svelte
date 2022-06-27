@@ -85,11 +85,13 @@
     <a href="/thank-you">.</a>
     <a href="/climate-forward/press-thank-you">.</a>
     <a href="/climate-forward/london-thank-you">.</a>
-    <a href="/climate-forward/london-test-map">.</a>
     <a href="/climate-forward/the-fashion-opportunity">.</a>
     <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
     <a href="/the-fashion-opportunity">.</a>
     <a href="/404">.</a>
+    <a href="/climate-forward/events/london-test-map">.</a>
+    <a href="/climate-forward/events/london-test-during">.</a>
+    <a href="/climate-forward/events/london-test-past">.</a>
   </div>
 </footer>
 
