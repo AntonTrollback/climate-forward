@@ -1,8 +1,11 @@
 <script>
-  import resolve from './utils/resolve.js'
   import logo from './utils/logo.js'
-  import { onMount, setContext } from 'svelte'
+  import { isSameDay } from 'date-fns'
+  import resolve from './utils/resolve.js'
+  import { current } from './Event.svelte'
   import Link, { LINK } from './Link.svelte'
+  import { asDate } from '@prismicio/helpers'
+  import { onMount, setContext } from 'svelte'
 
   export let prefix = null
   export let slices
@@ -22,6 +25,21 @@
       return { href: resolve(document, prefix) }
     })
   }
+
+  $: sessions = $current?.data.sessions
+    .map((item) => item.session)
+    .filter(
+      (session) =>
+        (session.id && !session.isBroken && session.data.is_streamed) ||
+        isSameDay(asDate(session.data.start_date_time), new Date()) ||
+        isSameDay(asDate(session.data.end_date_time), new Date())
+    )
+
+  $: isLive =
+    sessions?.some(
+      (session) => asDate(session.data.start_date_time) < Date.now()
+    ) &&
+    sessions?.some((session) => asDate(session.data.end_date_time) > Date.now())
 
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
@@ -180,7 +198,7 @@
                   </span>
                 </Link>
               {/if}
-              {#if slice.slice_type === 'scroll_link'}
+              {#if slice.slice_type === 'scroll_link' || (slice.slice_type === 'live_stream_link' && isLive)}
                 <a
                   class="link"
                   on:click={jump}
