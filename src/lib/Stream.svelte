@@ -130,7 +130,8 @@
           </p>
         </div>
         {#if speakers?.length}
-          <h4 class="Stream-label">Speakers</h4>
+          <Divider size="md" />
+          <h3 class="Text-h5">Speakers</h3>
           <ol>
             {#each speakers as speaker}
               <li class="item">
