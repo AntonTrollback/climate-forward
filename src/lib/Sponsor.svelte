@@ -1,11 +1,3 @@
-<script context="module">
-  export const graphQuery = `
-    {
-      ...sponsorFields
-    }
-  `
-</script>
-
 <script>
   import { asText } from '@prismicio/helpers'
   export let org

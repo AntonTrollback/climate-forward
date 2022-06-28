@@ -1,38 +1,7 @@
 <script context="module">
   import { writable } from 'svelte/store'
-  import { eventBody, pageBody } from './Slices.svelte'
-  import { graphQuery as sessionFields } from './Session.svelte'
 
   export const current = writable()
-
-  export const graphQuery = `
-    {
-      event {
-        ...eventFields
-        sessions {
-          session {
-            ...on session ${sessionFields}
-          }
-        }
-        parent {
-          ...on page {
-            ...pageFields
-            body ${pageBody}
-          }
-        }
-        link {
-          ...on dialog {
-            ...dialogFields
-          }
-        }
-        body ${eventBody}
-      }
-      page {
-        ...pageFields
-        body ${pageBody}
-      }
-    }
-  `
 </script>
 
 <script>
@@ -50,6 +19,7 @@
   import { asDate } from '@prismicio/helpers'
   import { setContext, onMount } from 'svelte'
   import { createClient } from '@prismicio/client'
+  import { event as eventQuery } from './utils/queries.js'
 
   export let parent
   export let event
@@ -75,7 +45,13 @@
       if (next) {
         setTimeout(async function () {
           const client = createClient('climateforward', { fetch: window.fetch })
-          event = await client.getByID(event.id, { graphQuery })
+          event = await client.getByID(event.id, {
+            graphQuery: `
+              {
+                event ${eventQuery}
+              }
+            `
+          })
           ontick()
         }, Math.min(asDate(next.data.start_date_time) - Date.now(), 1000 * 60))
       }

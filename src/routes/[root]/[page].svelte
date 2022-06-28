@@ -1,14 +1,11 @@
 <script context="module">
+  import { page as pageQuery } from '$lib/utils/queries.js'
   import { createClient } from '@prismicio/client'
-  import { pageBody } from '$lib/Slices.svelte'
   import Meta from '$lib/Meta.svelte'
 
   const graphQuery = `
     {
-      page {
-        ...pageFields
-        body ${pageBody}
-      }
+      page ${pageQuery}
     }
   `
 

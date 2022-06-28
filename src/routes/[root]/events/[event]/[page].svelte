@@ -1,24 +1,11 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
-  import { pageBody, eventBody } from '$lib/Slices.svelte'
-  import Meta from '$lib/Meta.svelte'
+  import { page as pageQuery, event as eventQuery } from '$lib/utils/queries.js'
 
   const graphQuery = `
     {
-      page {
-        ...pageFields
-        body ${pageBody}
-      }
-      event {
-        ...eventFields
-        parent {
-          ...on page {
-            ...pageFields
-            body ${pageBody}
-          }
-        }
-        body ${eventBody}
-      }
+      page ${pageQuery}
+      event ${eventQuery}
     }
   `
 
@@ -41,6 +28,7 @@
 
 <script>
   import { setContext } from 'svelte'
+  import Meta from '$lib/Meta.svelte'
   import Page from '$lib/Page.svelte'
   import Event from '$lib/Event.svelte'
   import { LINK } from '$lib/Link.svelte'

@@ -1,14 +1,10 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
-  import { pageBody } from '$lib/Slices.svelte'
-  import Meta from '$lib/Meta.svelte'
+  import { page as pageQuery } from '$lib/utils/queries.js'
 
   const graphQuery = `
     {
-      page {
-        ...pageFields
-        body ${pageBody}
-      }
+      page ${pageQuery}
     }
   `
 
@@ -42,6 +38,7 @@
 
 <script>
   import Menu from '$lib/Menu.svelte'
+  import Meta from '$lib/Meta.svelte'
   import { setContext } from 'svelte'
   import { LINK } from '$lib/Link.svelte'
   import Slices from '$lib/Slices.svelte'

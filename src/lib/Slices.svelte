@@ -1,192 +1,3 @@
-<script context="module">
-  import { graphQuery as sessionFields } from './Session.svelte'
-  import { graphQuery as sponsorFields } from './Sponsor.svelte'
-
-  export const pageBody = `
-    {
-      ...on rich_text {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on about_text {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          ...repeatFields
-        }
-      }
-      ...on line {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on scroll_target {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on button {
-        non-repeat {
-          ...non-repeatFields
-          link {
-            ...on dialog {
-              ...dialogFields
-            }
-          }
-        }
-      }
-      ...on iframe {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on section_intro {
-        non-repeat {
-          ...non-repeatFields
-          sponsor ${sponsorFields}
-        }
-      }
-      ...on sponsor {
-        non-repeat {
-          ...non-repeatFields
-          sponsor ${sponsorFields}
-        }
-      }
-      ...on sponsors {
-        repeat {
-          ...repeatFields
-          sponsor ${sponsorFields}
-        }
-      }
-      ...on events {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          ...repeatFields
-          event {
-            ...eventFields
-          }
-        }
-      }
-      ...on session_speakers {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          speaker {
-            ...on speaker {
-              ...speakerFields
-            }
-          }
-        }
-      }
-      ...on video_banner {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on legal_numbered_text {
-        repeat {
-          ...repeatFields
-        }
-      }
-    }
-  `
-
-  export const eventBody = `
-    {
-      ...on rich_text {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on about_text {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          ...repeatFields
-        }
-      }
-      ...on line {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on scroll_target {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on venue_map {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on button {
-        non-repeat {
-          ...non-repeatFields
-          link {
-            ...on dialog {
-              ...dialogFields
-            }
-          }
-        }
-      }
-      ...on sponsor {
-        non-repeat {
-          ...non-repeatFields
-          sponsor ${sponsorFields}
-        }
-      }
-      ...on sponsors {
-        repeat {
-          ...repeatFields
-          sponsor ${sponsorFields}
-        }
-      }
-      ...on animation {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on gallery {
-        repeat {
-          ...repeatFields
-        }
-      }
-      ...on speakers {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          speaker {
-            ...on speaker {
-              ...speakerFields
-            }
-          }
-        }
-      }
-      ...on program {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          session ${sessionFields}
-        }
-      }
-      ...on live_stream {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-    }
-  `
-</script>
-
 <script>
   import { onMount } from 'svelte'
   import Animation from './Animation.svelte'
@@ -204,6 +15,7 @@
   import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
+  import Stream from './Stream.svelte'
   import VideoBanner from './VideoBanner.svelte'
 
   export let slices
@@ -354,6 +166,14 @@
               .map((item) => item.session)
               .filter((session) => session.id && !session.isBroken)} />
         </slot>
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'live_stream'}
+      <div class="u-container">
+        <Stream
+          source={slice.primary.live_stream_url}
+          placeholder={slice.primary.placeholder_text} />
       </div>
     {/if}
   </div>

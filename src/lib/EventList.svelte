@@ -1,11 +1,3 @@
-<script context="module">
-  export const graphQuery = `
-    {
-      ...eventFields
-    }
-  `
-</script>
-
 <script>
   import RichText from './RichText.svelte'
   import Button from './Button.svelte'

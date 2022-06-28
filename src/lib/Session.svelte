@@ -2,29 +2,6 @@
   import { parseJSON } from 'date-fns'
   import { asDate } from '@prismicio/helpers'
 
-  export const graphQuery = `
-    {
-      ...sessionFields
-      sponsor {
-        ...on sponsor {
-          ...sponsorFields
-        }
-      }
-      link {
-        ...on dialog {
-          ...dialogFields
-        }
-      }
-      speakers {
-        speaker {
-          ...on speaker {
-            ...speakerFields
-          }
-        }
-      }
-    }
-  `
-
   export function getTimestamps(session) {
     const { data } = session
     const start =

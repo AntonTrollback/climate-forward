@@ -1,12 +1,12 @@
 <script context="module">
   import { createClient } from '@prismicio/client'
-  import { graphQuery as sessionFields } from '$lib/Session.svelte'
   import { load as eventLoader } from '../index.svelte'
+  import { session as sessionQuery } from '$lib/utils/queries.js'
   import Meta from '$lib/Meta.svelte'
 
   const graphQuery = `
     {
-      session ${sessionFields}
+      session ${sessionQuery}
     }
   `
 

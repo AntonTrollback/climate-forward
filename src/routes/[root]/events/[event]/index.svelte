@@ -1,6 +1,13 @@
 <script context="module">
-  import { graphQuery } from '$lib/Event.svelte'
   import { createClient } from '@prismicio/client'
+  import { page as pageQuery, event as eventQuery } from '$lib/utils/queries.js'
+
+  const graphQuery = `
+    {
+      page ${pageQuery}
+      event ${eventQuery}
+    }
+  `
 
   export async function load({ fetch, params }) {
     try {
