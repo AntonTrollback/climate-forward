@@ -36,26 +36,58 @@
       document.getElementById('speakers')?.scrollIntoView()
     }
 
+    let timeout
     ;(function ontick() {
-      const next = event.data.sessions
+      const sessions = event.data.sessions
         .map((item) => item.session)
         .filter((session) => session.id && !session.isBroken)
-        .find((session) => asDate(session.data.start_date_time) > Date.now())
+        .sort(
+          (a, b) =>
+            asDate(a.data.start_date_time) - asDate(b.data.start_date_time)
+        )
+      const next = sessions.find(
+        (session) => asDate(session.data.start_date_time) > Date.now()
+      )
+      const live = sessions.find(
+        (session) =>
+          asDate(session.data.start_date_time) < Date.now() &&
+          asDate(session.data.end_date_time) > Date.now()
+      )
 
-      if (next) {
-        setTimeout(async function () {
-          const client = createClient('climateforward', { fetch: window.fetch })
-          event = await client.getByID(event.id, {
-            graphQuery: `
-              {
-                event ${eventQuery}
-              }
-            `
-          })
+      if (next || live) {
+        timeout = setTimeout(function () {
+          update()
           ontick()
-        }, Math.min(asDate(next.data.start_date_time) - Date.now(), 1000 * 60))
+        }, Math.min(
+          next ? asDate(next.data.start_date_time) - Date.now() : Infinity,
+          live ? asDate(live.data.end_date_time) - Date.now() : Infinity,
+          1000 * 60
+        ))
       }
     })()
+
+    function onvisibilitychange() {
+      if (!document.hidden) update()
+    }
+
+    async function update() {
+      const client = createClient('climateforward', { fetch: window.fetch })
+      event = await client.getByID(event.id, {
+        graphQuery: `
+          {
+            event ${eventQuery}
+          }
+        `
+      })
+      current.set(event)
+    }
+
+    window.addEventListener('visibilitychange', onvisibilitychange)
+
+    return function () {
+      window.removeEventListener('visibilitychange', onvisibilitychange)
+      clearTimeout(timeout)
+    }
   })
 
   setContext(LINK, function (document) {
