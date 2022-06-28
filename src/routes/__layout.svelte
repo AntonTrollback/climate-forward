@@ -6,6 +6,16 @@
     media.addEventListener('change', setFavicon)
     setFavicon()
 
+    const url = new URL(window.location)
+    if (url.searchParams.get('preview')) {
+      const script = document.createElement('script')
+      script.async = true
+      script.defer = true
+      script.src =
+        'https://static.cdn.prismic.io/prismic.js?new=true&repo=climateforward'
+      document.head.appendChild(script)
+    }
+
     return () => media.removeEventListener('change', setFavicon)
 
     function setFavicon() {

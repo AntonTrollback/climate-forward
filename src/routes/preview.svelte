@@ -10,7 +10,11 @@
       defaultURL: '/',
       linkResolver: resolve
     })
-    await goto(redirect)
+    await goto(
+      redirect.replace(/(?:\?(.+))?$/, function (_, query) {
+        return `?${query ? query + '&' : ''}preview=true`
+      })
+    )
   })
 </script>
 
