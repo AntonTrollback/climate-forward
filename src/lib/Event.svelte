@@ -156,22 +156,6 @@
         return { href: resolve(document) }
     }
   })
-
-  function getSessionsForSpeaker() {
-    return event.data.body
-      .filter((slice) => slice.slice_type === 'program')
-      .flatMap((slice) =>
-        slice.items
-          .map((item) => item.session)
-          .filter(
-            (session) =>
-              !session.isBroken &&
-              session.data.speakers.some(
-                (item) => item.speaker.id === speaker.id
-              )
-          )
-      )
-  }
 </script>
 
 <slot>
@@ -201,7 +185,16 @@
 
 {#if speaker}
   <Modal>
-    <Speaker {speaker} sessions={getSessionsForSpeaker()} />
+    <Speaker
+      {speaker}
+      sessions={$current.data.sessions
+        .map((item) => item.session)
+        .filter(
+          (session) =>
+            session.id &&
+            !session.isBroken &&
+            session.data.speakers.some((item) => item.speaker.id === speaker.id)
+        )} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}
