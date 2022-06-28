@@ -31,10 +31,10 @@
       <details>
         <summary class="u-expand">Show all speakers</summary>
         <div class="grid">
-          {#each speakers[1] as speaker}
+          {#each speakers[1] as speaker, index}
             <section class="item">
               <div class="body">
-                <Speaker type="link" {speaker} />
+                <Speaker lazy={index > 5} type="link" {speaker} />
               </div>
             </section>
           {/each}

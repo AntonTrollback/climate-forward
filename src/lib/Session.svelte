@@ -22,6 +22,7 @@
 <script>
   import tz from 'date-fns-tz'
   import { asText } from '@prismicio/helpers'
+  import src from './utils/src.js'
   import Link from './Link.svelte'
   import RichText from './RichText.svelte'
   import Sponsor from './Sponsor.svelte'
@@ -239,9 +240,23 @@
               <div class="body">
                 <Link class="speaker" document={speaker}>
                   <img
-                    src={speaker.data.image.url}
-                    width="100"
-                    height="100"
+                    sizes="2.875rem"
+                    srcset="{src(
+                      'c_fill,g_face,w_46,h_46/f_auto',
+                      speaker.data.image.url
+                    )} 46w,{src(
+                      'c_fill,g_face,w_92,h_92/f_auto',
+                      speaker.data.image.url
+                    )} 92w,{src(
+                      'c_fill,g_face,w_138,h_138/f_auto',
+                      speaker.data.image.url
+                    )} 138w"
+                    src={src(
+                      'c_fill,g_face,w_92,h_92/f_auto',
+                      speaker.data.image.url
+                    )}
+                    width="92"
+                    height="92"
                     alt="Portrait of {asText(speaker.data.name)}" />
                   <div>
                     <strong>{asText(speaker.data.name)}</strong>
@@ -434,7 +449,7 @@
 
   :global(.Session .speaker) {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     font-size: 0.875rem;
     line-height: 1.2;
     transition: opacity 250ms var(--ease-out);
@@ -464,6 +479,7 @@
     overflow: hidden;
     object-fit: cover;
     margin-right: 1rem;
+    background: var(--current-color-placeholder);
   }
 
   @media (min-width: 500px) {

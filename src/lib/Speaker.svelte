@@ -3,11 +3,13 @@
   import Divider from './Divider.svelte'
   import Session from './Session.svelte'
   import { asText } from '@prismicio/helpers'
+  import src from './utils/src.js'
   import Link from './Link.svelte'
 
   export let speaker
   export let sessions = null
   export let type = 'card'
+  export let lazy = false
 </script>
 
 <article class="Speaker Speaker--{type}">
@@ -15,7 +17,13 @@
     <figure class="portrait">
       {#if speaker.data.image?.url}
         <img
-          src={speaker.data.image.url}
+          sizes="8.5rem"
+          srcset="{src('w_136/f_auto', speaker.data.image.url)} 136w,{src(
+            'w_272/f_auto',
+            speaker.data.image.url
+          )} 272w,{src('w_408/f_auto', speaker.data.image.url)} 408w"
+          src={src('w_272/f_auto', speaker.data.image.url)}
+          loading={lazy ? 'lazy' : 'eager'}
           width={speaker.data.image.dimensions.width}
           height={speaker.data.image.dimensions.height}
           alt="Portrait of {asText(speaker.data.name)}" />
@@ -29,7 +37,12 @@
       <figure class="portrait">
         {#if speaker.data.image?.url}
           <img
-            src={speaker.data.image.url}
+            sizes="8.5rem"
+            srcset="{src('w_136/f_auto', speaker.data.image.url)} 136w,{src(
+              'w_272/f_auto',
+              speaker.data.image.url
+            )} 272w,{src('w_408/f_auto', speaker.data.image.url)} 408w"
+            src={src('w_136/f_auto', speaker.data.image.url)}
             width={speaker.data.image.dimensions.width}
             height={speaker.data.image.dimensions.height}
             alt="Portrait of {asText(speaker.data.name)}" />
@@ -96,6 +109,7 @@
       left: 0;
       object-position: center;
       object-fit: cover;
+      background: var(--current-color-placeholder);
     }
   }
 
