@@ -457,6 +457,7 @@
 
   :global(.Session .speaker) {
     display: flex;
+    align-items: center;
     font-size: 0.875rem;
     line-height: 1.2;
     transition: opacity 250ms var(--ease-out);
