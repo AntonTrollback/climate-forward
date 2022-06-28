@@ -2,6 +2,7 @@
   import tz from 'date-fns-tz'
   import Link from './Link.svelte'
   import { current } from './Event.svelte'
+  import Divider from './Divider.svelte'
   import RichText from './RichText.svelte'
   import { isSameDay, format } from 'date-fns'
   import { asDate, asText } from '@prismicio/helpers'
@@ -77,11 +78,15 @@
   {:else if id}
     <div class="Text Text--spaced Text--xl">
       <h2 class="Text-p">
-        {mode === 'live' ? 'Live from the stage' : 'Next up'}
+        {#if mode === 'live'}
+          Live On Stage
+        {:else}
+          Up Next at Climate Forward&nbsp;London
+        {/if}
       </h2>
     </div>
     <div class="Text Text--spaced">
-      <p class="Text-p">
+      <p class="Text-p u-spaceMd">
         <a href="#program">See the full program</a>
       </p>
     </div>
@@ -89,9 +94,9 @@
       <div class="Stream-aspect">
         <iframe
           class="Stream-player"
-          width="560"
-          height="315"
           src="https://www.youtube.com/embed/{id}?rel=0&modestbranding=1"
+          width="1920"
+          height="1080"
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -99,9 +104,9 @@
       </div>
       <article class="Stream-body">
         <div class="Stream-info">
+          <p>{session.data.format}</p>
           <div class="Text">
-            <p class="Text-p">{session.data.format}</p>
-            <h3 class="Text-h3 u-spaceSm">{asText(session.data.name)}</h3>
+            <h3 class="Text-h4 u-spaceSm">{asText(session.data.name)}</h3>
           </div>
           <time
             class="Stream-time"
@@ -120,7 +125,7 @@
           </time>
           <p>
             <Link document={session}>
-              <span class="Stream-more"> Learn more </span>
+              <span class="u-trigger u-spaceMd">Learn more</span>
             </Link>
           </p>
         </div>
@@ -128,24 +133,20 @@
           <h4 class="Stream-label">Speakers</h4>
           <ol>
             {#each speakers as speaker}
-              <li class="Stream-speaker">
-                <figure class="Stream-frame">
-                  <img
-                    class="Stream-image"
-                    src={speaker.data.image.url}
-                    width={speaker.data.image.dimensions.width}
-                    height={speaker.data.image.dimensions.height}
-                    alt="Portrait of {asText(speaker.data.name)}" />
-                </figure>
-                <Link document={speaker}>
-                  <span class="Stream-link">
-                    <strong class="Stream-person">
-                      {asText(speaker.data.name)}
-                    </strong>
-                    <br />
-                    {speaker.data.title}
-                  </span>
-                </Link>
+              <li class="item">
+                <div class="body">
+                  <Link class="speaker" document={speaker}>
+                    <img
+                      src={speaker.data.image.url}
+                      width="100"
+                      height="100"
+                      alt="Portrait of {asText(speaker.data.name)}" />
+                    <div>
+                      <strong>{asText(speaker.data.name)}</strong>
+                      {speaker.data.title}
+                    </div>
+                  </Link>
+                </div>
               </li>
             {/each}
           </ol>
@@ -157,51 +158,27 @@
 
 <style>
   .Stream-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 1.75rem;
+    margin-top: var(--space-block-md);
+    align-items: flex-start;
   }
 
-  @media (min-width: 1000px) {
+  @media (min-width: 800px) {
     .Stream-container {
-      flex-direction: row;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: calc(var(--space-grid) * 2);
     }
   }
 
-  @media (min-width: 1200px) {
+  @media (min-width: 1300px) {
     .Stream-container {
-      gap: 4rem;
-    }
-  }
-
-  .Stream-body {
-    flex: 0 0 100%;
-    width: 100%;
-    min-width: 18em;
-  }
-
-  @media (min-width: 1000px) {
-    .Stream-body {
-      width: 50%;
-      flex: 0 0 50%;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .Stream-body {
-      width: 36%;
-      flex: 0 0 36%;
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 
   .Stream-info {
     position: relative;
-  }
-
-  .Stream-format {
-    display: block;
-    margin-bottom: 0.5rem;
+    margin-top: var(--space-md);
   }
 
   .Stream-time {
@@ -242,110 +219,64 @@
     }
   }
 
-  .Stream-more {
-    display: block;
-    margin-top: 0.5rem;
-    text-transform: uppercase;
-    color: var(--current-color-muted);
+  /* Speakers */
+
+  .item {
+    position: relative;
+    margin-top: 1rem;
   }
 
-  .Stream-info:hover .Stream-more {
-    text-decoration: underline;
-  }
-
-  .Stream-more::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .Stream-label {
-    padding: 0.5rem 0;
-    margin-top: 1.5rem;
-    border-top: 1px solid var(--current-color-border);
-
-    font-family: var(--doc-font-family);
-    font-size: 1.5rem;
-    line-height: 1.1em;
-    letter-spacing: -0.01em;
-    font-weight: 900;
-    text-decoration-thickness: 1px !important;
-    text-underline-offset: 0.1em;
-    word-spacing: -0.03em;
-  }
-
-  .Stream-speaker {
+  :global(.Stream .speaker) {
     display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 0.75rem;
-    position: relative;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    transition: opacity 250ms var(--ease-out);
+    max-width: 25rem;
   }
 
-  .Stream-frame {
-    width: 3rem;
-    height: 3rem;
-    overflow: hidden;
-    border-radius: 100%;
-    position: relative;
-  }
-
-  .Stream-image {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    left: 0;
-    object-position: center;
-    object-fit: cover;
-  }
-
-  .Stream-link {
-    font-size: 0.9375rem;
-  }
-
-  .Stream-link::before {
-    content: '';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-
-  .Stream-person {
-    font-size: 1rem;
-  }
-
-  .Stream-speaker:hover .Stream-person {
+  :global(.Stream .speaker:hover strong) {
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.11em;
   }
+
+  :global(.Stream .speaker:active) {
+    opacity: 0.6;
+    transition: none;
+  }
+
+  :global(.Stream .speaker strong) {
+    display: block;
+  }
+
+  :global(.Stream .speaker img) {
+    flex-shrink: 0;
+    width: 2.875rem;
+    height: 2.875rem;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    margin-right: 1rem;
+  }
+
+  /* Video aspect */
 
   .Stream-aspect {
-    flex: 1 1 25rem;
+    width: 100%;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 1300px) {
+    .Stream-aspect {
+      grid-column: 1 / 3;
+    }
   }
 
   .Stream-aspect::before {
     content: '';
     display: block;
     padding-top: calc(100% * 9 / 16);
-  }
-
-  @media (min-width: 1000px) {
-    .Stream-aspect::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 3px solid #fff;
-      pointer-events: none;
-    }
   }
 
   .Stream-player {
