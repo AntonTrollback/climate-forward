@@ -32,8 +32,8 @@
 
   export let type = 'card'
   export let simple = false
+  export let event = null
   export let session
-  export let event
 
   $: hasSponsor = session.data.sponsor?.id && !session.data.sponsor.isBroken
 
@@ -142,7 +142,7 @@
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
-        {:else if event.data.link}
+        {:else if event?.data.link}
           <Button solid document={event.data.link}>
             {event.data.button_text}
           </Button>
@@ -196,7 +196,7 @@
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
-        {:else if event.data.link}
+        {:else if event?.data.link}
           <Button solid document={event.data.link}>
             {event.data.button_text}
           </Button>
