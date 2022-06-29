@@ -75,6 +75,11 @@
           >{session.data.format ? session.data.format : '—'}</span>
       {/if}
     {/if}
+    {#if simple && !session.data.kicker && !session.data.branding}
+      {#if session.data.location}
+        <span class="location">{session.data.location}</span>
+      {/if}
+    {/if}
     <div class="u-spaceXs">
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
@@ -91,9 +96,18 @@
       </h4>
     </div>
     <div class="u-spaceXs">
-      <time {datetime}>{start ? `${start}–${end}` : end} B.S.T.</time>
-      {#if session.data.location}
-        <span class="location">{session.data.location}</span>
+      {#if simple}
+        <time {datetime}>
+          {#if simple}
+            {day},
+          {/if}
+          {start ? `${start}–${end}` : end} B.S.T.
+        </time>
+      {:else}
+        <time {datetime}>{start ? `${start}–${end}` : end} B.S.T.,</time>
+        {#if session.data.location}
+          <span class="location">{session.data.location}</span>
+        {/if}
       {/if}
     </div>
     {#if !simple}

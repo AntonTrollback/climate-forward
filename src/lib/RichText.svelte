@@ -1,25 +1,18 @@
 <script>
   import { getContext } from 'svelte'
   import { LINK } from './Link.svelte'
+  import { asHTML, asText } from '@prismicio/helpers'
   import resolve from './utils/resolve.js'
   import whitespace from './utils/whitespace.js'
-  import { asHTML, asText } from '@prismicio/helpers'
 
   export let fields
   export let title = null
   export let wide = null
-  export let size = 'md'
+  export let size
 
   if (fields?.length < 1) fields = null
 
-  size =
-    size === 'sm'
-      ? 'Text--sm'
-      : size === 'lg'
-      ? 'Text--lg'
-      : size === 'xl'
-      ? 'Text--xl'
-      : ''
+  if (!size) size = 'md'
 
   function resolveLink(document) {
     const resolver = getContext(LINK)
@@ -70,9 +63,7 @@
   </div>
 {:else}
   <div
-    class="Text Text--spaced {size} {$$props.class || ''} {wide
-      ? 'Text--wide'
-      : ''}">
+    class="Text Text--spaced Text--{size} {wide ? 'Text--wide' : ''} {$$props.class || ''}">
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}
