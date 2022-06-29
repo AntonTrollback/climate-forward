@@ -52,7 +52,7 @@
       </div>
     </div>
     <div class="main">
-      <div class="Text Text--spaced {wide ? 'Text--wide' : ''}">
+      <div class="Text Text--spaced" class:Text--wide={wide}>
         {#if fields}
           {@html asHTML(fields, resolveLink, serialize)}
         {/if}
@@ -61,14 +61,8 @@
   </div>
 {:else}
   <div
-    <<<<<<<
-    HEAD
-    class="Text Text--spaced Text--{size} {wide
-      ? 'Text--wide'
-      : ''} {$$props.class || ''}">
-    ======= class="Text Text--spaced Text--{size}
-    {$$props.class || ''}
-    {wide ? 'Text--wide' : ''}"> >>>>>>> 9e957f8 (Fix dropping Text modifier)
+    class="Text Text--spaced Text--{size} {$$props.class || ''}"
+    class:Text--wide={wide}>
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}

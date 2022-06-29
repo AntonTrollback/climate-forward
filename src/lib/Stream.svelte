@@ -71,6 +71,20 @@
 
     return `${start} – ${end} B.S.T.`
   }
+
+  function jump(event) {
+    const { hash } = new URL(this.href)
+    const offset = getComputedStyle(document.documentElement).getPropertyValue(
+      '--scroll-offset'
+    )
+    const target = document.querySelector(hash)
+    window.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+      top: target.offsetTop - offset
+    })
+    event.preventDefault()
+  }
 </script>
 
 <div class="Stream">
@@ -88,7 +102,7 @@
     </div>
     <div class="Text Text--spaced">
       <p class="Text-p u-spaceMd">
-        <a href="#program">See the full program</a>
+        <a href="#program" on:click={jump}>See the full program</a>
       </p>
     </div>
     <div class="Stream-container">
