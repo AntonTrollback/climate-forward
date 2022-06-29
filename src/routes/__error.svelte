@@ -5,6 +5,11 @@
   }
 </script>
 
+<script>
+  export let status
+</script>
+
 <svelte:head>
-  <title>404, Not found</title>
+  <title
+    >{status}, {status === 404 ? 'Not found' : 'Something went wrong'}</title>
 </svelte:head>

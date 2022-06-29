@@ -3,9 +3,10 @@
 <script>
   import { linkResolver } from './Link.svelte'
 
+  export let theme = null
   export let solid = false
   export let onclick = null
-  export let document
+  export let document = null
 
   $: props = linkResolver(document)
   $: _onclick = props?.onclick || onclick
@@ -22,7 +23,7 @@
   <!-- svelte-ignore a11y-missing-attribute -->
   <a
     {...attrs}
-    class="Button {$$props.class || ''}"
+    class="Button {theme ? `Button--${theme}` : ''} {$$props.class || ''}"
     class:Button--solid={solid}
     on:click={_onclick}>
     <slot />
@@ -30,7 +31,7 @@
 {:else}
   <button
     {...attrs}
-    class="Button {$$props.class || ''}"
+    class="Button {theme ? `Button--${theme}` : ''} {$$props.class || ''}"
     class:Button--solid={solid}
     on:click={_onclick}>
     <slot />
@@ -82,6 +83,12 @@
     background: var(--current-color);
     color: var(--current-color-background);
     border-color: var(--current-color);
+  }
+
+  .Button--highlight,
+  .Button--highlight:hover {
+    background: red;
+    border-color: red;
   }
 
   .Button:focus-visible {

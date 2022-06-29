@@ -1,13 +1,14 @@
 <script>
+  import { asDate } from '@prismicio/helpers'
   import { language } from './utils/i18n.js'
-  import Session, { getTimestamps } from './Session.svelte'
   import { format, parse } from 'date-fns'
+  import Session from './Session.svelte'
 
   export let sessions
 
   $: days = sessions
     .reduce(function (days, session) {
-      const { start: date } = getTimestamps(session)
+      const date = asDate(session.data.start_date_time)
       const datestamp = format(date, 'yyyy-MM-dd')
       let day = days.find((day) => day.date === datestamp)
       if (!day) {

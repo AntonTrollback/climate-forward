@@ -164,6 +164,14 @@
         return { href: resolve(document) }
     }
   })
+
+  function onclose() {
+    speaker = null
+    session = null
+    dialog = null
+    setMeta(event, parent)
+    window.history.replaceState({}, null, resolve(event, parent))
+  }
 </script>
 
 <slot>
@@ -195,6 +203,7 @@
   <Modal>
     <Speaker
       {speaker}
+      on:close={onclose}
       sessions={$current.data.sessions
         .map((item) => item.session)
         .filter(
@@ -209,14 +218,14 @@
 
 {#if session}
   <Modal>
-    <Session {session} {event} />
+    <Session {session} {event} on:close={onclose} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}
 
 {#if dialog}
   <Modal>
-    <Dialog {dialog} />
+    <Dialog {dialog} on:close={onclose} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}

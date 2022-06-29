@@ -1,34 +1,15 @@
-<script context="module">
-  import { parseJSON } from 'date-fns'
-  import { asDate } from '@prismicio/helpers'
-
-  export function getTimestamps(session) {
-    const { data } = session
-    const start =
-      asDate(data.start_date_time) ||
-      parseJSON(
-        `${data.swoogo_session.date}T${data.swoogo_session.start_time}.000Z`
-      )
-    const end =
-      asDate(data.end_date_time) ||
-      parseJSON(
-        `${data.swoogo_session.date}T${data.swoogo_session.end_time}.000Z`
-      )
-
-    return { start, end }
-  }
-</script>
-
 <script>
   import tz from 'date-fns-tz'
-  import { asText } from '@prismicio/helpers'
   import src from './utils/src.js'
   import Link from './Link.svelte'
-  import RichText from './RichText.svelte'
-  import Sponsor from './Sponsor.svelte'
   import Button from './Button.svelte'
+  import Sponsor from './Sponsor.svelte'
   import Divider from './Divider.svelte'
+  import RichText from './RichText.svelte'
+  import { createEventDispatcher } from 'svelte'
+  import { asText, asDate } from '@prismicio/helpers'
 
+  const dispatch = createEventDispatcher()
   const { formatInTimeZone } = tz
 
   export let type = 'card'
@@ -38,28 +19,61 @@
 
   $: hasSponsor = session.data.sponsor?.id && !session.data.sponsor.isBroken
 
-  let { start, end } = getTimestamps(session)
-
-  let day = formatInTimeZone(start, 'UTC', 'EEEE, LLLL d')
-
-  let datetime = start.toJSON()
-  start = formatInTimeZone(start, 'UTC', 'h:mm aaaa')
-  end = formatInTimeZone(end, 'UTC', 'h:mm aaaa')
-  start = start.replace('12:00 p.m.', 'Noon')
-  end = end.replace('12:00 p.m.', 'Noon')
-  start = start.replace(':00', '')
-  end = end.replace(':00', '')
-  if (start === end) start = ''
-  if (start.includes('a.m.') && end.includes('a.m.')) {
-    start = start.replace(' a.m.', '')
+  let start, end
+  $: {
+    start = formatInTimeZone(
+      asDate(session.data.start_date_time),
+      'UTC',
+      'h:mm aaaa'
+    )
+    end = formatInTimeZone(
+      asDate(session.data.end_date_time),
+      'UTC',
+      'h:mm aaaa'
+    )
+    start = start.replace('12:00 p.m.', 'Noon')
+    end = end.replace('12:00 p.m.', 'Noon')
+    start = start.replace(':00', '')
+    end = end.replace(':00', '')
+    if (start === end) start = ''
+    if (start.includes('a.m.') && end.includes('a.m.')) {
+      start = start.replace(' a.m.', '')
+    }
+    if (start.includes('p.m.') && end.includes('p.m.')) {
+      start = start.replace(' p.m.', '')
+    }
   }
-  if (start.includes('p.m.') && end.includes('p.m.')) {
-    start = start.replace(' p.m.', '')
-  }
+
+  $: isLive =
+    asDate(session.data.start_date_time) < new Date() &&
+    asDate(session.data.end_date_time) > new Date()
+
+  $: day = formatInTimeZone(
+    asDate(session.data.start_date_time),
+    'UTC',
+    'EEEE, LLLL d'
+  )
+  $: datetime = asDate(session.data.start_date_time).toJSON()
+
   let speakers = session.data.speakers
     .filter((item) => item.speaker.id)
     .map((item) => item.speaker)
   if (!speakers.length) speakers = null
+
+  function jump(event) {
+    dispatch('close')
+    const { hash } = new URL(this.href)
+    const offset = getComputedStyle(document.documentElement).getPropertyValue(
+      '--scroll-offset'
+    )
+    const target = document.querySelector(hash)
+    window.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+      top: target.offsetTop - offset
+    })
+    event.preventDefault()
+  }
 </script>
 
 <article
@@ -153,7 +167,20 @@
       {/if}
 
       <div class="wrap button">
-        {#if session.data.link?.url}
+        {#if isLive}
+          <Button solid theme="highlight" href="#live-stream" onclick={jump}>
+            <svg
+              height="20px"
+              viewBox="0 0 24 24"
+              width="20px"
+              class="live"
+              fill="currentColor">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Live now
+          </Button>
+        {:else if session.data.link?.url}
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
@@ -207,7 +234,20 @@
       {/if}
 
       <div class="button">
-        {#if session.data.link?.url}
+        {#if isLive}
+          <Button solid theme="highlight" href="#live-stream" onclick={jump}>
+            <svg
+              height="20px"
+              viewBox="0 0 24 24"
+              width="20px"
+              class="live"
+              fill="currentColor">
+              <path d="M0 0h24v24H0z" fill="none" />
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Live now
+          </Button>
+        {:else if session.data.link?.url}
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
@@ -341,6 +381,11 @@
 
   .button {
     margin: var(--space-sm) 0;
+  }
+
+  .live {
+    display: inline-block;
+    margin-right: 0.5em;
   }
 
   .sponsor {
