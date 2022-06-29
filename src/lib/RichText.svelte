@@ -8,11 +8,9 @@
   export let fields
   export let title = null
   export let wide = null
-  export let size
+  export let size = 'md'
 
   if (fields?.length < 1) fields = null
-
-  if (!size) size = 'md'
 
   function resolveLink(document) {
     const resolver = getContext(LINK)
@@ -63,7 +61,14 @@
   </div>
 {:else}
   <div
-    class="Text Text--spaced Text--{size} {wide ? 'Text--wide' : ''} {$$props.class || ''}">
+    <<<<<<<
+    HEAD
+    class="Text Text--spaced Text--{size} {wide
+      ? 'Text--wide'
+      : ''} {$$props.class || ''}">
+    ======= class="Text Text--spaced Text--{size}
+    {$$props.class || ''}
+    {wide ? 'Text--wide' : ''}"> >>>>>>> 9e957f8 (Fix dropping Text modifier)
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}
