@@ -211,6 +211,12 @@
     margin-top: var(--space-md);
   }
 
+  @media (min-width: 800px) {
+    .Stream-info {
+      margin-top: -0.2rem;
+    }
+  }
+
   .Stream-time {
     display: flex;
     align-items: baseline;
