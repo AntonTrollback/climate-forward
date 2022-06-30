@@ -219,7 +219,7 @@
         {/if}
       </h2>
 
-      {#if session.data.video}
+      {#if session.data.video?.length}
         <div class="aspect">
           <iframe
             class="player"
