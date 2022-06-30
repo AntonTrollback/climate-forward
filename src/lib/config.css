@@ -92,6 +92,7 @@
 @media (min-width: 700px) and (min-height: 500px) {
   :root {
     --doc-margin: 4.5rem;
+    --scroll-offset: 130;
   }
 }
 

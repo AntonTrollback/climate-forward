@@ -139,8 +139,8 @@
             )}
           </time>
           <p>
-            <Link document={session}>
-              <span class="u-trigger u-spaceMd">Learn more</span>
+            <Link class="u-trigger u-triggerBlock u-spaceMd" document={session}>
+              <span class="">Learn more</span>
             </Link>
           </p>
         </div>
