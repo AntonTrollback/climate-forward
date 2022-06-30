@@ -45,8 +45,8 @@
   }
 
   $: isLive =
-    asDate(session.data.start_date_time) < new Date() &&
-    asDate(session.data.end_date_time) > new Date()
+    asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now() &&
+    asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
 
   $: day = formatInTimeZone(
     asDate(session.data.start_date_time),
