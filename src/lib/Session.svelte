@@ -569,7 +569,7 @@
 
   @media (min-width: 900px) {
     .grid {
-      grid-gap: 2rem;
+      grid-gap: 1.25rem 2rem;
     }
   }
 </style>
