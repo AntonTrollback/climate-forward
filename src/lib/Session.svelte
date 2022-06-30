@@ -434,6 +434,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    background: black;
   }
 
   .aspect::before {

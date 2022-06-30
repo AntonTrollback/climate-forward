@@ -31,7 +31,7 @@
       <details>
         <summary class="u-expand">Show all</summary>
         <div class="grid">
-          {#each sessionsWithVideo.slice(0, limit) as session, index}
+          {#each sessionsWithVideo.slice(limit) as session, index}
             <section class="item">
               <div class="body">
                 <Link document={session}>

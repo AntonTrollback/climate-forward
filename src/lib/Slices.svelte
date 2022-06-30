@@ -8,6 +8,7 @@
   import Iframe from './Iframe.svelte'
   import LegalList from './LegalList.svelte'
   import Map from './Map.svelte'
+  import ScrollTarget from './ScrollTarget.svelte'
   import Program from './Program.svelte'
   import Previous from './Previous.svelte'
   import RichText from './RichText.svelte'
@@ -30,7 +31,21 @@
 </script>
 
 {#each slices as slice, index}
-  <div id={slice.primary.slice_id || `${slice.slice_type}-${index}`}>
+  <div
+    id={slice.slice_type !== 'scroll_target'
+      ? slice.primary.slice_id || `${slice.slice_type}-${index}`
+      : null}>
+
+    {#if slice.slice_type === 'scroll_target'}
+      <ScrollTarget id={slice.primary.slice_id} />
+    {/if}
+
+    {#if slice.slice_type === 'events'}
+      <div class="u-container">
+        <EventList props={slice.primary} items={slice.items} />
+      </div>
+    {/if}
+
     {#if slice.slice_type === 'events'}
       <div class="u-container">
         <EventList props={slice.primary} items={slice.items} />
