@@ -9,6 +9,7 @@
   import LegalList from './LegalList.svelte'
   import Map from './Map.svelte'
   import Program from './Program.svelte'
+  import Previous from './Previous.svelte'
   import RichText from './RichText.svelte'
   import SectionIntro from './SectionIntro.svelte'
   import SessionSpeakers from './SessionSpeakers.svelte'
@@ -174,6 +175,17 @@
         <Stream
           source={slice.primary.live_stream_url}
           placeholder={slice.primary.placeholder_text} />
+      </div>
+    {/if}
+
+    {#if slice.slice_type === 'previous_sessions'}
+      <div class="u-container">
+        <slot name="previous_sessions">
+          <Previous
+            sessions={slice.items
+              .map((item) => item.session)
+              .filter((session) => session.id && !session.isBroken)} />
+        </slot>
       </div>
     {/if}
   </div>

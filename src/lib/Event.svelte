@@ -14,6 +14,7 @@
   import Program from './Program.svelte'
   import Session from './Session.svelte'
   import { setMeta } from './Meta.svelte'
+  import Previous from './Previous.svelte'
   import resolve from './utils/resolve.js'
   import Link, { LINK } from './Link.svelte'
   import { asDate } from '@prismicio/helpers'
@@ -185,6 +186,11 @@
   <Slices slices={$current.data.body}>
     <Program
       slot="program"
+      sessions={$current.data.sessions
+        .map((item) => item.session)
+        .filter((session) => session.id && !session.isBroken)} />
+    <Previous
+      slot="previous_sessions"
       sessions={$current.data.sessions
         .map((item) => item.session)
         .filter((session) => session.id && !session.isBroken)} />
