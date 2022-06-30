@@ -30,14 +30,14 @@
       ) || []
 
   $: live = sessions.find(function (session) {
-    const start = asDate(session.data.start_date_time)
-    const end = asDate(session.data.end_date_time)
+    const start = asDate(session.data.start_date_time) - 1000 * 60 * 60
+    const end = asDate(session.data.end_date_time) - 1000 * 60 * 60
     const now = Date.now()
     return start < now && end > now
   })
 
   $: next = sessions.find(function (session) {
-    const start = asDate(session.data.start_date_time)
+    const start = asDate(session.data.start_date_time) - 1000 * 60 * 60
     const now = Date.now()
     return start > now
   })
