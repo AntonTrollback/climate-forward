@@ -1,10 +1,10 @@
-export const sponsor = `
+export const sponsor = dedent`
   {
     ...sponsorFields
   }
 `
 
-export const session = `
+export const session = dedent`
   {
     ...sessionFields
     sponsor {
@@ -27,7 +27,7 @@ export const session = `
   }
 `
 
-export const page = `
+export const page = dedent`
   {
     ...pageFields
     body {
@@ -124,7 +124,7 @@ export const page = `
   }
 `
 
-export const event = `
+export const event = dedent`
   {
     ...eventFields
     sessions {
@@ -226,6 +226,21 @@ export const event = `
           ...non-repeatFields
         }
       }
+      ...on previous_sessions {
+        repeat {
+          session ${session}
+        }
+      }
     }
   }
 `
+
+function dedent(strings, ...parts) {
+  return strings.reduce((acc, str, i) => {
+    return (
+      acc +
+      str.replace(/^\s+/gm, '\n') +
+      (parts[i] || '').replace(/^\s+/gm, '\n')
+    )
+  }, '')
+}

@@ -12,6 +12,9 @@
   const dispatch = createEventDispatcher()
   const { formatInTimeZone } = tz
 
+  const YOUTUBE_VIDEO =
+    /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
+
   export let type = 'card'
   export let simple = false
   export let event = null
@@ -97,8 +100,9 @@
     <div class="u-spaceXs">
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
-          <span class="u-hiddenVisually"
-            >Learn more about the session: {asText(session.data.name)}</span>
+          <span class="u-hiddenVisually">
+            Learn more about the session: {asText(session.data.name)}
+          </span>
         </Link>
       {/if}
       <h4 class="Text-h4 title">
@@ -206,6 +210,7 @@
       {#if session.data.kicker && session.data.branding}
         <div class="kicker">{session.data.kicker}</div>
       {/if}
+
       <h2 class="Text-h3 title">
         {#if session.data.branding}
           <em>{asText(session.data.name)}</em>
@@ -213,6 +218,22 @@
           {asText(session.data.name)}
         {/if}
       </h2>
+
+      {#if session.data.video}
+        <div class="aspect">
+          <iframe
+            class="player"
+            src={`https://www.youtube.com/embed/${
+              session.data.video.embed_url.match(YOUTUBE_VIDEO)?.[1]
+            }?rel=0&modestbranding=1`}
+            width="1920"
+            height="1080"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen />
+        </div>
+      {/if}
 
       <div class="meta">
         <time class="wrap" {datetime}>
@@ -406,6 +427,29 @@
     width: 90%;
   }
 
+  /* Video aspect */
+
+  .aspect {
+    margin: 2.2rem 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aspect::before {
+    content: '';
+    display: block;
+    padding-top: calc(100% * 9 / 16);
+  }
+
+  .player {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   @media (min-width: 700px) {
     .meta {
       display: none;
@@ -569,7 +613,7 @@
 
   @media (min-width: 900px) {
     .grid {
-      grid-gap: 1.25rem 2rem;
+      grid-gap: 1rem 2rem;
     }
   }
 </style>
