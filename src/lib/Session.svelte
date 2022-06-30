@@ -12,6 +12,9 @@
   const dispatch = createEventDispatcher()
   const { formatInTimeZone } = tz
 
+  const YOUTUBE_VIDEO =
+    /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
+
   export let type = 'card'
   export let simple = false
   export let event = null
@@ -97,8 +100,9 @@
     <div class="u-spaceXs">
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
-          <span class="u-hiddenVisually"
-            >Learn more about the session: {asText(session.data.name)}</span>
+          <span class="u-hiddenVisually">
+            Learn more about the session: {asText(session.data.name)}
+          </span>
         </Link>
       {/if}
       <h4 class="Text-h4 title">
@@ -136,6 +140,21 @@
     {/if}
   {:else}
     <div class="aside">
+      {#if session.data.video}
+        <div class="aspect">
+          <iframe
+            class="player"
+            src={`https://www.youtube.com/embed/${
+              session.data.video.embed_url.match(YOUTUBE_VIDEO)?.[1]
+            }?rel=0&modestbranding=1`}
+            width="1920"
+            height="1080"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen />
+        </div>
+      {/if}
       <time class="wrap" {datetime}>
         <span>{day}</span>
         <span>{start ? `${start}–${end}` : end} B.S.T.</span>
@@ -402,6 +421,28 @@
     max-width: 30em;
     font-size: 0.75rem;
     width: 90%;
+  }
+
+  /* Video aspect */
+
+  .aspect {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aspect::before {
+    content: '';
+    display: block;
+    padding-top: calc(100% * 9 / 16);
+  }
+
+  .player {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
   }
 
   @media (min-width: 700px) {
