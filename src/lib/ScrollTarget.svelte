@@ -8,9 +8,6 @@
     let observer
 
     function now (context) {
-      if (context[0].isIntersecting) {
-        console.log(id, ' is active')
-      }
     }
 
     observer = new IntersectionObserver(now, {

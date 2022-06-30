@@ -24,6 +24,10 @@
 
   let enableAnimation = true
 
+  if (slices.find(slice => slice.type === 'scroll_target')) {
+    grouped = false
+  }
+
   onMount(function () {
     const value = window.localStorage.getItem('DISABLE_ANIMATION')
     enableAnimation = !value || !JSON.parse(value)
@@ -38,12 +42,6 @@
 
     {#if slice.slice_type === 'scroll_target'}
       <ScrollTarget id={slice.primary.slice_id} />
-    {/if}
-
-    {#if slice.slice_type === 'events'}
-      <div class="u-container">
-        <EventList props={slice.primary} items={slice.items} />
-      </div>
     {/if}
 
     {#if slice.slice_type === 'events'}
