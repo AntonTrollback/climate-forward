@@ -60,7 +60,7 @@
     if (doc.data.branding?.length) {
       let brand = doc.data.branding.toLowerCase().replaceAll(' ', '-')
       return {
-        url: `https://climate-events.com/share-${brand}.png`,
+        url: `https://climate-events.nytimes.com/share-${brand}.png`,
         dimensions: { width: 1600, height: 800 }
       }
     }

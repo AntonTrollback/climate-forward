@@ -48,8 +48,8 @@
   }
 
   $: isLive =
-    asDate(session.data.start_date_time) < new Date() &&
-    asDate(session.data.end_date_time) > new Date()
+    asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now() &&
+    asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
 
   $: day = formatInTimeZone(
     asDate(session.data.start_date_time),
@@ -404,7 +404,9 @@
 
   .live {
     display: inline-block;
-    margin-right: 0.5em;
+    width: 17px;
+    height: 17px;
+    margin: -0.25rem 0.2rem -0.25rem -0.2rem;
   }
 
   .sponsor {
@@ -608,7 +610,7 @@
 
   @media (min-width: 900px) {
     .grid {
-      grid-gap: 2rem;
+      grid-gap: 1.25rem 2rem;
     }
   }
 </style>

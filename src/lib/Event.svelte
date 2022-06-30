@@ -47,12 +47,13 @@
             asDate(a.data.start_date_time) - asDate(b.data.start_date_time)
         )
       const next = sessions.find(
-        (session) => asDate(session.data.start_date_time) > Date.now()
+        (session) =>
+          asDate(session.data.start_date_time) - 1000 * 60 * 60 > Date.now()
       )
       const live = sessions.find(
         (session) =>
-          asDate(session.data.start_date_time) < Date.now() &&
-          asDate(session.data.end_date_time) > Date.now()
+          asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now() &&
+          asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
       )
 
       if (next || live) {
@@ -60,8 +61,12 @@
           update()
           ontick()
         }, Math.min(
-          next ? asDate(next.data.start_date_time) - Date.now() : Infinity,
-          live ? asDate(live.data.end_date_time) - Date.now() : Infinity,
+          next
+            ? asDate(next.data.start_date_time) - 1000 * 60 * 60 - Date.now()
+            : Infinity,
+          live
+            ? asDate(live.data.end_date_time) - 1000 * 60 * 60 - Date.now()
+            : Infinity,
           1000 * 60
         ))
       }

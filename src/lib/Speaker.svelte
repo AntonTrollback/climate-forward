@@ -53,7 +53,7 @@
       <h4 class="desc">{speaker.data.title}</h4>
     {/if}
 
-    {#if type === 'card'}
+    {#if type === 'card' && speaker.data.bio}
       <RichText class="u-spaceMd" fields={speaker.data.bio} />
     {/if}
     {#if type === 'link'}
