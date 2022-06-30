@@ -385,7 +385,9 @@
 
   .live {
     display: inline-block;
-    margin-right: 0.5em;
+    width: 17px;
+    height: 17px;
+    margin: -0.25rem 0.2rem -0.25rem -0.2rem;
   }
 
   .sponsor {
