@@ -50,7 +50,8 @@
 
   $: mode = live
     ? 'live'
-    : next && isSameDay(asDate(next.data.start_date_time), Date.now())
+    : next &&
+      isSameDay(asDate(next.data.start_date_time) - 1000 * 60 * 60, Date.now())
     ? 'before'
     : 'after'
 

@@ -31,15 +31,25 @@
     .filter(
       (session) =>
         (session.id && !session.isBroken && session.data.is_streamed) ||
-        isSameDay(asDate(session.data.start_date_time), new Date()) ||
-        isSameDay(asDate(session.data.end_date_time), new Date())
+        isSameDay(
+          asDate(session.data.start_date_time) - 1000 * 60 * 60,
+          Date.now()
+        ) ||
+        isSameDay(
+          asDate(session.data.end_date_time) - 1000 * 60 * 60,
+          Date.now()
+        )
     )
 
   $: isLive =
     sessions?.some(
-      (session) => asDate(session.data.start_date_time) < Date.now()
+      (session) =>
+        asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now()
     ) &&
-    sessions?.some((session) => asDate(session.data.end_date_time) > Date.now())
+    sessions?.some(
+      (session) =>
+        asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
+    )
 
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
