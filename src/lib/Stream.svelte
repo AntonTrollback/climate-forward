@@ -70,7 +70,7 @@
       start = start.replace(' p.m.', '')
     }
 
-    return `${start} – ${end} B.S.T.`
+    return `${start}–${end} B.S.T.`
   }
 
   function jump(event) {
