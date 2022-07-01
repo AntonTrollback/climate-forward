@@ -47,6 +47,8 @@
     }
   }
 
+  $: isPast = asDate(session.data.end_date_time) - 1000 * 60 * 60 < Date.now()
+
   $: isLive =
     asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now() &&
     asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
@@ -188,7 +190,7 @@
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
-        {:else if event?.data.link}
+        {:else if event?.data.link && !isPast}
           <Button solid document={event.data.link}>
             {event.data.button_text}
           </Button>
@@ -272,7 +274,7 @@
           <Button solid href={session.data.link.url} target="_blank">
             {session.data.button_text}
           </Button>
-        {:else if event?.data.link}
+        {:else if event?.data.link && !isPast}
           <Button solid document={event.data.link}>
             {event.data.button_text}
           </Button>
