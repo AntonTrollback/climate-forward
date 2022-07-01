@@ -160,16 +160,20 @@
     vertical-align: bottom;
     white-space: nowrap;
     padding: 0.1rem 0.25rem;
-    text-underline-offset: 0.05em;
+    text-underline-offset: 0.1em;
     text-decoration-thickness: 0.25px;
     text-decoration-skip-ink: none;
-    text-decoration: underline;
     outline-offset: -2px;
   }
 
   :global(.Footer .link),
   .logo {
     transition: opacity 250ms var(--ease-out);
+  }
+
+  :global(.Footer .link:hover),
+  .logo:hover {
+    text-decoration: underline;
   }
 
   :global(.Footer .link:active),

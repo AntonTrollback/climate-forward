@@ -69,7 +69,7 @@
       <RichText class="u-spaceMd" fields={speaker.data.bio} />
     {/if}
     {#if type === 'link'}
-      <Link class="u-spaceXs u-trigger u-triggerBlock" document={speaker}
+      <Link class="u-spaceSm u-trigger u-triggerBlock" document={speaker}
         >Learn more <span class="u-hiddenVisually"
           >about {asText(speaker.data.name)}</span
         ></Link>

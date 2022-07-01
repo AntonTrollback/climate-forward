@@ -1,3 +1,45 @@
 [build]
   command = "npm run build"
   publish = "build"
+
+[[redirects]]
+  from = "/a-new-climate"
+  to = "/a-new-climate/events/san-francisco"
+[[redirects]]
+  from = "/a-new-climate/events"
+  to = "/climate-forward/"
+
+[[redirects]]
+  from = "/climate-forward/london"
+  to = "/climate-forward/events/london"
+[[redirects]]
+  from = "/climate-forward/events/london/venue"
+  to = "/climate-forward/events/london"
+[[redirects]]
+  from = "/climate-forward/events"
+  to = "/climate-forward/"
+[[redirects]]
+  from = "/climate-forward/events/london/program"
+  to = "/climate-forward/events/london"
+[[redirects]]
+  from = "/climate-forward/events/london/speakers"
+  to = "/climate-forward/events/london"
+[[redirects]]
+  from = "/climate-forward/events/london/tickets"
+  to = "/climate-forward/events/london/dialog/ticketing"
+[[redirects]]
+  from = "/climate-forward/events/london/ticketing"
+  to = "/climate-forward/events/london/dialog/ticketing"
+
+[[redirects]]
+  from = "/climate-forward/fashion-opportunity"
+  to = "/climate-forward/the-fashion-opportunity"
+[[redirects]]
+  from = "/fashion-opportunity"
+  to = "/climate-forward/the-fashion-opportunity"
+[[redirects]]
+  from = "/the-fashion-opportunity"
+  to = "/climate-forward/the-fashion-opportunity"
+[[redirects]]
+  from = "/the-fashion-opportunity/speakers"
+  to = "/climate-forward/the-fashion-opportunity"
