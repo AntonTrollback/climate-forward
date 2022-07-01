@@ -45,7 +45,7 @@
 <ol class="Program">
   {#each days as day, index}
     <li>
-      <details open={index === 0}>
+      <details open={index === 1}>
         <summary>
           <h3 class="Text-h4">
             {day.date.toLocaleString($language, {
