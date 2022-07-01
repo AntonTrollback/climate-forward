@@ -25,6 +25,20 @@
   })
 </script>
 
+<svelte:head>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-95HH8QKXZR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || []
+    function gtag() {
+      dataLayer.push(arguments)
+    }
+    gtag('js', new Date())
+    gtag('config', 'G-95HH8QKXZR')
+  </script>
+</svelte:head>
+
 <slot />
 
 <style>
