@@ -132,7 +132,7 @@
               ? ''
               : `${format(
                   asDate(session.data.start_date_time),
-                  'eee., MMM. d'
+                  'EEEE, MMMM d'
                 )}, `}
             {getTimestamp(
               asDate(session.data.start_date_time),
