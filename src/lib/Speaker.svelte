@@ -22,7 +22,7 @@
             'w_272/f_auto',
             speaker.data.image.url
           )} 272w,{src('w_408/f_auto', speaker.data.image.url)} 408w"
-          src={src('w_272/f_auto', speaker.data.image.url)}
+          src={src('w_408/f_auto', speaker.data.image.url)}
           loading={lazy ? 'lazy' : 'eager'}
           width={speaker.data.image.dimensions.width}
           height={speaker.data.image.dimensions.height}
@@ -42,7 +42,19 @@
               'w_272/f_auto',
               speaker.data.image.url
             )} 272w,{src('w_408/f_auto', speaker.data.image.url)} 408w"
-            src={src('w_136/f_auto', speaker.data.image.url)}
+            src={src('w_408/f_auto', speaker.data.image.url)}
+            width={speaker.data.image.dimensions.width}
+            height={speaker.data.image.dimensions.height}
+            alt="Portrait of {asText(speaker.data.name)}" />
+        {/if}
+        {#if speaker.data.image?.url}
+          <img
+            sizes="12.7rem"
+            srcset="{src('w_203/f_auto', speaker.data.image.url)} 203w,{src(
+              'w_406/f_auto',
+              speaker.data.image.url
+            )} 406w,{src('w_609/f_auto', speaker.data.image.url)} 609w"
+            src={src('w_609/f_auto', speaker.data.image.url)}
             width={speaker.data.image.dimensions.width}
             height={speaker.data.image.dimensions.height}
             alt="Portrait of {asText(speaker.data.name)}" />
@@ -90,6 +102,7 @@
   /* Portrait */
 
   .portrait {
+    position: relative;
     margin: 1.25rem 0;
   }
 
@@ -122,6 +135,13 @@
     width: 100%;
     height: auto;
     background: var(--current-color-placeholder);
+  }
+
+  .portrait img + img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
   }
 
   @media (min-width: 500px) {

@@ -1,18 +1,17 @@
 <script>
   import { onMount } from 'svelte'
   export let id
-	let target
+  let target
 
   onMount(function () {
-    if (!'IntersectionObserver' in window) return
+    if (!('IntersectionObserver' in window)) return
     let observer
 
-    function now (context) {
-    }
+    function now() {}
 
     observer = new IntersectionObserver(now, {
       root: null,
-      rootMargin: "0px",
+      rootMargin: '0px',
       threshold: 0.5
     })
     observer.observe(target)
@@ -20,4 +19,4 @@
   })
 </script>
 
-<div id={id} bind:this={target} />
+<div {id} bind:this={target} />

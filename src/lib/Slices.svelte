@@ -24,9 +24,9 @@
 
   let enableAnimation = true
 
-  if (slices.find(slice => slice.type === 'scroll_target')) {
-    grouped = false
-  }
+  // if (slices.find((slice) => slice.type === 'scroll_target')) {
+  //   grouped = false
+  // }
 
   onMount(function () {
     const value = window.localStorage.getItem('DISABLE_ANIMATION')
@@ -39,7 +39,6 @@
     id={slice.slice_type !== 'scroll_target'
       ? slice.primary.slice_id || `${slice.slice_type}-${index}`
       : null}>
-
     {#if slice.slice_type === 'scroll_target'}
       <ScrollTarget id={slice.primary.slice_id} />
     {/if}
