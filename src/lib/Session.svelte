@@ -420,13 +420,13 @@
   .supporter {
     padding: var(--space-sm) 0 0;
     margin-top: 2rem;
+    width: 82%;
     border-top: 1px solid var(--current-color-border);
   }
 
   .supporter p {
     max-width: 30em;
     font-size: 0.75rem;
-    width: 90%;
   }
 
   /* Video aspect */

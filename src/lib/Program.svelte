@@ -1,10 +1,11 @@
 <script>
   import { asDate } from '@prismicio/helpers'
   import { language } from './utils/i18n.js'
-  import { format, parse } from 'date-fns'
+  import { format, parse, isSameDay } from 'date-fns'
   import Session from './Session.svelte'
 
   export let sessions
+  export let timeless
 
   $: days = sessions
     .reduce(function (days, session) {
@@ -42,10 +43,10 @@
     })
 </script>
 
-<ol class="Program">
+<ol class="Program {timeless ? 'timeless' : ''}">
   {#each days as day, index}
     <li>
-      <details open={index === 1}>
+      <details open={timeless || isSameDay(asDate(day.date), Date.now())}>
         <summary>
           <h3 class="Text-h4">
             {day.date.toLocaleString($language, {
@@ -115,6 +116,10 @@
 
   details[open] > summary::before {
     transform: rotate(-0.5turn);
+  }
+
+  .timeless summary {
+    display: none;
   }
 
   .grid {

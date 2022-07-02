@@ -19,6 +19,7 @@
   import Sponsors from './Sponsors.svelte'
   import Stream from './Stream.svelte'
   import VideoBanner from './VideoBanner.svelte'
+  import { asText } from '@prismicio/helpers';
 
   export let slices
 
@@ -103,6 +104,17 @@
       </div>
     {/if}
 
+    {#if slice.slice_type === 'section_title'}
+      <div class="u-container">
+        <div class="Text Text--spaced Text--xl">
+          <h2 class="Text-p">{asText(slice.primary.title)}</h2>
+        </div>
+        {#if slice.primary.text}
+          <RichText class="u-spaceMd" fields={slice.primary.text} />
+        {/if}
+      </div>
+    {/if}
+
     {#if slice.slice_type === 'about_text'}
       <div class="u-container">
         <RichText
@@ -175,6 +187,7 @@
       <div class="u-container">
         <slot name="program">
           <Program
+            timeless={slice.primary.timeless}
             sessions={slice.items
               .map((item) => item.session)
               .filter((session) => session.id && !session.isBroken)} />

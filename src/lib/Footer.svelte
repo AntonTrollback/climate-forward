@@ -88,6 +88,7 @@
     <a href="/climate-forward/the-fashion-opportunity">.</a>
     <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
     <a href="/the-fashion-opportunity">.</a>
+    <a href="/a-new-climate/events/san-francisco">.</a>
     <a href="/404">.</a>
   </div>
 </footer>

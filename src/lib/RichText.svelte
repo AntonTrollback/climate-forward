@@ -12,6 +12,8 @@
 
   if (fields?.length < 1) fields = null
 
+  if (!size) size = 'md'
+
   function resolveLink(document) {
     const resolver = getContext(LINK)
     if (resolver) return resolver(document).href

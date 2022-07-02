@@ -146,6 +146,11 @@ export const event = dedent`
           ...non-repeatFields
         }
       }
+      ...on section_title {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on about_text {
         non-repeat {
           ...non-repeatFields
@@ -160,11 +165,6 @@ export const event = dedent`
         }
       }
       ...on scroll_target {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
-      ...on venue_map {
         non-repeat {
           ...non-repeatFields
         }
@@ -189,6 +189,11 @@ export const event = dedent`
         repeat {
           ...repeatFields
           sponsor ${sponsor}
+        }
+      }
+      ...on venue_map {
+        non-repeat {
+          ...non-repeatFields
         }
       }
       ...on animation {

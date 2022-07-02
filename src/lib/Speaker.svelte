@@ -32,8 +32,8 @@
   {/if}
   <div class="details">
     {#if type === 'card'}
-      <h2 class="Text-h3 title">{asText(speaker.data.name)}</h2>
-      <h2 class="Text-h3"><em>{speaker.data.title}</em></h2>
+      <h1 class="Text-h3 title">{asText(speaker.data.name)}</h1>
+      <p class="Text-h3"><em>{speaker.data.title}</em></p>
       <figure class="portrait">
         {#if speaker.data.image?.url}
           <img
@@ -62,7 +62,7 @@
       </figure>
     {:else}
       <h4 class="Text-h4">{asText(speaker.data.name)}</h4>
-      <h4 class="desc">{speaker.data.title}</h4>
+      <p class="desc">{speaker.data.title}</p>
     {/if}
 
     {#if type === 'card' && speaker.data.bio}
@@ -77,7 +77,7 @@
   </div>
   {#if sessions?.length}
     <Divider size="md" />
-    <h3 class="Text-h5">Speaking at</h3>
+    <h2 class="Text-h5">Speaking at</h2>
     <ul class="grid">
       {#each sessions as session}
         <li class="item">
