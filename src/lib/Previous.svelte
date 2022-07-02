@@ -5,7 +5,13 @@
   export let sessions = []
   export let limit = 4
 
-  $: sessionsWithVideo = sessions.filter((session) => session.data.video)
+  $: sessionsWithVideo = sessions
+    .filter((session) => session.data.video)
+    .sort((a, b) => {
+      return (
+        Date.parse(b.data.start_date_time) - Date.parse(a.data.start_date_time)
+      )
+    })
 </script>
 
 <div class="Previous">

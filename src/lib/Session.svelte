@@ -201,7 +201,7 @@
         <div class="supporter">
           <p>{asText(session.data.smallprint)}</p>
           <Sponsor
-            class="u-spaceSm"
+            class="u-spaceMd"
             org={session.data.sponsor.data}
             size="md" />
         </div>
