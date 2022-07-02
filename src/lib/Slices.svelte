@@ -207,7 +207,7 @@
       <div class="u-container">
         <slot name="previous_sessions">
           <Previous
-            limit="8"
+            limit="{slice.primary.limit}"
             sessions={slice.items
               .map((item) => item.session)
               .filter((session) => session.id && !session.isBroken)} />

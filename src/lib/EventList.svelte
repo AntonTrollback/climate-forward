@@ -51,7 +51,7 @@
               document={item.event}
               target="_blank"
               >{item.event.data.past_event
-                ? 'Watch on demand'
+                ? 'Watch now'
                 : 'See event'}</Button>
           {/if}
         </div>

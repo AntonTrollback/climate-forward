@@ -35,7 +35,7 @@
     {/each}
     {#if sessionsWithVideo?.length > limit}
       <details>
-        <summary class="u-expand">Show all</summary>
+        <summary class="u-expand">Show all sessions</summary>
         <div class="grid">
           {#each sessionsWithVideo.slice(limit) as session, index}
             <section class="item">
