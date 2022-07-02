@@ -3,7 +3,7 @@
   import { asText } from '@prismicio/helpers'
 
   export let sessions = []
-  export let limit = 4
+  export let limit = 8
 
   $: sessionsWithVideo = sessions
     .filter((session) => session.data.video)

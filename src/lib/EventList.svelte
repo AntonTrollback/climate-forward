@@ -29,7 +29,12 @@
           <span class="Text-h1 u-fill"><em>{item.event.data.date}</em></span>
         {:else}
           <div class="Text u-spaceSm">
-            <p><strong>{item.event.data.date}</strong></p>
+            <p>
+              <strong>
+                {#if item.event.data.past_event}Past event, {/if}{item.event
+                  .data.date}
+              </strong>
+            </p>
           </div>
         {/if}
         <RichText
@@ -44,7 +49,10 @@
             <Button
               solid={item.solid_button}
               document={item.event}
-              target="_blank">See event</Button>
+              target="_blank"
+              >{item.event.data.past_event
+                ? 'Watch on demand'
+                : 'See event'}</Button>
           {/if}
         </div>
       </div>

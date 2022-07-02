@@ -185,7 +185,7 @@
     slices={$current.data.menu}
     keeptop={$current.data.keeptop}
     stacked={$current.data.stacked}
-    button={{ link: $current.data.link, text: $current.data.button_text }}
+    button={$current.data.button_text ? { link: $current.data.link, text: $current.data.button_text } : null}
     branding={$current.data.branding || parent.data.branding} />
 
   <Slices slices={$current.data.body}>
