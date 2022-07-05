@@ -4,10 +4,13 @@
 
 [[redirects]]
   from = "/a-new-climate"
-  to = "/a-new-climate/events/san-francisco"
+  to = "/"
 [[redirects]]
   from = "/a-new-climate/events"
-  to = "/climate-forward/"
+  to = "/"
+[[redirects]]
+  from = "/a-new-climate/events/san-francisco"
+  to = "/"
 
 [[redirects]]
   from = "/climate-forward/london"
