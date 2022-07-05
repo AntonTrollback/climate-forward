@@ -141,7 +141,7 @@
           </time>
           <p>
             <Link class="u-trigger u-triggerBlock u-spaceMd" document={session}>
-              <span class="">Learn more</span>
+              <span>Learn more</span>
             </Link>
           </p>
         </div>

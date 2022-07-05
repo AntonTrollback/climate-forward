@@ -103,17 +103,17 @@
       {#if simple}
         <Link class="simple-link u-triggerBlock" document={session}>
           <span class="u-hiddenVisually">
-            Learn more about the session: {asText(session.data.name)}
+            Learn more about the session "{asText(session.data.name)}"
           </span>
         </Link>
       {/if}
-      <h4 class="Text-h4 title">
+      <strong class="Text-h4 title">
         {#if session.data.branding}
           <em>{asText(session.data.name)}</em>
         {:else}
           {asText(session.data.name)}
         {/if}
-      </h4>
+      </strong>
     </div>
     <div class="u-spaceXs">
       {#if simple}
@@ -135,7 +135,7 @@
         <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
           Learn more
           <span class="u-hiddenVisually">
-            about the session: {asText(session.data.name)}
+            about the session "{asText(session.data.name)}"
           </span>
         </Link>
       </div>

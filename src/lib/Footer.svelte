@@ -32,17 +32,22 @@
   }
 </script>
 
+<hr class="u-hiddenVisually" />
+
 <footer class="Footer">
   <Divider size="xl" />
-  <div class="u-container">
+  <h2 class="u-hiddenVisually">Page Information</h2>
+  <nav class="u-container">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Events</span>
+        <br /><br />
         {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/climate-forward" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Forward</span>
+        <br /><br />
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
@@ -51,11 +56,13 @@
         href="/a-new-climate/events/san-francisco"
         on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
+        <br /><br />
         {@html logo('a-new-climate')}
       </a>
     {/if}
     {#if links.some((item) => item.text && (item.link.link_type !== 'Web' ? item.link.id && !item.link.isBroken : true))}
       <ul class="list">
+        <h3 class="u-hiddenVisually">Navigation</h3>
         {#if branding === 'Climate Forward' && ($page.url.pathname === '/climate-forward/' || $page.url.pathname === '/climate-forward')}
           <li class="item strong">
             <a class="link" href="/">See all Climate Events</a>
@@ -79,9 +86,9 @@
     {/if}
     <Purr />
     <p>{@html copyright ? whitespace(copyright) : ''}</p>
-  </div>
+  </nav>
 
-  <div class="u-hidden" aria-hidden="true">
+  <div class="u-hidden" style="display: none" aria-hidden="true">
     <a href="/thank-you">.</a>
     <a href="/climate-forward/press-thank-you">.</a>
     <a href="/climate-forward/london-thank-you">.</a>
@@ -98,6 +105,10 @@
     padding-bottom: var(--space-block-md);
     text-align: center;
     font-size: 0.65rem;
+  }
+
+  .Footer br {
+    display: none;
   }
 
   @media (min-width: 600px) {

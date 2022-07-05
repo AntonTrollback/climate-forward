@@ -50,9 +50,7 @@
               solid={item.solid_button}
               document={item.event}
               target="_blank"
-              >{item.event.data.past_event
-                ? 'Watch now'
-                : 'See event'}</Button>
+              >{item.event.data.past_event ? 'Watch now' : 'See event'}</Button>
           {/if}
         </div>
       </div>

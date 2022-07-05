@@ -211,7 +211,7 @@
   })
 </script>
 
-<div class="Animation" bind:this={root}>
+<div class="Animation" style="display: none" bind:this={root}>
   <div class="canvas">
     <picture bind:this={picture}>
       <source
@@ -252,6 +252,7 @@
 
 <style>
   .Animation {
+    display: block !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -273,8 +274,8 @@
     height: var(--menu-height);
   }
 
-  :global(.Animation.remove) {
-    display: none;
+  :global(.Animation.remove.remove) {
+    display: none !important;
   }
 
   @supports (min-height: 100dvh) {

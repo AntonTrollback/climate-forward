@@ -5,7 +5,6 @@
   import Session from './Session.svelte'
 
   export let sessions
-  export let timeless
 
   $: days = sessions
     .reduce(function (days, session) {
@@ -43,32 +42,44 @@
     })
 </script>
 
-<ol class="Program {timeless ? 'timeless' : ''}">
-  {#each days as day, index}
-    <li>
-      <details open={timeless || isSameDay(asDate(day.date), Date.now())}>
-        <summary>
-          <h3 class="Text-h4">
-            {day.date.toLocaleString($language, {
-              weekday: 'long',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </h3>
-        </summary>
-        <ol class="grid">
-          {#each day.sessions as session}
-            <li class="item">
-              <div class="body">
-                <Session type="link" {session} />
-              </div>
-            </li>
-          {/each}
-        </ol>
-      </details>
-    </li>
-  {/each}
-</ol>
+<div class="Program">
+  {#if days.length > 1}
+    {#each days as day, index}
+      <div>
+        <details open={isSameDay(asDate(day.date), Date.now())}>
+          <summary>
+            <h3 class="Text-h4">
+              {day.date.toLocaleString($language, {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </h3>
+          </summary>
+          <ul class="grid">
+            {#each day.sessions as session}
+              <ul class="item">
+                <div class="body">
+                  <Session type="link" {session} />
+                </div>
+              </ul>
+            {/each}
+          </ul>
+        </details>
+      </div>
+    {/each}
+  {:else}
+    <ul class="grid">
+      {#each days[0].sessions as session}
+        <li class="item">
+          <div class="body">
+            <Session type="link" {session} />
+          </div>
+        </li>
+      {/each}
+    </ul>
+  {/if}
+</div>
 
 <style>
   .Program {
@@ -116,10 +127,6 @@
 
   details[open] > summary::before {
     transform: rotate(-0.5turn);
-  }
-
-  .timeless summary {
-    display: none;
   }
 
   .grid {

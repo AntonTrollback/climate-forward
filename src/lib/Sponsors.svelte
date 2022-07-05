@@ -18,7 +18,7 @@
 
 <Divider size="xl" />
 <div class="u-container">
-  <section class="cols">
+  <div class="cols">
     {#each cols as col}
       <div class="col {col.large ? 'large' : ''}">
         <strong class="label">{col.label}</strong>
@@ -31,7 +31,7 @@
         </div>
       </div>
     {/each}
-  </section>
+  </div>
 </div>
 
 <style>

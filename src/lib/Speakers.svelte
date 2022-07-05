@@ -21,22 +21,22 @@
 <div class="Speakers">
   <div class="grid">
     {#each speakers[0] as speaker}
-      <section class="item">
+      <div class="item">
         <div class="body">
           <Speaker type="link" {speaker} />
         </div>
-      </section>
+      </div>
     {/each}
     {#if speakers[1]?.length}
       <details>
         <summary class="u-expand">Show all speakers</summary>
         <div class="grid">
           {#each speakers[1] as speaker, index}
-            <section class="item">
+            <div class="item">
               <div class="body">
                 <Speaker lazy={index > 5} type="link" {speaker} />
               </div>
-            </section>
+            </div>
           {/each}
         </div>
       </details>

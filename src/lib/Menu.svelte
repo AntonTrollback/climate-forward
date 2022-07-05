@@ -28,27 +28,30 @@
 
   $: sessions = $current?.data.sessions
     .map((item) => item.session)
-    .filter(
-      (session) =>
-        (session.id && !session.isBroken && session.data.is_streamed) ||
-        isSameDay(
-          asDate(session.data.start_date_time) - 1000 * 60 * 60,
-          Date.now()
-        ) ||
-        isSameDay(
-          asDate(session.data.end_date_time) - 1000 * 60 * 60,
-          Date.now()
-        )
+    .filter((session) =>
+      session.data?.start_date_time
+        ? (session.id && !session.isBroken && session.data.is_streamed) ||
+          isSameDay(
+            asDate(session.data.start_date_time) - 1000 * 60 * 60,
+            Date.now()
+          ) ||
+          isSameDay(
+            asDate(session.data.end_date_time) - 1000 * 60 * 60,
+            Date.now()
+          )
+        : false
     )
 
   $: isLive =
-    sessions?.some(
-      (session) =>
-        asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now()
+    sessions?.some((session) =>
+      session.data?.start_date_time
+        ? asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now()
+        : false
     ) &&
-    sessions?.some(
-      (session) =>
-        asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
+    sessions?.some((session) =>
+      session.data?.end_date_time
+        ? asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
+        : false
     )
 
   function onresize() {
@@ -137,15 +140,21 @@
   class:adaptive
   class:keeptop
   style="--scroll: {scroll || 0};">
+  {#if $current.data.seo_title}
+    <h1 class="u-hiddenVisually">{$current.data.seo_title}</h1>
+  {/if}
+
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Events</span>
+        <br /><br />
         {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/climate-forward" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Forward</span>
+        <br /><br />
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
@@ -154,13 +163,20 @@
         href="/a-new-climate/events/san-francisco"
         on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
+        <br /><br />
         {@html logo('a-new-climate')}
       </a>
     {/if}
 
     {#if slices?.length > 0}
-      <input id="switch" class="switch" bind:checked type="checkbox" />
+      <input
+        style="display: none"
+        id="switch"
+        class="switch"
+        bind:checked
+        type="checkbox" />
       <label
+        style="display: none"
         class="toggle"
         for="switch"
         on:touchstart={removetapdelay}
@@ -176,14 +192,18 @@
 
       <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
         {#if branding === 'Climate Events'}
-          <a class="logo" href="/" on:click={scrollTop}>
+          <a style="display: none" class="logo" href="/" on:click={scrollTop}>
             <span class="u-hiddenVisually">
               The New York Times Climate Events
             </span>
             {@html logo('climate-events')}
           </a>
         {:else if branding === 'Climate Forward'}
-          <a class="logo" href="/climate-forward" on:click={scrollTop}>
+          <a
+            style="display: none"
+            class="logo"
+            href="/climate-forward"
+            on:click={scrollTop}>
             <span class="u-hiddenVisually">
               The New York Times Climate Forward
             </span>
@@ -191,10 +211,12 @@
           </a>
         {:else if branding === 'A New Climate'}
           <a
+            style="display: none"
             class="logo"
             href="/a-new-climate/events/san-francisco"
             on:click={scrollTop}>
-            <span class="u-hiddenVisually">The New York Times A New Climate</span>
+            <span class="u-hiddenVisually"
+              >The New York Times A New Climate</span>
             {@html logo('a-new-climate')}
           </a>
         {/if}
@@ -234,6 +256,8 @@
   </div>
 </header>
 
+<hr class="u-hiddenVisually" />
+
 <div class="space" class:stacked class:adaptive />
 
 <style>
@@ -259,6 +283,10 @@
     user-select: none;
     pointer-events: none;
     color: var(--current-color);
+  }
+
+  .Menu br {
+    display: none;
   }
 
   .keeptop {
@@ -308,7 +336,7 @@
   }
 
   .logo {
-    display: inline-block;
+    display: inline-block !important;
     width: auto;
     height: 1rem;
     position: relative;
@@ -548,6 +576,7 @@
     }
 
     .toggle {
+      display: block !important;
       font-size: 0;
       position: relative;
       z-index: 2;
@@ -582,6 +611,7 @@
     }
 
     .switch {
+      display: block !important;
       position: fixed;
       top: 0;
       right: 0;
@@ -741,7 +771,7 @@
     .toggle,
     .switch,
     .nav .logo {
-      display: none;
+      display: none !important;
     }
 
     :global(.Menu .button) {

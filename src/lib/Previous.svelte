@@ -17,9 +17,9 @@
 <div class="Previous">
   <div class="grid">
     {#each sessionsWithVideo.slice(0, limit) as session}
-      <section class="item">
+      <div class="item">
         <div class="body">
-          <Link document={session}>
+          <div>
             <figure>
               <img
                 alt={session.data.video.title}
@@ -27,20 +27,26 @@
                 width={session.data.video.thumbnail_width}
                 height={session.data.video.thumbnail_height} />
             </figure>
-            <h4 class="Text-h5 u-spaceSm">{asText(session.data.name)}</h4>
-            <span class="u-trigger u-triggerBlock u-spaceSm">Learn more</span>
-          </Link>
+            <strong class="Text-h5 u-spaceSm"
+              >{asText(session.data.name)}</strong>
+            <Link class="u-trigger u-triggerBlock u-spaceSm" document={session}>
+              Learn more
+              <span class="u-hiddenVisually">
+                about the session "{asText(session.data.name)}"
+              </span>
+            </Link>
+          </div>
         </div>
-      </section>
+      </div>
     {/each}
     {#if sessionsWithVideo?.length > limit}
       <details>
         <summary class="u-expand">Show all sessions</summary>
         <div class="grid">
           {#each sessionsWithVideo.slice(limit) as session, index}
-            <section class="item">
+            <div class="item">
               <div class="body">
-                <Link document={session}>
+                <div>
                   <figure>
                     <img
                       alt={session.data.video.title}
@@ -48,12 +54,19 @@
                       width={session.data.video.thumbnail_width}
                       height={session.data.video.thumbnail_height} />
                   </figure>
-                  <h4 class="Text-h5 u-spaceSm">{asText(session.data.name)}</h4>
-                  <span class="u-trigger u-triggerBlock u-spaceSm"
-                    >Learn more</span>
-                </Link>
+                  <strong class="Text-h5 u-spaceSm"
+                    >{asText(session.data.name)}</strong>
+                  <Link
+                    class="u-trigger u-triggerBlock u-spaceSm"
+                    document={session}>
+                    Learn more
+                    <span class="u-hiddenVisually">
+                      about the session "{asText(session.data.name)}"
+                    </span>
+                  </Link>
+                </div>
               </div>
-            </section>
+            </div>
           {/each}
         </div>
       </details>

@@ -61,7 +61,7 @@
         {/if}
       </figure>
     {:else}
-      <h4 class="Text-h4">{asText(speaker.data.name)}</h4>
+      <strong class="Text-h4">{asText(speaker.data.name)}</strong>
       <p class="desc">{speaker.data.title}</p>
     {/if}
 
@@ -69,10 +69,10 @@
       <RichText class="u-spaceMd" fields={speaker.data.bio} />
     {/if}
     {#if type === 'link'}
-      <Link class="u-spaceSm u-trigger u-triggerBlock" document={speaker}
-        >Learn more <span class="u-hiddenVisually"
-          >about {asText(speaker.data.name)}</span
-        ></Link>
+      <Link class="u-spaceSm u-trigger u-triggerBlock" document={speaker}>
+        Learn more
+        <span class="u-hiddenVisually">about {asText(speaker.data.name)}</span>
+      </Link>
     {/if}
   </div>
   {#if sessions?.length}
