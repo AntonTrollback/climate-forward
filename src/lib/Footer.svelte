@@ -63,11 +63,7 @@
     {#if links.some((item) => item.text && (item.link.link_type !== 'Web' ? item.link.id && !item.link.isBroken : true))}
       <ul class="list">
         <h3 class="u-hiddenVisually">Navigation</h3>
-        {#if branding === 'Climate Forward' && ($page.url.pathname === '/climate-forward/' || $page.url.pathname === '/climate-forward')}
-          <li class="item strong">
-            <a class="link" href="/">See all Climate Events</a>
-          </li>
-        {:else if branding === 'Climate Forward'}
+        {#if branding === 'Climate Forward' && $page.url.pathname.includes('/events/')}
           <li class="item strong">
             <a class="link" href="/climate-forward"
               >See all events in the Climate Forward Series</a>

@@ -2,8 +2,8 @@
   import tz from 'date-fns-tz'
   import Link from './Link.svelte'
   import { current } from './Event.svelte'
-  import src from './utils/src.js'
   import Divider from './Divider.svelte'
+  import SpeakerLink from './SpeakerLink.svelte'
   import RichText from './RichText.svelte'
   import { isSameDay, format } from 'date-fns'
   import { asDate, asText } from '@prismicio/helpers'
@@ -152,31 +152,7 @@
             {#each speakers as speaker}
               <li class="item">
                 <div class="body">
-                  <Link class="speaker" document={speaker}>
-                    <img
-                      sizes="2.875rem"
-                      srcset="{src(
-                        'c_fill,g_face,w_46,h_46/f_auto',
-                        speaker.data.image.url
-                      )} 46w,{src(
-                        'c_fill,g_face,w_92,h_92/f_auto',
-                        speaker.data.image.url
-                      )} 92w,{src(
-                        'c_fill,g_face,w_138,h_138/f_auto',
-                        speaker.data.image.url
-                      )} 138w"
-                      src={src(
-                        'c_fill,g_face,w_92,h_92/f_auto',
-                        speaker.data.image.url
-                      )}
-                      width="92"
-                      height="92"
-                      alt="Portrait of {asText(speaker.data.name)}" />
-                    <div>
-                      <strong>{asText(speaker.data.name)}</strong>
-                      {speaker.data.title}
-                    </div>
-                  </Link>
+                  <SpeakerLink {speaker} />
                 </div>
               </li>
             {/each}
@@ -261,40 +237,6 @@
   .item {
     position: relative;
     margin-top: 1rem;
-  }
-
-  :global(.Stream .speaker) {
-    display: flex;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    transition: opacity 250ms var(--ease-out);
-    max-width: 25rem;
-  }
-
-  :global(.Stream .speaker:hover strong) {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.11em;
-  }
-
-  :global(.Stream .speaker:active) {
-    opacity: 0.6;
-    transition: none;
-  }
-
-  :global(.Stream .speaker strong) {
-    display: block;
-  }
-
-  :global(.Stream .speaker img) {
-    flex-shrink: 0;
-    width: 2.875rem;
-    height: 2.875rem;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-    margin-right: 1rem;
-    background: var(--current-color-placeholder);
   }
 
   /* Video aspect */

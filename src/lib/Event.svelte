@@ -10,9 +10,9 @@
   import Dialog from './Dialog.svelte'
   import Footer from './Footer.svelte'
   import Slices from './Slices.svelte'
-  import Speaker from './Speaker.svelte'
+  import SpeakerDetails from './SpeakerDetails.svelte'
+  import SessionDetails from './SessionDetails.svelte'
   import Program from './Program.svelte'
-  import Session from './Session.svelte'
   import { setMeta } from './Meta.svelte'
   import Previous from './Previous.svelte'
   import resolve from './utils/resolve.js'
@@ -214,7 +214,7 @@
 
 {#if speaker}
   <Modal>
-    <Speaker
+    <SpeakerDetails
       {speaker}
       on:close={onclose}
       sessions={$current.data.sessions
@@ -231,7 +231,7 @@
 
 {#if session}
   <Modal>
-    <Session {session} {event} on:close={onclose} />
+    <SessionDetails {session} {event} on:close={onclose} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>
 {/if}

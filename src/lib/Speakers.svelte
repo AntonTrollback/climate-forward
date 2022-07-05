@@ -1,9 +1,16 @@
 <script>
-  import Speaker from './Speaker.svelte'
+  import SpeakerCard from './SpeakerCard.svelte'
+  import SpeakerDetails from './SpeakerDetails.svelte'
+  import SpeakerLink from './SpeakerLink.svelte'
+  import Modal from './Modal.svelte'
   import { asText } from '@prismicio/helpers'
+
   export let items
   export let limit = 6
+  export let heading = false
+  export let current
   let speakers
+  let standalone = heading
 
   function lastnameSort(a, b) {
     a = asText(a.data.name).split(' ').pop()
@@ -11,41 +18,82 @@
     return a.localeCompare(b)
   }
 
-  if (items.length > limit) {
-    speakers = [items.slice(0, limit), items.slice(limit).sort(lastnameSort)]
+  if (standalone) {
+    speakers = items.sort(lastnameSort)
   } else {
-    speakers = [items]
+    if (items.length > limit) {
+      speakers = [items.slice(0, limit), items.slice(limit).sort(lastnameSort)]
+    } else {
+      speakers = [items]
+    }
+  }
+
+  function open(event) {
+    current = speakers.find(
+      (item) => item.slug === event.currentTarget.dataset.slug
+    )
+  }
+  function close() {
+    current = null
   }
 </script>
 
-<div class="Speakers">
-  <div class="grid">
-    {#each speakers[0] as speaker}
-      <div class="item">
-        <div class="body">
-          <Speaker type="link" {speaker} />
+{#if !standalone}
+  <div class="component">
+    <div class="grid">
+      {#each speakers[0] as speaker}
+        <div class="item">
+          <div class="body">
+            <SpeakerCard {speaker} />
+          </div>
         </div>
-      </div>
-    {/each}
-    {#if speakers[1]?.length}
-      <details>
-        <summary class="u-expand">Show all speakers</summary>
-        <div class="grid">
-          {#each speakers[1] as speaker, index}
-            <div class="item">
-              <div class="body">
-                <Speaker lazy={index > 5} type="link" {speaker} />
+      {/each}
+      {#if speakers[1]?.length}
+        <details>
+          <summary class="u-expand">Show all speakers</summary>
+          <div class="grid">
+            {#each speakers[1] as speaker, index}
+              <div class="item">
+                <div class="body">
+                  <SpeakerCard lazy={index > 5} {speaker} />
+                </div>
               </div>
-            </div>
-          {/each}
-        </div>
-      </details>
-    {/if}
+            {/each}
+          </div>
+        </details>
+      {/if}
+    </div>
   </div>
-</div>
+{/if}
+
+{#if standalone && speakers?.length}
+  <div class="standalone">
+    <div class="aside">
+      <div class="Text Text--xl">
+        <h3 class="Text-p">{heading}</h3>
+      </div>
+    </div>
+    <ul class="list">
+      {#each speakers as speaker, index}
+        <li class="item">
+          <div class="body">
+            <SpeakerLink {speaker} onclick={open} />
+          </div>
+        </li>
+      {/each}
+    </ul>
+  </div>
+
+  {#if current}
+    <Modal>
+      <SpeakerDetails speaker={current} />
+      <button slot="close" on:click={close}>Close</button>
+    </Modal>
+  {/if}
+{/if}
 
 <style>
-  .Speakers {
+  .component {
     margin-top: var(--space-block-md);
   }
 
@@ -65,18 +113,18 @@
     grid-gap: var(--space-grid);
   }
 
-  .item {
+  .grid .item {
     position: relative;
     padding-bottom: var(--space-grid);
     border-bottom: 1px solid var(--current-color-border);
   }
 
-  .body {
+  .grid .body {
     position: relative;
     display: flex;
   }
 
-  .item:last-child {
+  .grid .item:last-child {
     padding-bottom: 0;
     border-bottom: 0;
   }
@@ -91,7 +139,7 @@
       grid-column: span 2;
     }
 
-    .body::before {
+    .grid .body::before {
       content: '';
       position: absolute;
       height: 100%;
@@ -103,12 +151,12 @@
   }
 
   @media (min-width: 800px) and (max-width: 1299px) {
-    .item:nth-child(odd) .body::before {
+    .grid .item:nth-child(odd) .body::before {
       content: none;
     }
 
-    .item:nth-child(2n + 1):nth-last-child(-n + 2),
-    .item:nth-child(2n + 1):nth-last-child(-n + 2) ~ .item {
+    .grid .item:nth-child(2n + 1):nth-last-child(-n + 2),
+    .grid .item:nth-child(2n + 1):nth-last-child(-n + 2) ~ .item {
       padding-bottom: 0;
       border-bottom: 0;
     }
@@ -123,14 +171,74 @@
       grid-column: span 3;
     }
 
-    .item:nth-child(3n + 1) .body::before {
+    .grid .item:nth-child(3n + 1) .body::before {
       content: none;
     }
 
-    .item:nth-child(3n + 1):nth-last-child(-n + 3),
-    .item:nth-child(3n + 1):nth-last-child(-n + 3) ~ .item {
+    .grid .item:nth-child(3n + 1):nth-last-child(-n + 3),
+    .grid .item:nth-child(3n + 1):nth-last-child(-n + 3) ~ .item {
       padding-bottom: 0;
       border-bottom: 0;
+    }
+  }
+
+  .standalone .aside {
+    margin-bottom: var(--space-md);
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin-top: 2rem;
+    max-width: 45rem;
+  }
+
+  .list .item {
+    position: relative;
+  }
+
+  @media (min-width: 500px) {
+    .list {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .list .item:only-child {
+      grid-column: 1 / 3;
+    }
+  }
+
+  @media (min-width: 700px) {
+    .list .item:only-child {
+      grid-column: 1 / 3;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .list {
+      grid-gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .standalone {
+      display: flex;
+    }
+
+    .standalone .aside {
+      width: calc(100% / 3);
+      padding-right: 2rem;
+      flex-shrink: 0;
+    }
+
+    .standalone .aside > * {
+      max-width: 23rem;
+    }
+
+    .list {
+      padding-left: 2rem;
+      flex-grow: 1;
+      margin-top: 0.35rem;
     }
   }
 </style>

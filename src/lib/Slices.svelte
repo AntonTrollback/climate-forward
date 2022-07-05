@@ -13,7 +13,6 @@
   import Previous from './Previous.svelte'
   import RichText from './RichText.svelte'
   import SectionIntro from './SectionIntro.svelte'
-  import SessionSpeakers from './SessionSpeakers.svelte'
   import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
@@ -169,15 +168,7 @@
       <div class="u-container">
         <Speakers
           limit={slice.primary.limit}
-          items={slice.items
-            .map((item) => item.speaker)
-            .filter((speaker) => speaker.id && !speaker.isBroken)} />
-      </div>
-    {/if}
-
-    {#if slice.slice_type === 'session_speakers'}
-      <div class="u-container">
-        <SessionSpeakers
+          heading={slice.primary.heading}
           items={slice.items
             .map((item) => item.speaker)
             .filter((speaker) => speaker.id && !speaker.isBroken)} />

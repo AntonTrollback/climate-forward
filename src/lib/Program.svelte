@@ -2,7 +2,7 @@
   import { asDate } from '@prismicio/helpers'
   import { language } from './utils/i18n.js'
   import { format, parse, isSameDay } from 'date-fns'
-  import Session from './Session.svelte'
+  import SessionCard from './SessionCard.svelte'
 
   export let sessions
 
@@ -42,7 +42,7 @@
     })
 </script>
 
-<div class="Program">
+<div class="component">
   {#if days.length > 1}
     {#each days as day, index}
       <div>
@@ -60,7 +60,7 @@
             {#each day.sessions as session}
               <ul class="item">
                 <div class="body">
-                  <Session type="link" {session} />
+                  <SessionCard {session} />
                 </div>
               </ul>
             {/each}
@@ -73,7 +73,7 @@
       {#each days[0].sessions as session}
         <li class="item">
           <div class="body">
-            <Session type="link" {session} />
+            <SessionCard {session} />
           </div>
         </li>
       {/each}
@@ -82,7 +82,7 @@
 </div>
 
 <style>
-  .Program {
+  .component {
     --title-padding: 0.875rem;
     margin-top: var(--space-block-md);
   }
@@ -136,7 +136,7 @@
     margin-top: calc(var(--space-block-sm) - var(--title-padding));
   }
 
-  .Program > li:not(:last-child) .grid {
+  .component > li:not(:last-child) .grid {
     margin-bottom: var(--space-block-md);
   }
 

@@ -49,6 +49,18 @@ export const page = dedent`
           ...non-repeatFields
         }
       }
+      ...on speakers {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          speaker {
+            ...on speaker {
+              ...speakerFields
+            }
+          }
+        }
+      }
       ...on scroll_target {
         non-repeat {
           ...non-repeatFields
@@ -95,18 +107,6 @@ export const page = dedent`
           ...repeatFields
           event {
             ...eventFields
-          }
-        }
-      }
-      ...on session_speakers {
-        non-repeat {
-          ...non-repeatFields
-        }
-        repeat {
-          speaker {
-            ...on speaker {
-              ...speakerFields
-            }
           }
         }
       }
