@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   export let version = '1'
-  let root
+  let component
   let picture
   let image
   let canplay
@@ -108,7 +108,7 @@
             fill: 'forwards',
             easing: 'cubic-bezier(0.2, 0, 1, 1)'
           }),
-          root.animate([{ opacity: 1 }, { opacity: 0 }], {
+          component.animate([{ opacity: 1 }, { opacity: 0 }], {
             duration: 700,
             delay: 3950,
             fill: 'forwards',
@@ -120,10 +120,10 @@
   }
 
   function stop() {
-    if (!root) return
-    root.style = 'position: absolute;'
+    if (!component) return
+    component.style = 'position: absolute;'
     Promise.all([
-      root.animate([{ opacity: 1 }, { opacity: 0 }], {
+      component.animate([{ opacity: 1 }, { opacity: 0 }], {
         duration: scrolldelay,
         delay: 0,
         fill: 'forwards',
@@ -136,7 +136,7 @@
     window.removeEventListener('touchmove', lockscroll)
     window.removeEventListener('wheel', lockscroll)
     endNavObserver()
-    root.classList.add('remove')
+    component.classList.add('remove')
   }
 
   function createVideo() {
@@ -208,10 +208,12 @@
     setTimeout(function () {
       if (!began) stop()
     }, 2000)
+
+    return cleanup
   })
 </script>
 
-<div class="Animation" style="display: none" bind:this={root}>
+<div class="component" style="display: none" bind:this={component}>
   <div class="canvas">
     <picture bind:this={picture}>
       <source
@@ -251,7 +253,7 @@
 </div>
 
 <style>
-  .Animation {
+  .component {
     display: block !important;
     position: fixed;
     top: 0;
@@ -264,7 +266,7 @@
     will-change: opacity;
   }
 
-  .Animation::after {
+  .component::after {
     content: '';
     background: white;
     position: absolute;
@@ -274,12 +276,12 @@
     height: var(--menu-height);
   }
 
-  :global(.Animation.remove.remove) {
+  :global(.component.remove.remove) {
     display: none !important;
   }
 
   @supports (min-height: 100dvh) {
-    .Animation {
+    .component {
       height: 100dvh;
     }
   }
@@ -301,7 +303,7 @@
   }
 
   picture,
-  :global(.Animation video) {
+  :global(.component video) {
     display: block;
     width: 100%;
     height: 100%;
