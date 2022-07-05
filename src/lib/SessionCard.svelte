@@ -39,17 +39,23 @@
     datetime = formatInTimeZone(
       asDate(session.data.start_date_time),
       timezone,
-      'LLLL d'
+      'EEE, LLLL d'
     )
 
     if (session.data.timeless) {
       datetime = formatInTimeZone(
         asDate(session.data.start_date_time),
         timezone,
-        'LLLL d'
+        'EEE, LLLL d'
       )
     } else {
-      datetime = `${start ? `${start}–${end}` : end} ${timezoneName}`
+      if (simple) {
+        datetime = `${datetime}, ${
+          start ? `${start}–${end}` : end
+        } ${timezoneName}`
+      } else {
+        datetime = `${start ? `${start}–${end}` : end} ${timezoneName}`
+      }
     }
   }
 
@@ -60,7 +66,11 @@
     if (session.data.kicker) sup = session.data.kicker
 
     sub = datetime
-    if (session.data.location) sub = `${datetime}, ${session.data.location}`
+    if (simple) {
+      sub = `${datetime}`
+    } else {
+      if (session.data.location) sub = `${datetime}, ${session.data.location}`
+    }
 
     highlight = session.data.kicker && session.data.branding
   }
@@ -79,16 +89,14 @@
   </div>
   <div class="u-spaceXs">{sub}</div>
 
-  {#if !simple}
-    <div>
-      <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
-        Learn more
-        <span class="u-hiddenVisually">
-          about the session "{asText(session.data.name)}"
-        </span>
-      </Link>
-    </div>
-  {/if}
+  <div>
+    <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
+      Learn more
+      <span class="u-hiddenVisually">
+        about the session "{asText(session.data.name)}"
+      </span>
+    </Link>
+  </div>
 </div>
 
 <style>
