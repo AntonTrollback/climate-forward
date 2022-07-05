@@ -158,77 +158,79 @@
       </a>
     {/if}
 
-    <input id="switch" class="switch" bind:checked type="checkbox" />
-    <label
-      class="toggle"
-      for="switch"
-      on:touchstart={removetapdelay}
-      on:click={toggle}>
-      <svg role="presentation" class="line" viewBox="0 0 24 1">
-        <path fill="currentColor" d="M0 0h24v1.75H0z" />
-      </svg>
-      <svg role="presentation" class="line" viewBox="0 0 24 1">
-        <path fill="currentColor" d="M0 0h24v1.75H0z" />
-      </svg>
-      Toggle menu
-    </label>
+    {#if slices?.length > 0}
+      <input id="switch" class="switch" bind:checked type="checkbox" />
+      <label
+        class="toggle"
+        for="switch"
+        on:touchstart={removetapdelay}
+        on:click={toggle}>
+        <svg role="presentation" class="line" viewBox="0 0 24 1">
+          <path fill="currentColor" d="M0 0h24v1.75H0z" />
+        </svg>
+        <svg role="presentation" class="line" viewBox="0 0 24 1">
+          <path fill="currentColor" d="M0 0h24v1.75H0z" />
+        </svg>
+        Toggle menu
+      </label>
 
-    <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
-      {#if branding === 'Climate Events'}
-        <a class="logo" href="/" on:click={scrollTop}>
-          <span class="u-hiddenVisually">
-            The New York Times Climate Events
-          </span>
-          {@html logo('climate-events')}
-        </a>
-      {:else if branding === 'Climate Forward'}
-        <a class="logo" href="/climate-forward" on:click={scrollTop}>
-          <span class="u-hiddenVisually">
-            The New York Times Climate Forward
-          </span>
-          {@html logo('climate-forward')}
-        </a>
-      {:else if branding === 'A New Climate'}
-        <a
-          class="logo"
-          href="/a-new-climate/events/san-francisco"
-          on:click={scrollTop}>
-          <span class="u-hiddenVisually">The New York Times A New Climate</span>
-          {@html logo('a-new-climate')}
-        </a>
-      {/if}
-      <div class="content">
-        <ul class="list">
-          {#each slices as slice}
-            <li>
-              {#if slice.slice_type === 'link'}
-                <Link class="link" document={slice.primary.link}>
-                  <span data-text={slice.primary.label}>
-                    {slice.primary.label}
-                  </span>
-                </Link>
-              {/if}
-              {#if slice.slice_type === 'scroll_link' || (slice.slice_type === 'live_stream_link' && isLive)}
-                <a
-                  class="link"
-                  on:click={jump}
-                  href="#{slice.primary.slice_id}">
-                  <span data-text={slice.primary.label}>
-                    {slice.primary.label}
-                  </span>
-                </a>
-              {/if}
-            </li>
-          {/each}
+      <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
+        {#if branding === 'Climate Events'}
+          <a class="logo" href="/" on:click={scrollTop}>
+            <span class="u-hiddenVisually">
+              The New York Times Climate Events
+            </span>
+            {@html logo('climate-events')}
+          </a>
+        {:else if branding === 'Climate Forward'}
+          <a class="logo" href="/climate-forward" on:click={scrollTop}>
+            <span class="u-hiddenVisually">
+              The New York Times Climate Forward
+            </span>
+            {@html logo('climate-forward')}
+          </a>
+        {:else if branding === 'A New Climate'}
+          <a
+            class="logo"
+            href="/a-new-climate/events/san-francisco"
+            on:click={scrollTop}>
+            <span class="u-hiddenVisually">The New York Times A New Climate</span>
+            {@html logo('a-new-climate')}
+          </a>
+        {/if}
+        <div class="content">
+          <ul class="list">
+            {#each slices as slice}
+              <li>
+                {#if slice.slice_type === 'link'}
+                  <Link class="link" document={slice.primary.link}>
+                    <span data-text={slice.primary.label}>
+                      {slice.primary.label}
+                    </span>
+                  </Link>
+                {/if}
+                {#if slice.slice_type === 'scroll_link' || (slice.slice_type === 'live_stream_link' && isLive)}
+                  <a
+                    class="link"
+                    on:click={jump}
+                    href="#{slice.primary.slice_id}">
+                    <span data-text={slice.primary.label}>
+                      {slice.primary.label}
+                    </span>
+                  </a>
+                {/if}
+              </li>
+            {/each}
 
-          {#if button}
-            <li>
-              <Link class="button" document={button.link}>{button.text}</Link>
-            </li>
-          {/if}
-        </ul>
-      </div>
-    </nav>
+            {#if button}
+              <li>
+                <Link class="button" document={button.link}>{button.text}</Link>
+              </li>
+            {/if}
+          </ul>
+        </div>
+      </nav>
+    {/if}
   </div>
 </header>
 
