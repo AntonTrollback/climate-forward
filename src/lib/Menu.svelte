@@ -140,7 +140,7 @@
   class:adaptive
   class:keeptop
   style="--scroll: {scroll || 0};">
-  {#if $current.data.seo_title}
+  {#if $current?.data?.seo_title}
     <h1 class="u-hiddenVisually">{$current.data.seo_title}</h1>
   {/if}
 
