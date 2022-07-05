@@ -30,14 +30,14 @@
       ) || []
 
   $: live = sessions.find(function (session) {
-    const start = asDate(session.data.start_date_time) - 1000 * 60 * 60
-    const end = asDate(session.data.end_date_time) - 1000 * 60 * 60
+    const start = asDate(session.data.start_date_time)
+    const end = asDate(session.data.end_date_time)
     const now = Date.now()
     return start < now && end > now
   })
 
   $: next = sessions.find(function (session) {
-    const start = asDate(session.data.start_date_time) - 1000 * 60 * 60
+    const start = asDate(session.data.start_date_time)
     const now = Date.now()
     return start > now
   })
@@ -51,13 +51,15 @@
   $: mode = live
     ? 'live'
     : next &&
-      isSameDay(asDate(next.data.start_date_time) - 1000 * 60 * 60, Date.now())
+      isSameDay(asDate(next.data.start_date_time), Date.now())
     ? 'before'
     : 'after'
 
   function getTimestamp(start, end) {
-    start = formatInTimeZone(start, 'UTC', 'h:mm aaaa')
-    end = formatInTimeZone(end, 'UTC', 'h:mm aaaa')
+    const timezone = $current?.data.timezone || 'UTC'
+
+    start = formatInTimeZone(start, timezone, 'h:mm aaaa')
+    end = formatInTimeZone(end, timezone, 'h:mm aaaa')
     start = start.replace('12:00 p.m.', 'Noon')
     end = end.replace('12:00 p.m.', 'Noon')
     start = start.replace(':00', '')
@@ -70,7 +72,7 @@
       start = start.replace(' p.m.', '')
     }
 
-    return `${start}–${end} B.S.T.`
+    return `${start}–${end} ${$current?.data.timezone_name || 'G.M.T.'}`
   }
 
   function jump(event) {

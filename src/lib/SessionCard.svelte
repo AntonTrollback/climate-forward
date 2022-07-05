@@ -1,6 +1,7 @@
 <script>
   import tz from 'date-fns-tz'
   import Link from './Link.svelte'
+  import { current } from './Event.svelte'
   import { asText, asDate } from '@prismicio/helpers'
 
   const { formatInTimeZone } = tz
@@ -8,16 +9,19 @@
   export let simple = false
   export let session
 
+  $: timezone = $current?.data.timezone || 'UTC'
+  $: timezoneName = $current?.data.timezone_name || 'G.M.T.'
+
   let start, end, datetime
   $: {
     start = formatInTimeZone(
       asDate(session.data.start_date_time),
-      'UTC',
+      timezone,
       'h:mm aaaa'
     )
     end = formatInTimeZone(
       asDate(session.data.end_date_time),
-      'UTC',
+      timezone,
       'h:mm aaaa'
     )
     start = start.replace('12:00 p.m.', 'Noon')
@@ -34,18 +38,18 @@
 
     datetime = formatInTimeZone(
       asDate(session.data.start_date_time),
-      'UTC',
+      timezone,
       'LLLL d'
     )
 
     if (session.data.timeless) {
       datetime = formatInTimeZone(
         asDate(session.data.start_date_time),
-        'UTC',
+        timezone,
         'LLLL d'
       )
     } else {
-      datetime = start ? `${start}–${end}` : end
+      datetime = `${start ? `${start}–${end}` : end} ${timezoneName}`
     }
   }
 

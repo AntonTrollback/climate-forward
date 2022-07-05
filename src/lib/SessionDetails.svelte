@@ -5,6 +5,7 @@
   import Sponsor from './Sponsor.svelte'
   import Divider from './Divider.svelte'
   import RichText from './RichText.svelte'
+  import { current } from './Event.svelte'
   import { createEventDispatcher } from 'svelte'
   import { asText, asDate } from '@prismicio/helpers'
 
@@ -18,17 +19,19 @@
   export let session
 
   $: hasSponsor = session.data.sponsor?.id && !session.data.sponsor.isBroken
+  $: timezone = $current?.data.timezone || 'UTC'
+  $: timezoneName = $current?.data.timezone_name || 'G.M.T.'
 
   let start, end
   $: {
     start = formatInTimeZone(
       asDate(session.data.start_date_time),
-      'UTC',
+      timezone,
       'h:mm aaaa'
     )
     end = formatInTimeZone(
       asDate(session.data.end_date_time),
-      'UTC',
+      timezone,
       'h:mm aaaa'
     )
     start = start.replace('12:00 p.m.', 'Noon')
@@ -44,15 +47,15 @@
     }
   }
 
-  $: isPast = asDate(session.data.end_date_time) - 1000 * 60 * 60 < Date.now()
+  $: isPast = asDate(session.data.end_date_time) < Date.now()
 
   $: isLive =
-    asDate(session.data.start_date_time) - 1000 * 60 * 60 < Date.now() &&
-    asDate(session.data.end_date_time) - 1000 * 60 * 60 > Date.now()
+    asDate(session.data.start_date_time) < Date.now() &&
+    asDate(session.data.end_date_time) > Date.now()
 
   $: day = formatInTimeZone(
     asDate(session.data.start_date_time),
-    'UTC',
+    timezone,
     'EEEE, LLLL d'
   )
   $: datetime = asDate(session.data.start_date_time).toJSON()
@@ -83,7 +86,7 @@
     <time class="wrap" {datetime}>
       <span>{day}</span>
       {#if !session.data.timeless}
-        <span>{start ? `${start}–${end}` : end} B.S.T.</span>
+        <span>{start ? `${start}–${end}` : end} {timezoneName}</span>
       {/if}
     </time>
     <span class="wrap">
@@ -178,7 +181,7 @@
       <time class="wrap" {datetime}>
         <span>{day}</span>
         {#if !session.data.timeless}
-          <span>{start ? `${start}–${end}` : end} B.S.T.</span>
+          <span>{start ? `${start}–${end}` : end} {timezoneName}</span>
         {/if}
       </time>
       <span class="wrap">
