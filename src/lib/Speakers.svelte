@@ -8,7 +8,7 @@
   export let items
   export let limit = 6
   export let heading = false
-  export let current
+  export let current = null
   let speakers
   let standalone = heading
 

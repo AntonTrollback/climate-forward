@@ -3,6 +3,7 @@
   import { isSameDay } from 'date-fns'
   import resolve from './utils/resolve.js'
   import { current } from './Event.svelte'
+  import { active } from './ScrollTarget.svelte'
   import Link, { LINK } from './Link.svelte'
   import { asDate } from '@prismicio/helpers'
   import { onMount, setContext } from 'svelte'
@@ -217,7 +218,7 @@
         <div class="content">
           <ul class="list">
             {#each slices as slice}
-              <li>
+              <li class={$active === slice.primary.slice_id ? 'active' : ''}>
                 {#if slice.slice_type === 'link'}
                   <Link class="link" document={slice.primary.link}>
                     <span data-text={slice.primary.label}>
