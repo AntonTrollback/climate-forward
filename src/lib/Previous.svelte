@@ -63,12 +63,18 @@
                     alt={`Photo from the stage during the session "${session.data.video.title}"`}
                     sizes="40vw, (min-width: 1000px) 16vw"
                     srcset="{src(
+                      'w_200/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 200w,{src(
                       'w_300/f_auto',
                       session.data.video.thumbnail_url
                     )} 300w,{src(
                       'w_400/f_auto',
                       session.data.video.thumbnail_url
                     )} 400w,{src(
+                      'w_500/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 500w,{src(
                       'w_600/f_auto',
                       session.data.video.thumbnail_url
                     )} 600w,{src(

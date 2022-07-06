@@ -58,11 +58,11 @@
           </summary>
           <ul class="grid">
             {#each day.sessions as session}
-              <ul class="item">
+              <li class="item">
                 <div class="body">
                   <SessionCard {session} />
                 </div>
-              </ul>
+              </li>
             {/each}
           </ul>
         </details>
