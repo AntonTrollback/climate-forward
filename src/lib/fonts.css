@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'NYTFranklin';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 200;
   src: url('/franklin-normal-200.woff2') format('woff2');
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: 'NYTFranklin';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 400;
   src: url('/franklin-normal-400.woff2') format('woff2');
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: 'NYTFranklin';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 500;
   src: url('/franklin-normal-500.woff2') format('woff2');
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: 'NYTFranklin';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 700;
   src: url('/franklin-normal-700.woff2') format('woff2');
@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: 'NYTFranklin';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 900;
   src: url('/franklin-normal-900.woff2') format('woff2');
@@ -40,7 +40,7 @@
 
 @font-face {
   font-family: 'NYTCheltenham';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 200;
   src: url('/cheltenham-normal-200.woff2') format('woff2');
@@ -48,7 +48,7 @@
 
 @font-face {
   font-family: 'NYTCheltenham';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 400;
   src: url('/cheltenham-normal-400.woff2') format('woff2');
@@ -56,7 +56,7 @@
 
 @font-face {
   font-family: 'NYTKarnak';
-  font-display: swap;
+  font-display: block;
   font-style: normal;
   font-weight: 900;
   src: url('/karnak-normal-900.woff2') format('woff2');

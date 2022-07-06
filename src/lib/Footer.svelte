@@ -100,17 +100,11 @@
   .Footer {
     padding-bottom: var(--space-block-md);
     text-align: center;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .Footer br {
     display: none;
-  }
-
-  @media (min-width: 600px) {
-    .Footer {
-      font-size: 0.75rem;
-    }
   }
 
   .logo {
