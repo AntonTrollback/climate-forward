@@ -144,7 +144,7 @@
 
   @media (min-width: 500px) {
     .list {
-      max-width: 33rem;
+      max-width: 28rem;
     }
   }
 

@@ -182,7 +182,7 @@
         <svg role="presentation" class="line" viewBox="0 0 24 1">
           <path fill="currentColor" d="M0 0h24v1.75H0z" />
         </svg>
-        Toggle menu
+        <span class="u-hiddenVisually">Toggle menu</span>
       </label>
 
       <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
@@ -572,7 +572,6 @@
 
     .toggle {
       display: block !important;
-      font-size: 0;
       position: relative;
       z-index: 2;
       width: 1.5rem;

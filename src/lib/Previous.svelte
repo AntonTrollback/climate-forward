@@ -170,21 +170,9 @@
     transform: translate(-50%, -50%);
     background-color: rgba(0, 0, 0, 0.1);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
-    background-size: 2rem auto;
+    background-size: 25% auto;
     background-position: center;
     background-repeat: no-repeat;
-  }
-
-  @media (min-width: 400px) {
-    figure::after {
-      background-size: 3rem auto;
-    }
-  }
-
-  @media (min-width: 1000px) {
-    figure::after {
-      background-size: 4rem auto;
-    }
   }
 
   .body::before {

@@ -52,7 +52,6 @@ ol,
 blockquote,
 iframe,
 figure {
-  font: inherit;
   margin: 0;
   border: 0;
   list-style: none;
