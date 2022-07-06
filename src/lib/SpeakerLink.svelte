@@ -56,6 +56,15 @@
     max-width: 25rem;
   }
 
+  .component:focus-within:has(:focus-visible) {
+    outline: solid var(--focus-ring-width);
+    outline-color: var(--focus-ring-color);
+  }
+
+  :global(.component:focus-within a:focus-visible) {
+    outline: 0 !important;
+  }
+
   .component:hover strong {
     text-decoration: underline;
     text-decoration-thickness: 1px;

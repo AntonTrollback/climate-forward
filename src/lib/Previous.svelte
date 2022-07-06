@@ -1,6 +1,7 @@
 <script>
   import Link from './Link.svelte'
   import { asText } from '@prismicio/helpers'
+  import src from './utils/src.js'
 
   export let sessions = []
   export let limit = 8
@@ -19,23 +20,34 @@
     {#each sessionsWithVideo.slice(0, limit) as session}
       <div class="item">
         <div class="body">
-          <div>
-            <figure>
-              <img
-                alt={session.data.video.title}
-                src={session.data.video.thumbnail_url}
-                width={session.data.video.thumbnail_width}
-                height={session.data.video.thumbnail_height} />
-            </figure>
-            <strong class="Text-h5 u-spaceSm"
-              >{asText(session.data.name)}</strong>
-            <Link class="u-trigger u-triggerBlock u-spaceSm" document={session}>
-              Learn more
-              <span class="u-hiddenVisually">
-                about the session "{asText(session.data.name)}"
-              </span>
-            </Link>
-          </div>
+          <figure>
+            <img
+              alt={`Photo from the stage during the session "${session.data.video.title}"`}
+              sizes="40vw, (min-width: 1000px) 16vw"
+              srcset="{src(
+                'w_300/f_auto',
+                session.data.video.thumbnail_url
+              )} 300w,{src(
+                'w_400/f_auto',
+                session.data.video.thumbnail_url
+              )} 400w,{src(
+                'w_600/f_auto',
+                session.data.video.thumbnail_url
+              )} 600w,{src(
+                'w_900/f_auto',
+                session.data.video.thumbnail_url
+              )} 900w"
+              src={src('w_400/f_auto', session.data.video.thumbnail_url)}
+              width={session.data.video.thumbnail_width}
+              height={session.data.video.thumbnail_height} />
+          </figure>
+          <strong class="Text-h5 u-spaceSm">{asText(session.data.name)}</strong>
+          <Link class="u-trigger u-triggerBlock u-spaceSm" document={session}>
+            Learn more
+            <span class="u-hiddenVisually">
+              about the session "{asText(session.data.name)}"
+            </span>
+          </Link>
         </div>
       </div>
     {/each}
@@ -46,25 +58,37 @@
           {#each sessionsWithVideo.slice(limit) as session, index}
             <div class="item">
               <div class="body">
-                <div>
-                  <figure>
-                    <img
-                      alt={session.data.video.title}
-                      src={session.data.video.thumbnail_url}
-                      width={session.data.video.thumbnail_width}
-                      height={session.data.video.thumbnail_height} />
-                  </figure>
-                  <strong class="Text-h5 u-spaceSm"
-                    >{asText(session.data.name)}</strong>
-                  <Link
-                    class="u-trigger u-triggerBlock u-spaceSm"
-                    document={session}>
-                    Learn more
-                    <span class="u-hiddenVisually">
-                      about the session "{asText(session.data.name)}"
-                    </span>
-                  </Link>
-                </div>
+                <figure>
+                  <img
+                    alt={`Photo from the stage during the session "${session.data.video.title}"`}
+                    sizes="40vw, (min-width: 1000px) 16vw"
+                    srcset="{src(
+                      'w_300/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 300w,{src(
+                      'w_400/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 400w,{src(
+                      'w_600/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 600w,{src(
+                      'w_900/f_auto',
+                      session.data.video.thumbnail_url
+                    )} 900w"
+                    src={src('w_400/f_auto', session.data.video.thumbnail_url)}
+                    width={session.data.video.thumbnail_width}
+                    height={session.data.video.thumbnail_height} />
+                </figure>
+                <strong class="Text-h5 u-spaceSm"
+                  >{asText(session.data.name)}</strong>
+                <Link
+                  class="u-trigger u-triggerBlock u-spaceSm"
+                  document={session}>
+                  Learn more
+                  <span class="u-hiddenVisually">
+                    about the session "{asText(session.data.name)}"
+                  </span>
+                </Link>
               </div>
             </div>
           {/each}
@@ -110,12 +134,6 @@
   .body {
     width: 100%;
     position: relative;
-    display: flex;
-  }
-
-  :global(.body > a) {
-    display: block;
-    width: 100%;
   }
 
   figure {
@@ -152,18 +170,6 @@
   }
 
   @media (min-width: 400px) {
-    figure::after {
-      background-size: 3rem auto;
-    }
-  }
-
-  @media (min-width: 800px) {
-    figure::after {
-      background-size: 2rem auto;
-    }
-  }
-
-  @media (min-width: 1000px) {
     figure::after {
       background-size: 3rem auto;
     }

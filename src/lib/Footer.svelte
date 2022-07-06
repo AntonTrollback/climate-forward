@@ -61,8 +61,8 @@
       </a>
     {/if}
     {#if links.some((item) => item.text && (item.link.link_type !== 'Web' ? item.link.id && !item.link.isBroken : true))}
+      <h3 class="u-hiddenVisually">Navigation</h3>
       <ul class="list">
-        <h3 class="u-hiddenVisually">Navigation</h3>
         {#if branding === 'Climate Forward' && $page.url.pathname.includes('/events/')}
           <li class="item strong">
             <a class="link" href="/climate-forward"

@@ -76,7 +76,7 @@
   }
 </script>
 
-<div class="component">
+<div class="component {simple ? 'simple' : ''}">
   <div class={highlight ? 'kicker' : ''}><span>{sup}</span></div>
   <div class="u-spaceXs">
     <strong class="Text-h4 title">
@@ -89,7 +89,7 @@
   </div>
   <div class="u-spaceXs">{sub}</div>
 
-  <div>
+  <div class="action">
     <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
       Learn more
       <span class="u-hiddenVisually">
@@ -104,11 +104,16 @@
     max-width: 17em;
   }
 
-  :global(.simple-link:hover + .title) {
+  .simple .action {
+    height: 0;
+    opacity: 0;
+  }
+
+  .simple:hover .title {
     text-decoration: underline;
   }
 
-  :global(.simple-link:focus-visible + .title) {
+  .simple:focus-within:has(:focus-visible) {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
   }
 
