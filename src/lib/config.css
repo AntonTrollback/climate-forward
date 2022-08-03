@@ -109,8 +109,8 @@
 }
 
 /**
-* Enable desktop navigation
-*/
+ * Enable desktop navigation
+ */
 
 @media (min-width: 900px) {
   :root {
@@ -119,8 +119,8 @@
 }
 
 /**
-* Control spacings
-*/
+ * Control spacings
+ */
 
 @media (min-width: 800px) {
   :root {
@@ -149,7 +149,6 @@
   :root {
     --space-grid: 2.5rem;
   }
-
   :root {
     --space-block-xl: 7.5rem;
   }
