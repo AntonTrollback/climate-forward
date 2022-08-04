@@ -73,7 +73,7 @@
 </script>
 
 <svelte:head>
-  <link rel="preload" href={PURR_SOURCE} as="script">
+  <link rel="preload" href={PURR_SOURCE} as="script" />
 </svelte:head>
 
 {#if salesOptOutPref === 'show'}

@@ -8,6 +8,7 @@
 
   export let simple = false
   export let session
+  export let nodate
 
   $: timezone = $current?.data.timezone || 'UTC'
   $: timezoneName = $current?.data.timezone_name || 'G.M.T.'
@@ -76,7 +77,7 @@
   }
 </script>
 
-<div class="component {simple ? 'simple' : ''}">
+<div class="component {simple ? 'simple' : ''} {nodate ? 'nodate' : ''}">
   <div class={highlight ? 'kicker' : ''}><span>{sup}</span></div>
   <div class="u-spaceXs">
     <strong class="Text-h4 title">
@@ -87,10 +88,10 @@
       {/if}
     </strong>
   </div>
-  <div class="u-spaceXs">{sub}</div>
+  <div class="u-spaceXs sub">{sub}</div>
 
   <div class="action">
-    <Link class="u-spaceXs u-trigger u-triggerBlock" document={session}>
+    <Link class="u-spaceSm u-trigger u-triggerBlock" document={session}>
       Learn more
       <span class="u-hiddenVisually">
         about the session "{asText(session.data.name)}"
@@ -104,9 +105,13 @@
     max-width: 17em;
   }
 
-  .simple .action {
+  .simple:not(.nodate) .action {
     height: 0;
     opacity: 0;
+  }
+
+  .nodate .sub {
+    display: none;
   }
 
   .simple:hover .title {

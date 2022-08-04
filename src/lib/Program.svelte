@@ -73,7 +73,7 @@
       {#each days[0].sessions as session}
         <li class="item">
           <div class="body">
-            <SessionCard {session} />
+            <SessionCard {session} nodate simple />
           </div>
         </li>
       {/each}
