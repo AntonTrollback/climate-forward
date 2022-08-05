@@ -21,7 +21,6 @@
       let vh = window.innerHeight
       if (!context[0].isIntersecting) sections[id] = null
       sections[id] = context[0].intersectionRect.height
-      console.log(sections)
       active.set(
         Object.keys(sections).reduce((a, b) => {
           if (sections[a] > sections[b]) {

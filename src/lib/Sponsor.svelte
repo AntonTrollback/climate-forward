@@ -54,12 +54,12 @@
   }
 
   .portrait {
-    max-height: 4rem;
+    max-height: 3.5rem;
     width: auto;
   }
 
   .lg .portrait {
-    max-height: 5.5rem;
+    max-height: 5rem;
     width: auto;
   }
 </style>

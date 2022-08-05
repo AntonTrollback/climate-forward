@@ -449,7 +449,14 @@
 
   .Menu.adaptive[style*=':0;'] .logo,
   .Menu.adaptive[style*=': 0;'] .logo {
-    opacity: 0;
+    opacity: 1;
+  }
+
+  @media (min-width: 1100px) {
+    .Menu.adaptive[style*=':0;'] .logo,
+    .Menu.adaptive[style*=': 0;'] .logo {
+      opacity: 0;
+    }
   }
 
   .Menu.adaptive .logo {

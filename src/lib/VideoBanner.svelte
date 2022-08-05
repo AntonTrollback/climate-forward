@@ -219,9 +219,14 @@
     }
   }
 
+  .logo svg {
+    display: none;
+  }
+
   @media (min-width: 1100px) {
     .logo svg {
-      top: 50%;
+      display: block;
+      top: calc(50% + 0.6rem);
     }
   }
 
