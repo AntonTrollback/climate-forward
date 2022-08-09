@@ -30,6 +30,7 @@
 
   --space-block-sm: 2.5rem;
   --space-block-md: 3.25rem;
+  --space-block-lg: 4rem;
   --space-block-xl: 4.5rem;
 
   --space-grid: 1.5rem;
@@ -125,6 +126,7 @@
 @media (min-width: 800px) {
   :root {
     --space-block-md: 3.5rem;
+    --space-block-lg: 4.5rem;
     --space-block-xl: 5.5rem;
     --space-grid: 2rem;
   }
@@ -133,6 +135,7 @@
 @media (min-width: 1000px) {
   :root {
     --space-block-md: 3.5rem;
+    --space-block-lg: 4.5rem;
     --space-block-xl: 5.5rem;
     --space-grid: 2rem;
   }

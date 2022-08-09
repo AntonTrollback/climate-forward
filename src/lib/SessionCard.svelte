@@ -63,7 +63,7 @@
   let sup, sub, highlight
   $: {
     sup = session.data.format ? session.data.format : ''
-    if (simple) sup = session.data.location
+    if (simple && !session.data.formatfocus) sup = session.data.location
     if (session.data.kicker) sup = session.data.kicker
 
     sub = datetime
@@ -114,11 +114,11 @@
     display: none;
   }
 
-  .simple:hover .title {
+  .simple:not(.nodate):hover .title {
     text-decoration: underline;
   }
 
-  .simple:focus-within:has(:focus-visible) {
+  .simple:not(.nodate):focus-within:has(:focus-visible) {
     outline: var(--focus-ring-width) solid var(--focus-ring-color);
   }
 

@@ -46,7 +46,13 @@
   }
 
   .lg img {
-    max-width: 12rem;
+    max-width: 10rem;
+  }
+
+  @media (min-width: 1000px) {
+    .lg img {
+      max-width: 12rem;
+    }
   }
 
   .lg figcaption {
@@ -59,7 +65,14 @@
   }
 
   .lg .portrait {
-    max-height: 5rem;
+    max-height: 4.25rem;
     width: auto;
+    margin-bottom: -1.5rem;
+  }
+
+  @media (min-width: 1000px) {
+    .lg .portrait {
+      max-height: 5rem;
+    }
   }
 </style>

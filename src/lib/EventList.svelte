@@ -19,7 +19,7 @@
   {#each items as item, index}
     <li class:shift={!large}>
       {#if index !== 0}
-        <Divider solid="true" size={large ? 'xl' : 'md'} />
+        <Divider solid="true" size={large ? 'lg' : 'md'} />
       {/if}
       <div class="content">
         <h2 class="{large ? 'Text-h1' : 'Text-h2'} u-fill">

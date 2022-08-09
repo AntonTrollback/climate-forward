@@ -35,7 +35,6 @@
 <hr class="u-hiddenVisually" />
 
 <footer class="Footer">
-  <Divider size="xl" />
   <h2 class="u-hiddenVisually">Page Information</h2>
   <nav class="u-container">
     {#if branding === 'Climate Events'}
@@ -98,9 +97,11 @@
 
 <style>
   .Footer {
-    padding-bottom: var(--space-block-md);
+    padding: var(--space-sm) 0 var(--space-block-md);
     text-align: center;
     font-size: 0.75rem;
+    margin-top: var(--space-block-lg);
+    border-top: 1px solid var(--current-color-border);
   }
 
   .Footer br {
