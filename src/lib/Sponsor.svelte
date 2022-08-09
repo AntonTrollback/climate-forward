@@ -72,7 +72,7 @@
   .lg .portrait {
     max-height: 4.25rem;
     width: auto;
-    margin-bottom: -1.5rem;
+    /* margin-bottom: -1.5rem; */
   }
 
   @media (min-width: 1000px) {
