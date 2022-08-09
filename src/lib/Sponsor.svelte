@@ -3,7 +3,7 @@
   export let org
   export let label = null
   export let size = 'md'
-  let { name, logo } = org
+  let { name, logo, multiplier } = org
 </script>
 
 <figure class="Sponsor {size} {$$props.class || ''} ">
@@ -12,6 +12,7 @@
     class={logo.dimensions.height * 1.1 > logo.dimensions.width
       ? 'portrait'
       : ''}
+    style="--size-multiplier: {multiplier ? multiplier : 50}"
     src={logo.url}
     width={logo.dimensions.width}
     height={logo.dimensions.height}
@@ -39,6 +40,10 @@
 
   .sm img {
     max-width: 5rem;
+  }
+
+  .sm img[alt*="BCG"] {
+    max-width: 4rem;
   }
 
   .md img {
