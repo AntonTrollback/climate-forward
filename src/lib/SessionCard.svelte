@@ -85,7 +85,9 @@
       {/if}
     </strong>
   </div>
-  <div class="u-spaceXs sub">{sub}</div>
+  {#if sub}
+    <div class="u-spaceXs sub">{sub}</div>
+  {/if}
 
   <div class="action">
     <Link class="u-spaceSm u-trigger u-triggerBlock" document={session}>
