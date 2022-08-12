@@ -301,7 +301,7 @@ details[open] > .u-expand::before {
 .Text-h1 {
   --line-height: 0.89em;
 
-  font-size: 3.5rem;
+  font-size: 3.65rem;
   letter-spacing: 0;
   font-family: var(--doc-display-font-family);
   left: 0;

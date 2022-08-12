@@ -56,7 +56,7 @@
       {#each sessions as session}
         <li class="item">
           <div class="body">
-            <SessionCard simple {session} />
+            <SessionCard showdate {session} />
           </div>
         </li>
       {/each}

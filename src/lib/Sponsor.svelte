@@ -42,7 +42,7 @@
     max-width: 5rem;
   }
 
-  .sm img[alt*="BCG"] {
+  .sm img[alt*='BCG'] {
     max-width: 4rem;
   }
 

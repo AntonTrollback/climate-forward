@@ -6,9 +6,8 @@
 
   const { formatInTimeZone } = tz
 
-  export let simple = false
   export let session
-  export let nodate
+  export let showdate
 
   $: timezone = $current?.data.timezone || 'UTC'
   $: timezoneName = $current?.data.timezone_name || 'G.M.T.'
@@ -43,41 +42,39 @@
       'EEE, LLLL d'
     )
 
-    if (session.data.timeless) {
-      datetime = formatInTimeZone(
-        asDate(session.data.start_date_time),
-        timezone,
-        'EEE, LLLL d'
-      )
+    if (showdate) {
+      datetime = `${datetime}, ${
+        start ? `${start}–${end}` : end
+      } ${timezoneName}`
     } else {
-      if (simple) {
-        datetime = `${datetime}, ${
-          start ? `${start}–${end}` : end
-        } ${timezoneName}`
-      } else {
-        datetime = `${start ? `${start}–${end}` : end} ${timezoneName}`
-      }
+      datetime = `${start ? `${start}–${end}` : end} ${timezoneName}`
     }
+
+    if (session.data.timeless) datetime = null
   }
 
   let sup, sub, highlight
   $: {
-    sup = session.data.format ? session.data.format : ''
-    if (simple && !session.data.formatfocus) sup = session.data.location
-    if (session.data.kicker) sup = session.data.kicker
-
-    sub = datetime
-    if (simple) {
-      sub = `${datetime}`
+    sup = ''
+    if (session.data.kicker) {
+      sup = session.data.kicker + ' ' + asText(session.data.sponsor.data.name)
+      if (session.data.branding) sup = session.data.kicker
     } else {
-      if (session.data.location) sub = `${datetime}, ${session.data.location}`
+      if (session.data.format) sup = session.data.format
+    }
+
+    sub = ''
+    if (datetime) sub = datetime
+    if (session.data.location) {
+      if (sub) sub = sub + ', ' + session.data.location
+      if (!sub) sub = session.data.location
     }
 
     highlight = session.data.kicker && session.data.branding
   }
 </script>
 
-<div class="component {simple ? 'simple' : ''} {nodate ? 'nodate' : ''}">
+<div class="component">
   <div class={highlight ? 'kicker' : ''}><span>{sup}</span></div>
   <div class="u-spaceXs">
     <strong class="Text-h4 title">
@@ -103,23 +100,6 @@
 <style>
   .title {
     max-width: 17em;
-  }
-
-  .simple:not(.nodate) .action {
-    height: 0;
-    opacity: 0;
-  }
-
-  .nodate .sub {
-    display: none;
-  }
-
-  .simple:not(.nodate):hover .title {
-    text-decoration: underline;
-  }
-
-  .simple:not(.nodate):focus-within:has(:focus-visible) {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
   }
 
   .kicker {
