@@ -7,7 +7,7 @@
 
   export let fields
   export let title = null
-  export let wide = null
+  export let width
   export let size = 'md'
 
   if (fields?.length < 1) fields = null
@@ -54,7 +54,9 @@
       </div>
     </div>
     <div class="main">
-      <div class="Text Text--spaced" class:Text--wide={wide}>
+      <div
+        class="Text Text--spaced"
+        style={width ? `--max-width: ${width}em` : null}>
         {#if fields}
           {@html asHTML(fields, resolveLink, serialize)}
         {/if}
@@ -64,7 +66,7 @@
 {:else}
   <div
     class="Text Text--spaced Text--{size} {$$props.class || ''}"
-    class:Text--wide={wide}>
+    style={width ? `--max-width: ${width}em` : null}>
     {@html asHTML(fields, resolveLink, serialize)}
   </div>
 {/if}

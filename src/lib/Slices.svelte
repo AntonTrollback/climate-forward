@@ -101,7 +101,7 @@
                 : slice.primary.size === 'Extra large'
                 ? 'xl'
                 : ''}
-              wide={slice.primary.wide}
+              width={slice.primary.width}
               fields={slice.primary.text} />
           </div>
         {/if}

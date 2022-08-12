@@ -301,7 +301,7 @@ details[open] > .u-expand::before {
 .Text-h1 {
   --line-height: 0.89em;
 
-  font-size: 3.65rem;
+  font-size: 3.4rem;
   letter-spacing: 0;
   font-family: var(--doc-display-font-family);
   left: 0;
@@ -314,6 +314,13 @@ details[open] > .u-expand::before {
   letter-spacing: 0;
   font-family: var(--doc-display-font-family);
   left: 0;
+}
+
+@media (min-width: 400px) {
+  .Text-h1 {
+    --line-height: 0.88em;
+    font-size: 4rem;
+  }
 }
 
 @media (min-width: 800px) {
@@ -410,14 +417,14 @@ details[open] > .u-expand::before {
   font-family: var(--doc-heading-font-family);
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.12;
   max-width: 26em;
 }
 
 @media (min-width: 800px) {
   .Text--lg .Text-p,
   .Text--xl .Text-p {
-    font-size: 1.5rem;
+    font-size: 1.65rem;
   }
 }
 
@@ -429,14 +436,10 @@ details[open] > .u-expand::before {
 
 .Text--xl .Text-p {
   font-size: 1.73rem;
-  max-width: 19.7em;
+  max-width: var(--max-width, 20em);
 }
 
-.Text--wide.Text--xl .Text-p {
-  max-width: 23em;
-}
-
-@media (min-width: 400px) {
+@media (min-width: 500px) {
   .Text--xl .Text-p {
     font-size: 2rem;
   }

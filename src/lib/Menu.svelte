@@ -659,7 +659,7 @@
 
     :global(.Menu .link) {
       display: inline-block;
-      font-size: 2.15rem;
+      font-size: 2.5rem;
       font-weight: 400;
       line-height: 1.1;
       letter-spacing: -0.025em;
@@ -674,12 +674,6 @@
 
     :global(.Menu .active) {
       font-weight: 900;
-    }
-  }
-
-  @media (max-width: 399px) {
-    :global(.Menu .link) {
-      font-size: 1.9rem;
     }
   }
 

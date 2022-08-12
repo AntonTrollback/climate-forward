@@ -42,12 +42,13 @@
 
   figure {
     flex: 0 0 8.5rem;
-    margin: 0 1.5rem 0 0;
+    margin: 0 1rem 0 0;
   }
 
   @media (min-width: 500px) {
     figure {
       flex: 0 0 10rem;
+      margin: 0 1.5rem 0 0;
     }
   }
 

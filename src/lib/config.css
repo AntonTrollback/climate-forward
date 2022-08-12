@@ -17,7 +17,7 @@
   --doc-color-placeholder: rgba(0, 0, 0, 0.1);
   --doc-color-ad: #f5f4f0;
 
-  --doc-margin: 1.25rem;
+  --doc-margin: 1rem;
   --doc-border-width: 8px;
   --doc-max-width: 80rem;
   --doc-narrow: 1;
@@ -33,7 +33,7 @@
   --space-block-lg: 4rem;
   --space-block-xl: 4.5rem;
 
-  --space-grid: 1.5rem;
+  --space-grid: 1rem;
 
   --scroll-offset: 100;
 
@@ -80,13 +80,13 @@
 
 @media (min-width: 400px) {
   :root {
-    --doc-margin: 1.75rem;
+    --doc-margin: 1.25rem;
   }
 }
 
 @media (min-width: 600px) and (min-height: 350px) {
   :root {
-    --doc-margin: 3.5rem;
+    --doc-margin: 3rem;
   }
 }
 
@@ -123,6 +123,12 @@
  * Control spacings
  */
 
+@media (min-width: 500px) {
+  :root {
+    --space-grid: 1.25rem;
+  }
+}
+
 @media (min-width: 800px) {
   :root {
     --space-block-md: 3.5rem;
@@ -150,7 +156,7 @@
 
 @media (min-width: 1400px) {
   :root {
-    --space-grid: 2.5rem;
+    --space-grid: 2.25rem;
   }
   :root {
     --space-block-xl: 7.5rem;
