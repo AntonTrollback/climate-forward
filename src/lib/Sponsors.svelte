@@ -37,10 +37,15 @@
 <style>
   .cols {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
     flex-wrap: wrap;
-    grid-gap: 1rem 4rem;
+    grid-gap: 1rem 2rem;
+  }
+
+  @media (min-width: 650px) {
+    .cols {
+      justify-content: space-between;
+    }
   }
 
   :global([id*='sponsors'] + .Footer) {
@@ -48,7 +53,13 @@
   }
 
   .large {
-    width: 50%;
+    width: 100%;
+  }
+
+  @media (min-width: 650px) {
+    .large {
+      width: 50%;
+    }
   }
 
   .label {

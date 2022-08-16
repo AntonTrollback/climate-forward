@@ -11,6 +11,7 @@
   <img
     style="--size-multiplier: {multiplier ? multiplier : 50}"
     src={logo.url}
+    title={asText(name)}
     width={logo.dimensions.width}
     height={logo.dimensions.height}
     draggable="false"
@@ -32,7 +33,7 @@
     display: block;
     width: 100%;
     margin-left: 1px;
-    width: calc(7.5rem * (var(--size-multiplier) / 100));
+    width: calc(7rem * (var(--size-multiplier) / 100));
   }
 
   .sm img {
@@ -45,7 +46,7 @@
 
   @media (min-width: 1000px) {
     .lg img {
-      width: calc(12rem * (var(--size-multiplier) / 100));
+      width: calc(11rem * (var(--size-multiplier) / 100));
     }
   }
 
