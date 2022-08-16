@@ -56,9 +56,8 @@
   let sup, sub, highlight
   $: {
     sup = ''
-    if (session.data.kicker) {
-      sup = session.data.kicker + ' ' + asText(session.data.sponsor.data.name)
-      if (session.data.branding) sup = session.data.kicker
+    if (session.data.kicker && session.data.branding) {
+      sup = session.data.kicker
     } else {
       if (session.data.format) sup = session.data.format
     }
