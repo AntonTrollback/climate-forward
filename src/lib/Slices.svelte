@@ -57,6 +57,13 @@
             <Sponsor
               class="u-spaceXl"
               label={slice.primary.sponsor_label}
+              size={slice.primary.size === 'Small'
+              ? 'sm'
+              : slice.primary.size === 'Medium'
+              ? 'md'
+              : slice.primary.size === 'Large'
+              ? 'lg'
+              : ''}
               org={slice.primary.sponsor.data} />
           </div>
         {/if}

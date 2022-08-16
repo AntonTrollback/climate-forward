@@ -9,6 +9,14 @@
       return cols.push({
         label: item.label,
         large: item.large,
+        size:
+          item.size === 'Small'
+            ? 'sm'
+            : item.size === 'Medium'
+            ? 'md'
+            : item.size === 'Large'
+            ? 'lg'
+            : '',
         sponsors: [item.sponsor.data]
       })
     }
@@ -25,7 +33,7 @@
         <div class="items">
           {#each col.sponsors as sponsor}
             <div class="item">
-              <Sponsor org={sponsor} size={col.large ? 'lg' : 'sm'} />
+              <Sponsor org={sponsor} size={col.size} />
             </div>
           {/each}
         </div>
