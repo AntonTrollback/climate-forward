@@ -3,28 +3,42 @@
   export let org
   export let label = null
   export let size = 'md'
-  let { name, logo, multiplier } = org
+  let { name, logo, multiplier, link } = org
 </script>
 
-<figure class="Sponsor {size} {$$props.class || ''} ">
-  {#if label}<figcaption>{label}</figcaption>{/if}
+<a
+  class="Sponsor {size} {$$props.class || ''}"
+  href={link ? link.url : '#'}
+  rel="noreferrer noopener"
+  target="_blank">
+  {#if label}<span>{label}</span>{/if}
+  <span class="u-hiddenVisually">{asText(name)}</span>
   <img
     style="--size-multiplier: {multiplier ? multiplier : 50}"
     src={logo.url}
     title={asText(name)}
     width={logo.dimensions.width}
     height={logo.dimensions.height}
+    role="presentation"
     draggable="false"
     alt="{asText(name)} logo" />
-</figure>
+</a>
 
 <style>
-  figure {
+  a {
     -webkit-user-select: none;
     user-select: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: opacity 250ms var(--ease-out);
   }
 
-  figcaption {
+  a:active {
+    transition: none;
+    opacity: 0.6;
+  }
+
+  span {
     font-size: 0.75rem;
     margin-bottom: var(--space-xs);
   }
@@ -50,7 +64,7 @@
     }
   }
 
-  .lg figcaption {
+  .lg span {
     margin-bottom: var(--space-sm);
   }
 </style>
