@@ -219,7 +219,7 @@
   }
 
   .popup--hint.popup--long {
-    width: 24.3;
+    width: 24.3rem;
     white-space: inherit;
     animation: popup-show 250ms var(--ease-out) forwards,
       popup-hide 250ms 4250ms var(--ease-in) forwards;
