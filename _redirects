@@ -1,21 +1,37 @@
-/a-new-climate                            /  301!
-/a-new-climate/events/san-francisco       /  301!
-/a-new-climate/events                     /  301!
+/climate-forward/london                    /climate-forward/events/london
+/climate-forward/events/london/venue       /climate-forward/events/london
+/climate-forward/events/london/program     /climate-forward/events/london
+/climate-forward/events/london/speakers    /climate-forward/events/london
+/climate-forward/events/london/tickets     /climate-forward/events/london/dialog/ticketing
+/climate-forward/events/london/ticketing   /climate-forward/events/london/dialog/ticketing
 
-/climate-forward/london                   /climate-forward/events/london
-/climate-forward/events/london/venue      /climate-forward/events/london
-/climate-forward/events                   /climate-forward/
-/climate-forward/events/london/program    /climate-forward/events/london
-/climate-forward/events/london/speakers   /climate-forward/events/london
-/climate-forward/events/london/tickets    /climate-forward/events/london/dialog/ticketing
-/climate-forward/events/london/ticketing  /climate-forward/events/london/dialog/ticketing
+/climate-forward/newyork                    /climate-forward/events/new-york
+/climate-forward/new-york                   /climate-forward/events/new-york
+/climate-forward/new-york-preview-page      /climate-forward/events/new-york
+/climate-forward/events/new-york/venue      /climate-forward/events/new-york
+/climate-forward/events/new-york/program    /climate-forward/events/new-york
+/climate-forward/events/new-york/speakers   /climate-forward/events/new-york
+/climate-forward/events/new-york/tickets    /climate-forward/events/new-york/dialog/ticketing
+/climate-forward/events/new-york/ticketing  /climate-forward/events/new-york/dialog/ticketing
 
-/climate-forward/fashion-opportunity      /climate-forward/the-fashion-opportunity
-/fashion-opportunity                      /climate-forward/the-fashion-opportunity
-/the-fashion-opportunity                  /climate-forward/the-fashion-opportunity
-/the-fashion-opportunity/speakers/*       /climate-forward/the-fashion-opportunity
-/the-fashion-opportunity/speakers         /climate-forward/the-fashion-opportunity
+/a-new-climate                                 /a-new-climate/events/san-francisco
+/a-new-climate/sanfrancisco                    /a-new-climate/events/san-francisco
+/a-new-climate/san-francisco                   /a-new-climate/events/san-francisco
+/a-new-climate/san-francisco-preview-page      /a-new-climate/events/san-francisco
+/a-new-climate/events                          /a-new-climate/events/san-francisco
+/a-new-climate/events/san-francisco/venue      /a-new-climate/events/san-francisco
+/a-new-climate/events/san-francisco/program    /a-new-climate/events/san-francisco
+/a-new-climate/events/san-francisco/speakers   /a-new-climate/events/san-francisco
+/a-new-climate/events/san-francisco/tickets    /a-new-climate/events/san-francisco/dialog/ticketing
+/a-new-climate/events/san-francisco/ticketing  /a-new-climate/events/san-francisco/dialog/ticketing
 
-/climate-forward/*                        /climate-forward-404 404
-/a-new-climate/*                          /a-new-climate-404 404
-/*                                        /404 404
+/climate-forward/events                     /climate-forward/
+/climate-forward/fashion-opportunity        /climate-forward/the-fashion-opportunity
+/fashion-opportunity                        /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity                    /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity/speakers/*         /climate-forward/the-fashion-opportunity
+/the-fashion-opportunity/speakers           /climate-forward/the-fashion-opportunity
+
+/climate-forward/*                          /climate-forward-404 404
+/a-new-climate/*                            /a-new-climate-404 404
+/*                                          /404 404
