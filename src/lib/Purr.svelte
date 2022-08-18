@@ -358,6 +358,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  .body p {
+    margin: 0;
+  }
+
   .body p + p {
     margin-top: 0.5rem;
   }

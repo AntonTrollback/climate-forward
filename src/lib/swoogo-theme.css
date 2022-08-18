@@ -1637,12 +1637,13 @@ input[type='checkbox'] + span .terms-link {
   * Special for the General Climate Event Event interest signup
   */
 
-[id*='invitation-form'] form > [data-attribute='contact-c_1749048'] {
+[id*='invitation-form'] form > [data-attribute='contact-c_1749048'],
+[id*='invitation-form'] form > [data-attribute='contact-c_2000447'] {
   width: 100%;
   flex-basis: 100%;
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
-  margin-bottom: -1rem;
+  margin-bottom: -1rem; */
 }
 
 [id*='invitation-form']
@@ -1668,8 +1669,15 @@ input[type='checkbox'] + span .terms-link {
 [id*='invitation-form'] form > [data-attribute='contact-c_1749048'] .checkbox {
   margin-top: 0;
   padding-top: 0;
-  margin-right: 1.75rem;
+  margin-right: 1.4rem;
   width: auto !important;
+}
+
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_1749048']
+  .checkbox:last-child {
+  margin-right: 0;
 }
 
 [id*='invitation-form']
@@ -1678,4 +1686,34 @@ input[type='checkbox'] + span .terms-link {
   .checkbox
   input {
   margin-top: 0.05rem;
+}
+
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_1749048']
+  .control-label,
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_2000447']
+  .control-label {
+  font-size: inherit;
+  text-transform: none;
+  margin: 0;
+  letter-spacing: inherit;
+  margin-top: 1rem;
+  border-top: 1px solid #e5e5e5!important;
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 60rem) {
+  [id*='invitation-form']
+  form
+  > [data-attribute='contact-c_1749048']
+  .control-label,
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_2000447']
+  .control-label {
+    font-size: 1.125rem;
+  }
 }
