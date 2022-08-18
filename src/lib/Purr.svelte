@@ -42,7 +42,7 @@
   }
 
   function save(props) {
-    return function (event) {
+    return function saving (event) {
       window.Purr.postUserPrivacyPref(props)
         .then(fetchDirectives)
         .then(onupdate)
