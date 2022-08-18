@@ -2,7 +2,7 @@
 @import '/config.css';
 @import '/normalize.css';
 
-/* Note: all below properties will be marked !important */
+/* Note: all below properties will be marked important */
 
 /**
  * Cleanup Swoogo
@@ -1641,14 +1641,18 @@ input[type='checkbox'] + span .terms-link {
 [id*='invitation-form'] form > [data-attribute='contact-c_2000447'] {
   width: 100%;
   flex-basis: 100%;
-  /* border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
-  margin-bottom: -1rem; */
 }
 
+[id*='invitation-form'] form > [data-attribute='contact-c_2000447'] {
+  border-bottom: 1px solid #e5e5e5;
+  margin-bottom: -1.8rem;
+  padding-bottom: 1.8rem;
+}
+
+[id*='invitation-form'] form > [data-attribute='contact-c_1749048'] input + div,
 [id*='invitation-form']
   form
-  > [data-attribute='contact-c_1749048']
+  > [data-attribute='contact-c_2000447']
   input
   + div {
   display: flex;
@@ -1660,22 +1664,32 @@ input[type='checkbox'] + span .terms-link {
   > [data-attribute='contact-c_1749048']
   .checkbox
   label
+  span,
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_2000447']
+  .checkbox
+  label
   span {
   font-size: 1rem;
   white-space: nowrap;
-  font-weight: 700;
 }
 
-[id*='invitation-form'] form > [data-attribute='contact-c_1749048'] .checkbox {
+[id*='invitation-form'] form > [data-attribute='contact-c_1749048'] .checkbox,
+[id*='invitation-form'] form > [data-attribute='contact-c_2000447'] .checkbox {
   margin-top: 0;
   padding-top: 0;
   margin-right: 1.4rem;
-  width: auto !important;
+  width: auto;
 }
 
 [id*='invitation-form']
   form
   > [data-attribute='contact-c_1749048']
+  .checkbox:last-child,
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_2000447']
   .checkbox:last-child {
   margin-right: 0;
 }
@@ -1683,6 +1697,11 @@ input[type='checkbox'] + span .terms-link {
 [id*='invitation-form']
   form
   > [data-attribute='contact-c_1749048']
+  .checkbox
+  input,
+[id*='invitation-form']
+  form
+  > [data-attribute='contact-c_2000447']
   .checkbox
   input {
   margin-top: 0.05rem;
@@ -1698,22 +1717,23 @@ input[type='checkbox'] + span .terms-link {
   .control-label {
   font-size: inherit;
   text-transform: none;
-  margin: 0;
   letter-spacing: inherit;
-  margin-top: 1rem;
-  border-top: 1px solid #e5e5e5!important;
-  padding-top: 0.5rem;
+  margin-top: 2rem;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 @media (min-width: 60rem) {
   [id*='invitation-form']
-  form
-  > [data-attribute='contact-c_1749048']
-  .control-label,
-[id*='invitation-form']
-  form
-  > [data-attribute='contact-c_2000447']
-  .control-label {
+    form
+    > [data-attribute='contact-c_1749048']
+    .control-label,
+  [id*='invitation-form']
+    form
+    > [data-attribute='contact-c_2000447']
+    .control-label {
     font-size: 1.125rem;
   }
 }
