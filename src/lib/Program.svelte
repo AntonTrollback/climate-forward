@@ -1,28 +1,34 @@
 <script>
   import { asDate } from '@prismicio/helpers'
   import { language } from './utils/i18n.js'
-  import { format, parse, isSameDay } from 'date-fns'
+  import { format, parse, isSameDay, isBefore } from 'date-fns'
   import SessionCard from './SessionCard.svelte'
 
   export let sessions
 
   $: days = sessions
-    .reduce(function (days, session) {
+    // Create day groups
+    .reduce(function (days, session, index) {
       const date = asDate(session.data.start_date_time)
       const datestamp = format(date, 'yyyy-MM-dd')
       let day = days.find((day) => day.date === datestamp)
       if (!day) {
-        day = { date: datestamp, sessions: [session] }
+        day = {
+          date: datestamp,
+          sessions: [session]
+        }
         days.push(day)
       } else {
         day.sessions.push(session)
       }
       return days
     }, [])
-    .sort((a, b) => a.date - b.date)
+    // Sort day groups
+    .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))
     .map(function ({ date, sessions }) {
       date = parse(date, 'yyyy-MM-dd', new Date())
       sessions = sessions
+        // Sort sessions
         .sort((a, b) => {
           if (a.data.start_date_time === b.data.start_date_time) {
             return (
@@ -35,18 +41,29 @@
             Date.parse(b.data.start_date_time)
           )
         })
+        // Move sponsored sessions to the end of the day
         .sort((a, b) =>
           a.data.branding === b.data.branding ? 0 : a.data.branding ? 1 : -1
         )
       return { date, sessions }
     })
+    // Set open state
+    .map((day, index) => {
+      if (isSameDay(asDate(day.date), Date.now())) day.open = true
+      if (index < 1 && isBefore(Date.now(), asDate(day.date))) day.open = true
+      return day
+    })
+    .map((day) => {
+      console.log(day.open)
+      return day
+    })
 </script>
 
 <div class="component">
   {#if days.length > 1}
-    {#each days as day, index}
+    {#each days as day}
       <div>
-        <details open={isSameDay(asDate(day.date), Date.now())}>
+        <details open={day.open}>
           <summary>
             <h3 class="Text-h4">
               {day.date.toLocaleString($language, {
@@ -141,6 +158,7 @@
   }
 
   .item {
+    display: flex;
     position: relative;
     padding-bottom: var(--space-grid);
     border-bottom: 1px solid var(--current-color-border);
