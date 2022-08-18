@@ -53,10 +53,6 @@
       if (index < 1 && isBefore(Date.now(), asDate(day.date))) day.open = true
       return day
     })
-    .map((day) => {
-      console.log(day.open)
-      return day
-    })
 </script>
 
 <div class="component">
