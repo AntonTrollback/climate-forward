@@ -5,7 +5,6 @@
   import Divider from './Divider.svelte'
   import EventList from './EventList.svelte'
   import Gallery from './Gallery.svelte'
-  import Iframe from './Iframe.svelte'
   import LegalList from './LegalList.svelte'
   import Map from './Map.svelte'
   import ScrollTarget from './ScrollTarget.svelte'
@@ -66,10 +65,6 @@
                 : ''}
               org={slice.primary.sponsor.data} />
           </div>
-        {/if}
-
-        {#if slice.slice_type === 'iframe'}
-          <Iframe src={slice.primary.url} />
         {/if}
 
         {#if slice.slice_type === 'venue_map'}

@@ -76,11 +76,6 @@ export const page = dedent`
           }
         }
       }
-      ...on iframe {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
       ...on section_intro {
         non-repeat {
           ...non-repeatFields
