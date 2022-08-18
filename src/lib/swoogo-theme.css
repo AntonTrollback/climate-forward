@@ -649,6 +649,12 @@ select.form-control {
   color: #000;
 }
 
+.hint-block {
+  font-size: .75rem;
+  margin-top: 0.5rem;
+  max-width: 100%;
+}
+
 .help-block {
   margin: 0;
   color: #000;
