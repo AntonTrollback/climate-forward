@@ -11,7 +11,6 @@
 
 <script>
   import { onMount } from 'svelte'
-  import Button from './Button.svelte'
   import { gettext } from './utils/i18n.js'
 
   const text = gettext(translations)
@@ -47,6 +46,7 @@
       window.Purr.postUserPrivacyPref(props)
         .then(fetchDirectives)
         .then(onupdate)
+      event.currentTarget.classList.add('hide')
       event.preventDefault()
     }
   }
@@ -152,15 +152,16 @@
         </p>
       </div>
       <div class="actions">
-        <Button solid onclick={save({ gdpr_pref: 'opt-in' })}>
+        <button class="btn solid" onclick={save({ gdpr_pref: 'opt-in' })}>
           {text`Accept`}
-        </Button>
-        <Button
+        </button>
+        <a
+          class="btn"
           target="_blank"
           rel="noopener noreferrer"
           href="https://www.nytimes.com/privacy/cookie-policy#how-do-i-manage-trackers">
           {text`Manage Trackers`}
-        </Button>
+        </a>
       </div>
     </div>
   </div>
@@ -180,6 +181,16 @@
     flex-direction: column;
     z-index: 3;
     text-align: left;
+  }
+
+  @media print {
+    .popup {
+      display: none;
+    }
+  }
+
+  :global(.popup.hide) {
+    display: none;
   }
 
   @media (min-width: 400px) {
@@ -342,5 +353,58 @@
     .actions {
       flex-direction: column;
     }
+  }
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.25em;
+    min-height: 2.75rem;
+    border: 1px solid currentColor;
+    font-size: 0.875rem;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: var(--doc-letter-spacing-wide);
+    text-transform: uppercase;
+    -webkit-user-select: none;
+    user-select: none;
+    border-radius: 0.125rem;
+    transition: opacity 250ms var(--ease-out);
+    opacity: 1;
+    -webkit-touch-callout: none;
+    -webkit-appearance: none;
+  }
+
+  .btn:hover {
+    background: var(--current-color);
+    color: var(--current-color-background);
+    border-color: var(--current-color);
+  }
+
+  .btn:active {
+    transition: none;
+    opacity: 0.6;
+  }
+
+  .btn.solid {
+    background: var(--current-color);
+    color: var(--current-color-background);
+    border-color: var(--current-color);
+  }
+
+  .btn:focus-visible {
+    outline-width: var(--focus-ring-width) !important;
+    outline-color: var(--focus-ring-color) !important;
+    outline-offset: var(--focus-ring-width);
+  }
+
+  .btn:disabled {
+    --current-color: var(--current-color-border);
+    --current-color-background: var(--current-color-muted);
+    pointer-events: none;
+    cursor: not-allowed;
   }
 </style>
