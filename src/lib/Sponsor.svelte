@@ -16,7 +16,7 @@
   <img
     style="--size-multiplier: {multiplier ? multiplier : 50}"
     src={logo.url}
-    title={asText(name)}
+    title="Visit the {asText(name)} website"
     width={logo.dimensions.width}
     height={logo.dimensions.height}
     role="presentation"
