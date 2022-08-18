@@ -166,6 +166,10 @@
     }
   })
 
+  function handlekey(event) {
+    if (event.key === 'Escape' && (speaker || session || dialog)) onclose()
+  }
+
   function onclose() {
     speaker = null
     session = null
@@ -174,6 +178,8 @@
     window.history.replaceState({}, null, resolve(event, parent))
   }
 </script>
+
+<svelte:window on:keydown={handlekey} />
 
 <slot>
   <Menu

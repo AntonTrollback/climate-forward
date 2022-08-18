@@ -13,17 +13,18 @@
   const redirects = {
     'a-new-climate': '/a-new-climate/events/san-francisco',
     'a-new-climate/san-francisco': '/a-new-climate/events/san-francisco',
-    'anewclimate': '/a-new-climate/events/san-francisco',
+    anewclimate: '/a-new-climate/events/san-francisco',
     'anewclimate/san-francisco': '/a-new-climate/events/san-francisco',
     'anewclimate/sanfrancisco': '/a-new-climate/events/san-francisco',
     'climate-forward/london': '/climate-forward/events/london',
     'climate-forward/new-york': '/climate-forward/events/new-york',
     'climate-forward/newyork': '/climate-forward/events/new-york',
-    'climate-forward/sharm-el-sheikh': '/climate-forward/events/sharm-el-sheikh',
+    'climate-forward/sharm-el-sheikh':
+      '/climate-forward/events/sharm-el-sheikh',
     'climate-forward/sharm': '/climate-forward/events/sharm-el-sheikh',
-    'london': '/climate-forward/events/london',
+    london: '/climate-forward/events/london',
     'new-york': '/climate-forward/events/new-york',
-    'newyork': '/climate-forward/events/new-york',
+    newyork: '/climate-forward/events/new-york',
     'sharm-el-sheikh': '/climate-forward/events/sharm-el-sheikh'
   }
 

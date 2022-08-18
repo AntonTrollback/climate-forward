@@ -33,10 +33,17 @@
       (item) => item.slug === event.currentTarget.dataset.slug
     )
   }
+
+  function handlekey(event) {
+    if (event.key === 'Escape' && current) close()
+  }
+
   function close() {
     current = null
   }
 </script>
+
+<svelte:window on:keydown={handlekey} />
 
 {#if !standalone}
   <div class="component">
