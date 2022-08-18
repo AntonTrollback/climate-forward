@@ -67,6 +67,22 @@
   from = "/climate-forward/events/new-york/venue"
   to = "/climate-forward/events/new-york"
 [[redirects]]
+  from = "/climate-forward/events/sharm-el-sheikh/program"
+  to = "/climate-forward/events/sharm-el-sheikh"
+[[redirects]]
+  from = "/climate-forward/events/sharm-el-sheikh/speakers"
+  to = "/climate-forward/events/sharm-el-sheikh"
+[[redirects]]
+  from = "/climate-forward/events/sharm-el-sheikh/ticketing"
+  to = "/climate-forward/events/sharm-el-sheikh/dialog/ticketing"
+[[redirects]]
+  from = "/climate-forward/events/sharm-el-sheikh/tickets"
+  to = "/climate-forward/events/sharm-el-sheikh/dialog/ticketing"
+[[redirects]]
+  from = "/climate-forward/events/sharm-el-sheikh/venue"
+  to = "/climate-forward/events/sharm-el-sheikh"
+
+[[redirects]]
   from = "/climate-forward/fashion-opportunity"
   to = "/climate-forward/the-fashion-opportunity"
 [[redirects]]
@@ -81,6 +97,17 @@
 [[redirects]]
   from = "/climate-forward/newyork"
   to = "/climate-forward/events/new-york"
+
+[[redirects]]
+  from = "/climate-forward/sharm"
+  to = "/climate-forward/events/sharm-el-sheikh"
+[[redirects]]
+  from = "/climate-forward/sharm-el-sheikh"
+  to = "/climate-forward/events/sharm-el-sheikh"
+[[redirects]]
+  from = "/climate-forward/sharmelsheikh"
+  to = "/climate-forward/events/sharm-el-sheikh"
+
 [[redirects]]
   from = "/fashion-opportunity"
   to = "/climate-forward/the-fashion-opportunity"
