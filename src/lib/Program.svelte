@@ -142,6 +142,10 @@
     transform-origin: center center;
   }
 
+  details[open] {
+    margin-bottom: var(--space-block-lg);
+  }
+
   details[open] > summary::before {
     transform: rotate(-0.5turn);
   }
