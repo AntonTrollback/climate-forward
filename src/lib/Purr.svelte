@@ -42,7 +42,7 @@
   }
 
   function save(props) {
-    return function saving (event) {
+    return function saving(event) {
       window.Purr.postUserPrivacyPref(props)
         .then(fetchDirectives)
         .then(onupdate)
@@ -179,8 +179,15 @@
     border-top: 1px solid;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
     z-index: 3;
     text-align: left;
+  }
+
+  .popup *,
+  .popup *::before,
+  .popup *::after {
+    box-sizing: border-box;
   }
 
   @media print {
@@ -297,6 +304,15 @@
   }
 
   .dismiss {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
     position: absolute;
     top: 0.6rem;
     right: 0;
@@ -341,6 +357,15 @@
 
   .body a {
     text-decoration: underline;
+    color: inherit;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .body a:active {
+    opacity: 0.6;
   }
 
   .actions {
@@ -374,6 +399,12 @@
     border-radius: 0.125rem;
     transition: opacity 250ms var(--ease-out);
     opacity: 1;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    font-family: inherit;
     -webkit-touch-callout: none;
     -webkit-appearance: none;
   }
