@@ -41,14 +41,19 @@
     })
   }
 
-  function save(props) {
-    return function saving(event) {
-      window.Purr.postUserPrivacyPref(props)
-        .then(fetchDirectives)
-        .then(onupdate)
-      event.currentTarget.classList.add('hide')
-      event.preventDefault()
-    }
+  function optout(event) {
+    window.Purr.postUserPrivacyPref({ ccpa_pref: 'opt-out' })
+      .then(fetchDirectives)
+      .then(onupdate)
+    event.preventDefault()
+  }
+
+  function optin(event) {
+    window.Purr.postUserPrivacyPref({ gdpr_pref: 'opt-in' })
+      .then(fetchDirectives)
+      .then(onupdate)
+    event.currentTarget.classList.add('hide')
+    event.preventDefault()
   }
 
   function dismiss(event) {
@@ -77,7 +82,7 @@
 </svelte:head>
 
 {#if salesOptOutPref === 'show'}
-  <button on:click={save({ ccpa_pref: 'opt-out' })}>
+  <button on:click={optout}>
     {text`Do not sell my personal information`}
   </button>
 {:else if salesOptOutPref === 'show-opted-out'}
@@ -152,9 +157,7 @@
         </p>
       </div>
       <div class="actions">
-        <button class="btn solid" onclick={save({ gdpr_pref: 'opt-in' })}>
-          {text`Accept`}
-        </button>
+        <button class="btn solid" on:click={optin}>{text`Accept`}</button>
         <a
           class="btn"
           target="_blank"
@@ -304,7 +307,6 @@
   }
 
   .dismiss {
-    padding: 0;
     margin: 0;
     border: 0;
     border-radius: 0;
@@ -322,6 +324,11 @@
 
   .dismiss:active {
     color: rgba(0, 0, 0, 0.5);
+  }
+
+  .dismiss svg {
+    display: inline-block;
+    vertical-align: bottom;
   }
 
   .content {
