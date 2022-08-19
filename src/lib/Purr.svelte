@@ -80,13 +80,15 @@
 <svelte:head>
   <link rel="preload" href={PURR_SOURCE} as="script" />
 </svelte:head>
-
+<button class="text" on:click={optout}>
+  {text`Do not sell my personal information`}
+</button>
 {#if salesOptOutPref === 'show'}
-  <button on:click={optout}>
+  <button class="text" on:click={optout}>
     {text`Do not sell my personal information`}
   </button>
 {:else if salesOptOutPref === 'show-opted-out'}
-  <span>{text`We no longer sell your personal information`}</span>
+  <span class="text">{text`We no longer sell your personal information`}</span>
   <div class="popup popup--hint">{text`Your preference has been saved.`}</div>
 {/if}
 
@@ -129,8 +131,8 @@
           <a
             href="https://www.nytimes.com/privacy/cookie-policy"
             rel="noreferrer noopener"
-            target="_blank">
-            {text`view our Cookie Policy`}
+            target="_blank"
+            >{text`view our Cookie Policy`}
           </a>.
         </p>
         <p>
@@ -141,13 +143,13 @@
             href="https://www.nytimes.com/privacy/cookie-policy#how-do-i-manage-trackers"
             rel="noreferrer noopener"
             target="_blank">
-            {text`object`}
-          </a>. {text`For more info, see our`}
+            {text`object`}</a
+          >. {text`For more info, see our`}
           <a
             href="https://nytimes.com/privacy/privacy-policy#we-allow-for-personalized-advertising-on-times-services"
             rel="noreferrer noopener"
-            target="_blank">
-            {text`privacy policy`}
+            target="_blank"
+            >{text`privacy policy`}
           </a>.
         </p>
         <p>
@@ -297,6 +299,23 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  .text {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.75rem;
+    text-decoration: underline;
+    margin: 0 auto;
+    display: block;
   }
 
   .header {

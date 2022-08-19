@@ -650,7 +650,7 @@ select.form-control {
 }
 
 .hint-block {
-  font-size: .75rem;
+  font-size: 0.75rem;
   margin-top: 0.3rem;
   max-width: 100%;
 }
@@ -1742,4 +1742,13 @@ input[type='checkbox'] + span .terms-link {
     .control-label {
     font-size: 1.125rem;
   }
+}
+
+/**
+ * Purr supporter
+ */
+
+.footer {
+  margin-bottom: 2rem;
+  margin-top: -2rem;
 }
