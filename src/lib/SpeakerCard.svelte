@@ -11,13 +11,12 @@
   <figure>
     {#if speaker.data.image?.url}
       <img
-        sizes="8.5rem"
-        srcset="{src('w_136/f_auto', speaker.data.image.url)} 136w,{src(
-          'w_272/f_auto',
+        sizes="12.7rem"
+        srcset="{src('w_203/f_auto', speaker.data.image.url)} 203w,{src(
+          'w_406/f_auto',
           speaker.data.image.url
-        )} 272w,{src('w_408/f_auto', speaker.data.image.url)} 408w"
-        src={src('w_408/f_auto', speaker.data.image.url)}
-        loading={lazy ? 'lazy' : 'eager'}
+        )} 406w,{src('w_609/f_auto', speaker.data.image.url)} 609w"
+        src={src('w_609/f_auto', speaker.data.image.url)}
         width={speaker.data.image.dimensions.width}
         height={speaker.data.image.dimensions.height}
         alt="Portrait of {asText(speaker.data.name)}" />
