@@ -50,7 +50,7 @@
   <div class="layout">
     <div class="aside">
       <div class="Text Text--xl Text--spaced">
-        <h2 class="Text-p">{asText(title)}</h2>
+        <h2 class="Text-p">{@html whitespace(asText(title))}</h2>
       </div>
     </div>
     <div class="main">
