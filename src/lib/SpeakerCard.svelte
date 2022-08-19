@@ -18,6 +18,7 @@
         )} 406w,{src('w_609/f_auto', speaker.data.image.url)} 609w"
         src={src('w_609/f_auto', speaker.data.image.url)}
         width={speaker.data.image.dimensions.width}
+        loading={lazy ? 'lazy' : 'eager'}
         height={speaker.data.image.dimensions.height}
         alt="Portrait of {asText(speaker.data.name)}" />
     {/if}

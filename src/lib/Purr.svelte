@@ -81,13 +81,16 @@
   <link rel="preload" href={PURR_SOURCE} as="script" />
 </svelte:head>
 {#if salesOptOutPref === 'show'}
-  <span class="text extra">© 2022 The New York Times Company. All Rights Reserved.</span>
+  <span class="text extra"
+    >© 2022 The New York Times Company. All Rights Reserved.</span>
   <button class="text swoogo" on:click={optout}>
     {text`Do not sell my personal information`}
   </button>
 {:else if salesOptOutPref === 'show-opted-out'}
-  <span class="text extra swoogo">© 2022 The New York Times Company. All Rights Reserved.</span>
-  <span class="text swoogo">{text`We no longer sell your personal information`}</span>
+  <span class="text extra swoogo"
+    >© 2022 The New York Times Company. All Rights Reserved.</span>
+  <span class="text swoogo"
+    >{text`We no longer sell your personal information`}</span>
   <div class="popup popup--hint">{text`Your preference has been saved.`}</div>
 {/if}
 

@@ -2,7 +2,6 @@
   import { page } from '$app/stores'
   import { setContext } from 'svelte'
   import Purr from './Purr.svelte'
-  import Divider from './Divider.svelte'
   import resolve from './utils/resolve.js'
   import logo from './utils/logo.js'
   import whitespace from './utils/whitespace.js'
