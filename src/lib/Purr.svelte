@@ -80,9 +80,6 @@
 <svelte:head>
   <link rel="preload" href={PURR_SOURCE} as="script" />
 </svelte:head>
-<button class="text" on:click={optout}>
-  {text`Do not sell my personal information`}
-</button>
 {#if salesOptOutPref === 'show'}
   <button class="text" on:click={optout}>
     {text`Do not sell my personal information`}
