@@ -312,12 +312,20 @@
     cursor: pointer;
     text-align: center;
     font-size: 0.75rem;
-    margin: 0 auto;
+    margin: 0 auto 0.2rem;
     display: block;
   }
 
   .text.extra {
     display: none;
+  }
+
+  .text:hover {
+    text-decoration: underline;
+  }
+
+  .text:active {
+    opacity: 0.6;
   }
 
   .header {
