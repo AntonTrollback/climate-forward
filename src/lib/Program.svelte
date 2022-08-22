@@ -1,16 +1,25 @@
 <script>
   import { asDate } from '@prismicio/helpers'
   import { language } from './utils/i18n.js'
-  import { format, parse, isSameDay, isBefore } from 'date-fns'
+  import { current } from './Event.svelte'
+  import { parse, isSameDay, isBefore } from 'date-fns'
   import SessionCard from './SessionCard.svelte'
+  import tz from 'date-fns-tz'
+
+  const { formatInTimeZone } = tz
 
   export let sessions
 
+  $: timezone = $current?.data.timezone || 'UTC'
   $: days = sessions
     // Create day groups
     .reduce(function (days, session, index) {
       const date = asDate(session.data.start_date_time)
-      const datestamp = format(date, 'yyyy-MM-dd')
+      const datestamp = formatInTimeZone(
+        date,
+        timezone,
+        'yyyy-MM-dd'
+      )
       let day = days.find((day) => day.date === datestamp)
       if (!day) {
         day = {
