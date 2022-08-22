@@ -15,11 +15,7 @@
     // Create day groups
     .reduce(function (days, session, index) {
       const date = asDate(session.data.start_date_time)
-      const datestamp = formatInTimeZone(
-        date,
-        timezone,
-        'yyyy-MM-dd'
-      )
+      const datestamp = formatInTimeZone(date, timezone, 'yyyy-MM-dd')
       let day = days.find((day) => day.date === datestamp)
       if (!day) {
         day = {
