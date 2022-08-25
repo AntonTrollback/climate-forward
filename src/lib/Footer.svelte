@@ -89,6 +89,9 @@
     <a href="/climate-forward/sharm-el-sheikh-thank-you">.</a>
     <a href="/climate-forward/the-fashion-opportunity">.</a>
     <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
+    <a href="/climate-forward/closing-the-gap-on-climate-inequity">.</a>
+    <a href="/climate-forward/can-fashion-influencers-persuade-us-to-consume-less">.</a>
+
     <a href="/the-fashion-opportunity">.</a>
     <a href="/404">.</a>
   </div>
