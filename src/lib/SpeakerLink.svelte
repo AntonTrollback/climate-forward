@@ -9,7 +9,8 @@
   export let onclick = false
 </script>
 
-<div class="component {large ? 'large' : ''}">
+<div
+  class="component {large ? 'large' : ''} {speaker.data.bio ? 'linked' : ''}">
   <img
     sizes={large ? '2.875rem, (min-width: 1100px) 4rem' : '2.875rem'}
     srcset="{src(
@@ -73,7 +74,7 @@
     }
   }
 
-  .component:focus-within:has(:focus-visible) {
+  .component.linked:focus-within:has(:focus-visible) {
     outline: solid var(--focus-ring-width);
     outline-color: var(--focus-ring-color);
   }
@@ -82,13 +83,13 @@
     outline: 0 !important;
   }
 
-  .component:hover strong {
+  .component.linked:hover strong {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.11em;
   }
 
-  .component:active {
+  .component.linked:active {
     opacity: 0.6;
     transition: none;
   }
