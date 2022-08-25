@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import Animation from './Animation.svelte'
   import Button from './Button.svelte'
   import Divider from './Divider.svelte'
