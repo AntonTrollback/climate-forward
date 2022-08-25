@@ -5,12 +5,13 @@
 
   export let speaker
   export let role = null
+  export let large = false
   export let onclick = false
 </script>
 
-<div class="component">
+<div class="component {large ? 'large' : ''}">
   <img
-    sizes="2.875rem"
+    sizes={large ? '2.875rem, (min-width: 1100px) 4rem' : '2.875rem'}
     srcset="{src(
       'c_fill,g_face,w_46,h_46/f_auto',
       speaker.data.image.url
@@ -20,30 +21,38 @@
     )} 92w,{src(
       'c_fill,g_face,w_138,h_138/f_auto',
       speaker.data.image.url
-    )} 138w"
+    )} 138w,{src(
+      'c_fill,g_face,w_192,h_192/f_auto',
+      speaker.data.image.url
+    )} 192w,{src(
+      'c_fill,g_face,w_256,h_256/f_auto',
+      speaker.data.image.url
+    )} 256w"
     src={src('c_fill,g_face,w_92,h_92/f_auto', speaker.data.image.url)}
     width="92"
     height="92"
     alt="Portrait of {asText(speaker.data.name)}" />
-  <div>
+  <div class="body">
     <strong>{asText(speaker.data.name)}</strong>
     {#if role}<span class="role">{role}</span>{/if}
     {speaker.data.title}
-    {#if onclick}
-      <button
-        class="u-trigger u-triggerBlock"
-        data-slug={speaker.slug}
-        on:click={onclick}>
-        <span class="u-hiddenVisually">
-          Learn more about {asText(speaker.data.name)}
-        </span>
-      </button>
-    {:else}
-      <Link class="u-trigger u-triggerBlock" document={speaker}>
-        <span class="u-hiddenVisually">
-          Learn more about {asText(speaker.data.name)}
-        </span>
-      </Link>
+    {#if speaker.data.bio}
+      {#if onclick}
+        <button
+          class="u-trigger u-triggerBlock"
+          data-slug={speaker.slug}
+          on:click={onclick}>
+          <span class="u-hiddenVisually">
+            Learn more about {asText(speaker.data.name)}
+          </span>
+        </button>
+      {:else}
+        <Link class="u-trigger u-triggerBlock" document={speaker}>
+          <span class="u-hiddenVisually">
+            Learn more about {asText(speaker.data.name)}
+          </span>
+        </Link>
+      {/if}
     {/if}
   </div>
 </div>
@@ -56,6 +65,12 @@
     line-height: 1.2;
     transition: opacity 250ms var(--ease-out);
     max-width: 25rem;
+  }
+
+  @media (min-width: 1100px) {
+    .large {
+      font-size: 1rem;
+    }
   }
 
   .component:focus-within:has(:focus-visible) {
@@ -78,11 +93,21 @@
     transition: none;
   }
 
-  .component strong {
+  .body {
+    align-self: center;
+    margin-top: -0.1em;
+  }
+
+  strong {
     display: block;
   }
 
-  .component img {
+  .role {
+    display: block;
+    color: var(--current-color-muted);
+  }
+
+  img {
     flex-shrink: 0;
     width: 2.875rem;
     height: 2.875rem;
@@ -93,8 +118,10 @@
     background: var(--current-color-placeholder);
   }
 
-  .component .role {
-    display: block;
-    color: var(--current-color-muted);
+  @media (min-width: 1100px) {
+    .large img {
+      width: 4rem;
+      height: 4rem;
+    }
   }
 </style>

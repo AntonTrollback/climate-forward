@@ -20,4 +20,13 @@
   prefix={parent}
   branding={page.data.branding || parent.data.branding}
   copyright={page.data.copyright || parent.data.copyright}
-  links={page.data.links.length ? page.data.links : parent.data.links} />
+  links={page.data.links.length &&
+  page.data.links.some(
+    (item) =>
+      item.text &&
+      (item.link.link_type !== 'Web'
+        ? item.link.id && !item.link.isBroken
+        : true)
+  )
+    ? page.data.links
+    : parent.data.links} />

@@ -19,14 +19,10 @@
   import VideoBanner from './VideoBanner.svelte'
   import { asText } from '@prismicio/helpers'
 
+  const YOUTUBE_VIDEO =
+    /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
+
   export let slices
-
-  let enableAnimation = true
-
-  onMount(function () {
-    const value = window.localStorage.getItem('DISABLE_ANIMATION')
-    enableAnimation = !value || !JSON.parse(value)
-  })
 
   $: groups = slices?.reduce(function (groups, slice) {
     const last = groups[groups.length - 1]
@@ -108,6 +104,25 @@
           </div>
         {/if}
 
+        {#if slice.slice_type === 'main_text'}
+          <div class="u-container u-pull">
+            <div class="u-pull">
+              <div class="u-center">
+                <div class="Text">
+                  <h1 class="Text-h3">{slice.primary.heading}</h1>
+                </div>
+                {#if slice.primary.meta?.length}
+                  <RichText
+                    class="u-pullTarget"
+                    size="sm"
+                    fields={slice.primary.meta} />
+                {/if}
+                <RichText class="u-spaceMd" fields={slice.primary.text} />
+              </div>
+            </div>
+          </div>
+        {/if}
+
         {#if slice.slice_type === 'section_title'}
           <hr class="u-hiddenVisually" />
           <div class="u-container">
@@ -125,6 +140,28 @@
             <RichText
               title={slice.primary.heading}
               fields={slice.primary.main_text} />
+          </div>
+        {/if}
+
+        {#if slice.slice_type === 'video_player'}
+          <div class="u-container">
+            {#if slice.primary.player?.embed_url}
+              <div class="u-aspectRestrainer u-introPull">
+                <div class="u-aspect u-introPull">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${
+                      slice.primary.player.embed_url.match(YOUTUBE_VIDEO)?.[1]
+                    }?rel=0&modestbranding=1`}
+                    width="1920"
+                    height="1080"
+                    title="YouTube video player for: {slice.primary.player
+                      .title}"
+                    frameborder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen />
+                </div>
+              </div>
+            {/if}
           </div>
         {/if}
 
@@ -155,7 +192,7 @@
           <VideoBanner version={slice.primary.version} />
         {/if}
 
-        {#if slice.slice_type === 'animation' && enableAnimation}
+        {#if slice.slice_type === 'animation'}
           <Animation />
         {/if}
 
@@ -174,6 +211,8 @@
             <Speakers
               limit={slice.primary.limit}
               heading={slice.primary.heading}
+              standalone={!!slice.primary.heading}
+              pushed={slice.primary.pushed}
               items={slice.items
                 .map((item) => item.speaker)
                 .filter((speaker) => speaker.id && !speaker.isBroken)} />

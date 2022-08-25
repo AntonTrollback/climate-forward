@@ -160,15 +160,14 @@
     </h2>
 
     {#if session.data.video?.embed_url}
-      <div class="aspect">
+      <div class="u-aspect video">
         <iframe
-          class="player"
           src={`https://www.youtube.com/embed/${
             session.data.video.embed_url.match(YOUTUBE_VIDEO)?.[1]
           }?rel=0&modestbranding=1`}
           width="1920"
           height="1080"
-          title="YouTube video player"
+          title="YouTube video player for: {session.data.video.title}"
           frameborder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen />
@@ -341,26 +340,8 @@
     font-size: 0.75rem;
   }
 
-  .aspect {
+  .video {
     margin: 2.2rem 0;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background: black;
-  }
-
-  .aspect::before {
-    content: '';
-    display: block;
-    padding-top: calc(100% * 9 / 16);
-  }
-
-  .player {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 
   @media (min-width: 700px) {

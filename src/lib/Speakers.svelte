@@ -9,8 +9,9 @@
   export let limit = 6
   export let heading = false
   export let current = null
+  export let pushed = null
+  export let standalone = null
   let speakers
-  let standalone = heading
 
   function lastnameSort(a, b) {
     a = asText(a.data.name).split(' ').pop()
@@ -73,18 +74,18 @@
   </div>
 {/if}
 
-{#if standalone && speakers?.length}
-  <div class="standalone">
-    <div class="aside">
-      <div class="Text Text--xl">
-        <h3 class="Text-p">{heading}</h3>
+{#if standalone && heading && speakers?.length}
+  <div class="standalone {pushed ? 'pushed' : ''}">
+    <div class="header">
+      <div class={pushed ? 'Text Text--xl' : 'Text'}>
+        <h2 class={pushed ? 'Text-p' : 'Text-h4'}>{heading}</h2>
       </div>
     </div>
     <ul class="list">
       {#each speakers as speaker, index}
         <li class="item">
           <div class="body">
-            <SpeakerLink {speaker} onclick={open} />
+            <SpeakerLink {speaker} large={!pushed} onclick={open} />
           </div>
         </li>
       {/each}
@@ -189,7 +190,7 @@
     }
   }
 
-  .standalone .aside {
+  .standalone .header {
     margin-bottom: var(--space-md);
   }
 
@@ -198,6 +199,9 @@
     grid-template-columns: 1fr;
     grid-gap: 1rem;
     margin-top: 2rem;
+  }
+
+  .pushed .list {
     max-width: 45rem;
   }
 
@@ -225,24 +229,29 @@
     .list {
       grid-gap: 2.5rem;
     }
+
+    .standalone:not(.pushed) .list {
+      grid-template-columns: 1fr 1fr 1fr;
+      /* grid-column: 1 / 3; */
+    }
   }
 
   @media (min-width: 1000px) {
-    .standalone {
+    .pushed {
       display: flex;
     }
 
-    .standalone .aside {
+    .pushed .header {
       width: calc(100% / 3);
       padding-right: 2rem;
       flex-shrink: 0;
     }
 
-    .standalone .aside > * {
+    .pushed .header > * {
       max-width: 23rem;
     }
 
-    .list {
+    .pushed .list {
       padding-left: 2rem;
       flex-grow: 1;
       margin-top: 0.35rem;

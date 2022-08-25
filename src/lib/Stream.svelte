@@ -114,7 +114,7 @@
           src="https://www.youtube.com/embed/{id}?rel=0&modestbranding=1"
           width="1920"
           height="1080"
-          title="YouTube video player"
+          title="YouTube live stream video player"
           frameborder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen />

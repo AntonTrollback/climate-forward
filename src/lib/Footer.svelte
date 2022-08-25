@@ -99,7 +99,7 @@
     padding: var(--space-sm) 0 var(--space-block-md);
     text-align: center;
     font-size: 0.75rem;
-    margin-top: var(--space-block-lg);
+    margin-top: var(--space-block-xl);
     border-top: 1px solid var(--current-color-border);
   }
 

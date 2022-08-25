@@ -37,6 +37,11 @@ export const page = dedent`
           ...non-repeatFields
         }
       }
+      ...on main_text {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on about_text {
         non-repeat {
           ...non-repeatFields
@@ -104,6 +109,11 @@ export const page = dedent`
           event {
             ...eventFields
           }
+        }
+      }
+      ...on video_player {
+        non-repeat {
+          ...non-repeatFields
         }
       }
       ...on video_banner {
