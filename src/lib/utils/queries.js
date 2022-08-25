@@ -18,6 +18,7 @@ export const session = dedent`
       }
     }
     speakers {
+      role
       speaker {
         ...on speaker {
           ...speakerFields

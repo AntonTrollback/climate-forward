@@ -44,9 +44,9 @@
 
   $: session = live || next
 
-  $: speakers = session?.data.speakers
-    .map((item) => item.speaker)
-    .filter((speaker) => speaker.id && !speaker.isBroken)
+  $: speakers = session?.data.speakers.filter(
+    (item) => item.speaker.id && !item.speaker.isBroken
+  )
 
   $: mode = live
     ? 'live'
@@ -150,10 +150,10 @@
           <Divider size="md" />
           <h3 class="Text-h5">Speakers</h3>
           <ol>
-            {#each speakers as speaker}
+            {#each speakers as item}
               <li class="item">
                 <div class="body">
-                  <SpeakerLink {speaker} />
+                  <SpeakerLink speaker={item.speaker} role={item.role} />
                 </div>
               </li>
             {/each}

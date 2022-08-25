@@ -4,6 +4,7 @@
   import src from './utils/src.js'
 
   export let speaker
+  export let role = null
   export let onclick = false
 </script>
 
@@ -26,6 +27,7 @@
     alt="Portrait of {asText(speaker.data.name)}" />
   <div>
     <strong>{asText(speaker.data.name)}</strong>
+    {#if role}<span class="role">{role}</span>{/if}
     {speaker.data.title}
     {#if onclick}
       <button
@@ -89,5 +91,10 @@
     object-fit: cover;
     margin-right: 1rem;
     background: var(--current-color-placeholder);
+  }
+
+  .component .role {
+    display: block;
+    color: var(--current-color-muted);
   }
 </style>

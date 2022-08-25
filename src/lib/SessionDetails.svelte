@@ -60,9 +60,7 @@
   )
   $: datetime = asDate(session.data.start_date_time).toJSON()
 
-  let speakers = session.data.speakers
-    .filter((item) => item.speaker.id)
-    .map((item) => item.speaker)
+  let speakers = session.data.speakers.filter((item) => item.speaker.id)
   if (!speakers.length) speakers = null
 
   function jump(event) {
@@ -251,10 +249,10 @@
       <Divider size="md" />
       <h3 class="Text-h5">Speakers</h3>
       <ul class="grid">
-        {#each speakers as speaker}
+        {#each speakers as item}
           <li class="item">
             <div class="body">
-              <SpeakerLink {speaker} />
+              <SpeakerLink speaker={item.speaker} role={item.role} />
             </div>
           </li>
         {/each}
