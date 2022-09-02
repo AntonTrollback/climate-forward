@@ -246,7 +246,7 @@
   {#if speakers?.length}
     <div class="speakers {speakers.length < 3 ? 'inline' : ''}">
       <Divider size="md" />
-      <h3 class="Text-h5">Speakers</h3>
+      <h3 class="Text-h5">Featuring</h3>
       <ul class="grid">
         {#each speakers as item}
           <li class="item">

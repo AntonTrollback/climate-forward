@@ -58,7 +58,7 @@
       {/each}
       {#if speakers[1]?.length}
         <details>
-          <summary class="u-expand">Show all speakers</summary>
+          <summary class="u-expand">Show all</summary>
           <div class="grid">
             {#each speakers[1] as speaker, index}
               <div class="item">
