@@ -60,12 +60,14 @@
     if (scrollY > 100) {
       sticky = true
       scroll = 1
+      document.documentElement.style.setProperty('--scroll', scroll)
       return
     } else if (scrollY < 100 && scrollY > 0) {
       scroll = (scrollY / 100).toFixed(3)
     } else if (scrollY <= 0) {
       scroll = 0
     }
+    document.documentElement.style.setProperty('--scroll', scroll)
     sticky = false
   }
 
@@ -133,8 +135,7 @@
   class="Menu"
   class:sticky
   class:adaptive
-  class:keeptop
-  style="--scroll: {scroll || 0};">
+  class:keeptop>
   {#if $current?.data?.seo_title}
     <h1 class="u-hiddenVisually">{$current.data.seo_title}</h1>
   {/if}
@@ -257,11 +258,11 @@
 
 <style>
   :root {
+    --scroll: 0;
     --menu-height: 4.5rem;
   }
 
   .Menu {
-    --scroll: 0;
     --x: var(--doc-margin);
     --x-shrinked: 1.25rem;
     --y: 1.6rem;
@@ -306,8 +307,8 @@
     display: none;
   }
 
-  .Menu.adaptive[style*=':0;'],
-  .Menu.adaptive[style*=': 0;'] {
+  :global(:root[style*=':0;'] .Menu.adaptive),
+  :global(:root[style*=': 0;'] .Menu.adaptive) {
     --current-color: #fff;
   }
 
@@ -445,23 +446,6 @@
       calc((var(--x) * -1 + var(--x-shrinked)) * var(--scroll)),
       calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
     );
-  }
-
-  .Menu.adaptive[style*=':0;'] .logo,
-  .Menu.adaptive[style*=': 0;'] .logo {
-    opacity: 1;
-  }
-
-  @media (min-width: 1100px) {
-    .Menu.adaptive[style*=':0;'] .logo,
-    .Menu.adaptive[style*=': 0;'] .logo {
-      opacity: 0;
-    }
-  }
-
-  .Menu.adaptive .logo {
-    opacity: calc(var(--scroll) * 1.5);
-    transition: none;
   }
 
   .Menu.adaptive .nav .logo {
