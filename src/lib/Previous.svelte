@@ -23,7 +23,7 @@
           <figure>
             <img
               alt={`Photo from the stage during the session "${session.data.video.title}"`}
-              sizes="40vw, (min-width: 1000px) 16vw"
+              sizes="(min-width: 1000px) 16vw, 40vw"
               srcset="{src(
                 'w_300/f_auto',
                 session.data.video.thumbnail_url
@@ -61,7 +61,7 @@
                 <figure>
                   <img
                     alt={`Photo from the stage during the session "${session.data.video.title}"`}
-                    sizes="40vw, (min-width: 1000px) 16vw"
+                    sizes="(min-width: 1000px) 16vw, 40vw"
                     srcset="{src(
                       'w_200/f_auto',
                       session.data.video.thumbnail_url

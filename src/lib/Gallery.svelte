@@ -9,7 +9,7 @@
     {#each photos as photo}
       <figure class="col">
         <img
-          sizes="80vw, (min-width: 1000px) 40vw"
+          sizes="(min-width: 1000px) 40vw, 80vw"
           srcset="{src('w_600/f_auto', photo.image.url)} 600w,{src(
             'w_900/f_auto',
             photo.image.url

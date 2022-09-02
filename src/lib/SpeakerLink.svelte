@@ -12,24 +12,24 @@
 <div
   class="component {large ? 'large' : ''} {speaker.data.bio ? 'linked' : ''}">
   <img
-    sizes={large ? '2.875rem, (min-width: 1100px) 4rem' : '2.875rem'}
+    sizes={large ? '(min-width: 1100px) 4rem, 2.875rem' : '2.875rem'}
     srcset="{src(
-      'c_fill,g_face,w_46,h_46/f_auto',
+      'c_fill,g_face,w_46,h_46/f_auto,q_100',
       speaker.data.image.url
     )} 46w,{src(
-      'c_fill,g_face,w_92,h_92/f_auto',
+      'c_fill,g_face,w_92,h_92/f_auto,q_100',
       speaker.data.image.url
     )} 92w,{src(
-      'c_fill,g_face,w_138,h_138/f_auto',
+      'c_fill,g_face,w_138,h_138/f_auto,q_100',
       speaker.data.image.url
     )} 138w,{src(
-      'c_fill,g_face,w_192,h_192/f_auto',
+      'c_fill,g_face,w_192,h_192/f_auto,q_100',
       speaker.data.image.url
     )} 192w,{src(
-      'c_fill,g_face,w_256,h_256/f_auto',
+      'c_fill,g_face,w_256,h_256/f_auto,q_100',
       speaker.data.image.url
     )} 256w"
-    src={src('c_fill,g_face,w_92,h_92/f_auto', speaker.data.image.url)}
+    src={src('c_fill,g_face,w_92,h_92/f_auto,q_100', speaker.data.image.url)}
     width="92"
     height="92"
     alt="Portrait of {asText(speaker.data.name)}" />
@@ -74,7 +74,7 @@
     }
   }
 
-  .component.linked:focus-within:has(:focus-visible) {
+  .component:focus-within:has(:focus-visible) {
     outline: solid var(--focus-ring-width);
     outline-color: var(--focus-ring-color);
   }
@@ -83,13 +83,13 @@
     outline: 0 !important;
   }
 
-  .component.linked:hover strong {
+  .component:hover strong {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.11em;
   }
 
-  .component.linked:active {
+  .component:active {
     opacity: 0.6;
     transition: none;
   }

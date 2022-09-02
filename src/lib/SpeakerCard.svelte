@@ -12,11 +12,11 @@
     {#if speaker.data.image?.url}
       <img
         sizes="12.7rem"
-        srcset="{src('w_203/f_auto', speaker.data.image.url)} 203w,{src(
-          'w_406/f_auto',
+        srcset="{src('w_136/f_auto,q_90', speaker.data.image.url)} 136w,{src(
+          'w_272/f_auto,q_90',
           speaker.data.image.url
-        )} 406w,{src('w_609/f_auto', speaker.data.image.url)} 609w"
-        src={src('w_609/f_auto', speaker.data.image.url)}
+        )} 272w,{src('w_408/f_auto,q_90', speaker.data.image.url)} 408w"
+        src={src('w_408/f_auto,q_90', speaker.data.image.url)}
         width={speaker.data.image.dimensions.width}
         loading={lazy ? 'lazy' : 'eager'}
         height={speaker.data.image.dimensions.height}
