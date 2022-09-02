@@ -238,7 +238,7 @@
 {/if}
 
 {#if dialog}
-  <Modal>
+  <Modal iframing={dialog.data.iframe_url}>
     <Dialog {dialog} on:close={onclose} />
     <Link slot="close" document={event}>Close</Link>
   </Modal>

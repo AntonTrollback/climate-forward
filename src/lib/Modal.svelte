@@ -4,6 +4,7 @@
 
 <script>
   import { onMount } from 'svelte'
+  export let iframing
   let modal
 
   onMount(function () {
@@ -24,7 +25,11 @@
   })
 </script>
 
-<section bind:this={modal} class="Modal" tabindex="-1" role="dialog">
+<section
+  bind:this={modal}
+  class="Modal {iframing ? 'iframing' : ''}"
+  tabindex="-1"
+  role="dialog">
   <div class="container">
     <slot />
     <div class="close">
@@ -44,7 +49,7 @@
     top: 0;
     z-index: 5;
     background: rgba(0, 0, 0, 0.16);
-    padding: 3.8rem 1.25rem 6rem;
+    padding: 3.8rem 1.25rem var(--modal-offset-bottom, 6rem);
     overflow: scroll;
     -webkit-user-select: text;
     user-select: text;
@@ -53,9 +58,14 @@
     outline: 0 !important;
   }
 
-  @supports (min-height: 100dvh) {
-    .Modal {
-      height: 100dvh;
+  .iframing {
+    --container-width: 40rem;
+    --modal-offset-bottom: 1.2rem;
+  }
+
+  @media (min-width: 500px) {
+    .iframing {
+      --modal-offset-bottom: 3rem;
     }
   }
 
@@ -63,37 +73,52 @@
     position: relative;
     background: #fff;
     color: #000;
-    width: 59.5rem;
+    width: var(--container-width, 59.5rem);
     max-width: 100%;
     margin: auto;
     padding: 1.5rem 1.5rem 2rem;
   }
 
+  .iframing .container {
+    padding: 0;
+  }
+
+  .iframing .container {
+    height: 100%;
+  }
+
+  @supports (min-height: 100dvh) {
+    .Modal {
+      height: 100dvh;
+    }
+  }
+
   @media (min-width: 400px) {
     .Modal {
-      padding: 3.8rem 1.2rem 5rem;
+      padding: 3.8rem 1.2rem var(--modal-offset-bottom, 5rem);
     }
   }
 
   @media (min-width: 500px) {
     .Modal {
-      padding: 4.2rem 2.75rem 5rem;
+      padding: 4.2rem 2.75rem var(--modal-offset-bottom, 5rem);
     }
 
     .container {
-      padding: 2rem 2rem 3rem;
+      padding: calc(2rem);
+      padding-bottom: calc(3rem);
     }
   }
 
   @media (min-width: 600px) {
     .Modal {
-      padding: 5rem 6rem 5rem;
+      padding: 5rem 6rem var(--modal-offset-bottom, 5rem);
     }
   }
 
   @media (min-width: 700px) {
     .Modal {
-      padding: 5rem 2rem 5rem;
+      padding: 5rem 2rem var(--modal-offset-bottom, 5rem);
     }
   }
 
@@ -103,7 +128,7 @@
     }
 
     .container {
-      padding: 3rem;
+      padding: calc(3rem);
     }
   }
 

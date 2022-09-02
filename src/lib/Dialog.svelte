@@ -7,6 +7,16 @@
   const content = dialog.data.body[0]
 </script>
 
+{#if dialog.data.iframe_url}
+  <iframe
+    src={'https://allaboard.eu'}
+    title="Registration form"
+    allowfullscreen="true"
+    allowpaymentrequest="true"
+    fetchpriority="high"
+    loading="eager" />
+{/if}
+
 {#if content?.slice_type === 'two_actions'}
   <div class="Text Text--sm">
     <h1 class="Text-p"><strong>{asText(content.primary.header)}</strong></h1>
@@ -63,5 +73,10 @@
       margin: 0;
       width: 52%;
     }
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
   }
 </style>
