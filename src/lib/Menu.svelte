@@ -143,13 +143,13 @@
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
-        <span class="u-hiddenVisually">The New York Times Climate Events</span>
+        <strong class="u-hiddenVisually">The New York Times Climate Events</strong>
         <br /><br />
         {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/climate-forward" on:click={scrollTop}>
-        <span class="u-hiddenVisually">The New York Times Climate Forward</span>
+        <strong class="u-hiddenVisually">The New York Times Climate Forward</strong>
         <br /><br />
         {@html logo('climate-forward')}
       </a>
@@ -158,7 +158,7 @@
         class="logo"
         href="/a-new-climate/events/san-francisco"
         on:click={scrollTop}>
-        <span class="u-hiddenVisually">The New York Times A New Climate</span>
+        <strong class="u-hiddenVisually">The New York Times A New Climate</strong>
         <br /><br />
         {@html logo('a-new-climate')}
       </a>
