@@ -55,7 +55,7 @@
 
   {#if sessions?.length}
     <Divider size="md" />
-    <h2 class="Text-h5">{upcoming ? 'Participant in' : 'Participated in'}</h2>
+    <h2 class="Text-h5">{upcoming ? 'Participating in' : 'Participated in'}</h2>
 
     <ul class="grid">
       {#each sessions as session}
