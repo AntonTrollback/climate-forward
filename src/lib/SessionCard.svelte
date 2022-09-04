@@ -8,6 +8,7 @@
 
   export let session
   export let showdate
+  export let past = false
 
   $: timezone = $current?.data.timezone || 'UTC'
   $: timezoneName = $current?.data.timezone_name || 'G.M.T.'
@@ -70,6 +71,8 @@
     }
 
     highlight = session.data.kicker && session.data.branding
+
+    if (past) sub = null
   }
 </script>
 

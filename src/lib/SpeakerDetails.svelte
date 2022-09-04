@@ -2,11 +2,16 @@
   import RichText from './RichText.svelte'
   import Divider from './Divider.svelte'
   import SessionCard from './SessionCard.svelte'
-  import { asText } from '@prismicio/helpers'
+  import { asText, asDate } from '@prismicio/helpers'
   import src from './utils/src.js'
 
   export let speaker
   export let sessions = null
+  let upcoming = true
+
+  sessions.find(function (session) {
+    upcoming = asDate(session.data.end_date_time) > Date.now()
+  })
 </script>
 
 <article class="component">
@@ -50,13 +55,13 @@
 
   {#if sessions?.length}
     <Divider size="md" />
-    <h2 class="Text-h5">Speaking at</h2>
+    <h2 class="Text-h5">{upcoming ? 'Participant in' : 'Participated in'}</h2>
 
     <ul class="grid">
       {#each sessions as session}
         <li class="item">
           <div class="body">
-            <SessionCard showdate {session} />
+            <SessionCard showdate past={!upcoming} {session} />
           </div>
         </li>
       {/each}
