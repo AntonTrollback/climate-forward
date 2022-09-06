@@ -6,30 +6,36 @@
   let video
   let canplay
   let sources
-  version = version.includes('1') ? '1' : '2'
 
   let supportsPicture = true
 
   function getSrc(props) {
     let { w, h, q, f } = props
     if (!f) f = 'mp4'
-    return `https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_${w},h_${h},so_0,q_${q[0]}:qmax_${q[1]},f_auto/v1653133121/climate-events/climate-forward-${version}-${w}x${h}.${f}`
+    return `https://res.cloudinary.com/dykmd8idd/video/upload/ac_none,c_crop,w_${w},h_${h},so_0,q_${
+      q[0]
+    }:qmax_${q[1]},f_auto/v1662134411/climate-events/climate-forward-${
+      w === 2200 ? 'updated' : '1'
+    }-${w}x${h}.${f}`
   }
 
   function debounce(fn) {
     let timeout
     return function (...args) {
       clearTimeout(timeout)
-      timeout = setTimeout(fn, 100, ...args)
+      timeout = setTimeout(fn, 10, ...args)
     }
   }
 
-  function createVideo() {
-    const source = sources.reduce(function (match, source) {
+  function getCurrentSource() {
+    return sources.reduce(function (match, source) {
       if (!source.media) return source
       return window.matchMedia(source.media).matches ? source : match
     }, null)
+  }
 
+  function createVideo() {
+    const source = getCurrentSource()
     video = document.createElement('video')
     video.controls = false
     video.autoplay = true
@@ -67,14 +73,21 @@
     const srcsets = sources.map((source) => source.srcset)
     supportsPicture = srcsets.includes(image.currentSrc)
 
+    function getCurrentSrc() {}
+
     if (!supportsPicture) {
       picture.replaceWith(createVideo())
+      let current = getCurrentSource()
       window.addEventListener(
         'resize',
-        debounce(function () {
-          video.replaceWith(createVideo())
-          if (isPlaying) {
-            canplay.then(() => video.play().catch(Function.prototype))
+        debounce(function (event) {
+          const potential = getCurrentSource()
+          if (potential !== current) {
+            current = potential
+            video.replaceWith(createVideo())
+            if (isPlaying) {
+              canplay.then(() => video.play().catch(Function.prototype))
+            }
           }
         })
       )
@@ -83,8 +96,9 @@
 </script>
 
 <div class="VideoBanner">
-  <div class="sizer"></div>
+  <div class="sizer" />
   <div class="content">
+    <div class="sizer" />
     <picture bind:this={picture}>
       <source
         srcset={getSrc({ w: 1000, h: 1400, q: [65, 70] })}
@@ -93,7 +107,7 @@
         height="1400"
         type="video/mp4" />
       <source
-        srcset={getSrc({ w: 1080, h: 1080, q: [70, 80] })}
+        srcset={getSrc({ w: 1080, h: 1080, q: [70, 75] })}
         media="(min-width: 500px) and (max-width: 699px)"
         width="1080"
         height="1080"
@@ -105,10 +119,10 @@
         height="1200"
         type="video/mp4" />
       <source
-        srcset={getSrc({ w: 2200, h: 990, q: [85, 90] })}
+        srcset={getSrc({ w: 2200, h: 1000, q: [85, 90] })}
         media="(min-width: 1100px)"
         width="2200"
-        height="990"
+        height="1000"
         type="video/mp4" />
       <img
         loading="lazy"
@@ -124,7 +138,7 @@
         alt="" />
       <img
         loading="lazy"
-        src={getSrc({ w: 2200, h: 990, q: [70, 70], f: 'jpg' })}
+        src={getSrc({ w: 2200, h: 1000, q: [80, 70], f: 'jpg' })}
         alt="" />
     </picture>
     <div class="logo">
@@ -156,15 +170,21 @@
     width: 100%;
     margin: 0 0 var(--space-block-sm);
     background: var(--doc-color-background);
-    max-height: 90vh;
+    max-height: calc(
+      100vh - var(--menu-height) - var(--space-block-sm) - 1.8rem
+    );
     min-height: 19rem;
     overflow: hidden;
+    margin-top: var(--menu-height);
   }
 
   picture,
   :global(.VideoBanner video) {
     display: block;
     width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     height: auto;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
@@ -174,39 +194,47 @@
 
   .content {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     width: 100%;
+    height: 100%;
+    transform: translateY(-50%);
+    overflow: hidden;
   }
 
-  :global(:root[style*=':0;'] .VideoBanner .content),
-  :global(:root[style*=': 0;'] .VideoBanner .content),
-  :global(:root[style*=':0;'] .VideoBanner .content),
-  :global(:root[style*=': 0;'] .VideoBanner .content) {
+  :global(:root[style$=':0;'] .VideoBanner .content),
+  :global(:root[style$=': 0;'] .VideoBanner .content) {
     position: fixed;
+    top: var(--menu-height);
+    transform: translateY(0);
+    height: auto;
+    max-height: calc(
+      100vh - var(--menu-height) - var(--space-block-sm) - 1.5rem
+    );
+    min-height: 19rem;
   }
 
   @media (max-width: 499px) {
     .sizer {
-      padding-bottom: calc((1400 / 1000) * 100%)
+      padding-bottom: calc((1400 / 1000) * 100%);
     }
   }
 
   @media (min-width: 500px) and (max-width: 699px) {
     .sizer {
-      padding-bottom: calc((1080 / 1080) * 100%)
+      padding-bottom: calc((1080 / 1080) * 100%);
     }
   }
 
   @media (min-width: 700px) and (max-width: 1099px) {
     .sizer {
-      padding-bottom: calc((1200 / 1800) * 100%)
+      padding-bottom: calc((1200 / 1800) * 100%);
     }
   }
 
   @media (min-width: 1100px) {
     .sizer {
-      padding-bottom: calc((990 / 2200) * 100%)
+      padding-bottom: calc((1000 / 2200) * 100%);
     }
   }
 
@@ -218,12 +246,25 @@
 
   .logo svg {
     position: absolute;
-    top: 30%;
-    left: var(--doc-margin);
     width: auto;
-    height: 1.5rem;
+    height: 2.9rem !important;
+    top: calc(50% + 0.75rem);
+    left: var(--doc-margin);
     z-index: 1;
     transform: translateY(-80%);
+  }
+
+  @media (min-width: 1350px) {
+    .logo svg {
+      height: 3.6rem !important;
+    }
+  }
+
+  @media (min-width: 1450px) {
+    .logo svg {
+      height: 3.95rem !important;
+      top: calc(50% + 1.2rem);
+    }
   }
 
   .logo::after {
@@ -239,10 +280,6 @@
   }
 
   @media (min-width: 400px) {
-    .logo svg {
-      height: 1.7rem !important;
-    }
-
     .logo::after {
       width: 4.5rem;
       height: 4.5rem;
@@ -250,10 +287,6 @@
   }
 
   @media (min-width: 700px) {
-    .logo svg {
-      height: 2rem !important;
-    }
-
     .logo::after {
       width: 5rem;
       height: 5rem;
@@ -267,7 +300,10 @@
   @media (min-width: 1100px) {
     .logo svg {
       display: block;
-      top: calc(50% + 0.6rem);
+    }
+
+    .logo::after {
+      left: 64.4%;
     }
   }
 

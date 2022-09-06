@@ -131,11 +131,7 @@
 
 <svelte:window on:resize={onresize} on:scroll|passive={onscroll} />
 
-<header
-  class="Menu"
-  class:sticky
-  class:adaptive
-  class:keeptop>
+<header class="Menu" class:sticky class:adaptive class:keeptop>
   {#if $current?.data?.seo_title}
     <h1 class="u-hiddenVisually">{$current.data.seo_title}</h1>
   {/if}
@@ -143,13 +139,15 @@
   <div class="container u-printHidden">
     {#if branding === 'Climate Events'}
       <a class="logo" href="/" on:click={scrollTop}>
-        <strong class="u-hiddenVisually">The New York Times Climate Events</strong>
+        <strong class="u-hiddenVisually"
+          >The New York Times Climate Events</strong>
         <br /><br />
         {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/climate-forward" on:click={scrollTop}>
-        <strong class="u-hiddenVisually">The New York Times Climate Forward</strong>
+        <strong class="u-hiddenVisually"
+          >The New York Times Climate Forward</strong>
         <br /><br />
         {@html logo('climate-forward')}
       </a>
@@ -158,7 +156,8 @@
         class="logo"
         href="/a-new-climate/events/san-francisco"
         on:click={scrollTop}>
-        <strong class="u-hiddenVisually">The New York Times A New Climate</strong>
+        <strong class="u-hiddenVisually"
+          >The New York Times A New Climate</strong>
         <br /><br />
         {@html logo('a-new-climate')}
       </a>
@@ -187,35 +186,37 @@
       </label>
 
       <nav class="nav" on:touchmove={lockscroll} on:wheel={lockscroll}>
-        {#if branding === 'Climate Events'}
-          <a style="display: none" class="logo" href="/" on:click={scrollTop}>
-            <span class="u-hiddenVisually">
-              The New York Times Climate Events
-            </span>
-            {@html logo('climate-events')}
-          </a>
-        {:else if branding === 'Climate Forward'}
-          <a
-            style="display: none"
-            class="logo"
-            href="/climate-forward"
-            on:click={scrollTop}>
-            <span class="u-hiddenVisually">
-              The New York Times Climate Forward
-            </span>
-            {@html logo('climate-forward')}
-          </a>
-        {:else if branding === 'A New Climate'}
-          <a
-            style="display: none"
-            class="logo"
-            href="/a-new-climate/events/san-francisco"
-            on:click={scrollTop}>
-            <span class="u-hiddenVisually"
-              >The New York Times A New Climate</span>
-            {@html logo('a-new-climate')}
-          </a>
-        {/if}
+        <div class="nav-wrap">
+          {#if branding === 'Climate Events'}
+            <a style="display: none" class="logo" href="/" on:click={scrollTop}>
+              <span class="u-hiddenVisually">
+                The New York Times Climate Events
+              </span>
+              {@html logo('climate-events')}
+            </a>
+          {:else if branding === 'Climate Forward'}
+            <a
+              style="display: none"
+              class="logo"
+              href="/climate-forward"
+              on:click={scrollTop}>
+              <span class="u-hiddenVisually">
+                The New York Times Climate Forward
+              </span>
+              {@html logo('climate-forward')}
+            </a>
+          {:else if branding === 'A New Climate'}
+            <a
+              style="display: none"
+              class="logo"
+              href="/a-new-climate/events/san-francisco"
+              on:click={scrollTop}>
+              <span class="u-hiddenVisually"
+                >The New York Times A New Climate</span>
+              {@html logo('a-new-climate')}
+            </a>
+          {/if}
+        </div>
         <div class="content">
           <ul class="list">
             {#each slices as slice}
@@ -259,22 +260,23 @@
 <style>
   :root {
     --scroll: 0;
-    --menu-height: 4.5rem;
+    --menu-height: 3.4rem;
   }
 
   .Menu {
-    --x: var(--doc-margin);
-    --x-shrinked: 1.25rem;
-    --y: 1.6rem;
-    --y-shrinked: -0.75rem;
-    --y-offset: 1rem;
+    --menu-padding-x: var(--doc-margin);
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
+    padding: 0 var(--menu-padding-x);
     z-index: 4;
     height: var(--menu-height);
+    background: var(--current-color-background);
     -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
@@ -307,16 +309,10 @@
     display: none;
   }
 
-  :global(:root[style*=':0;'] .Menu.adaptive),
-  :global(:root[style*=': 0;'] .Menu.adaptive) {
-    --current-color: #fff;
-  }
-
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--y) var(--x);
   }
 
   .container > * {
@@ -336,7 +332,10 @@
     width: auto;
     height: 1rem;
     position: relative;
-    top: 0.12rem;
+    top: 0.1rem;
+    left: -0.5rem;
+    padding: 0.5rem;
+    box-sizing: content-box;
     -webkit-touch-callout: none;
     outline-offset: var(--focus-ring-width);
   }
@@ -394,8 +393,6 @@
     opacity: 0.75;
   }
 
-  /* shrink animation */
-
   :root[scripting-enabled] {
     position: fixed;
     top: 0;
@@ -406,111 +403,49 @@
     content: '';
     background: var(--current-color-background);
     position: absolute;
-    top: -8rem;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(var(--menu-height) + 8rem);
-    opacity: 0;
+    height: 100%;
+    opacity: var(--scroll);
+    will-change: opacity;
     pointer-events: initial;
     box-shadow: 0 0 0.4rem rgb(0, 0, 0, 0.15);
   }
 
-  .Menu::before {
-    opacity: var(--scroll);
-    transform: translateY(
-      calc(((var(--y-shrinked) * 0.35) - 1rem) * var(--scroll))
-    );
-  }
-
   .Menu.sticky::before {
     opacity: 1;
-    transform: translateY(calc((var(--y-shrinked) * 0.35) - 1rem));
+  }
+
+  @media (min-width: 600px) {
+    .Menu {
+      --menu-padding-x: 1.6rem;
+    }
   }
 
   @media (min-width: 700px) {
     .Menu::before {
       opacity: var(--scroll);
-      transform: translateY(
-        calc(((var(--y-shrinked) * -1) - 1.2rem) * var(--scroll))
-      );
     }
 
     .Menu.sticky::before {
       opacity: 1;
-      transform: translateY(calc((var(--y-shrinked) * -1) - 1.2rem));
     }
-  }
-
-  .logo {
-    transform: translate(
-      calc((var(--x) * -1 + var(--x-shrinked)) * var(--scroll)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
-    );
   }
 
   .Menu.adaptive .nav .logo {
     opacity: 1;
   }
 
-  .Menu.sticky .logo {
-    transform: translate(
-      calc(var(--x) * -1 + var(--x-shrinked)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
-    );
-  }
-
-  .toggle {
-    transform: translate(
-      calc((var(--x) - var(--x-shrinked)) * var(--scroll)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
-    );
-  }
-
-  .Menu.sticky .toggle {
-    transform: translate(
-      calc(var(--x) - var(--x-shrinked)),
-      calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
-    );
-  }
-
-  @media (min-width: 900px) {
-    .content {
-      transform: translate(
-        calc((var(--x) - var(--x-shrinked)) * var(--scroll)),
-        calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)) * var(--scroll))
-      );
-    }
-
-    .Menu.sticky .content {
-      transform: translate(
-        calc(var(--x) - var(--x-shrinked)),
-        calc(((var(--y-shrinked) / 2 * -1) - var(--y-offset)))
-      );
-    }
-  }
-
   @media (min-width: 400px) {
     .logo {
       height: 1.15rem;
-      top: 0.1rem;
     }
   }
 
   @media (min-width: 700px) {
     :root {
-      --menu-height: 4.8rem;
-    }
-
-    .Menu {
-      --y: 1.7rem;
-      --x: 3rem;
-      --x-shrinked: 1.9rem;
-      --y-offset: 0.6rem;
-      --y-shrinked: 0.05rem;
-    }
-
-    .keeptop {
-      --x: var(--doc-margin);
+      --menu-height: 3.6rem;
     }
 
     .logo {
@@ -520,25 +455,11 @@
 
   @media (min-width: 900px) {
     :root {
-      --menu-height: 4.95rem;
+      --menu-height: 4rem;
     }
 
     .Menu {
-      --y: 1.3rem;
-      --y-offset: 0.6rem;
-      --y-shrinked: -0.5rem;
-    }
-  }
-
-  @media (min-width: 1000px) {
-    .keeptop {
-      --x: 3rem;
-    }
-  }
-
-  @media (min-width: 1100px) {
-    .Menu {
-      --y: 1.2rem;
+      --menu-padding-x: 2rem;
     }
   }
 
@@ -550,6 +471,7 @@
     .nav {
       --current-color: var(--doc-color) !important;
 
+      padding: 0 var(--menu-padding-x);
       color: var(--current-color);
       display: none;
       position: fixed;
@@ -559,6 +481,12 @@
       left: 0;
       pointer-events: initial;
       background: var(--current-color-background);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      height: var(--menu-height);
     }
 
     .toggle {
@@ -624,7 +552,6 @@
       display: block;
       overflow: hidden;
       min-height: 100vh;
-      padding: var(--y) var(--x);
       box-shadow: 0 0 0 1rem var(--current-color-background);
     }
 
@@ -638,7 +565,6 @@
       margin-top: calc(var(--menu-height) + 6vh - 0.4rem);
       position: absolute;
       top: 0;
-      left: var(--x);
     }
 
     :global(.Menu .link) {
@@ -658,6 +584,12 @@
 
     :global(.Menu .active) {
       font-weight: 900;
+    }
+  }
+
+  @media (min-width: 400px) and (max-width: 899px) {
+    .content {
+      margin-top: calc(var(--menu-height) + 11vh - 0.4rem);
     }
   }
 
@@ -688,7 +620,6 @@
     .container {
       z-index: 1;
       position: relative;
-      padding: var(--y) var(--x);
     }
 
     .content {
@@ -783,16 +714,9 @@
   }
 
   @media (min-width: 1100px) {
-    /* .Menu {
-      --y-offset: 0rem;
-      --x: 4rem;
-      --y: 2.5rem;
-    } */
-
     .logo {
-      height: 1.45rem;
+      height: 1.4rem;
       position: relative;
-      top: 0.15rem;
     }
   }
 </style>
