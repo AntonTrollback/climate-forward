@@ -9,9 +9,11 @@
   export let sessions = null
   let upcoming = true
 
-  sessions.find(function (session) {
-    upcoming = asDate(session.data.end_date_time) > Date.now()
-  })
+  if (sessions) {
+    sessions.find(function (session) {
+      upcoming = asDate(session.data.end_date_time) > Date.now()
+    })
+  }
 </script>
 
 <article class="component">

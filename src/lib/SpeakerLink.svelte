@@ -83,13 +83,13 @@
     outline: 0 !important;
   }
 
-  .component:hover strong {
+  .component.linked:hover strong {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.11em;
   }
 
-  .component:active {
+  .component.linked:active {
     opacity: 0.6;
     transition: none;
   }

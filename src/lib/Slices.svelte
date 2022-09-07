@@ -197,12 +197,14 @@
             title={slice.primary.title}
             date={slice.primary.dates}
             color={slice.primary.color}>
-            <Button
-              class="u-spaceXl"
-              solid={slice.primary.solid}
-              document={slice.primary.link}>
-              {slice.primary.link_text}
-            </Button>
+            {#if slice.primary.link?.url}
+              <Button
+                class="u-spaceXl"
+                solid={slice.primary.solid}
+                document={slice.primary.link}>
+                {slice.primary.link_text}
+              </Button>
+            {/if}
           </VideoBanner>
         {/if}
 
