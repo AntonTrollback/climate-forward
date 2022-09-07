@@ -39,7 +39,7 @@
 
 <style>
   .Conversations {
-    margin-top: var(--space-block-md);
+    margin-top: var(--space-block-sm);
   }
 
   .grid {
