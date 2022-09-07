@@ -13,7 +13,7 @@
   $: timezone = $current?.data.timezone || 'UTC'
   $: days = sessions
     // Create day groups
-    .reduce(function (days, session, index) {
+    .reduce(function (days, session) {
       const date = asDate(session.data.start_date_time)
       const datestamp = formatInTimeZone(date, timezone, 'yyyy-MM-dd')
       let day = days.find((day) => day.date === datestamp)

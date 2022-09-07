@@ -118,7 +118,7 @@
 
   function getSrc(props) {
     let { w, h, q, f, suffix = '1' } = props
-    if (!f) f = 'mp4'
+    if (!f) f = 'jpg'
     let res = 'https://res.cloudinary.com/dykmd8idd/video/upload/'
     res += `ac_none,c_crop,w_${w},h_${h},so_0,q_${q[0]}:qmax_${q[1]},f_auto`
     res += `/${theme.id}/climate-events/${theme.file}-${suffix}-${w}x${h}.${f}`
@@ -150,11 +150,12 @@
     video.loop = true
     video.disablepictureinpicture = true
     video.preload = 'auto'
-    video.poster = image.src
+    video.poster =
+      'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
     video.width = source.width
     video.height = source.height
     let descendant = document.createElement('source')
-    descendant.src = source.srcset
+    descendant.src = source.srcset.replace('.jpg', '.mp4')
     descendant.type = 'video/mp4'
     video.append(descendant)
 
@@ -162,6 +163,14 @@
       video.addEventListener('canplay', function oncanplay() {
         video.removeEventListener('canplay', oncanplay)
         resolve()
+      })
+
+      video.addEventListener('play', function () {
+        // Fix Safari video glitch
+        setTimeout(function () {
+          video.currentTime = 0
+          video.style = 'opacity: 1'
+        }, 0)
       })
     })
 
@@ -177,16 +186,15 @@
     )
     sources = [...picture.querySelectorAll('source')]
     const srcsets = sources.map((source) => source.srcset)
-    supportsPicture = srcsets.includes(image.currentSrc)
-
-    function getCurrentSrc() {}
+    // supportsPicture = srcsets.includes(image.currentSrc)
+    supportsPicture = false
 
     if (!supportsPicture) {
       picture.replaceWith(createVideo())
       let current = getCurrentSource()
       window.addEventListener(
         'resize',
-        debounce(function (event) {
+        debounce(function () {
           const potential = getCurrentSource()
           if (potential !== current) {
             current = potential
@@ -205,17 +213,23 @@
   <div class="sizer" />
   <div class="content">
     <div class="sizer" />
+    {#each theme.items as item}
+      <img
+        loading="eager"
+        class="loading"
+        src={getSrc({ ...item.opts, f: 'jpg' })}
+        alt="" />
+    {/each}
     <picture bind:this={picture}>
       {#each theme.items as item}
         <source
           srcset={getSrc(item.opts)}
           media={item.media}
           width={item.opts.w}
-          height={item.opts.h}
-          type="video/mp4" />
+          height={item.opts.h} />
       {/each}
       {#each theme.items as item}
-        <img loading="lazy" src={getSrc({ ...item.opts, f: 'jpg' })} alt="" />
+        <img loading="eager" src={getSrc({ ...item.opts, f: 'jpg' })} alt="" />
       {/each}
     </picture>
 
@@ -274,7 +288,10 @@
     margin-bottom: 0;
   }
 
-  picture,
+  picture {
+    opacity: 0;
+  }
+
   :global(.VideoBanner video) {
     display: block;
     width: 100%;
@@ -286,6 +303,9 @@
     -webkit-touch-callout: none;
     user-select: none;
     pointer-events: none;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 300ms;
   }
 
   .content {
@@ -313,6 +333,14 @@
     align-items: center;
   }
 
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   @media (max-width: 499px) {
     .sizer {
       padding-bottom: calc((1400 / 1000) * 100%);
@@ -337,7 +365,13 @@
     }
   }
 
-  picture img {
+  picture img,
+  .loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
     width: 100%;
     height: auto;
     display: none;
@@ -406,33 +440,40 @@
     }
   }
 
-  picture img:nth-child(5) {
+  picture img:nth-child(5),
+  .loading:nth-child(2) {
     display: block;
   }
 
   @media (min-width: 500px) {
-    picture img:nth-child(5) {
+    picture img:nth-child(5),
+    .loading:nth-child(2) {
       display: none;
     }
-    picture img:nth-child(6) {
+    picture img:nth-child(6),
+    .loading:nth-child(3) {
       display: block;
     }
   }
 
   @media (min-width: 700px) {
-    picture img:nth-child(6) {
+    picture img:nth-child(6),
+    .loading:nth-child(3) {
       display: none;
     }
-    picture img:nth-child(7) {
+    picture img:nth-child(7),
+    .loading:nth-child(4) {
       display: block;
     }
   }
 
   @media (min-width: 1100px) {
-    picture img:nth-child(7) {
+    picture img:nth-child(7),
+    .loading:nth-child(4) {
       display: none;
     }
-    picture img:nth-child(8) {
+    picture img:nth-child(8),
+    .loading:nth-child(5) {
       display: block;
     }
   }
