@@ -284,11 +284,38 @@
     margin-top: var(--menu-height);
   }
 
+  .alternative {
+    max-height: calc(100vh - var(--menu-height) - 8rem);
+  }
+
   @supports (min-height: 100dvh) {
     .VideoBanner {
       max-height: calc(
         100svh - var(--menu-height) - var(--space-block-sm) - 1.8rem
       );
+    }
+
+    .alternative {
+      max-height: calc(100svh - var(--menu-height) - 8rem);
+    }
+  }
+
+  @media (min-width: 800px) {
+    .alternative {
+      max-height: calc(100vh - var(--menu-height) - 8.4rem);
+      min-height: 22rem;
+    }
+
+    @supports (min-height: 100dvh) {
+      .alternative {
+        max-height: calc(100svh - var(--menu-height) - 8.4rem);
+      }
+    }
+  }
+
+  @media (min-height: 800px) {
+    .alternative {
+      max-height: 35rem;
     }
   }
 
@@ -378,13 +405,13 @@
   picture img,
   .loading {
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     height: 100%;
-    object-fit: cover;
     width: 100%;
     height: auto;
     display: none;
+    transform: translateY(-50%);
   }
 
   .logo svg {
