@@ -11,6 +11,7 @@
   export let prefix = null
   export let slices
   export let keeptop
+  export let treshold
   export let adaptive = null
   export let button = null
   export let branding
@@ -49,21 +50,31 @@
         : false
     )
 
+  function getTreshold() {
+    let banner = document.querySelector('.VideoBanner')
+    if (banner) {
+      return banner.getBoundingClientRect().height
+    } else {
+      return 100
+    }
+  }
+
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
+    treshold = getTreshold()
     locked = parseInt(styles.getPropertyValue('--doc-narrow'))
   }
 
   function onscroll() {
     if (keeptop) return
     const { scrollY } = window
-    if (scrollY > 100) {
+    if (scrollY > treshold) {
       sticky = true
       scroll = 1
       document.documentElement.style.setProperty('--scroll', scroll)
       return
-    } else if (scrollY < 100 && scrollY > 0) {
-      scroll = (scrollY / 100).toFixed(3)
+    } else if (scrollY < treshold && scrollY > 0) {
+      scroll = (scrollY / treshold).toFixed(3)
     } else if (scrollY <= 0) {
       scroll = 0
     }

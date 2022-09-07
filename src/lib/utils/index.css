@@ -408,6 +408,11 @@ details[open] > .u-expand::before {
     --line-height: 0.88em;
     font-size: 4rem;
   }
+
+  .Text-h2.Text-bump {
+    --line-height: 0.89em;
+    font-size: 3.4rem;
+  }
 }
 
 @media (min-width: 800px) {
@@ -419,6 +424,11 @@ details[open] > .u-expand::before {
   .Text-h2 {
     font-size: 3rem;
   }
+
+  .Text-h2.Text-bump {
+    --line-height: 0.88em;
+    font-size: 5rem;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -428,6 +438,10 @@ details[open] > .u-expand::before {
 
   .Text-h2 {
     font-size: 3.5rem;
+  }
+
+  .Text-h2.Text-bump {
+    font-size: 4.35rem;
   }
 }
 

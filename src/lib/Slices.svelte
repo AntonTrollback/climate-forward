@@ -1,5 +1,4 @@
 <script>
-  import Animation from './Animation.svelte'
   import Button from './Button.svelte'
   import Divider from './Divider.svelte'
   import EventList from './EventList.svelte'
@@ -188,11 +187,22 @@
         {/if}
 
         {#if slice.slice_type === 'video_banner'}
-          <VideoBanner version={slice.primary.version} />
+          <VideoBanner default />
         {/if}
 
-        {#if slice.slice_type === 'animation'}
-          <Animation />
+        {#if slice.slice_type === 'event_hero'}
+          <VideoBanner
+            prefix={slice.primary.prefix}
+            title={slice.primary.title}
+            date={slice.primary.dates}
+            color={slice.primary.color}>
+            <Button
+              class="u-spaceXl"
+              solid={slice.primary.solid}
+              document={slice.primary.link}>
+              {slice.primary.link_text}
+            </Button>
+          </VideoBanner>
         {/if}
 
         {#if slice.slice_type === 'gallery'}

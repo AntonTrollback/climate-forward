@@ -202,11 +202,6 @@ export const event = dedent`
           ...non-repeatFields
         }
       }
-      ...on animation {
-        non-repeat {
-          ...non-repeatFields
-        }
-      }
       ...on gallery {
         repeat {
           ...repeatFields
@@ -230,6 +225,11 @@ export const event = dedent`
         }
         repeat {
           session ${session}
+        }
+      }
+      ...on event_hero {
+        non-repeat {
+          ...non-repeatFields
         }
       }
       ...on live_stream {
