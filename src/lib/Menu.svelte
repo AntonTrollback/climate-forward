@@ -12,6 +12,7 @@
   export let slices
   export let keeptop
   export let treshold
+
   export let adaptive = null
   export let button = null
   export let branding

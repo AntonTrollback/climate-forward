@@ -126,6 +126,11 @@ export const page = dedent`
           ...repeatFields
         }
       }
+      ...on conversations {
+        repeat {
+          ...repeatFields
+        }
+      }
     }
   }
 `

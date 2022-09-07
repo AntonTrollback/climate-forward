@@ -1,14 +1,15 @@
 <script>
   import Button from './Button.svelte'
+  import Conversations from './Conversations.svelte'
   import Divider from './Divider.svelte'
   import EventList from './EventList.svelte'
   import Gallery from './Gallery.svelte'
   import LegalList from './LegalList.svelte'
   import Map from './Map.svelte'
-  import ScrollTarget from './ScrollTarget.svelte'
-  import Program from './Program.svelte'
   import Previous from './Previous.svelte'
+  import Program from './Program.svelte'
   import RichText from './RichText.svelte'
+  import ScrollTarget from './ScrollTarget.svelte'
   import SectionIntro from './SectionIntro.svelte'
   import Speakers from './Speakers.svelte'
   import Sponsor from './Sponsor.svelte'
@@ -257,6 +258,12 @@
                   .map((item) => item.session)
                   .filter((session) => session.id && !session.isBroken)} />
             </slot>
+          </div>
+        {/if}
+
+        {#if slice.slice_type === 'conversations'}
+          <div class="u-container">
+            <Conversations items={slice.items} />
           </div>
         {/if}
       {/each}
