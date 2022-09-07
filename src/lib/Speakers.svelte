@@ -13,6 +13,8 @@
   export let standalone = null
   let speakers
 
+  console.log(items)
+
   function lastnameSort(a, b) {
     a = asText(a.data.name).split(' ').pop()
     b = asText(b.data.name).split(' ').pop()
@@ -82,10 +84,14 @@
       </div>
     </div>
     <ul class="list">
-      {#each speakers as speaker, index}
+      {#each speakers as speaker}
         <li class="item">
           <div class="body">
-            <SpeakerLink {speaker} large={!pushed} onclick={open} />
+            <SpeakerLink
+              {speaker}
+              role={speaker.data.role}
+              large={!pushed}
+              onclick={open} />
           </div>
         </li>
       {/each}

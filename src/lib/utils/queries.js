@@ -60,6 +60,7 @@ export const page = dedent`
           ...non-repeatFields
         }
         repeat {
+          role
           speaker {
             ...on speaker {
               ...speakerFields
@@ -217,6 +218,7 @@ export const event = dedent`
           ...non-repeatFields
         }
         repeat {
+          role
           speaker {
             ...on speaker {
               ...speakerFields

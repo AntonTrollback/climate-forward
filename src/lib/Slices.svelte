@@ -226,7 +226,10 @@
               standalone={!!slice.primary.heading}
               pushed={slice.primary.pushed}
               items={slice.items
-                .map((item) => item.speaker)
+                .map(function (item) {
+                  if (item.role) item.speaker.data.role = item.role
+                  return item.speaker
+                })
                 .filter((speaker) => speaker.id && !speaker.isBroken)} />
           </div>
         {/if}
