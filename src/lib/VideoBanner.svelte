@@ -284,6 +284,14 @@
     margin-top: var(--menu-height);
   }
 
+  @supports (min-height: 100dvh) {
+    .VideoBanner {
+      max-height: calc(
+        100svh - var(--menu-height) - var(--space-block-sm) - 1.8rem
+      );
+    }
+  }
+
   .alternative {
     margin-bottom: 0;
   }
@@ -316,6 +324,8 @@
     height: 100%;
     /* transform: translateY(-50%); */
     transform: translateY(calc(-50% + (15% * var(--scroll))));
+    will-change: transform;
+    transition: transform 50ms;
     overflow: hidden;
   }
 
