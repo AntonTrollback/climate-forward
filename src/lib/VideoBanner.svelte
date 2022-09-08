@@ -350,8 +350,6 @@
     width: 100%;
     height: 100%;
     transform: translateY(-50%);
-    will-change: transform;
-    transition: transform 50ms;
     overflow: hidden;
   }
 
