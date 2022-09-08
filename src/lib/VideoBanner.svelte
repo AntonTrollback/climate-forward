@@ -6,11 +6,11 @@
   export let date
   export let color
   let picture
+  let content
   let image
-  let video
   let canplay
+  let video
   let sources
-  let supportsPicture = true
 
   let theme
 
@@ -120,7 +120,9 @@
     let { w, h, q, f, suffix = '1' } = props
     if (!f) f = 'jpg'
     let res = 'https://res.cloudinary.com/dykmd8idd/video/upload/'
-    res += `ac_none,c_crop,w_${w},h_${h},so_0,q_${q[0]}:qmax_${q[1]},f_auto`
+    res += `so_0/ac_none/c_crop,w_${w},h_${h}/q_${
+      f === 'jpg' ? 85 : q[0]
+    }:qmax_${q[1]},f_auto`
     res += `/${theme.id}/climate-events/${theme.file}-${suffix}-${w}x${h}.${f}`
     return res
   }
@@ -143,75 +145,60 @@
   function createVideo() {
     const source = getCurrentSource()
     video = document.createElement('video')
-    video.controls = false
-    video.autoplay = true
+    video.src = source.srcset.replace('.jpg', '.mp4')
     video.muted = true
     video.playsinline = true
+    video.autoplay = true
     video.loop = true
-    video.disablepictureinpicture = true
-    video.preload = 'auto'
+    video.preload = 'none'
     video.poster =
       'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
     video.width = source.width
     video.height = source.height
-    let descendant = document.createElement('source')
-    descendant.src = source.srcset.replace('.jpg', '.mp4')
-    descendant.type = 'video/mp4'
-    video.append(descendant)
-
-    canplay = new Promise(function (resolve) {
-      video.addEventListener('canplay', function oncanplay() {
-        video.removeEventListener('canplay', oncanplay)
-        resolve()
-      })
-
-      video.addEventListener('play', function () {
-        // Fix Safari video glitch
-        setTimeout(function () {
-          video.currentTime = 0
-          video.style = 'opacity: 1'
-        }, 0)
-      })
-    })
 
     return video
   }
 
   onMount(function () {
     if (typeof window.matchMedia !== 'function') return
-    let isPlaying = false
 
     image = Array.from(picture.querySelectorAll('img')).find(
       (img) => window.getComputedStyle(img, null).display !== 'none'
     )
     sources = [...picture.querySelectorAll('source')]
-    const srcsets = sources.map((source) => source.srcset)
-    // supportsPicture = srcsets.includes(image.currentSrc)
-    supportsPicture = false
+    picture.replaceWith(createVideo())
+    video.addEventListener('play', function oncanplay() {
+      // Fix Safari video glitch
+      setTimeout(function () {
+        video.currentTime = 0
+        video.style = 'opacity: 1'
+      }, 500)
+    })
 
-    if (!supportsPicture) {
-      picture.replaceWith(createVideo())
-      let current = getCurrentSource()
-      window.addEventListener(
-        'resize',
-        debounce(function () {
-          const potential = getCurrentSource()
-          if (potential !== current) {
-            current = potential
-            video.replaceWith(createVideo())
-            if (isPlaying) {
-              canplay.then(() => video.play().catch(Function.prototype))
-            }
-          }
-        })
-      )
-    }
+    let current = getCurrentSource()
+    window.addEventListener(
+      'resize',
+      debounce(function () {
+        const potential = getCurrentSource()
+        if (potential !== current) {
+          current = potential
+          video.replaceWith(createVideo())
+          video.addEventListener('play', function oncanplay() {
+            // Fix Safari video glitch
+            setTimeout(function () {
+              video.currentTime = 0
+              video.style = 'opacity: 1'
+            }, 500)
+          })
+        }
+      })
+    )
   })
 </script>
 
 <div class="VideoBanner {color ? 'alternative' : ''}">
   <div class="sizer" />
-  <div class="content">
+  <div class="content" bind:this={content}>
     <div class="sizer" />
     {#each theme.items as item}
       <img
@@ -427,13 +414,6 @@
   @media (min-width: 1350px) {
     .logo svg {
       height: 3.6rem !important;
-    }
-  }
-
-  @media (min-width: 1450px) {
-    .logo svg {
-      height: 3.95rem !important;
-      top: calc(50% + 1.2rem);
     }
   }
 

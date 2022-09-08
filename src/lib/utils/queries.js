@@ -218,7 +218,6 @@ export const event = dedent`
           ...non-repeatFields
         }
         repeat {
-          role
           speaker {
             ...on speaker {
               ...speakerFields
