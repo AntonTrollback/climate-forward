@@ -49,7 +49,7 @@
     top: 0;
     z-index: 5;
     background: rgba(0, 0, 0, 0.16);
-    padding: 3.8rem 1.25rem var(--modal-offset-bottom, 6rem);
+    padding: 2.75rem 0.75rem var(--modal-offset-bottom, 6rem);
     overflow: scroll;
     -webkit-user-select: text;
     user-select: text;
@@ -112,7 +112,7 @@
 
   @media (min-width: 600px) {
     .Modal {
-      padding: 5rem 6rem var(--modal-offset-bottom, 5rem);
+      padding: 4rem 6rem var(--modal-offset-bottom, 5rem);
     }
   }
 

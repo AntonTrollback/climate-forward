@@ -193,12 +193,13 @@
     {#each theme.items as item}
       <img
         loading="eager"
+        draggable="false"
         area-hidden="true"
         class="loading"
         src={getSrc({ ...item.opts, f: 'jpg' })}
         alt="" />
     {/each}
-    <picture bind:this={picture} area-hidden="true">
+    <picture bind:this={picture} area-hidden="true" draggable="false">
       {#each theme.items as item}
         <source
           srcset={getSrc(item.opts)}
@@ -209,6 +210,7 @@
       {#each theme.items as item}
         <img
           loading="eager"
+          draggable="false"
           src={getSrc({ ...item.opts, f: 'jpg' })}
           area-hidden="true"
           alt="" />
@@ -409,6 +411,9 @@
     height: auto;
     display: none;
     transform: translateY(-50%);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    user-select: none;
   }
 
   .logo svg {
