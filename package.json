@@ -2,7 +2,7 @@
   "name": "climate-forward",
   "version": "0.0.1",
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "svelte-kit dev --host",
     "build": "npm run build:purr && npm run build:swoogo && npm run build:app",
     "build:app": "svelte-kit build",
     "build:purr": "rollup -c rollup.config.js",

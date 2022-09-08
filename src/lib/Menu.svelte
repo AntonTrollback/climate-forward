@@ -295,6 +295,12 @@
     color: var(--current-color);
   }
 
+  @media print {
+    .Menu {
+      display: none !important;
+    }
+  }
+
   .Menu br {
     display: none;
   }

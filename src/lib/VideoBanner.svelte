@@ -147,7 +147,7 @@
     video = document.createElement('video')
     video.src = source.srcset.replace('.jpg', '.mp4')
     video.muted = true
-    video.playsinline = true
+    video.playsInline = true
     video.autoplay = true
     video.loop = true
     video.preload = 'none'
@@ -278,7 +278,7 @@
   @supports (min-height: 100dvh) {
     .VideoBanner {
       max-height: calc(
-        100svh - var(--menu-height) - var(--space-block-sm) - 1.8rem
+        100svh - var(--menu-height) - var(--space-block-sm) - 3.3rem
       );
     }
 
@@ -330,6 +330,15 @@
     transition: opacity 300ms;
   }
 
+  @media print {
+    picture img,
+    .loading,
+    .sizer,
+    :global(.VideoBanner video) {
+      display: none !important;
+    }
+  }
+
   .content {
     position: absolute;
     top: 50%;
@@ -341,6 +350,13 @@
     will-change: transform;
     transition: transform 50ms;
     overflow: hidden;
+  }
+
+  @media print {
+    .content {
+      transform: none !important;
+      top: 0 !important;
+    }
   }
 
   .body {
@@ -357,12 +373,11 @@
     align-items: center;
   }
 
-  .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  @media print {
+    .body {
+      --current-color: #000;
+      --current-color-background: #fff;
+    }
   }
 
   @media (max-width: 499px) {

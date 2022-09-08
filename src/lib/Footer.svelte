@@ -108,6 +108,12 @@
     border-top: 1px solid var(--current-color-border);
   }
 
+  @media print {
+    .Footer {
+      display: none !important;
+    }
+  }
+
   .Footer br {
     display: none;
   }
