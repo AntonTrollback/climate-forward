@@ -6,9 +6,7 @@
   export let date
   export let color
   let picture
-  let content
   let image
-  let canplay
   let video
   let sources
 
@@ -150,7 +148,7 @@
     video.playsInline = true
     video.autoplay = true
     video.loop = true
-    video.preload = 'none'
+    video.preload = 'eager'
     video.poster =
       'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
     video.width = source.width
@@ -167,12 +165,8 @@
     )
     sources = [...picture.querySelectorAll('source')]
     picture.replaceWith(createVideo())
-    video.addEventListener('play', function oncanplay() {
-      // Fix Safari video glitch
-      setTimeout(function () {
-        video.currentTime = 0
-        video.style = 'opacity: 1'
-      }, 500)
+    video.addEventListener('play', () => {
+      video.style = 'opacity: 1'
     })
 
     let current = getCurrentSource()
@@ -183,12 +177,8 @@
         if (potential !== current) {
           current = potential
           video.replaceWith(createVideo())
-          video.addEventListener('play', function oncanplay() {
-            // Fix Safari video glitch
-            setTimeout(function () {
-              video.currentTime = 0
-              video.style = 'opacity: 1'
-            }, 500)
+          video.addEventListener('play', () => {
+            video.style = 'opacity: 1'
           })
         }
       })
@@ -198,16 +188,17 @@
 
 <div class="VideoBanner {color ? 'alternative' : ''}">
   <div class="sizer" />
-  <div class="content" bind:this={content}>
+  <div class="content">
     <div class="sizer" />
     {#each theme.items as item}
       <img
         loading="eager"
+        area-hidden="true"
         class="loading"
         src={getSrc({ ...item.opts, f: 'jpg' })}
         alt="" />
     {/each}
-    <picture bind:this={picture}>
+    <picture bind:this={picture} area-hidden="true">
       {#each theme.items as item}
         <source
           srcset={getSrc(item.opts)}
@@ -216,7 +207,11 @@
           height={item.opts.h} />
       {/each}
       {#each theme.items as item}
-        <img loading="eager" src={getSrc({ ...item.opts, f: 'jpg' })} alt="" />
+        <img
+          loading="eager"
+          src={getSrc({ ...item.opts, f: 'jpg' })}
+          area-hidden="true"
+          alt="" />
       {/each}
     </picture>
 
@@ -316,18 +311,18 @@
 
   :global(.VideoBanner video) {
     display: block;
-    width: 100%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    height: auto;
+    left: 0;
+    width: 100%;
     -webkit-user-select: none;
     -webkit-touch-callout: none;
     user-select: none;
     pointer-events: none;
     background: transparent;
     opacity: 0;
-    transition: opacity 300ms;
+    transition: opacity 400ms;
   }
 
   @media print {
