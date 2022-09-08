@@ -11,9 +11,7 @@
   export let prefix = null
   export let slices
   export let keeptop
-  export let treshold
 
-  export let adaptive = null
   export let button = null
   export let branding
   export let stacked
@@ -51,31 +49,21 @@
         : false
     )
 
-  function getTreshold() {
-    let banner = document.querySelector('.VideoBanner')
-    if (banner) {
-      return banner.getBoundingClientRect().height
-    } else {
-      return 100
-    }
-  }
-
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
-    treshold = getTreshold()
     locked = parseInt(styles.getPropertyValue('--doc-narrow'))
   }
 
   function onscroll() {
     if (keeptop) return
     const { scrollY } = window
-    if (scrollY > treshold) {
+    if (scrollY > 100) {
       sticky = true
       scroll = 1
       document.documentElement.style.setProperty('--scroll', scroll)
       return
-    } else if (scrollY < treshold && scrollY > 0) {
-      scroll = (scrollY / treshold).toFixed(3)
+    } else if (scrollY < 100 && scrollY > 0) {
+      scroll = (scrollY / 100).toFixed(3)
     } else if (scrollY <= 0) {
       scroll = 0
     }
@@ -143,7 +131,7 @@
 
 <svelte:window on:resize={onresize} on:scroll|passive={onscroll} />
 
-<header class="Menu" class:sticky class:adaptive class:keeptop>
+<header class="Menu" class:sticky class:keeptop>
   {#if $current?.data?.seo_title}
     <h1 class="u-hiddenVisually">{$current.data.seo_title}</h1>
   {/if}
@@ -267,7 +255,7 @@
 
 <hr class="u-hiddenVisually" />
 
-<div class="space" class:stacked class:adaptive />
+<div class="space" class:stacked />
 
 <style>
   :root {
@@ -321,10 +309,6 @@
 
   .space.stacked {
     margin-bottom: var(--menu-height);
-  }
-
-  .space.adaptive {
-    display: none;
   }
 
   .container {
@@ -449,10 +433,6 @@
     .Menu.sticky::before {
       opacity: 1;
     }
-  }
-
-  .Menu.adaptive .nav .logo {
-    opacity: 1;
   }
 
   @media (min-width: 400px) {

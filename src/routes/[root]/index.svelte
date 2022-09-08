@@ -59,7 +59,6 @@
 <Menu
   branding={page.data.branding}
   keeptop={page.data.keeptop}
-  adaptive={page.data.adaptive}
   stacked={page.data.stacked}
   slices={page.data.menu} />
 

@@ -10,7 +10,6 @@
   prefix={parent}
   slices={page.data.menu}
   keeptop={page.data.keeptop}
-  adaptive={page.data.adaptive}
   stacked={page.data.stacked}
   branding={page.data.branding || parent.data.branding} />
 
