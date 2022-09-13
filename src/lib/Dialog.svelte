@@ -42,7 +42,7 @@
 <style>
   .grid {
     padding: 0 0 2rem;
-    margin: 1.8rem 0;
+    margin: 1.8rem 0 0;
     border-bottom: 1px solid var(--current-color-border);
   }
 

@@ -289,7 +289,14 @@
   .popup--takeover {
     opacity: 0;
     transform: translateY(5rem);
-    animation: popup-show 200ms 6000ms var(--ease-out) forwards;
+    animation: popup-show 200ms 3000ms var(--ease-out) forwards;
+  }
+
+  @supports (backdrop-filter: blur(10px)) {
+    .popup--takeover {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.75);
+    }
   }
 
   @keyframes popup-show {
