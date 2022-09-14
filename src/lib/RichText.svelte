@@ -22,22 +22,22 @@
 
   function serialize(type, element, content, children) {
     if (type === 'heading1') {
-      return `<h2 class="Text-h1">${children}</h2>`
+      return `<h2 class="Text-h1">${whitespace(children)}</h2>`
     }
     if (type === 'heading2') {
-      return `<h2 class="Text-h2">${children}</h2>`
+      return `<h2 class="Text-h2">${whitespace(children)}</h2>`
     }
     if (type === 'heading3') {
-      return `<h3 class="Text-h3">${children}</h2>`
+      return `<h3 class="Text-h3">${whitespace(children)}</h2>`
     }
     if (type === 'heading4') {
-      return `<h4 class="Text-h4">${children}</h2>`
+      return `<h4 class="Text-h4">${whitespace(children)}</h2>`
     }
     if (type === 'heading5') {
-      return `<h5 class="Text-h5">${children}</h2>`
+      return `<h5 class="Text-h5">${whitespace(children)}</h2>`
     }
     if (type === 'heading6') {
-      return `<h6 class="Text-h6">${children}</h2>`
+      return `<h6 class="Text-h6">${whitespace(children)}</h2>`
     }
     if (type === 'paragraph') {
       return `<p class="Text-p">${whitespace(children)}</p>`
