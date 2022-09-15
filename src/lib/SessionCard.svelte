@@ -91,14 +91,16 @@
     <div class="u-spaceXs sub">{sub}</div>
   {/if}
 
-  <div class="action">
-    <Link class="u-spaceSm u-trigger u-triggerBlock" document={session}>
-      Learn more
-      <span class="u-hiddenVisually">
-        about the session "{asText(session.data.name)}"
-      </span>
-    </Link>
-  </div>
+  {#if !session.data.unlinked}
+    <div class="action">
+      <Link class="u-spaceSm u-trigger u-triggerBlock" document={session}>
+        Learn more
+        <span class="u-hiddenVisually">
+          about the session "{asText(session.data.name)}"
+        </span>
+      </Link>
+    </div>
+  {/if}
 </div>
 
 <style>
