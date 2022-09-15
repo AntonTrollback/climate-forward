@@ -94,10 +94,13 @@
   {#if !session.data.unlinked}
     <div class="action">
       <Link class="u-spaceSm u-trigger u-triggerBlock" document={session}>
-        Learn more
-        <span class="u-hiddenVisually">
-          about the session "{asText(session.data.name)}"
-        </span>
+        {#if session.data.link_text}
+          {session.data.link_text}<span class="u-hiddenVisually"
+            >, for the session "{asText(session.data.name)}"</span>
+        {:else}
+          Learn more <span class="u-hiddenVisually"
+            >about the session "{asText(session.data.name)}"</span>
+        {/if}
       </Link>
     </div>
   {/if}
