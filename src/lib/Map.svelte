@@ -45,7 +45,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: var(--space-block-sm);
-    margin-top: 1.5rem;
+    margin-top: 1.6rem;
   }
 
   @media (min-width: 550px) {
@@ -77,9 +77,15 @@
     pointer-events: none;
   }
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1200px) {
     .label {
       font-size: 0.8125rem;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .label {
+      font-size: 1rem;
     }
   }
 
