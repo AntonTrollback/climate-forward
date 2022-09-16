@@ -41,10 +41,6 @@
 </div>
 
 <style>
-  :root {
-    --Map-floor-width: 10rem;
-  }
-
   .maps {
     display: grid;
     grid-template-columns: 1fr;
@@ -72,9 +68,9 @@
   .label {
     position: absolute;
     display: flex;
-    height: 10%;
     align-items: center;
     justify-content: center;
+    height: 10%;
     color: #fff;
     font-size: 0.75rem;
     line-height: 1;
