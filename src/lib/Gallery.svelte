@@ -34,7 +34,7 @@
     margin-top: var(--space-block-md);
     display: flex;
     flex-wrap: wrap;
-    grid-gap: var(--space-block-sm) 4rem;
+    grid-gap: var(--space-block-sm) calc(var(--space-grid) * 2);
   }
 
   .col {

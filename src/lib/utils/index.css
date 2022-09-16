@@ -25,7 +25,9 @@
 
 @media (min-width: 1000px) {
   .u-pushRight {
-    padding-left: calc((100% / 3) + 2rem) !important;
+    padding-left: calc(
+      (100% / 3) + ((var(--space-grid) + var(--space-grid)) / 3)
+    ) !important;
     margin-top: var(--space-sm);
   }
 }

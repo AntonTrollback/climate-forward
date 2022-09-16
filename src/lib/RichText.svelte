@@ -82,13 +82,9 @@
 
   @media (min-width: 1000px) {
     .layout {
-      display: flex;
-    }
-
-    .aside {
-      width: calc(100% / 3);
-      padding-right: 2rem;
-      flex-shrink: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 0 calc(var(--space-grid) * 2);
     }
 
     .aside > * {
@@ -96,8 +92,7 @@
     }
 
     .main {
-      padding-left: 2rem;
-      flex-grow: 1;
+      grid-column: span 2;
     }
   }
 </style>

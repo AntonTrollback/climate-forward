@@ -64,7 +64,7 @@
 
         {#if slice.slice_type === 'venue_map'}
           <div class="u-container">
-            <Map title={slice.primary.heading} />
+            <Map title={slice.primary.heading} text={slice.primary.text} />
           </div>
         {/if}
 

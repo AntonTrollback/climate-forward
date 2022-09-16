@@ -88,7 +88,7 @@
             <SpeakerLink
               {speaker}
               role={speaker.data.role}
-              large={!pushed}
+              large
               onclick={open} />
           </div>
         </li>
@@ -236,19 +236,18 @@
 
     .standalone:not(.pushed) .list {
       grid-template-columns: 1fr 1fr 1fr;
-      /* grid-column: 1 / 3; */
     }
   }
 
   @media (min-width: 1000px) {
     .pushed {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 0 calc(var(--space-grid) * 2);
     }
 
     .pushed .header {
       width: calc(100% / 3);
-      padding-right: 2rem;
-      flex-shrink: 0;
     }
 
     .pushed .header > * {
@@ -256,8 +255,7 @@
     }
 
     .pushed .list {
-      padding-left: 2rem;
-      flex-grow: 1;
+      grid-column: span 2;
       margin-top: 0.35rem;
     }
   }
