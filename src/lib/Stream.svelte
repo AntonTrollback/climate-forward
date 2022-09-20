@@ -90,6 +90,11 @@
     })
     event.preventDefault()
   }
+
+  // To-do: use whitespace util instead
+  function fix(text) {
+    return text.replace('New York', 'New&nbsp;York')
+  }
 </script>
 
 <div class="Stream" id="live-stream">
@@ -99,9 +104,9 @@
     <div class="Text Text--spaced Text--xl">
       <h2 class="Text-p">
         {#if mode === 'live'}
-          {livetext}
+          {@html fix(livetext)}
         {:else}
-          {nextuptext}
+          {@html fix(nextuptext)}
         {/if}
       </h2>
     </div>
