@@ -246,7 +246,7 @@
             <Button
               class="u-spaceXl"
               solid={button.solid}
-              document={button.link ? button.link : null}
+              document={!button.link_to_live ? button.document : null}
               href={button.link_to_live ? '#live-stream' : null}
               onclick={button.link_to_live ? jump : null}>
               {button.text}
