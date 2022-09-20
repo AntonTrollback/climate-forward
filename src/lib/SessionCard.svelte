@@ -65,7 +65,7 @@
 
     sub = ''
     if (datetime) sub = datetime
-    if (session.data.is_streamed) sub = `${sub} (streaming&nbsp;live)`
+    // if (session.data.is_streamed) sub = `${sub} (streaming&nbsp;live)`
     if (session.data.location) {
       if (sub) sub = sub + ', ' + session.data.location
       if (!sub) sub = session.data.location
