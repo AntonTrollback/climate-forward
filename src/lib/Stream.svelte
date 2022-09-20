@@ -12,6 +12,8 @@
 
   export let source
   export let placeholder = []
+  export let livetext
+  export let nextuptext
 
   const YOUTUBE_VIDEO =
     /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
@@ -89,16 +91,16 @@
   }
 </script>
 
-<div class="Stream">
+<div class="Stream" id="live-stream">
   {#if mode === 'after'}
     <RichText fields={placeholder} size="xl" />
   {:else if id}
     <div class="Text Text--spaced Text--xl">
       <h2 class="Text-p">
         {#if mode === 'live'}
-          Live On Stage
+          {livetext}
         {:else}
-          Up Next at Climate Forward&nbsp;London
+          {nextuptext}
         {/if}
       </h2>
     </div>

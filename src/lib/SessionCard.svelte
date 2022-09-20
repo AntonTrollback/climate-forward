@@ -65,6 +65,7 @@
 
     sub = ''
     if (datetime) sub = datetime
+    if (session.data.is_streamed) sub = `${sub} (streaming&nbsp;live)`
     if (session.data.location) {
       if (sub) sub = sub + ', ' + session.data.location
       if (!sub) sub = session.data.location
@@ -88,7 +89,7 @@
     </strong>
   </div>
   {#if sub}
-    <div class="u-spaceXs sub">{sub}</div>
+    <div class="u-spaceXs sub">{@html sub}</div>
   {/if}
 
   {#if !session.data.unlinked}

@@ -94,6 +94,9 @@
       {#if session.data.format}
         <span class="format">{session.data.format}</span>
       {/if}
+      {#if session.data.is_streamed && !isPast}
+        <span class="streaming">Streaming live</span>
+      {/if}
     </span>
 
     {#if !session.data.branding && hasSponsor}
@@ -197,7 +200,12 @@
 
     <div class="button">
       {#if isLive}
-        <Button solid theme="highlight" href="#live-stream" onclick={jump}>
+        <Button
+          solid
+          theme="highlight"
+          href="#live-stream"
+          onclick={jump}
+          class="u-spaceLg">
           <svg
             height="20px"
             viewBox="0 0 24 24"
@@ -210,11 +218,15 @@
           Live now
         </Button>
       {:else if session.data.link?.url}
-        <Button solid href={session.data.link.url} target="_blank">
+        <Button
+          solid
+          href={session.data.link.url}
+          class="u-spaceLg"
+          target="_blank">
           {session.data.button_text}
         </Button>
       {:else if event?.data.link && !isPast}
-        <Button solid document={event.data.link}>
+        <Button solid document={event.data.link} class="u-spaceLg">
           {event.data.button_text}
         </Button>
       {/if}

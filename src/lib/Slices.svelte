@@ -196,16 +196,15 @@
             prefix={slice.primary.prefix}
             title={slice.primary.title}
             date={slice.primary.dates}
-            color={slice.primary.color}>
-            {#if slice.primary.link?.url}
-              <Button
-                class="u-spaceXl"
-                solid={slice.primary.solid}
-                document={slice.primary.link}>
-                {slice.primary.link_text}
-              </Button>
-            {/if}
-          </VideoBanner>
+            color={slice.primary.color}
+            button={slice.primary.link_text
+              ? {
+                  text: slice.primary.link_text,
+                  solid: slice.primary.solid,
+                  document: slice.primary.link,
+                  link_to_live: slice.primary.link_to_live_stream
+                }
+              : null} />
         {/if}
 
         {#if slice.slice_type === 'gallery'}
@@ -250,7 +249,9 @@
           <div class="u-container">
             <Stream
               source={slice.primary.live_stream_url}
-              placeholder={slice.primary.placeholder_text} />
+              placeholder={slice.primary.placeholder_text}
+              livetext={slice.primary.live_text}
+              nextuptext={slice.primary.next_up_text} />
           </div>
         {/if}
 

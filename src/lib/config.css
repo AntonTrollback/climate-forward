@@ -36,7 +36,7 @@
 
   --space-grid: 1rem;
 
-  --scroll-offset: 100;
+  --scroll-offset: 63;
 
   --current-color: var(--doc-color);
   --current-color-muted: var(--doc-color-muted);
@@ -91,10 +91,21 @@
   }
 }
 
+@media (min-width: 700px) {
+  :root {
+    --scroll-offset: 65;
+  }
+}
+
 @media (min-width: 700px) and (min-height: 500px) {
   :root {
     --doc-margin: 4.5rem;
-    --scroll-offset: 130;
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --scroll-offset: 72;
   }
 }
 

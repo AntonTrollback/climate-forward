@@ -1,10 +1,12 @@
 <script>
   import { onMount } from 'svelte'
   import whitespace from './utils/whitespace.js'
+  import Button from './Button.svelte'
   export let prefix
   export let title
   export let date
   export let color
+  export let button
   let picture
   let image
   let video
@@ -184,6 +186,20 @@
       })
     )
   })
+
+  function jump(event) {
+    const { hash } = new URL(this.href)
+    const offset = getComputedStyle(document.documentElement).getPropertyValue(
+      '--scroll-offset'
+    )
+    const target = document.querySelector(hash)
+    window.scrollTo({
+      left: 0,
+      behavior: 'smooth',
+      top: target.offsetTop - offset
+    })
+    event.preventDefault()
+  }
 </script>
 
 <div class="VideoBanner {color ? 'alternative' : ''}">
@@ -226,7 +242,16 @@
               <em>{@html whitespace(title)}<br />{@html whitespace(date)}</em>
             </h1>
           </div>
-          <slot />
+          {#if button}
+            <Button
+              class="u-spaceXl"
+              solid={button.solid}
+              document={button.link ? button.link : null}
+              href={button.link_to_live ? '#live-stream' : null}
+              onclick={button.link_to_live ? jump : null}>
+              {button.text}
+            </Button>
+          {/if}
         </div>
       </div>
     {:else}

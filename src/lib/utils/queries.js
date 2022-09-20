@@ -236,6 +236,11 @@ export const event = dedent`
       ...on event_hero {
         non-repeat {
           ...non-repeatFields
+          link {
+            ...on dialog {
+              ...dialogFields
+            }
+          }
         }
       }
       ...on live_stream {
