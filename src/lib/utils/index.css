@@ -493,6 +493,26 @@ details[open] > .u-expand::before {
   }
 }
 
+/* Extra small text */
+
+.Text--xs .Text-p {
+  font-weight: 400;
+}
+
+.Text--xs .Text-p strong {
+  font-weight: 700;
+}
+
+.Text--xs .Text-p {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 800px) {
+  .Text--xs .Text-p {
+    font-size: 1rem;
+  }
+}
+
 /* Small text */
 
 .Text--sm .Text-p {

@@ -251,7 +251,8 @@
               source={slice.primary.live_stream_url}
               placeholder={slice.primary.placeholder_text}
               livetext={slice.primary.live_text}
-              nextuptext={slice.primary.next_up_text} />
+              nextuptext={slice.primary.next_up_text}
+              subtext={slice.primary.sub_text} />
           </div>
         {/if}
 

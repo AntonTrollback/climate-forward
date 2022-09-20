@@ -14,6 +14,7 @@
   export let placeholder = []
   export let livetext
   export let nextuptext
+  export let subtext = []
 
   const YOUTUBE_VIDEO =
     /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
@@ -120,6 +121,11 @@
           frameborder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen />
+        {#if subtext}
+          <div class="Stream-sub">
+            <RichText fields={subtext} size="xs" />
+          </div>
+        {/if}
       </div>
       <article class="Stream-body">
         <div class="Stream-info">
@@ -247,7 +253,6 @@
   .Stream-aspect {
     width: 100%;
     position: relative;
-    overflow: hidden;
   }
 
   @media (min-width: 1300px) {
@@ -268,5 +273,17 @@
     position: absolute;
     left: 0;
     top: 0;
+  }
+
+  .Stream-sub {
+    position: absolute;
+    top: calc(100% + var(--space-sm));
+    display: none;
+  }
+
+  @media (min-width: 800px) {
+    .Stream-sub {
+      display: block;
+    }
   }
 </style>
