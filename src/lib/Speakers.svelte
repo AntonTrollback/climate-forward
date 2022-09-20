@@ -11,7 +11,7 @@
   export let current = null
   export let pushed = null
   export let standalone = null
-  let speakers
+  let speakers, prev, next
 
   function lastnameSort(a, b) {
     a = asText(a.data.name).split(' ').pop()
@@ -30,17 +30,33 @@
   }
 
   function open(event) {
-    current = speakers.find(
-      (item) => item.slug === event.currentTarget.dataset.slug
-    )
+    goTo(event.currentTarget.dataset.slug)
   }
 
   function handlekey(event) {
     if (event.key === 'Escape' && current) close()
+    if (event.key === 'ArrowLeft') goPrev()
+    if (event.key === 'ArrowRight') goNext()
   }
 
   function close() {
     current = null
+  }
+
+  function goTo(slug) {
+    current = speakers.find((item) => item.slug === slug)
+    prev = speakers[speakers.indexOf(current) - 1]
+    next = speakers[speakers.indexOf(current) + 1]
+  }
+
+  function goPrev() {
+    if (!prev) return
+    goTo(prev.slug)
+  }
+
+  function goNext() {
+    if (!next) return
+    goTo(next.slug)
   }
 </script>
 
@@ -97,7 +113,7 @@
   </div>
 
   {#if current}
-    <Modal>
+    <Modal prev={prev ? goPrev : null} next={next ? goNext : null}>
       <SpeakerDetails speaker={current} />
       <button slot="close" on:click={close}>Close</button>
     </Modal>

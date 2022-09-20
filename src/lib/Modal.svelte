@@ -4,7 +4,9 @@
 
 <script>
   import { onMount } from 'svelte'
-  export let iframing
+  export let iframing = null
+  export let prev = null
+  export let next = null
   let modal
 
   onMount(function () {
@@ -30,6 +32,12 @@
   class="Modal {iframing ? 'iframing' : ''}"
   tabindex="-1"
   role="dialog">
+  {#if prev}
+    <button class="prev" on:click={prev}>Prev</button>
+  {/if}
+  {#if next}
+    <button class="next" on:click={next}>Next</button>
+  {/if}
   <div class="container">
     <slot />
     <div class="close">
@@ -67,6 +75,11 @@
     .iframing {
       --modal-offset-bottom: 3rem;
     }
+  }
+
+  .prev,
+  .next {
+    display: none;
   }
 
   .container {

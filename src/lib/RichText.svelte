@@ -5,9 +5,9 @@
   import resolve from './utils/resolve.js'
   import whitespace from './utils/whitespace.js'
 
-  export let fields
+  export let fields = []
   export let title = null
-  export let width
+  export let width = null
   export let size = 'md'
 
   if (fields?.length < 1) fields = null
