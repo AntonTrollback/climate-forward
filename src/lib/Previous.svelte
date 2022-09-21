@@ -23,10 +23,7 @@
           <figure>
             <img
               alt={`Photo from the stage during the session "${session.data.video.title}"`}
-              src={session.data.video.thumbnail_url.replace(
-                'hqdefault.jpg',
-                'maxresdefault.jpg'
-              )}
+              src={session.data.video.thumbnail_url}
               width={session.data.video.thumbnail_width}
               height={session.data.video.thumbnail_height} />
           </figure>
