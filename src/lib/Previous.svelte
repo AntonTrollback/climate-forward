@@ -23,21 +23,10 @@
           <figure>
             <img
               alt={`Photo from the stage during the session "${session.data.video.title}"`}
-              sizes="(min-width: 1000px) 16vw, 40vw"
-              srcset="{src(
-                'w_300/f_auto',
-                session.data.video.thumbnail_url
-              )} 300w,{src(
-                'w_400/f_auto',
-                session.data.video.thumbnail_url
-              )} 400w,{src(
-                'w_600/f_auto',
-                session.data.video.thumbnail_url
-              )} 600w,{src(
-                'w_900/f_auto',
-                session.data.video.thumbnail_url
-              )} 900w"
-              src={src('w_400/f_auto', session.data.video.thumbnail_url)}
+              src={session.data.video.thumbnail_url.replace(
+                'hqdefault.jpg',
+                'maxresdefault.jpg'
+              )}
               width={session.data.video.thumbnail_width}
               height={session.data.video.thumbnail_height} />
           </figure>
