@@ -90,6 +90,10 @@
     <a href="/climate-forward/sharm-el-sheikh-thank-you">.</a>
     <a href="/climate-forward/the-fashion-opportunity">.</a>
     <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
+    <a href="/climate-forward/sharm-el-sheikh-google">.</a>
+    <a href="/climate-forward/sharm-el-sheikh-google-menu">.</a>
+    <a href="/climate-forward/sharm-el-sheikh-bcg">.</a>
+    <a href="/climate-forward/sharm-el-sheikh-bcg-menu">.</a>
     <a href="/climate-forward/closing-the-gap-on-climate-inequity">.</a>
     <a href="/climate-forward/events/new-york/wifi">.</a>
     <a
