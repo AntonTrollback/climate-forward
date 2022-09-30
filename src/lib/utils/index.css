@@ -306,24 +306,41 @@ details[open] > .u-expand::before {
  * Text
  */
 
-.Text p {
+.Text p,
+.Text ul {
   max-width: 35.2em;
   font-weight: 200;
   font-size: 1.125rem;
 }
 
-.Text p strong {
+.Text ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+
+.Text li + li {
+  margin-top: 0.6em;
+}
+
+.Text p strong,
+.Text ul strong {
   font-weight: 500;
 }
 
 .Text p + p,
+.Text p + ul,
+.Text ul + p,
 .Text p + details,
-.Text details + p {
+.Text details + p,
+.Text ul + ul,
+.Text ul + details,
+.Text details + ul {
   margin-top: 0.6em;
 }
 
 @media (min-width: 1200px) {
-  .Text p {
+  .Text p,
+  .Text ul {
     font-size: 1.25rem;
   }
 }

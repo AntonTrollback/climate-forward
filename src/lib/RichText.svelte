@@ -42,6 +42,12 @@
     if (type === 'paragraph') {
       return `<p class="Text-p">${whitespace(children)}</p>`
     }
+    if (type === 'group-list-item') {
+      return `<ul class="Text-p Text-ul">${children}</ul>`
+    }
+    if (type === 'list-item') {
+      return `<li>${whitespace(children)}</li>`
+    }
     return null
   }
 </script>
