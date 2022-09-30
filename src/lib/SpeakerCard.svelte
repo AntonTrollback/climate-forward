@@ -80,6 +80,7 @@
 
   .body {
     max-width: 19rem;
+    margin-top: -0.15em;
   }
 
   .body p {

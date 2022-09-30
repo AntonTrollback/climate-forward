@@ -2,6 +2,7 @@
   import tz from 'date-fns-tz'
   import Link from './Link.svelte'
   import { current } from './Event.svelte'
+  import whitespace from './utils/whitespace.js'
   import { asText, asDate } from '@prismicio/helpers'
 
   const { formatInTimeZone } = tz
@@ -78,13 +79,13 @@
 </script>
 
 <div class="component">
-  <div class={highlight ? 'kicker' : ''}><span>{sup}</span></div>
-  <div class="u-spaceXs">
+  {#if sup}<div class={highlight ? 'kicker' : ''}><span>{sup}</span></div>{/if}
+  <div class={sup ? 'u-spaceXs' : ''}>
     <strong class="Text-h4 title">
       {#if session.data.branding}
-        <em>{asText(session.data.name)}</em>
+        <em>{@html whitespace(asText(session.data.name))}</em>
       {:else}
-        {asText(session.data.name)}
+        {@html whitespace(asText(session.data.name))}
       {/if}
     </strong>
   </div>
