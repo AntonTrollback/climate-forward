@@ -109,7 +109,7 @@
     border-bottom: 0;
   }
 
-  @media (max-width: 999px) {
+  @media (min-width: 800px) and (max-width: 999px) {
     .item:nth-child(odd) .body::before {
       content: none;
     }

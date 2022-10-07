@@ -169,6 +169,11 @@
     border-bottom: 1px solid var(--current-color-border);
   }
 
+  .item:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
   .body {
     position: relative;
     display: flex;
@@ -191,7 +196,7 @@
     }
   }
 
-  @media (max-width: 1299px) {
+  @media (min-width: 800px) and (max-width: 1299px) {
     .item:nth-child(odd) .body::before {
       content: none;
     }
