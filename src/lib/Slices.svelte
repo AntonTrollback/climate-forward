@@ -110,9 +110,11 @@
           <div class="u-container u-pull">
             <div class="u-pull">
               <div class="u-center">
-                <div class="Text">
-                  <h1 class="Text-h3">{slice.primary.heading}</h1>
-                </div>
+                {#if slice.primary.heading?.length}
+                  <div class="Text">
+                    <h1 class="Text-h3">{slice.primary.heading}</h1>
+                  </div>
+                {/if}
                 {#if slice.primary.meta?.length}
                   <RichText
                     class="u-pullTarget"
