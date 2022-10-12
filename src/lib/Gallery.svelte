@@ -22,6 +22,9 @@
           height={photo.image.dimensions.height}
           alt={photo.image.alt ? photo.image.alt : ''} />
         <figcaption>
+          {#if photo.image.copyright}
+            <span class="credits">{photo.image.copyright}</span>
+          {/if}
           <RichText size="sm" fields={photo.text} />
         </figcaption>
       </figure>
@@ -42,7 +45,18 @@
   }
 
   figcaption {
-    margin-top: var(--space-md);
+    position: relative;
+    margin-top: var(--space-lg);
+    padding-top: var(--space-xl);
+  }
+
+  .credits {
+    position: absolute;
+    top: calc(var(--space-lg) * -1);
+    margin-top: var(--space-xs);
+    right: 0;
+    color: var(--current-color-muted);
+    font-size: 0.75rem;
   }
 
   @media (min-width: 1000px) {
