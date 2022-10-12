@@ -134,7 +134,9 @@
       </div>
       <article class="Stream-body">
         <div class="Stream-info">
-          <p>{session.data.format}</p>
+          {#if session.data.format}
+            <p>{session.data.format}</p>
+          {/if}
           <div class="Text">
             <h3 class="Text-h4 u-spaceSm">{asText(session.data.name)}</h3>
           </div>
