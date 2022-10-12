@@ -27,6 +27,8 @@
     const last = groups[groups.length - 1]
     if (slice.slice_type === 'scroll_target') {
       groups.push({ id: slice.primary.slice_id, slices: [] })
+    } else if (slice.slice_type === 'live_stream') {
+      groups.push({ id: 'live-stream', slices: [slice] })
     } else if (!last) {
       groups.push({ slices: [slice] })
     } else {
