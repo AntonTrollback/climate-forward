@@ -119,7 +119,7 @@
       <div class="Stream-aspect">
         <iframe
           class="Stream-player"
-          src="https://www.youtube.com/embed/{id}?rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/{id}?rel=0&modestbranding=1&autoplay=1"
           width="1920"
           height="1080"
           title="YouTube live stream video player"
