@@ -308,7 +308,7 @@ details[open] > .u-expand::before {
 
 .Text p,
 .Text ul {
-  max-width: 35.2em;
+  max-width: var(--max-width, 35.2em);
   font-weight: 200;
   font-size: 1.125rem;
 }

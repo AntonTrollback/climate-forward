@@ -50,17 +50,19 @@
 
         {#if slice.slice_type === 'sponsor'}
           <div class="u-container">
-            <Sponsor
-              class="u-spaceXl"
-              label={slice.primary.sponsor_label}
-              size={slice.primary.size === 'Small'
-                ? 'sm'
-                : slice.primary.size === 'Medium'
-                ? 'md'
-                : slice.primary.size === 'Large'
-                ? 'lg'
-                : ''}
-              org={slice.primary.sponsor.data} />
+            <div class:u-pushRight={slice.primary.push}>
+              <Sponsor
+                class="u-spaceXl"
+                label={slice.primary.sponsor_label}
+                size={slice.primary.size === 'Small'
+                  ? 'sm'
+                  : slice.primary.size === 'Medium'
+                  ? 'md'
+                  : slice.primary.size === 'Large'
+                  ? 'lg'
+                  : ''}
+                org={slice.primary.sponsor.data} />
+            </div>
           </div>
         {/if}
 
