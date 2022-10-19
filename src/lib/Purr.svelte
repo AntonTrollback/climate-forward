@@ -126,32 +126,12 @@
     <div class="content">
       <div class="body">
         <p>
-          {text`We use cookies and similar methods to recognize visitors and
-          remember their preferences. We also use them to measure ad campaign
-          effectiveness, target ads and analyze site traffic. To learn more about
-          these methods, including how to disable them`},
+          {text`We use cookies and similar methods to recognize visitors and remember their preferences. We also use them to measure ad campaign effectiveness and analyze site traffic. To learn more about these methods, including how to disable them, `},
           <a
             href="https://www.nytimes.com/privacy/cookie-policy"
             rel="noreferrer noopener"
             target="_blank"
             >{text`view our Cookie Policy`}
-          </a>.
-        </p>
-        <p>
-          {text`Starting on July 20, 2020 we will show you ads we think are
-          relevant to your interests, based on the kinds of content you access in
-          our Services. You can`}
-          <a
-            href="https://www.nytimes.com/privacy/cookie-policy#how-do-i-manage-trackers"
-            rel="noreferrer noopener"
-            target="_blank">
-            {text`object`}</a
-          >. {text`For more info, see our`}
-          <a
-            href="https://nytimes.com/privacy/privacy-policy#we-allow-for-personalized-advertising-on-times-services"
-            rel="noreferrer noopener"
-            target="_blank"
-            >{text`privacy policy`}
           </a>.
         </p>
         <p>
