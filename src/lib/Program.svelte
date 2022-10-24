@@ -25,9 +25,8 @@
             sessions: [session]
           }
           days.push(day)
-        }
-        if (day) {
-          day.sessions.push(session)
+        } else {
+          days[0].sessions.push(session)
         }
       } else {
         if (!day) {
