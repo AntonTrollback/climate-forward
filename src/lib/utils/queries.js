@@ -233,6 +233,14 @@ export const event = dedent`
           session ${session}
         }
       }
+      ...on sponsor_content {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          session ${session}
+        }
+      }
       ...on event_hero {
         non-repeat {
           ...non-repeatFields

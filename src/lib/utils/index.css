@@ -244,6 +244,25 @@ details[open] > .u-expand::before {
 }
 
 /**
+ * Kicker labels
+ */
+
+.u-kickerLg {
+  display: inline-block;
+  font-size: 1.25rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--current-color-ad);
+  font-weight: normal;
+}
+
+@media (min-width: 1000px) {
+  .u-kickerLg {
+    font-size: 1.5rem;
+    padding: 0.625rem 1.125rem;
+  }
+}
+
+/**
  * Trigger label
  */
 

@@ -9,6 +9,7 @@
   const { formatInTimeZone } = tz
 
   export let sessions
+  export let mixdays
 
   $: timezone = $current?.data.timezone || 'UTC'
   $: days = sessions
@@ -17,14 +18,27 @@
       const date = asDate(session.data.start_date_time)
       const datestamp = formatInTimeZone(date, timezone, 'yyyy-MM-dd')
       let day = days.find((day) => day.date === datestamp)
-      if (!day) {
-        day = {
-          date: datestamp,
-          sessions: [session]
+      if (mixdays) {
+        if (days.length < 1) {
+          day = {
+            date: datestamp,
+            sessions: [session]
+          }
+          days.push(day)
         }
-        days.push(day)
+        if (day) {
+          day.sessions.push(session)
+        }
       } else {
-        day.sessions.push(session)
+        if (!day) {
+          day = {
+            date: datestamp,
+            sessions: [session]
+          }
+          days.push(day)
+        } else {
+          day.sessions.push(session)
+        }
       }
       return days
     }, [])
@@ -91,7 +105,7 @@
       {#each days[0].sessions as session}
         <li class="item">
           <div class="body">
-            <SessionCard {session} />
+            <SessionCard showdate={mixdays} {session} />
           </div>
         </li>
       {/each}

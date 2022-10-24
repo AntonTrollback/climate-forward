@@ -254,6 +254,20 @@
           </div>
         {/if}
 
+        {#if slice.slice_type === 'sponsor_content'}
+          <div class="u-container">
+            <Divider size="lg" solid />
+            {#if slice.primary.kicker}
+              <h3 class="u-kickerLg u-spaceSm">{slice.primary.kicker}</h3>
+            {/if}
+            <Program
+              mixdays
+              sessions={slice.items
+                .map((item) => item.session)
+                .filter((session) => session.id && !session.isBroken)} />
+          </div>
+        {/if}
+
         {#if slice.slice_type === 'live_stream'}
           <div class="u-container">
             <Stream
