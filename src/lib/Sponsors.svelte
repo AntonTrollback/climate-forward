@@ -85,7 +85,7 @@
   }
 
   .item {
-    margin-right: 1.875rem;
+    margin-right: 2.5rem;
     margin-bottom: 1rem;
     flex-shrink: 0;
     flex-grow: 1;

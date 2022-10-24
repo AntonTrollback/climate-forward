@@ -39,6 +39,7 @@
   }
 
   span {
+    display: block;
     font-size: 0.75rem;
     margin-bottom: var(--space-xs);
   }

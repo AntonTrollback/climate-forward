@@ -99,23 +99,6 @@
       {/if}
     </span>
 
-    {#if !session.data.branding && hasSponsor}
-      <span class="wrap">
-        <div class="sponsor">
-          {#if session.data.show_logo}
-            <Sponsor
-              class="u-spaceSm"
-              org={session.data.sponsor.data}
-              label={session.data.kicker}
-              size="md" />
-          {:else}
-            {session.data.kicker}<br />
-            {asText(session.data.sponsor.data.name)}
-          {/if}
-        </div>
-      </span>
-    {/if}
-
     <div class="wrap button">
       {#if isLive}
         <Button solid theme="highlight" href="#live-stream" onclick={jump}>
@@ -140,6 +123,22 @@
         </Button>
       {/if}
     </div>
+
+    {#if !session.data.branding && hasSponsor}
+      <span class="wrap">
+        <div class="sponsor">
+          {#if session.data.show_logo}
+            <Sponsor
+              org={session.data.sponsor.data}
+              label={session.data.kicker}
+              size="md" />
+          {:else}
+            {session.data.kicker}<br />
+            {asText(session.data.sponsor.data.name)}
+          {/if}
+        </div>
+      </span>
+    {/if}
 
     {#if session.data.branding && hasSponsor}
       <div class="supporter">
