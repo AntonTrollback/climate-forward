@@ -260,11 +260,15 @@
             {#if slice.primary.kicker}
               <h3 class="u-kickerLg u-spaceSm">{slice.primary.kicker}</h3>
             {/if}
-            <Program
-              mixdays
-              sessions={slice.items
-                .map((item) => item.session)
-                .filter((session) => session.id && !session.isBroken)} />
+            {#if slice.items.length > 0}
+              <Program
+                mixdays
+                sessions={slice.items
+                  .map((item) => item.session)
+                  .filter((session) => session.id && !session.isBroken)} />
+            {:else}
+              <div style="margin-top: var(--space-block-md);" />
+            {/if}
           </div>
         {/if}
 
