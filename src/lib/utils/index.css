@@ -576,8 +576,8 @@ details[open] > .u-expand::before {
   font-family: var(--doc-heading-font-family);
   font-size: 1.25rem;
   font-weight: 400;
-  line-height: 1.12;
-  max-width: 26em;
+  line-height: 1.2;
+  max-width: var(--max-width, 26em);
 }
 
 @media (min-width: 800px) {
@@ -595,6 +595,7 @@ details[open] > .u-expand::before {
 
 .Text--xl .Text-p {
   font-size: 1.73rem;
+  line-height: 1.12;
   max-width: var(--max-width, 20em);
 }
 
