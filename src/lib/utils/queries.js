@@ -46,9 +46,6 @@ export const page = dedent`
         non-repeat {
           ...non-repeatFields
         }
-        repeat {
-          ...repeatFields
-        }
       }
       ...on line {
         non-repeat {
@@ -223,6 +220,14 @@ export const event = dedent`
               ...speakerFields
             }
           }
+        }
+      }
+      ...on faq {
+        non-repeat {
+          ...non-repeatFields
+        }
+        repeat {
+          ...repeatFields
         }
       }
       ...on program {

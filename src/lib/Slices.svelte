@@ -2,6 +2,7 @@
   import Button from './Button.svelte'
   import Conversations from './Conversations.svelte'
   import Divider from './Divider.svelte'
+  import FAQ from './FAQ.svelte'
   import EventList from './EventList.svelte'
   import Gallery from './Gallery.svelte'
   import LegalList from './LegalList.svelte'
@@ -148,6 +149,12 @@
             <RichText
               title={slice.primary.heading}
               fields={slice.primary.main_text} />
+          </div>
+        {/if}
+
+        {#if slice.slice_type === 'faq'}
+          <div class="u-container">
+            <FAQ title={slice.primary.title} topics={slice.items} />
           </div>
         {/if}
 
