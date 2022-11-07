@@ -55,7 +55,7 @@
     ? 'live'
     : next && isSameDay(asDate(next.data.start_date_time), Date.now())
     ? 'before'
-    : 'after'
+    : 'before'
 
   function getTimestamp(start, end) {
     const timezone = $current?.data.timezone || 'UTC'
