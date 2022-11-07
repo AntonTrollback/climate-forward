@@ -6,7 +6,10 @@
   export let type
 </script>
 
-<div class="layout">
+<div
+  class="layout {type === 'Park Regency Sharm el Sheikh Resort, Egypt'
+    ? 'fixed'
+    : ''}">
   <div class="aside">
     <div class="Text Text--xl Text--spaced">
       <h2 class="Text-p">{asText(title)}</h2>
@@ -102,6 +105,28 @@
         </div>
       </div>
     </div>
+  {:else if type === 'Park Regency Sharm el Sheikh Resort, Egypt'}
+    <div class="maps maps--egy" area-hidden="true">
+      <div class="item">
+        <div class="figure">
+          <img role="presentation" src="/map-egy.svg" loading="lazy" alt="" />
+          <span class="label l1"><span>Terrace</span></span>
+          <span class="label l2"
+            >The Fashion Opportunity<br /><small
+              >Presented by Morgan Stanley</small
+            ></span>
+          <span class="label l3"><span>Main Stage</span></span>
+          <span class="label l4"><span>Registration</span></span>
+          <span class="label l5"><span>Courtyard</span></span>
+          <span class="label l6"><span>Entrance <br />from Lobby</span></span>
+          <span class="label l7"><span>The Lawn</span></span>
+          <span class="label l8"><span>Workshop</span></span>
+          <span class="label l9"><span>VIP Lounge</span></span>
+          <span class="label l10"><span>Staff Room</span></span>
+          <span class="label l11"><span>Entrance</span></span>
+        </div>
+      </div>
+    </div>
   {/if}
   {#if text?.length}
     <div class="main">
@@ -115,19 +140,20 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: var(--space-block-sm);
+    margin-top: 1.3rem;
   }
 
   .maps--nyc {
     margin-top: 1.6rem;
   }
 
-  .maps--sfo {
-    margin-top: 1.3rem;
-  }
-
   @media (min-width: 550px) {
     .maps {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .fixed .maps {
+      grid-template-columns: 23.25rem 1fr;
     }
   }
 
@@ -281,6 +307,88 @@
     width: 24.5%;
   }
 
+  /* Sharm */
+
+  .maps--egy .label {
+    font-size: 0.75rem;
+  }
+
+  .maps--egy .l1 {
+    top: 0;
+    left: 0;
+    height: 26%;
+    width: 17.5%;
+  }
+
+  .maps--egy .l2 {
+    top: 0;
+    left: 17.6%;
+    height: 26%;
+    width: 24.1%;
+    flex-wrap: wrap;
+    padding: 3.8%;
+    align-content: center;
+  }
+
+  .maps--egy .l2 small {
+    font-size: 0.5625rem;
+    margin-top: 0.5em;
+  }
+
+  .maps--egy .l3 {
+    top: 0;
+    left: 42%;
+    height: 26%;
+    width: 29%;
+  }
+
+  .maps--egy .l4 {
+    top: 41%;
+    left: 36%;
+    height: 6.6%;
+    width: 22.5%;
+  }
+
+  .maps--egy .l5 {
+    top: 60%;
+    left: 36%;
+    height: 6%;
+    width: 22.5%;
+  }
+
+  .maps--egy .l6 {
+    bottom: 3%;
+    left: 52%;
+    height: 6%;
+  }
+
+  .maps--egy .l7 {
+    bottom: 10.2%;
+    left: 19.3%;
+    height: 6%;
+  }
+
+  .maps--egy .l8,
+  .maps--egy .l9,
+  .maps--egy .l10,
+  .maps--egy .l11 {
+    bottom: 51.5%;
+    right: 4%;
+    height: 12%;
+    width: 22%;
+  }
+  .maps--egy .l9 {
+    bottom: 39%;
+  }
+  .maps--egy .l10 {
+    bottom: 26.4%;
+  }
+  .maps--egy .l11 {
+    bottom: 13%;
+    width: 15.3%;
+    right: 2%;
+  }
+
   .main {
     margin-top: 1.375rem;
   }
@@ -309,6 +417,10 @@
 
     .maps + .main {
       grid-column: 2 / 4;
+    }
+
+    .maps--egy {
+      margin-top: 0.5rem;
     }
   }
 </style>

@@ -126,7 +126,7 @@
           frameborder="0"
           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen />
-        {#if subtext}
+        {#if subtext && !session.data.hide_subtext}
           <div class="Stream-sub">
             <RichText fields={subtext} size="xs" />
           </div>

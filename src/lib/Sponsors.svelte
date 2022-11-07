@@ -47,12 +47,20 @@
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
-    grid-gap: 1rem 2rem;
+    grid-gap: 1rem 3rem;
+    margin-bottom: -1.5rem;
   }
 
   @media (min-width: 650px) {
     .cols {
       justify-content: space-between;
+      flex-wrap: nowrap;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .cols {
+      grid-gap: 1rem 2rem;
     }
   }
 
@@ -85,10 +93,16 @@
   }
 
   .item {
-    margin-right: 2.5rem;
+    margin-right: 2rem;
     margin-bottom: 1rem;
     flex-shrink: 0;
     flex-grow: 1;
+  }
+
+  @media (min-width: 1000px) {
+    .item {
+      margin-right: 2.25rem;
+    }
   }
 
   .item:last-child {
