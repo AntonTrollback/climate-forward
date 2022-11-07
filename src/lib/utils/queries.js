@@ -86,6 +86,11 @@ export const page = dedent`
           sponsor ${sponsor}
         }
       }
+      ...on gallery {
+        repeat {
+          ...repeatFields
+        }
+      }
       ...on sponsor {
         non-repeat {
           ...non-repeatFields

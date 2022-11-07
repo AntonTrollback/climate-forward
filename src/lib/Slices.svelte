@@ -161,8 +161,14 @@
         {#if slice.slice_type === 'video_player'}
           <div class="u-container">
             {#if slice.primary.player?.embed_url}
-              <div class="u-aspectRestrainer u-introPull">
-                <div class="u-aspect u-introPull">
+              <div
+                class={slice.primary.intro_layout
+                  ? 'u-aspectRestrainer u-introPull'
+                  : ''}>
+                <div
+                  class={slice.primary.intro_layout
+                    ? 'u-aspect u-introPull'
+                    : 'u-aspect u-spaceBlockMd'}>
                   <iframe
                     src={`https://www.youtube.com/embed/${
                       slice.primary.player.embed_url.match(YOUTUBE_VIDEO)?.[1]

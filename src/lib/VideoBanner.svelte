@@ -147,7 +147,7 @@
     video = document.createElement('video')
     video.src = source.srcset.replace('.jpg', '.mp4')
     video.muted = true
-    video.playsInline = true
+    video.playsinline = true
     video.autoplay = true
     video.loop = true
     video.preload = 'eager'

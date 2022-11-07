@@ -143,6 +143,22 @@
   margin-top: var(--space-xl) !important;
 }
 
+.u-spaceBlockSm {
+  margin-top: var(--space-block-sm) !important;
+}
+
+.u-spaceBlockMd {
+  margin-top: var(--space-block-md) !important;
+}
+
+.u-spaceBlockLg {
+  margin-top: var(--space-block-lg) !important;
+}
+
+.u-spaceBlockXl {
+  margin-top: var(--space-block-xl) !important;
+}
+
 /**
  * Page intro spacings
  */
