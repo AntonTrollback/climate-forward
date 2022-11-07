@@ -18,6 +18,7 @@
   import Stream from './Stream.svelte'
   import VideoBanner from './VideoBanner.svelte'
   import { asText } from '@prismicio/helpers'
+  import src from './utils/src.js'
 
   const YOUTUBE_VIDEO =
     /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
@@ -182,6 +183,25 @@
                     allowfullscreen />
                 </div>
               </div>
+            {:else}
+              <img
+                style="width: 100%;"
+                class="u-spaceBlockMd"
+                sizes="90vw"
+                srcset="{src(
+                  'w_800/f_auto',
+                  slice.primary.image.url
+                )} 800w,{src(
+                  'w_1000/f_auto',
+                  slice.primary.image.url
+                )} 1000w,{src(
+                  'w_1200/f_auto',
+                  slice.primary.image.url
+                )} 1200w,{src('w_1800/f_auto', slice.primary.image.url)} 1800w"
+                src={src('w_400/f_auto', slice.primary.image.url)}
+                width={slice.primary.image.dimensions.width}
+                height={slice.primary.image.dimensions.height}
+                alt={slice.primary.image.alt ? slice.primary.image.alt : ''} />
             {/if}
           </div>
         {/if}
