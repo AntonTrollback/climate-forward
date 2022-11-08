@@ -22,6 +22,8 @@
 
   const YOUTUBE_VIDEO =
     /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
+  const VIMEO_VIDEO =
+    /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i
 
   export let slices
 
@@ -171,13 +173,18 @@
                     ? 'u-aspect u-introPull'
                     : 'u-aspect u-spaceBlockMd'}>
                   <iframe
-                    src={`https://www.youtube.com/embed/${
-                      slice.primary.player.embed_url.match(YOUTUBE_VIDEO)?.[1]
-                    }?rel=0&modestbranding=1`}
+                    src={slice.primary.player.embed_url.includes('vimeo')
+                      ? `https://player.vimeo.com/video/${
+                          slice.primary.player.embed_url.match(VIMEO_VIDEO)?.[1]
+                        }?muted=1&title=0&portrait=0&byline=0`
+                      : `https://www.youtube.com/embed/${
+                          slice.primary.player.embed_url.match(
+                            YOUTUBE_VIDEO
+                          )?.[1]
+                        }?rel=0&modestbranding=1`}
                     width="1920"
                     height="1080"
-                    title="YouTube video player for: {slice.primary.player
-                      .title}"
+                    title="Video video player for: {slice.primary.player.title}"
                     frameborder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen />
