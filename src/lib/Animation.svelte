@@ -149,9 +149,9 @@
     video.controls = false
     video.autoplay = true
     video.muted = true
-    video.playsinline = true
+    video.playsInline = true
     video.loop = true
-    video.disablepictureinpicture = true
+    video.disablePictureInPicture = true
     video.preload = 'auto'
     video.poster = image.src
     video.width = source.width

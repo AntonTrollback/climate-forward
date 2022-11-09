@@ -67,13 +67,8 @@
     })
     // Set open state
     .map((day, index) => {
-      // if (isSameDay(asDate(day.date), Date.now())) day.open = true
-      // if (index < 1 && isBefore(Date.now(), asDate(day.date))) day.open = true
-
-      if (index >= 1) {
-        if (isSameDay(asDate(day.date), Date.now())) day.open = true
-        if (index === 1) day.open = true
-      }
+      if (isSameDay(asDate(day.date), Date.now())) day.open = true
+      if (index < 1 && isBefore(Date.now(), asDate(day.date))) day.open = true
       return day
     })
 </script>
