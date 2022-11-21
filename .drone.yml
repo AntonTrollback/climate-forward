@@ -26,6 +26,7 @@ steps:
       shared_creds_location: .shared_creds_dev
       export_creds_location: .export_creds_dev
 
+#Dev build
   - name: build-dev
     pull: always
     image: node:latest 
@@ -37,3 +38,4 @@ steps:
     when:
       branch: feature/*
       event: push
+
