@@ -1,0 +1,39 @@
+---
+kind: secret
+name: awsma_creds_dev
+get:
+  path: awsma
+  name: dev
+---
+kind: secret
+name: awsma_creds_prd
+get:
+  path: awsma
+  name: prd
+---
+kind: pipeline
+name: infosec-climate-events
+
+workspace:
+  path: /drone/src
+
+steps:
+  - name: decode-creds-dev
+    image: us.gcr.io/nyt-registry-prd/drone-awsma-decode-creds
+    settings:
+      encoded_creds:
+        from_secret: awsma_creds_dev
+      shared_creds_location: .shared_creds_dev
+      export_creds_location: .export_creds_dev
+
+  - name: build-dev
+    pull: always
+    image: node:latest 
+    environment:
+      AWS_SHARED_CREDENTIALS_FILE: /drone/src/.shared_creds_dev
+    commands:
+      - npm i
+      - npm run build
+    when:
+      branch: feature/*
+      event: push
