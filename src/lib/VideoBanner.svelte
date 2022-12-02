@@ -356,7 +356,7 @@
     pointer-events: none;
     background: transparent;
     opacity: 0;
-    transition: opacity 300ms;
+    transition: opacity 600ms;
   }
 
   @media print {
