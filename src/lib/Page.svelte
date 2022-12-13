@@ -3,22 +3,22 @@
   import Menu from './Menu.svelte'
   import Footer from './Footer.svelte'
   export let page
-  export let parent = null
+  export let settings
 </script>
 
 <Menu
-  prefix={parent}
+  prefix={settings}
   slices={page.data.menu}
   keeptop={page.data.keeptop}
   stacked={page.data.stacked}
-  branding={page.data.branding || parent.data.branding} />
+  branding={page.data.branding || settings.data.branding} />
 
 <Slices slices={page.data.body} />
 
 <Footer
-  prefix={parent}
-  branding={page.data.branding || parent.data.branding}
-  copyright={page.data.copyright || parent.data.copyright}
+  prefix={settings}
+  branding={page.data.branding || settings.data.branding}
+  copyright={page.data.copyright || settings.data.copyright}
   links={page.data.links.length &&
   page.data.links.some(
     (item) =>
@@ -28,4 +28,4 @@
         : true)
   )
     ? page.data.links
-    : parent.data.links} />
+    : settings.data.links} />

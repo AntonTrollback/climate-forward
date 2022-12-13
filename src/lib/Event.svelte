@@ -22,7 +22,7 @@
   import { createClient } from '@prismicio/client'
   import { event as eventQuery } from './utils/queries.js'
 
-  export let parent
+  export let settings
   export let event
   export let speaker = null
   export let session = null
@@ -93,7 +93,7 @@
 
   setContext(LINK, function (document) {
     if (document === event) {
-      const href = resolve(document, parent)
+      const href = resolve(document)
       return {
         href: href,
         'sveltekit:reload': '',
@@ -101,7 +101,7 @@
           speaker = null
           session = null
           dialog = null
-          setMeta(document, parent)
+          setMeta(document)
           window.history.replaceState({}, null, href)
           e.preventDefault()
         }
@@ -110,7 +110,7 @@
 
     switch (document.type) {
       case 'speaker': {
-        const href = resolve(document, [parent, event, '/speakers'])
+        const href = resolve(document, [event, '/speakers'])
         return {
           href: href,
           'sveltekit:reload': '',
@@ -125,7 +125,7 @@
         }
       }
       case 'session': {
-        const href = resolve(document, [parent, event, '/sessions'])
+        const href = resolve(document, [event, '/sessions'])
         return {
           href: href,
           'sveltekit:reload': '',
@@ -140,7 +140,7 @@
         }
       }
       case 'dialog': {
-        const href = resolve(document, [parent, event, '/dialog'])
+        const href = resolve(document, [event, '/dialog'])
         return {
           href: href,
           'sveltekit:reload': '',
@@ -155,12 +155,10 @@
         }
       }
       case 'page': {
-        const prefix =
-          document.id === parent.id ? null : parent ? [parent, event] : event
-        return { href: resolve(document, prefix) }
+        return { href: resolve(document, event) }
       }
       case 'event':
-        return { href: resolve(document, parent) }
+        return { href: resolve(document) }
       default:
         return { href: resolve(document) }
     }
@@ -174,23 +172,14 @@
     speaker = null
     session = null
     dialog = null
-    setMeta(event, parent)
-    window.history.replaceState({}, null, resolve(event, parent))
+    setMeta(event)
+    window.history.replaceState({}, null, resolve(event))
   }
 </script>
 
 <svelte:window on:keydown={handlekey} />
 
 <slot>
-  <Menu
-    slices={$current.data.menu}
-    keeptop={$current.data.keeptop}
-    stacked={$current.data.stacked}
-    button={$current.data.button_text
-      ? { link: $current.data.link, text: $current.data.button_text }
-      : null}
-    branding={$current.data.branding || parent.data.branding} />
-
   <Slices slices={$current.data.body}>
     <Program
       slot="program"
@@ -203,14 +192,6 @@
         .map((item) => item.session)
         .filter((session) => session.id && !session.isBroken)} />
   </Slices>
-
-  {#if parent}
-    <Footer
-      prefix={parent}
-      links={parent.data.links}
-      branding={parent.data.branding}
-      copyright={parent.data.copyright} />
-  {/if}
 </slot>
 
 {#if speaker}

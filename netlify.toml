@@ -3,6 +3,9 @@
   publish = "build"
 
 [[redirects]]
+  from = "/climate-forward"
+  to = "/"
+[[redirects]]
   from = "/a-new-climate"
   to = "/a-new-climate/events/san-francisco"
 [[redirects]]

@@ -175,7 +175,8 @@
         class="toggle"
         for="switch"
         on:touchstart={removetapdelay}
-        on:click={toggle}>
+        on:click={toggle}
+        on:keypress={toggle}>
         <svg role="presentation" class="line" viewBox="0 0 24 1">
           <path fill="currentColor" d="M0 0h24v1.75H0z" />
         </svg>

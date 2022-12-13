@@ -1,8 +1,8 @@
 <script context="module">
   import { asText } from '@prismicio/helpers'
 
-  export const setMeta = function (doc, parent) {
-    let { title, desc, image } = define(doc, parent)
+  export const setMeta = function (doc, settings) {
+    let { title, desc, image } = define(doc, settings)
 
     function set(query, content) {
       let el = document.head.querySelector(query)
@@ -23,16 +23,16 @@
     }
   }
 
-  function define(doc, parent) {
+  function define(doc, settings) {
     let title = getTitle(doc)
     if (
       doc.type === 'speaker' ||
       doc.type === 'session' ||
       doc.type === 'dialog'
     ) {
-      title = `${title} | ${getTitle(parent)}`
-    } else if (parent && !doc.data.seo_title) {
-      title = `${title} | ${getTitle(parent)}`
+      title = `${title} | ${getTitle(settings)}`
+    } else if (settings && !doc.data.seo_title) {
+      title = `${title} | ${getTitle(settings)}`
     }
 
     let desc = doc.data.seo_description
@@ -41,9 +41,9 @@
     if (!desc) desc = ''
 
     let image = getImage(doc)
-    if (parent && !image) image = getImage(parent)
+    if (settings && !image) image = getImage(settings)
 
-    let noindex = doc.data.noindex || parent?.data.noindex
+    let noindex = doc.data.noindex || settings?.data.noindex
 
     return { title, desc, image, noindex }
   }
@@ -52,6 +52,7 @@
     if (doc.data.seo_title) return doc.data.seo_title
     if (doc.data.name) return asText(doc.data.name)
     if (doc.data.title) return asText(doc.data.title)
+
     return ''
   }
 
@@ -70,10 +71,9 @@
 
 <script>
   import { onMount } from 'svelte'
-  export let source
-  export let parent
-
-  let { title, desc, image, noindex } = define(source, parent)
+  export let page
+  export let settings
+  let { title, desc, image, noindex } = define(page, settings)
 
   onMount(() => {
     // svelte:head appends rather then updating existing

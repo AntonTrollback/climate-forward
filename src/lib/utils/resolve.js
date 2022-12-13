@@ -12,10 +12,7 @@ export default function resolve(doc, prefix) {
   }
 
   switch (doc.type) {
-    case 'event': {
-      const root = prefix || (doc.data.parent ? `/${doc.data.parent.uid}` : '')
-      return `${root}/events/${doc.uid}`
-    }
+    case 'event': return `/${doc.uid}`
     case 'Web':
     case 'Media':
       return doc.url?.replace(/^https?:\/\/#/, '#')
@@ -25,7 +22,7 @@ export default function resolve(doc, prefix) {
         case 'Media':
           return doc.url?.replace(/^https?:\/\/#/, '#')
         default:
-          return `${prefix}/${doc.uid}`.replace('homepage', '')
+          return `${prefix}/${doc.uid}`.replace('climate-forward', '')
       }
   }
 }
