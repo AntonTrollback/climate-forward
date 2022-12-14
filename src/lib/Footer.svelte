@@ -2,6 +2,7 @@
   import { page } from '$app/stores'
   import { setContext } from 'svelte'
   import Purr from './Purr.svelte'
+  import logo from './utils/logo.js'
   import resolve from './utils/resolve.js'
   import whitespace from './utils/whitespace.js'
   import Link, { LINK } from './Link.svelte'
@@ -39,31 +40,25 @@
       <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Events</span>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-climate-events.svg"
-          alt="Climate Events logo" />
+        {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Forward</span>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-climate-forward.svg"
-          alt="Climate Forward logo" />
+        {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
       <a class="logo" href="/san-francisco" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-a-new-climate.svg"
-          alt="A New Climate logo" />
+        {@html logo('a-new-climate')}
+      </a>
+    {:else if branding === 'Climate Hub'}
+      <a class="logo" href="/san-francisco" on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times A New Climate</span>
+        <br /><br />
+        {@html logo('climate-hub')}
       </a>
     {/if}
     {#if links?.length > 0}

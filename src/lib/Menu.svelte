@@ -1,6 +1,7 @@
 <script>
   import { isSameDay } from 'date-fns'
   import resolve from './utils/resolve.js'
+  import logo from './utils/logo.js'
   import { current } from './Event.svelte'
   import { active } from './ScrollTarget.svelte'
   import Link, { LINK } from './Link.svelte'
@@ -141,33 +142,21 @@
         <strong class="u-hiddenVisually"
           >The New York Times Climate Events</strong>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-climate-events.svg"
-          alt="Climate Events logo" />
+        {@html logo('climate-events')}
       </a>
     {:else if branding === 'Climate Forward'}
       <a class="logo" href="/" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times Climate Forward</strong>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-climate-forward.svg"
-          alt="Climate Forward logo" />
+        {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
       <a class="logo" href="/san-francisco" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times A New Climate</strong>
         <br /><br />
-        <img
-          role="presentation"
-          draggable="false"
-          src="/logo-a-new-climate.svg"
-          alt="A New Climate logo" />
+        {@html logo('a-new-climate')}
       </a>
     {/if}
 
@@ -201,22 +190,14 @@
               <span class="u-hiddenVisually">
                 The New York Times Climate Events
               </span>
-              <img
-                role="presentation"
-                draggable="false"
-                src="/logo-climate-events.svg"
-                alt="Climate Events logo" />
+              {@html logo('climate-events')}
             </a>
           {:else if branding === 'Climate Forward'}
             <a style="display: none" class="logo" href="/" on:click={scrollTop}>
               <span class="u-hiddenVisually">
                 The New York Times Climate Forward
               </span>
-              <img
-                role="presentation"
-                draggable="false"
-                src="/logo-climate-forward.svg"
-                alt="Climate Forward logo" />
+              {@html logo('climate-forward')}
             </a>
           {:else if branding === 'A New Climate'}
             <a
@@ -226,11 +207,7 @@
               on:click={scrollTop}>
               <span class="u-hiddenVisually"
                 >The New York Times A New Climate</span>
-              <img
-                role="presentation"
-                draggable="false"
-                src="/logo-a-new-climate.svg"
-                alt="A New Climate logo" />
+              {@html logo('a-new-climate')}
             </a>
           {/if}
         </div>
