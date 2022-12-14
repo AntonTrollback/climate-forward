@@ -2,11 +2,11 @@
   import { onMount } from 'svelte'
   import whitespace from './utils/whitespace.js'
   import Button from './Button.svelte'
-  export let prefix
-  export let title
-  export let date
-  export let color
-  export let button
+  export let prefix = null
+  export let title = null
+  export let date = null
+  export let color = null
+  export let button = null
   let picture
   let image
   let video

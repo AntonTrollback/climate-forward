@@ -1,8 +1,6 @@
 <script>
   import Link from './Link.svelte'
-  import { asText } from '@prismicio/helpers'
   import src from './utils/src.js'
-
   export let items
 </script>
 

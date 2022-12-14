@@ -2,6 +2,8 @@ import { error } from '@sveltejs/kit'
 import { createClient } from '@prismicio/client'
 import { load as eventLoader } from '../../+page.js'
 
+export const prerender = 'auto'
+
 export async function load({ fetch, params }) {
   try {
     const client = createClient('climateforward', { fetch })

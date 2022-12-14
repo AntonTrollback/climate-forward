@@ -3,7 +3,6 @@
   import { setContext } from 'svelte'
   import Purr from './Purr.svelte'
   import resolve from './utils/resolve.js'
-  import logo from './utils/logo.js'
   import whitespace from './utils/whitespace.js'
   import Link, { LINK } from './Link.svelte'
 
@@ -40,30 +39,39 @@
       <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Events</span>
         <br /><br />
-        {@html logo('climate-events')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-climate-events.svg"
+          alt="Climate Events logo" />
       </a>
     {:else if branding === 'Climate Forward'}
-      <a class="logo" href="/climate-forward" on:click={scrollTop}>
+      <a class="logo" href="/" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Forward</span>
         <br /><br />
-        {@html logo('climate-forward')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-climate-forward.svg"
+          alt="Climate Forward logo" />
       </a>
     {:else if branding === 'A New Climate'}
-      <a
-        class="logo"
-        href="/a-new-climate/events/san-francisco"
-        on:click={scrollTop}>
+      <a class="logo" href="/san-francisco" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <br /><br />
-        {@html logo('a-new-climate')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-a-new-climate.svg"
+          alt="A New Climate logo" />
       </a>
     {/if}
     {#if links?.length > 0}
       <h3 class="u-hiddenVisually">Navigation</h3>
       <ul class="list">
-        {#if branding === 'Climate Forward' && $page.url.pathname.includes('/events/')}
+        {#if branding === 'Climate Forward' && $page.url.pathname.includes('/')}
           <li class="item strong">
-            <a class="link" href="/climate-forward"
+            <a class="link" href="/"
               >See all events in the Climate Forward Series</a>
           </li>
         {:else if branding === 'A New Climate'}
@@ -84,23 +92,22 @@
 
   <div class="u-hidden" style="display: none" aria-hidden="true">
     <a href="/thank-you">.</a>
-    <a href="/climate-forward/press-thank-you">.</a>
-    <a href="/climate-forward/london-thank-you">.</a>
-    <a href="/a-new-climate/a-new-climate-thank-you">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-thank-you">.</a>
-    <a href="/climate-forward/the-fashion-opportunity">.</a>
-    <a href="/climate-forward/the-fashion-opportunity-menu">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-google">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-google-menu">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-bcg">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-bcg-menu">.</a>
-    <a href="/climate-forward/sharm-el-sheikh-fashion-exhibition">.</a>
-    <a href="/a-new-climate/lunch-menu">.</a>
-    <a href="/climate-forward/closing-the-gap-on-climate-inequity">.</a>
-    <a href="/climate-forward/events/new-york/wifi">.</a>
-    <a
-      href="/climate-forward/can-fashion-influencers-persuade-us-to-consume-less"
-      >.</a>
+    <a href="/press-thank-you">.</a>
+    <a href="/london-thank-you">.</a>
+    <a href="/a-new-climate-thank-you">.</a>
+    <a href="/sharm-el-sheikh-thank-you">.</a>
+    <a href="/the-fashion-opportunity">.</a>
+    <a href="/the-fashion-opportunity-menu">.</a>
+    <a href="/sharm-el-sheikh-google">.</a>
+    <a href="/sharm-el-sheikh-google-menu">.</a>
+    <a href="/sharm-el-sheikh-bcg">.</a>
+    <a href="/sharm-el-sheikh-bcg-menu">.</a>
+    <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
+    <a href="/lunch-menu">.</a>
+    <a href="/closing-the-gap-on-climate-inequity">.</a>
+    <a href="/new-york/wifi">.</a>
+    <a href="/climatehub">.</a>
+    <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
 
     <a href="/the-fashion-opportunity">.</a>
     <a href="/404">.</a>
@@ -135,7 +142,8 @@
     vertical-align: bottom;
   }
 
-  :global(.Footer .logo svg) {
+  :global(.Footer .logo svg),
+  :global(.Footer .logo img) {
     display: block;
     height: 100%;
     width: auto;

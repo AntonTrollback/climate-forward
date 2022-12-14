@@ -8,7 +8,7 @@
   const { formatInTimeZone } = tz
 
   export let session
-  export let showdate
+  export let showdate = null
   export let past = false
 
   $: timezone = $current?.data.timezone || 'UTC'

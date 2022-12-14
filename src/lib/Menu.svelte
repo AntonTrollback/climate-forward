@@ -1,5 +1,4 @@
 <script>
-  import logo from './utils/logo.js'
   import { isSameDay } from 'date-fns'
   import resolve from './utils/resolve.js'
   import { current } from './Event.svelte'
@@ -142,24 +141,33 @@
         <strong class="u-hiddenVisually"
           >The New York Times Climate Events</strong>
         <br /><br />
-        {@html logo('climate-events')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-climate-events.svg"
+          alt="Climate Events logo" />
       </a>
     {:else if branding === 'Climate Forward'}
-      <a class="logo" href="/climate-forward" on:click={scrollTop}>
+      <a class="logo" href="/" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times Climate Forward</strong>
         <br /><br />
-        {@html logo('climate-forward')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-climate-forward.svg"
+          alt="Climate Forward logo" />
       </a>
     {:else if branding === 'A New Climate'}
-      <a
-        class="logo"
-        href="/a-new-climate/events/san-francisco"
-        on:click={scrollTop}>
+      <a class="logo" href="/san-francisco" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times A New Climate</strong>
         <br /><br />
-        {@html logo('a-new-climate')}
+        <img
+          role="presentation"
+          draggable="false"
+          src="/logo-a-new-climate.svg"
+          alt="A New Climate logo" />
       </a>
     {/if}
 
@@ -193,28 +201,36 @@
               <span class="u-hiddenVisually">
                 The New York Times Climate Events
               </span>
-              {@html logo('climate-events')}
+              <img
+                role="presentation"
+                draggable="false"
+                src="/logo-climate-events.svg"
+                alt="Climate Events logo" />
             </a>
           {:else if branding === 'Climate Forward'}
-            <a
-              style="display: none"
-              class="logo"
-              href="/climate-forward"
-              on:click={scrollTop}>
+            <a style="display: none" class="logo" href="/" on:click={scrollTop}>
               <span class="u-hiddenVisually">
                 The New York Times Climate Forward
               </span>
-              {@html logo('climate-forward')}
+              <img
+                role="presentation"
+                draggable="false"
+                src="/logo-climate-forward.svg"
+                alt="Climate Forward logo" />
             </a>
           {:else if branding === 'A New Climate'}
             <a
               style="display: none"
               class="logo"
-              href="/a-new-climate/events/san-francisco"
+              href="/san-francisco"
               on:click={scrollTop}>
               <span class="u-hiddenVisually"
                 >The New York Times A New Climate</span>
-              {@html logo('a-new-climate')}
+              <img
+                role="presentation"
+                draggable="false"
+                src="/logo-a-new-climate.svg"
+                alt="A New Climate logo" />
             </a>
           {/if}
         </div>
@@ -343,7 +359,8 @@
     outline-offset: var(--focus-ring-width);
   }
 
-  :global(.Menu .logo svg) {
+  :global(.Menu .logo svg),
+  :global(.Menu .logo img) {
     display: block;
     height: 100%;
     width: auto;

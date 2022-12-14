@@ -34,7 +34,7 @@
   import resolve from './utils/resolve.js'
 
   export let onclick = null
-  export let document
+  export let document = null
 
   $: props = linkResolver(document)
   $: _onclick = props?.onclick || onclick

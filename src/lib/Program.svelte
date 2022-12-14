@@ -9,7 +9,7 @@
   const { formatInTimeZone } = tz
 
   export let sessions
-  export let mixdays
+  export let mixdays = null
 
   $: timezone = $current?.data.timezone || 'UTC'
   $: days = sessions

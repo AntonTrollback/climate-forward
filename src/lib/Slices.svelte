@@ -237,7 +237,7 @@
         {/if}
 
         {#if slice.slice_type === 'video_banner'}
-          <VideoBanner default />
+          <VideoBanner />
         {/if}
 
         {#if slice.slice_type === 'event_hero'}

@@ -8,7 +8,7 @@
   import resolve from '$lib/utils/resolve.js'
 
   setContext(LINK, function (document) {
-    return { href: resolve(document, data) }
+    return { href: resolve(document) }
   })
 
   export let data = {}

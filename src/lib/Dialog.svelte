@@ -9,8 +9,8 @@
 
 {#if dialog.data.iframe_url}
   <iframe
-    src={'https://allaboard.eu'}
-    title="Registration form"
+    src={dialog.data.iframe_url}
+    title=""
     allowfullscreen="true"
     allowpaymentrequest="true"
     fetchpriority="high"
