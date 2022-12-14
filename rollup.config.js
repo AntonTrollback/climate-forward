@@ -1,6 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve'
 import sveltePreprocess from 'svelte-preprocess'
-import { terser } from 'rollup-plugin-terser'
+import { terser } from 'rollup-plugin-minification'
 import svelte from 'rollup-plugin-svelte'
 import autoprefixer from 'autoprefixer'
 
