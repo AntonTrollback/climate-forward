@@ -6,13 +6,6 @@
   export let items
   export let props = { large: false }
   let { large } = props
-
-  if (props.link_external) {
-    items = items.map(function (item) {
-      item.event.target = '_blank'
-      return item
-    })
-  }
 </script>
 
 <ol>
@@ -31,8 +24,7 @@
           <div class="Text u-spaceSm">
             <p>
               <strong>
-                {#if item.event.data.past_event}Past event, {/if}{item.event
-                  .data.date}
+                {item.event.data.date}
               </strong>
             </p>
           </div>
@@ -41,17 +33,9 @@
           class={large ? 'u-spaceXl' : ''}
           fields={item.event.data.description} />
         <div class="action">
-          {#if item.override_link?.url}
-            <Button solid={item.solid_button} document={item.override_link}>
-              {item.override_link_text}
-            </Button>
-          {:else}
-            <Button
-              solid={item.solid_button}
-              document={item.event}
-              target="_blank"
-              >{item.event.data.past_event ? 'Watch now' : 'See event'}</Button>
-          {/if}
+          <Button solid={item.solid_button} document={item.event}>
+            {item.link_text}
+          </Button>
         </div>
       </div>
     </li>

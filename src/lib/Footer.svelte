@@ -64,16 +64,6 @@
     {#if links?.length > 0}
       <h3 class="u-hiddenVisually">Navigation</h3>
       <ul class="list">
-        {#if branding === 'Climate Forward' && $page.url.pathname.includes('/')}
-          <li class="item strong">
-            <a class="link" href="/"
-              >See all events in the Climate Forward Series</a>
-          </li>
-        {:else if branding === 'A New Climate'}
-          <li class="item strong">
-            <a class="link" href="/">See all Climate Events</a>
-          </li>
-        {/if}
         {#each links as link}
           <li class="item">
             <Link href={link.href} class="link">{link.text}</Link>
@@ -172,11 +162,6 @@
 
   .item {
     display: inline-block;
-  }
-
-  .strong {
-    font-weight: 700;
-    display: block;
   }
 
   :global(.Footer .link) {

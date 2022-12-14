@@ -96,7 +96,7 @@
       const href = resolve(document)
       return {
         href: href,
-        'sveltekit:reload': '',
+        'data-sveltekit-reload': '',
         onclick(e) {
           speaker = null
           session = null
@@ -113,7 +113,7 @@
         const href = resolve(document, [event, '/speakers'])
         return {
           href: href,
-          'sveltekit:reload': '',
+          'data-sveltekit-reload': '',
           onclick(e) {
             dialog = null
             session = null
@@ -128,7 +128,7 @@
         const href = resolve(document, [event, '/sessions'])
         return {
           href: href,
-          'sveltekit:reload': '',
+          'data-sveltekit-reload': '',
           onclick(e) {
             dialog = null
             speaker = null
@@ -143,7 +143,7 @@
         const href = resolve(document, [event, '/dialog'])
         return {
           href: href,
-          'sveltekit:reload': '',
+          'data-sveltekit-reload': '',
           onclick(e) {
             speaker = null
             session = null
