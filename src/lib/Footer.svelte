@@ -34,7 +34,6 @@
   onMount(function () {
     if (!videoLogo) return
     if (typeof window.matchMedia !== 'function') return
-    let isPlaying = false
 
     let video = null
     let picture = videoLogo.querySelector('picture')
@@ -42,14 +41,7 @@
     let source = videoLogo.querySelector('source')
     let supportsPicture = source.srcset.includes(image.currentSrc)
 
-    if (supportsPicture) {
-      // Safari mp4 in img tag
-      if (image.complete) return start()
-      image.addEventListener('load', function onload() {
-        image.removeEventListener('load', onload)
-        start()
-      })
-    } else {
+    if (!supportsPicture) {
       picture.replaceWith(createVideo())
     }
 

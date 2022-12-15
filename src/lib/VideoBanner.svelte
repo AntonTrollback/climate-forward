@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import { fade } from 'svelte/transition'
   import whitespace from './utils/whitespace.js'
   import Button from './Button.svelte'
   export let prefix = null
@@ -11,7 +12,6 @@
   let image
   let video
   let sources
-
   let theme
 
   switch (color) {
@@ -118,7 +118,7 @@
 
   function getSrc(props) {
     let { w, h, q, f, suffix = '1' } = props
-    if (!f) f = 'jpg'
+    if (!f) f = 'mp4'
     let res = 'https://res.cloudinary.com/dykmd8idd/video/upload/'
     res += `so_0/ac_none/c_crop,w_${w},h_${h}/q_${
       f === 'jpg' ? 85 : q[0]
@@ -165,26 +165,33 @@
     image = Array.from(picture.querySelectorAll('img')).find(
       (img) => window.getComputedStyle(img, null).display !== 'none'
     )
-    sources = [...picture.querySelectorAll('source')]
-    picture.replaceWith(createVideo())
-    video.addEventListener('play', () => {
-      video.style = 'opacity: 1'
-    })
 
-    let current = getCurrentSource()
-    window.addEventListener(
-      'resize',
-      debounce(function () {
-        const potential = getCurrentSource()
-        if (potential !== current) {
-          current = potential
-          video.replaceWith(createVideo())
-          video.addEventListener('play', () => {
-            video.style = 'opacity: 1'
-          })
-        }
+    sources = [...picture.querySelectorAll('source')]
+
+    if (image.complete && image.naturalWidth === 0) fallback()
+    image.addEventListener('error', fallback)
+
+    function fallback() {
+      picture.replaceWith(createVideo())
+      video.addEventListener('play', () => {
+        video.style = 'opacity: 1'
       })
-    )
+
+      let current = getCurrentSource()
+      window.addEventListener(
+        'resize',
+        debounce(function () {
+          const potential = getCurrentSource()
+          if (potential !== current) {
+            current = potential
+            video.replaceWith(createVideo())
+            video.addEventListener('play', () => {
+              video.style = 'opacity: 1'
+            })
+          }
+        })
+      )
+    }
   })
 
   function jump(event) {
@@ -215,7 +222,11 @@
         src={getSrc({ ...item.opts, f: 'jpg' })}
         alt="" />
     {/each}
-    <picture bind:this={picture} area-hidden="true" draggable="false">
+    <picture
+      transition:fade
+      bind:this={picture}
+      area-hidden="true"
+      draggable="false">
       {#each theme.items as item}
         <source
           srcset={getSrc(item.opts)}
@@ -338,8 +349,10 @@
     margin-bottom: 0;
   }
 
-  picture {
-    opacity: 0;
+  picture img {
+    /* Same as first example */
+    min-height: 50px;
+    text-indent: -100vw;
   }
 
   :global(.VideoBanner video) {
@@ -356,7 +369,7 @@
     pointer-events: none;
     background: transparent;
     opacity: 0;
-    transition: opacity 600ms;
+    transition: opacity 200ms;
   }
 
   @media print {
