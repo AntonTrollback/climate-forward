@@ -92,16 +92,27 @@
     display: flex;
   }
 
+  .large .items {
+    align-items: center;
+  }
+
   .item {
-    margin-right: 2rem;
+    margin-right: 2.25rem;
     margin-bottom: 1rem;
     flex-shrink: 0;
-    flex-grow: 1;
+  }
+
+  .large .item {
+    margin-right: 2.5rem;
+  }
+
+  :global(.item a) {
+    display: block;
   }
 
   @media (min-width: 1000px) {
-    .item {
-      margin-right: 2.25rem;
+    .large .item {
+      margin-right: 3.5rem;
     }
   }
 
