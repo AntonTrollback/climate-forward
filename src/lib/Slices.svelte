@@ -116,7 +116,7 @@
         {/if}
 
         {#if slice.slice_type === 'main_text'}
-          <div class="u-container u-pull">
+          <div class="u-container u-pull u-spaceBlockMd">
             <div class="u-pull">
               <div class="u-center">
                 {#if slice.primary.heading?.length}
