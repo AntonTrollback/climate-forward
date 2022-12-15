@@ -37,18 +37,6 @@
         : false
     )
 
-  $: isLive =
-    sessions?.some((session) =>
-      session.data?.start_date_time
-        ? asDate(session.data.start_date_time) < Date.now()
-        : false
-    ) &&
-    sessions?.some((session) =>
-      session.data?.end_date_time
-        ? asDate(session.data.end_date_time) > Date.now()
-        : false
-    )
-
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
     locked = parseInt(styles.getPropertyValue('--doc-narrow'))
@@ -214,7 +202,10 @@
         <div class="content">
           <ul class="list">
             {#each slices as slice}
-              <li class={$active === slice.primary.slice_id ? 'active' : ''}>
+              <li
+                class={`${$active === slice.primary.slice_id ? 'active' : ''} ${
+                  slice.primary.mobile_only ? 'mobile-only' : ''
+                } ${slice.primary.desktop_only ? 'desktop-only' : ''}`}>
                 {#if slice.slice_type === 'link'}
                   <Link class="link" document={slice.primary.link}>
                     <span data-text={slice.primary.label}>
@@ -222,7 +213,7 @@
                     </span>
                   </Link>
                 {/if}
-                {#if slice.slice_type === 'scroll_link' || (slice.slice_type === 'live_stream_link' && isLive)}
+                {#if slice.slice_type === 'scroll_link'}
                   <a
                     class="link"
                     on:click={jump}
@@ -476,6 +467,10 @@
       background: var(--current-color-background);
     }
 
+    .desktop-only {
+      display: none;
+    }
+
     .nav-wrap {
       display: flex;
       align-items: center;
@@ -613,6 +608,10 @@
     .container {
       z-index: 1;
       position: relative;
+    }
+
+    .mobile-only {
+      display: none;
     }
 
     .content {
