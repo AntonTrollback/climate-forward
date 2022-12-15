@@ -146,9 +146,6 @@ export const event = dedent`
         ...on session ${session}
       }
     }
-    parent {
-      ...on page ${page}
-    }
     link {
       ...on dialog {
         ...dialogFields

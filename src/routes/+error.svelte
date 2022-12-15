@@ -9,7 +9,7 @@
   import Button from '../lib/Button.svelte'
 </script>
 
-<Menu slices={null} keeptop="true" branding={'Climate Events'} />
+<Menu slices={null} keeptop="true" branding={'Climate Forward'} />
 
 <div class="u-container">
   <div class="Text Text--spaced Text--xl">
