@@ -12,7 +12,8 @@ export default function resolve(doc, prefix) {
   }
 
   switch (doc.type) {
-    case 'event': return `/${doc.uid}`
+    case 'event':
+      return `/${doc.uid}`
     case 'Web':
     case 'Media':
       return doc.url?.replace(/^https?:\/\/#/, '#')

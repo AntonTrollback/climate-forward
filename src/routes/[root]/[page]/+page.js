@@ -13,7 +13,7 @@ export async function load({ fetch, params }) {
             page ${pageQuery}
           }
         `
-      }),
+      })
     ])
 
     return { page, settings }

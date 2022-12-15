@@ -22,7 +22,7 @@ export async function load({ fetch, params }) {
             page ${pageQuery}
           }
         `
-      }),
+      })
     ])
 
     const [first] = responses

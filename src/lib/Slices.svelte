@@ -56,7 +56,7 @@
           <div class="u-container">
             <div class:u-pushRight={slice.primary.push}>
               <Sponsor
-                class="u-spaceXl"
+                class={slice.primary.margin_bottom ? '' : 'u-spaceXl'}
                 label={slice.primary.sponsor_label}
                 size={slice.primary.size === 'Small'
                   ? 'sm'
@@ -66,6 +66,7 @@
                   ? 'lg'
                   : ''}
                 org={slice.primary.sponsor.data} />
+              <div class={slice.primary.margin_bottom ? 'u-spaceXl' : ''} />
             </div>
           </div>
         {/if}
