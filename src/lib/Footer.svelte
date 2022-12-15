@@ -49,13 +49,13 @@
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
-      <a class="logo" href="/san-francisco" on:click={scrollTop}>
+      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <br /><br />
         {@html logo('a-new-climate')}
       </a>
     {:else if branding === 'Climate Hub'}
-      <a class="logo" href="/san-francisco" on:click={scrollTop}>
+      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <br /><br />
         {@html logo('climate-hub')}

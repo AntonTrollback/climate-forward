@@ -152,7 +152,7 @@
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
-      <a class="logo" href="/san-francisco" on:click={scrollTop}>
+      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times A New Climate</strong>
         <br /><br />
