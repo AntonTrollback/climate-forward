@@ -1,6 +1,5 @@
 <script>
-  import { page } from '$app/stores'
-  import { setContext } from 'svelte'
+  import { onMount, setContext } from 'svelte'
   import Purr from './Purr.svelte'
   import logo from './utils/logo.js'
   import resolve from './utils/resolve.js'
@@ -11,6 +10,8 @@
   export let links
   export let copyright
   export let branding
+
+  let videoLogo
 
   if (prefix) {
     setContext(LINK, function (document) {
@@ -29,6 +30,44 @@
     })
     event.preventDefault()
   }
+
+  onMount(function () {
+    if (!videoLogo) return
+    if (typeof window.matchMedia !== 'function') return
+    let isPlaying = false
+
+    let video = null
+    let picture = videoLogo.querySelector('picture')
+    let image = videoLogo.querySelector('img')
+    let source = videoLogo.querySelector('source')
+    let supportsPicture = source.srcset.includes(image.currentSrc)
+
+    if (supportsPicture) {
+      // Safari mp4 in img tag
+      if (image.complete) return start()
+      image.addEventListener('load', function onload() {
+        image.removeEventListener('load', onload)
+        start()
+      })
+    } else {
+      picture.replaceWith(createVideo())
+    }
+
+    function createVideo() {
+      video = document.createElement('video')
+      video.src = source.srcset.replace('.jpg', '.mp4')
+      video.muted = true
+      video.playsInline = true
+      video.autoplay = true
+      video.loop = true
+      video.preload = 'eager'
+      video.poster =
+        'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+      video.width = source.width
+      video.height = source.height
+      return video
+    }
+  })
 </script>
 
 <hr class="u-hiddenVisually" />
@@ -55,8 +94,12 @@
         {@html logo('a-new-climate')}
       </a>
     {:else if branding === 'Climate Hub'}
-      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
-        <span class="u-hiddenVisually">The New York Times A New Climate</span>
+      <a
+        class="logo climatehub"
+        bind:this={videoLogo}
+        href="/a-new-climate"
+        on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times Climate Hub</span>
         <br /><br />
         {@html logo('climate-hub')}
       </a>
@@ -147,8 +190,45 @@
     }
   }
 
+  .climatehub {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    margin: -0.5rem 0 1.2rem;
+    cursor: default;
+  }
+
+  :global(.Footer .climatehub img),
+  :global(.Footer .climatehub video) {
+    display: block;
+    margin: 0 auto -0.4rem;
+    width: 9.5rem;
+    height: auto;
+  }
+
+  :global(.Footer .climatehub svg) {
+    height: 2.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: 700px) {
+    :global(.Footer .climatehub img),
+    :global(.Footer .climatehub video) {
+      margin-bottom: -0.6rem;
+      width: 12.5rem;
+    }
+
+    :global(.Footer .climatehub svg) {
+      height: 3.25rem;
+    }
+  }
+
   .list {
-    max-width: 19rem;
+    max-width: 21rem;
     margin: 0.875rem auto 0.1rem;
     -webkit-user-select: none;
     user-select: none;
