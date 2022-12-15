@@ -15,22 +15,20 @@
         <Divider solid="true" size={large ? 'lg' : 'md'} />
       {/if}
       <div class="content">
-        <h2 class="{large ? 'Text-h1' : 'Text-h2'} u-fill">
+        {#if !large}
+          <div class="Text u-spaceSm {large ? '' : 'Text--xs'}">
+            <p class="Text-p">{item.event.data.date}</p>
+          </div>
+        {/if}
+        <h2 class="{large ? 'Text-h1' : 'Text-h4'} u-fill">
           {asText(item.event.data.name)}
         </h2>
         {#if large}
           <span class="Text-h1 u-fill"><em>{item.event.data.date}</em></span>
-        {:else}
-          <div class="Text u-spaceSm">
-            <p>
-              <strong>
-                {item.event.data.date}
-              </strong>
-            </p>
-          </div>
         {/if}
         <RichText
-          class={large ? 'u-spaceXl' : ''}
+          size={large ? 'md' : 'sm'}
+          class={'u-spaceLg'}
           fields={item.event.data.description} />
         <div class="action">
           <Button solid={item.solid_button} document={item.event}>
