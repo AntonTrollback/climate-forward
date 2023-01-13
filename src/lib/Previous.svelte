@@ -33,25 +33,28 @@
               alt={`Photo from the stage during the session "${session.data.video.title}"`}
               sizes="(min-width: 1000px) 16vw, 40vw"
               srcset="{src(
-                'w_200/f_auto',
+                'e_trim/ar_16:9,w_200,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 200w,{src(
-                'w_300/f_auto',
+                'e_trim/ar_16:9,w_300,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 300w,{src(
-                'w_400/f_auto',
+                'e_trim/ar_16:9,w_400,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 400w,{src(
-                'w_500/f_auto',
+                'e_trim/ar_16:9,w_500,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 500w,{src(
-                'w_600/f_auto',
+                'e_trim/ar_16:9,w_600,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 600w,{src(
-                'w_900/f_auto',
+                'e_trim/ar_16:9,w_900,c_fill,g_auto:subject/f_auto',
                 session.data.video.thumbnail_url
               )} 900w"
-              src={src('w_400/f_auto', session.data.video.thumbnail_url)}
+              src={src(
+                'e_trim/ar_16:9,w_400,c_fill,g_auto:subject/f_auto',
+                session.data.video.thumbnail_url
+              )}
               width={session.data.video.thumbnail_width}
               height={session.data.video.thumbnail_height} />
           </figure>
@@ -84,25 +87,28 @@
                     alt={`Photo from the stage during the session "${session.data.video.title}"`}
                     sizes="(min-width: 1000px) 16vw, 40vw"
                     srcset="{src(
-                      'w_200/f_auto',
+                      'e_trim/ar_16:9,w_200,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 200w,{src(
-                      'w_300/f_auto',
+                      'e_trim/ar_16:9,w_300,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 300w,{src(
-                      'w_400/f_auto',
+                      'e_trim/ar_16:9,w_400,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 400w,{src(
-                      'w_500/f_auto',
+                      'e_trim/ar_16:9,w_500,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 500w,{src(
-                      'w_600/f_auto',
+                      'e_trim/ar_16:9,w_600,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 600w,{src(
-                      'w_900/f_auto',
+                      'e_trim/ar_16:9,w_900,c_fill,g_auto:subject/f_auto',
                       session.data.video.thumbnail_url
                     )} 900w"
-                    src={src('w_400/f_auto', session.data.video.thumbnail_url)}
+                    src={src(
+                      'e_trim/ar_16:9,w_400,c_fill,g_auto:subject/f_auto',
+                      session.data.video.thumbnail_url
+                    )}
                     width={session.data.video.thumbnail_width}
                     height={session.data.video.thumbnail_height} />
                 </figure>
@@ -195,7 +201,7 @@
   }
 
   .item:hover figure::after {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.17);
   }
 
   .body::before {
