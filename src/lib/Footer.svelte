@@ -126,10 +126,7 @@
     <a href="/lunch-menu">.</a>
     <a href="/closing-the-gap-on-climate-inequity">.</a>
     <a href="/new-york/wifi">.</a>
-    <a href="/climatehub">.</a>
     <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
-
-    <a href="/the-fashion-opportunity">.</a>
     <a href="/404">.</a>
   </div>
 </footer>

@@ -87,6 +87,9 @@ export const page = dedent`
         }
       }
       ...on gallery {
+        non-repeat {
+          ...non-repeatFields
+        }
         repeat {
           ...repeatFields
         }
@@ -110,7 +113,17 @@ export const page = dedent`
         repeat {
           ...repeatFields
           event {
-            ...eventFields
+            ...on event {
+              ...eventFields
+              sessions {
+                session {
+                  ...on session {
+                    ...sessionFields
+                  }
+                }
+                highlight
+              }
+            }
           }
         }
       }
@@ -145,6 +158,7 @@ export const event = dedent`
       session {
         ...on session ${session}
       }
+      highlight
     }
     link {
       ...on dialog {
@@ -208,6 +222,9 @@ export const event = dedent`
         }
       }
       ...on gallery {
+        non-repeat {
+          ...non-repeatFields
+        }
         repeat {
           ...repeatFields
         }
@@ -264,6 +281,9 @@ export const event = dedent`
         }
       }
       ...on previous_sessions {
+        non-repeat {
+          ...non-repeatFields
+        }
         repeat {
           session ${session}
         }

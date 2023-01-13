@@ -47,3 +47,9 @@
 <section {id} bind:this={target}>
   <slot />
 </section>
+
+<style>
+  section {
+    scroll-margin-top: calc(1px * var(--scroll-offset));
+  }
+</style>

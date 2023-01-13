@@ -2,22 +2,30 @@
   import Link from './Link.svelte'
   import { asText } from '@prismicio/helpers'
   import src from './utils/src.js'
+  import { session } from './utils/queries'
 
   export let sessions = []
-  export let limit = 8
+  export let limit = 4
+  export let hardlimit = false
+  export let filter = null
 
   $: sessionsWithVideo = sessions
     .filter((session) => session.data.video)
+    .filter((session) => (filter ? session.data.location === filter : true))
     .sort((a, b) => {
       return (
         Date.parse(b.data.start_date_time) - Date.parse(a.data.start_date_time)
       )
     })
+    .sort((a, b) => {
+      if (a.highlight) return -1
+      if (!b.highlight) return +1
+    })
 </script>
 
 <div class="Previous">
   <div class="grid">
-    {#each sessionsWithVideo.slice(0, limit) as session}
+    {#each sessionsWithVideo.slice(0, limit || 4) as session}
       <div class="item">
         <div class="body">
           <figure>
@@ -48,20 +56,27 @@
               height={session.data.video.thumbnail_height} />
           </figure>
           <strong class="Text-h5 u-spaceSm">{asText(session.data.name)}</strong>
-          <Link class="u-trigger u-triggerBlock u-spaceSm" document={session}>
-            Learn more
-            <span class="u-hiddenVisually">
-              about the session "{asText(session.data.name)}"
-            </span>
-          </Link>
+          {#if session.href}
+            <Link class="u-trigger u-triggerBlock" href={session.href}>
+              <span class="u-hiddenVisually">
+                Go to session: "{asText(session.data.name)}"
+              </span>
+            </Link>
+          {:else}
+            <Link class="u-trigger u-triggerBlock" document={session}>
+              <span class="u-hiddenVisually">
+                Open details for session: "{asText(session.data.name)}"
+              </span>
+            </Link>
+          {/if}
         </div>
       </div>
     {/each}
-    {#if sessionsWithVideo?.length > limit}
+    {#if sessionsWithVideo?.length > (limit || 4) && !hardlimit}
       <details>
         <summary class="u-expand">See all sessions</summary>
         <div class="grid">
-          {#each sessionsWithVideo.slice(limit) as session, index}
+          {#each sessionsWithVideo.slice(limit || 4) as session, index}
             <div class="item">
               <div class="body">
                 <figure>
@@ -93,12 +108,9 @@
                 </figure>
                 <strong class="Text-h5 u-spaceSm"
                   >{asText(session.data.name)}</strong>
-                <Link
-                  class="u-trigger u-triggerBlock u-spaceSm"
-                  document={session}>
-                  Learn more
+                <Link class="u-trigger u-triggerBlock" document={session}>
                   <span class="u-hiddenVisually">
-                    about the session "{asText(session.data.name)}"
+                    Open details for session: "{asText(session.data.name)}"
                   </span>
                 </Link>
               </div>
@@ -112,7 +124,8 @@
 
 <style>
   .Previous {
-    margin-top: var(--space-block-md);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-sm);
   }
 
   summary {
@@ -174,11 +187,15 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.1);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
-    background-size: 25% auto;
-    background-position: center;
+    background-size: 3rem auto;
+    background-position: bottom 0.4rem left 0.1rem;
     background-repeat: no-repeat;
+    transition: background-color 250ms var(--ease-out);
+  }
+
+  .item:hover figure::after {
+    background-color: rgba(0, 0, 0, 0.15);
   }
 
   .body::before {

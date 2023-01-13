@@ -26,6 +26,7 @@
     /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i
 
   export let slices
+  export let sessions = null
 
   $: groups = slices?.reduce(function (groups, slice) {
     const last = groups[groups.length - 1]
@@ -45,7 +46,7 @@
 {#each groups as group}
   <ScrollTarget id={group.id || 'start'}>
     <svelte:fragment>
-      {#each group.slices as slice}
+      {#each group.slices as slice, index}
         {#if slice.slice_type === 'events'}
           <div class="u-container">
             <EventList props={slice.primary} items={slice.items} />
@@ -258,7 +259,7 @@
         {/if}
 
         {#if slice.slice_type === 'gallery'}
-          <Gallery photos={slice.items} />
+          <Gallery photos={slice.items} horizontal={slice.primary.horizontal} />
         {/if}
 
         {#if slice.slice_type === 'legal_numbered_text'}
@@ -285,13 +286,12 @@
 
         {#if slice.slice_type === 'program'}
           <div class="u-container">
-            <slot name="program">
-              <Program
-                timeless={slice.primary.timeless}
-                sessions={slice.items
-                  .map((item) => item.session)
-                  .filter((session) => session.id && !session.isBroken)} />
-            </slot>
+            <Program
+              sessions={sessions
+                ? sessions
+                : slice.items
+                    .map((item) => item.session)
+                    .filter((session) => session.id && !session.isBroken)} />
           </div>
         {/if}
 
@@ -326,13 +326,17 @@
 
         {#if slice.slice_type === 'previous_sessions'}
           <div class="u-container">
-            <slot name="previous_sessions">
-              <Previous
-                limit={slice.primary.limit}
-                sessions={slice.items
-                  .map((item) => item.session)
-                  .filter((session) => session.id && !session.isBroken)} />
-            </slot>
+            <Previous
+              limit={slice.primary.limit}
+              filter={slice.primary.location_filter}
+              sessions={sessions
+                ? sessions
+                : slice.items
+                    .map(function (item) {
+                      item.session.highlight = item.highlight
+                      return item.session
+                    })
+                    .filter((session) => session.id && !session.isBroken)} />
           </div>
         {/if}
 

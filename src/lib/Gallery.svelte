@@ -1,11 +1,12 @@
 <script>
   import RichText from './RichText.svelte'
   import src from './utils/src.js'
-  export let photos
+  export let photos = []
+  export let horizontal = false
 </script>
 
 <div class="u-container">
-  <div class="cols">
+  <div class="cols {horizontal ? 'horizontal' : ''}">
     {#each photos as photo}
       <figure class="col">
         {#if photo.video}
@@ -50,7 +51,7 @@
     margin-top: var(--space-block-md);
     display: flex;
     flex-wrap: wrap;
-    grid-gap: var(--space-block-sm) calc(var(--space-grid) * 2);
+    grid-gap: var(--space-grid) calc(var(--space-grid) * 2);
   }
 
   .col {
@@ -60,6 +61,7 @@
   img,
   video {
     width: 100%;
+    background: var(--current-color-placeholder);
   }
 
   figcaption {
@@ -83,6 +85,52 @@
 
     .col {
       width: calc(50% - var(--space-grid));
+    }
+
+    .horizontal .col {
+      width: 100%;
+    }
+
+    .horizontal figure {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: var(--space-grid);
+      column-gap: calc(var(--space-grid) * 2);
+    }
+
+    .horizontal img,
+    .horizontal video {
+      grid-column: span 2;
+    }
+
+    .horizontal figcaption {
+      order: -1;
+      margin: 0;
+    }
+
+    .horizontal figcaption::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      top: 0;
+      right: calc(var(--space-grid) * -1);
+      background: var(--current-color-border);
+    }
+
+    .horizontal .col + .col {
+      border-top: 1px solid var(--current-color-border);
+      padding-top: var(--space-grid);
+    }
+
+    .horizontal .col + .col figcaption::before {
+      position: absolute;
+      top: calc((var(--space-grid) * 1.5) * -1);
+      right: calc((var(--space-grid) * 2) * -1);
+      content: '';
+      background: var(--current-color-background);
+      width: calc(var(--space-grid) * 2);
+      height: var(--space-grid);
     }
   }
 </style>

@@ -25,9 +25,8 @@
               height={item.image.dimensions.height} />
           </figure>
           <strong class="Text-h5 u-spaceSm">{item.name}</strong>
-          <Link class="u-trigger u-triggerBlock u-spaceSm" document={item.link}>
-            {item.link_text ? item.link_text : 'Learn more'}
-            <span class="u-hiddenVisually">: "{item.name}"</span>
+          <Link class="u-trigger u-triggerBlock" document={item.link}>
+            <span class="u-hiddenVisually">Learn more about "{item.name}"</span>
           </Link>
         </div>
       </div>
@@ -37,7 +36,8 @@
 
 <style>
   .Conversations {
-    margin-top: var(--space-block-sm);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-sm);
   }
 
   .grid {
@@ -85,11 +85,15 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.1);
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23fff'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
-    background-size: 25% auto;
-    background-position: center;
+    background-size: 3rem auto;
+    background-position: bottom 0.4rem left 0.1rem;
     background-repeat: no-repeat;
+    transition: background-color 250ms var(--ease-out);
+  }
+
+  .item:hover figure::after {
+    background-color: rgba(0, 0, 0, 0.15);
   }
 
   .body::before {
@@ -107,7 +111,7 @@
     border-bottom: 0;
   }
 
-  @media (min-width: 800px) and (max-width: 999px) {
+  @media (max-width: 999px) {
     .item:nth-child(odd) .body::before {
       content: none;
     }

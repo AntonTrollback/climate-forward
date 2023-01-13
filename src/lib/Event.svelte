@@ -5,16 +5,12 @@
 </script>
 
 <script>
-  import Menu from './Menu.svelte'
   import Modal from './Modal.svelte'
   import Dialog from './Dialog.svelte'
-  import Footer from './Footer.svelte'
   import Slices from './Slices.svelte'
   import SpeakerDetails from './SpeakerDetails.svelte'
   import SessionDetails from './SessionDetails.svelte'
-  import Program from './Program.svelte'
   import { setMeta } from './Meta.svelte'
-  import Previous from './Previous.svelte'
   import resolve from './utils/resolve.js'
   import Link, { LINK } from './Link.svelte'
   import { asDate } from '@prismicio/helpers'
@@ -22,7 +18,6 @@
   import { createClient } from '@prismicio/client'
   import { event as eventQuery } from './utils/queries.js'
 
-  export let settings
   export let event
   export let speaker = null
   export let session = null
@@ -40,7 +35,10 @@
     let timeout
     ;(function ontick() {
       const sessions = event.data.sessions
-        .map((item) => item.session)
+        .map(function (item) {
+          item.session.highlight = item.highlight
+          return item.session
+        })
         .filter((session) => session.id && !session.isBroken)
         .sort(
           (a, b) =>
@@ -180,18 +178,14 @@
 <svelte:window on:keydown={handlekey} />
 
 <slot>
-  <Slices slices={$current.data.body}>
-    <Program
-      slot="program"
-      sessions={$current.data.sessions
-        .map((item) => item.session)
-        .filter((session) => session.id && !session.isBroken)} />
-    <Previous
-      slot="previous_sessions"
-      sessions={$current.data.sessions
-        .map((item) => item.session)
-        .filter((session) => session.id && !session.isBroken)} />
-  </Slices>
+  <Slices
+    slices={$current.data.body}
+    sessions={$current.data.sessions
+      .map(function (item) {
+        item.session.highlight = item.highlight
+        return item.session
+      })
+      .filter((session) => session.id && !session.isBroken)} />
 </slot>
 
 {#if speaker}

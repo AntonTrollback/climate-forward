@@ -3,6 +3,7 @@
   import Divider from './Divider.svelte'
   export let items
   let cols = []
+  let plenty = items.length > 6
 
   items.forEach((item, index) => {
     if (items[index - 1]?.label !== item.label) {
@@ -26,16 +27,18 @@
 
 <Divider size="xl" />
 <div class="u-container">
-  <div class="cols">
+  <div class="cols {plenty ? 'plenty' : ''}">
     {#each cols as col}
       <div class="col {col.large ? 'large' : ''}">
-        <strong class="label">{col.label}</strong>
-        <div class="items">
-          {#each col.sponsors as sponsor}
-            <div class="item">
-              <Sponsor org={sponsor} size={col.size} />
-            </div>
-          {/each}
+        <div class="wrap">
+          <strong class="label">{col.label}</strong>
+          <div class="items">
+            {#each col.sponsors as sponsor}
+              <div class="item">
+                <Sponsor org={sponsor} size={col.size} />
+              </div>
+            {/each}
+          </div>
         </div>
       </div>
     {/each}
@@ -44,37 +47,73 @@
 
 <style>
   .cols {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    grid-gap: 1rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem calc(var(--space-grid) * 1);
     margin-bottom: -1.5rem;
   }
 
-  @media (min-width: 650px) {
-    .cols {
-      justify-content: space-between;
-      flex-wrap: nowrap;
-    }
-  }
-
-  @media (min-width: 1000px) {
-    .cols {
-      grid-gap: 1rem 2rem;
-    }
-  }
-
-  :global([id*='sponsors'] + .Footer) {
-    margin-top: calc((var(--space-block-xl) * -1) + var(--space-block-md));
+  .col {
+    grid-column: span 2;
   }
 
   .large {
-    width: 100%;
+    grid-column: span 4;
   }
 
-  @media (min-width: 650px) {
+  .plenty .col {
+    grid-column: span 4;
+  }
+
+  @media (min-width: 600px) {
+    .cols {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .col {
+      grid-column: span 1;
+    }
+
     .large {
-      width: 50%;
+      grid-column: span 2;
+    }
+
+    .cols:not(.plenty) .col:last-child:not(:only-child) {
+      display: flex;
+      justify-content: end;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .cols {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .col {
+      grid-column: span 1;
+    }
+
+    .large {
+      grid-column: span 4;
+    }
+
+    .plenty .col {
+      grid-column: span 3;
+    }
+
+    .plenty .col:last-child {
+      position: relative;
+      grid-column: span 6;
+      padding-top: var(--space-sm);
+    }
+
+    .plenty .col:last-child::before {
+      position: absolute;
+      top: 0;
+      left: -50vw;
+      width: 150vw;
+      content: '';
+      border-top: 1px solid var(--current-color-border);
     }
   }
 
@@ -89,11 +128,9 @@
   }
 
   .items {
-    display: flex;
-  }
-
-  .large .items {
     align-items: center;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .item {

@@ -214,6 +214,10 @@
   transition: transform 350ms var(--ease-out);
 }
 
+.u-expandArrow::before {
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' height='27' viewBox='0 0 27 27' width='27' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='13.5' cy='13.3437' fill='%23000' r='13' transform='matrix(0 -1 1 0 .1563 26.8437)'/%3E%3Cpath d='m10.0587 9.10445c-.16075-.3178.1952-.64753.4998-.46293l7.4353 4.50628c.2276.1379.2276.468 0 .606l-7.4353 4.5062c-.3046.1846-.66055-.1451-.4998-.4629l2.1178-4.1864c.0509-.1006.0509-.2193 0-.3199z' fill='%23fff'/%3E%3C/svg%3E");
+}
+
 details[open] > .u-expand::before {
   transform: rotate(-0.5turn);
 }
