@@ -15,7 +15,7 @@
 }
 
 .u-relative {
-  position: relative;
+  position: relative !important;
 }
 
 .u-fill {

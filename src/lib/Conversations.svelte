@@ -93,7 +93,7 @@
   }
 
   .item:hover figure::after {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: rgba(0, 0, 0, 0.17);
   }
 
   .body::before {

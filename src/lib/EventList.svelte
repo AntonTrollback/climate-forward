@@ -17,17 +17,19 @@
         <Divider solid="true" size="lg" />
       {/if}
       <div class="content">
-        {#if !large}
-          <div class="Text u-spaceSm Text--sm">
-            <p class="Text-p">{item.event.data.date}</p>
-          </div>
-        {/if}
-        <h2 class="{large ? 'Text-h1' : 'Text-h4 u-spaceXs'} u-fill">
-          {asText(item.event.data.name)}
-        </h2>
-        {#if large}
-          <span class="Text-h1 u-fill"><em>{item.event.data.date}</em></span>
-        {/if}
+        <Link class="eventlink" document={item.event}>
+          {#if !large}
+            <div class="Text u-spaceSm Text--sm">
+              <p class="Text-p">{item.event.data.date}</p>
+            </div>
+          {/if}
+          <h2 class="{large ? 'Text-h1' : 'Text-h4 u-spaceXs'} u-fill">
+            {asText(item.event.data.name)}
+          </h2>
+          {#if large}
+            <span class="Text-h1 u-fill"><em>{item.event.data.date}</em></span>
+          {/if}
+        </Link>
         <RichText
           size={large ? 'md' : 'sm'}
           class={'u-spaceLg'}
@@ -62,5 +64,17 @@
     padding-top: 0.5rem;
     border-top: 1px solid var(--current-color-border);
     margin-top: var(--space-grid);
+  }
+
+  :global(.eventlink):hover h2 {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+    transition: opacity 250ms var(--ease-out);
+  }
+
+  :global(.eventlink):active h2 {
+    transition: none;
+    opacity: 0.5;
   }
 </style>
