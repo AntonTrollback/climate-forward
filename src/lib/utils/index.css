@@ -436,6 +436,7 @@ details[open] > .u-expand::before {
   font-weight: 200;
   font-size: 94%;
   line-height: calc(var(--line-height) + 0.06em);
+  margin-left: -0.06em;
 }
 
 .Text-h3 em {
@@ -459,6 +460,7 @@ details[open] > .u-expand::before {
   letter-spacing: 0;
   font-family: var(--doc-display-font-family);
   left: 0;
+  margin-left: -0.02em;
 }
 
 @media (min-width: 400px) {

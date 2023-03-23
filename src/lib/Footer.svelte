@@ -113,19 +113,10 @@
   <div class="u-hidden" style="display: none" aria-hidden="true">
     <a href="/thank-you">.</a>
     <a href="/press-thank-you">.</a>
-    <a href="/london-thank-you">.</a>
     <a href="/a-new-climate-thank-you">.</a>
-    <a href="/sharm-el-sheikh-thank-you">.</a>
-    <a href="/the-fashion-opportunity">.</a>
-    <a href="/the-fashion-opportunity-menu">.</a>
-    <a href="/sharm-el-sheikh-google">.</a>
-    <a href="/sharm-el-sheikh-google-menu">.</a>
-    <a href="/sharm-el-sheikh-bcg">.</a>
-    <a href="/sharm-el-sheikh-bcg-menu">.</a>
+    <a href="/a-new-climate-busan">.</a>
     <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
-    <a href="/lunch-menu">.</a>
     <a href="/closing-the-gap-on-climate-inequity">.</a>
-    <a href="/new-york/wifi">.</a>
     <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
     <a href="/404">.</a>
   </div>
