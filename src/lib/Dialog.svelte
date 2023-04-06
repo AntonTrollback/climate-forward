@@ -22,7 +22,7 @@
     <h1 class="Text-p"><strong>{asText(content.primary.header)}</strong></h1>
   </div>
 
-  <div class="grid">
+  <div class="grid {content.primary.footer.text ? 'border' : ''}">
     {#each content.items as item}
       <section>
         <div class="Text">
@@ -36,14 +36,19 @@
       </section>
     {/each}
   </div>
-  <RichText class="u-spaceSm" size="sm" fields={content.primary.footer} />
+  {#if content.primary.footer.text}
+    <RichText class="u-spaceSm" size="sm" fields={content.primary.footer} />
+  {/if}
 {/if}
 
 <style>
   .grid {
-    padding: 0 0 2rem;
     margin: 1.8rem 0 0;
+  }
+
+  .grid.border {
     border-bottom: 1px solid var(--current-color-border);
+    padding: 0 0 2rem;
   }
 
   .grid section + section {

@@ -216,7 +216,7 @@
 
   @media (min-width: 500px) {
     .list {
-      max-width: 28rem;
+      max-width: 25rem;
     }
   }
 
