@@ -31,7 +31,8 @@
     {#each cols as col}
       <div class="col {col.large ? 'large' : ''}">
         <div class="wrap">
-          <strong class="label">{col.label}</strong>
+          <strong class="label {col.label === 'Main Sponsors' ? 'push' : ''}"
+            >{col.label}</strong>
           <div class="items">
             {#each col.sponsors as sponsor}
               <div class="item">
@@ -125,6 +126,10 @@
     white-space: nowrap;
     -webkit-user-select: none;
     user-select: none;
+  }
+
+  .push {
+    margin-bottom: var(--space-lg);
   }
 
   .items {
