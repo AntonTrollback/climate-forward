@@ -1,14 +1,12 @@
 <script>
   import { isSameDay } from 'date-fns'
-  import resolve from './utils/resolve.js'
   import logo from './utils/logo.js'
   import { current } from './Event.svelte'
   import { active } from './ScrollTarget.svelte'
-  import Link, { LINK } from './Link.svelte'
+  import Link from './Link.svelte'
   import { asDate } from '@prismicio/helpers'
-  import { onMount, setContext } from 'svelte'
+  import { onMount } from 'svelte'
 
-  export let prefix = null
   export let slices
   export let keeptop
 
@@ -20,12 +18,6 @@
   let sticky
   let scroll
   let locked
-
-  if (prefix) {
-    setContext(LINK, function (document) {
-      return { href: resolve(document, prefix) }
-    })
-  }
 
   $: sessions = $current?.data.sessions
     .map((item) => item.session)

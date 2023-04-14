@@ -6,11 +6,8 @@
   import { LINK } from '$lib/Link.svelte'
   import Slices from '$lib/Slices.svelte'
   import Footer from '$lib/Footer.svelte'
+  import { setMeta } from '$lib/Meta.svelte'
   import resolve from '$lib/utils/resolve.js'
-
-  setContext(LINK, function (document) {
-    return { href: resolve(document) }
-  })
 
   export let data = {}
   export let dialog = null
@@ -26,6 +23,28 @@
     .concat(event?.data.links?.map(linkFrom(event)))
     .concat(settings.data.links.map(linkFrom()))
     .filter(Boolean)
+
+  setContext(LINK, function (document) {
+    switch (document.type) {
+      case 'dialog': {
+        const href = resolve(document, [event, '/dialog'])
+        return {
+          href: href,
+          'data-sveltekit-reload': '',
+          onclick(e) {
+            speaker = null
+            session = null
+            dialog = document
+            setMeta(dialog, event)
+            window.history.replaceState({}, null, href)
+            e.preventDefault()
+          }
+        }
+      }
+      default:
+        return { href: resolve(document, prefix) }
+    }
+  })
 
   function linkFrom(parent) {
     return function (item) {
