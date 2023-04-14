@@ -42,7 +42,7 @@
         }
       }
       default:
-        return { href: resolve(document, prefix) }
+        return { href: resolve(document) }
     }
   })
 
