@@ -13,6 +13,8 @@
 /climatehub/sponsors                    /climatehub-sponsors 302
 /climatehub/supporters                  /climatehub-sponsors 302
 
+/a-new-climate-busan                    /
+
 /climatehub/session/:number/:slug       /climatehub/sessions/:slug 302
 /climatehub/speaker/:number/:slug       /climatehub/speakers/:slug 302
 

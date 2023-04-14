@@ -114,7 +114,7 @@
     <a href="/thank-you">.</a>
     <a href="/press-thank-you">.</a>
     <a href="/a-new-climate-thank-you">.</a>
-    <a href="/a-new-climate-busan">.</a>
+    <a href="/a-new-climate-busan-preview">.</a>
     <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
     <a href="/closing-the-gap-on-climate-inequity">.</a>
     <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
