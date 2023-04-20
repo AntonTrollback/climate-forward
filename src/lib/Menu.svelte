@@ -132,7 +132,7 @@
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
-      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
+      <a class="logo" href="/a-new-climate-busan" on:click={scrollTop}>
         <strong class="u-hiddenVisually"
           >The New York Times A New Climate</strong>
         <br /><br />
@@ -183,7 +183,7 @@
             <a
               style="display: none"
               class="logo"
-              href="/a-new-climate"
+              href="/a-new-climate-busan"
               on:click={scrollTop}>
               <span class="u-hiddenVisually"
                 >The New York Times A New Climate</span>

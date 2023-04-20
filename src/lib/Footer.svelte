@@ -80,7 +80,7 @@
         {@html logo('climate-forward')}
       </a>
     {:else if branding === 'A New Climate'}
-      <a class="logo" href="/a-new-climate" on:click={scrollTop}>
+      <a class="logo" href="/a-new-climate-busan" on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times A New Climate</span>
         <br /><br />
         {@html logo('a-new-climate')}
@@ -89,7 +89,7 @@
       <a
         class="logo climatehub"
         bind:this={videoLogo}
-        href="/a-new-climate"
+        href="/a-new-climate-busan"
         on:click={scrollTop}>
         <span class="u-hiddenVisually">The New York Times Climate Hub</span>
         <br /><br />
@@ -114,7 +114,6 @@
     <a href="/thank-you">.</a>
     <a href="/press-thank-you">.</a>
     <a href="/a-new-climate-thank-you">.</a>
-    <a href="/a-new-climate-busan-preview">.</a>
     <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
     <a href="/closing-the-gap-on-climate-inequity">.</a>
     <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
