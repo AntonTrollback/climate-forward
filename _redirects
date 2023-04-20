@@ -14,6 +14,8 @@
 /climatehub/supporters                  /climatehub-sponsors 302
 
 /a-new-climate-busan-preview            /a-new-climate-busan
+/a-new-climate-busan-preview/busan-sponsors   /a-new-climate-busan/busan-sponsors
+/busan-sponsors                         /a-new-climate-busan/busan-sponsors
 
 /climatehub/session/:number/:slug       /climatehub/sessions/:slug 302
 /climatehub/speaker/:number/:slug       /climatehub/speakers/:slug 302
