@@ -23,7 +23,7 @@
               <p class="Text-p">{item.event.data.date}</p>
             </div>
           {/if}
-          <h2 class="{large ? 'Text-h1' : 'Text-h4 u-spaceXs'} u-fill">
+          <h2 class="{large ? 'Text-h1' : 'linked Text-h4 u-spaceXs'} u-fill">
             {asText(item.event.data.name)}
           </h2>
           {#if large}
@@ -66,14 +66,14 @@
     margin-top: var(--space-grid);
   }
 
-  :global(.eventlink):hover h2 {
+  :global(.eventlink):hover .linked {
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.15em;
     transition: opacity 250ms var(--ease-out);
   }
 
-  :global(.eventlink):active h2 {
+  :global(.eventlink):active .linked {
     transition: none;
     opacity: 0.5;
   }
