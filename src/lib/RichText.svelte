@@ -28,16 +28,16 @@
       return `<h2 class="Text-h2">${whitespace(children)}</h2>`
     }
     if (type === 'heading3') {
-      return `<h3 class="Text-h3">${whitespace(children)}</h2>`
+      return `<h3 class="Text-h3">${whitespace(children)}</h3>`
     }
     if (type === 'heading4') {
-      return `<h4 class="Text-h4">${whitespace(children)}</h2>`
+      return `<h4 class="Text-h4">${whitespace(children)}</h4>`
     }
     if (type === 'heading5') {
-      return `<h5 class="Text-h5">${whitespace(children)}</h2>`
+      return `<h5 class="Text-h5">${whitespace(children)}</h5>`
     }
     if (type === 'heading6') {
-      return `<h6 class="Text-h6">${whitespace(children)}</h2>`
+      return `<h6 class="Text-h6">${whitespace(children)}</h6>`
     }
     if (type === 'paragraph') {
       return `<p class="Text-p">${whitespace(children)}</p>`

@@ -242,16 +242,11 @@
       <img
         loading="eager"
         draggable="false"
-        area-hidden="true"
         class="loading"
         src={getSrc({ ...item.opts, f: 'jpg' })}
         alt="" />
     {/each}
-    <picture
-      transition:fade
-      bind:this={picture}
-      area-hidden="true"
-      draggable="false">
+    <picture transition:fade bind:this={picture} draggable="false">
       {#each theme.items as item}
         <source
           srcset={getSrc(item.opts)}
@@ -264,7 +259,6 @@
           loading="eager"
           draggable="false"
           src={getSrc({ ...item.opts, f: 'jpg' })}
-          area-hidden="true"
           alt="" />
       {/each}
     </picture>
