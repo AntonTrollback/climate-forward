@@ -40,6 +40,31 @@
       }
       break
     }
+    case 'Yellow': {
+      theme = {
+        id: 'v1683117540',
+        file: 'busan',
+        items: [
+          {
+            opts: { w: 1000, h: 1400, q: [65, 70] },
+            media: '(max-width: 499px)'
+          },
+          {
+            opts: { w: 1200, h: 1200, q: [70, 75] },
+            media: '(min-width: 500px) and (max-width: 699px)'
+          },
+          {
+            opts: { w: 1800, h: 1200, q: [80, 85] },
+            media: '(min-width: 700px) and (max-width: 1099px)'
+          },
+          {
+            opts: { w: 2200, h: 1000, q: [85, 90] },
+            media: '(min-width: 1100px)'
+          }
+        ]
+      }
+      break
+    }
     case 'Teal': {
       theme = {
         id: 'v1662134411',
