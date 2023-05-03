@@ -46,19 +46,19 @@
         file: 'busan',
         items: [
           {
-            opts: { w: 1000, h: 1400, q: [65, 70] },
+            opts: { w: 1000, h: 1400, q: [65, 70], suffix: '' },
             media: '(max-width: 499px)'
           },
           {
-            opts: { w: 1200, h: 1200, q: [70, 75] },
+            opts: { w: 1200, h: 1200, q: [70, 75], suffix: '' },
             media: '(min-width: 500px) and (max-width: 699px)'
           },
           {
-            opts: { w: 1800, h: 1200, q: [80, 85] },
+            opts: { w: 1800, h: 1200, q: [80, 85], suffix: '' },
             media: '(min-width: 700px) and (max-width: 1099px)'
           },
           {
-            opts: { w: 2200, h: 1000, q: [85, 90] },
+            opts: { w: 2200, h: 1000, q: [85, 90], suffix: '' },
             media: '(min-width: 1100px)'
           }
         ]
@@ -133,7 +133,7 @@
             media: '(min-width: 700px) and (max-width: 1099px)'
           },
           {
-            opts: { w: 2200, h: 1000, q: [85, 90], suffix: 'updated' },
+            opts: { w: 2200, h: 1000, q: [85, 90], suffix: '-updated' },
             media: '(min-width: 1100px)'
           }
         ]
@@ -142,13 +142,13 @@
   }
 
   function getSrc(props) {
-    let { w, h, q, f, suffix = '1' } = props
+    let { w, h, q, f, suffix = '-1' } = props
     if (!f) f = 'mp4'
     let res = 'https://res.cloudinary.com/dykmd8idd/video/upload/'
     res += `so_0/ac_none/c_crop,w_${w},h_${h}/q_${
       f === 'jpg' ? 85 : q[0]
     }:qmax_${q[1]},f_auto`
-    res += `/${theme.id}/climate-events/${theme.file}-${suffix}-${w}x${h}.${f}`
+    res += `/${theme.id}/climate-events/${theme.file}${suffix}-${w}x${h}.${f}`
     return res
   }
 
