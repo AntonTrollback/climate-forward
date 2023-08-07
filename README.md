@@ -1,6 +1,6 @@
 # The New York Times Climate Events
 
-[Visit the website](https://climate-events.nytimes.com) (archived, now being redirected)
+[See archived version](https://climate-events.netlify.app).
 
 ## Getting started
 
