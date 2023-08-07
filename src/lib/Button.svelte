@@ -1,5 +1,3 @@
-<svelte:options tag="nyt-button" />
-
 <script>
   import { linkResolver } from './Link.svelte'
 

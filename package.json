@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "vite dev",
-    "build": "npm run build:purr && npm run build:swoogo && npm run build:app",
+    "build": "npm run build:purr && npm run build:app",
     "build:app": "vite build",
     "build:purr": "rollup -c rollup.config.js",
-    "build:swoogo": "postcss src/lib/swoogo-theme.css -o static/swoogo-theme.css -u postcss-safe-important postcss-import -u autoprefixer && cssnano static/swoogo-theme.css static/swoogo-theme.css",
     "package": "vite package",
     "preview": "vite preview",
     "check": "svelte-check",

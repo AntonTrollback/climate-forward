@@ -1,5 +1,3 @@
-<svelte:options tag="nyt-purr" />
-
 <script context="module">
   export const translations = {
     en: {}

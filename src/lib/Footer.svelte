@@ -111,13 +111,7 @@
   </nav>
 
   <div class="u-hidden" style="display: none" aria-hidden="true">
-    <a href="/thank-you">.</a>
-    <a href="/press-thank-you">.</a>
-    <a href="/a-new-climate-thank-you">.</a>
-    <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
-    <a href="/closing-the-gap-on-climate-inequity">.</a>
     <a href="/speaker-archive">.</a>
-    <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
     <a href="/404">.</a>
   </div>
 </footer>

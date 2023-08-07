@@ -1,5 +1,3 @@
-<svelte:options tag="nyt-link" />
-
 <script context="module">
   export const LINK = Symbol('LINK')
 

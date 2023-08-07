@@ -1,26 +1,3 @@
-/a-new-climate/events/san-francisco     /a-new-climate 302
-/fashion-opportunity                    /the-fashion-opportunity 302
-/the-fashion-opportunity                /the-fashion-opportunity 302
-
-/climatehub/program                     /climatehub 302
-/climatehub/streaming                   /climatehub 302
-/climatehub/sustainability              /climatehub 302
-/climatehub/speakers                    /climatehub 302
-/climatehub/theforum                    /climatehub 302
-/climatehub/theforum-program            /climatehub 302
-/climatehub/theforum-speakers           /climatehub 302
-/climatehub/educate                     /climatehub 302
-/climatehub/sponsors                    /climatehub-sponsors 302
-/climatehub/supporters                  /climatehub-sponsors 302
-
-/a-new-climate-busan-preview            /a-new-climate-busan
-/a-new-climate-busan-preview/busan-sponsors   /a-new-climate-busan/busan-sponsors
-/busan-sponsors                         /a-new-climate-busan/busan-sponsors
-
-/climatehub/session/:number/:slug       /climatehub/sessions/:slug 302
-/climatehub/speaker/:number/:slug       /climatehub/speakers/:slug 302
-
-/climate-forward                        / 302
 /a-new-climate/events/*                 /:splat 302
 /climate-forward/events/*               /:splat 302
 /climate-forward/*                      /:splat 302
