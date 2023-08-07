@@ -106,7 +106,7 @@
         {/each}
       </ul>
     {/if}
-    
+
     <p>{@html copyright ? whitespace(copyright) : ''}</p>
   </nav>
 
@@ -116,6 +116,7 @@
     <a href="/a-new-climate-thank-you">.</a>
     <a href="/sharm-el-sheikh-fashion-exhibition">.</a>
     <a href="/closing-the-gap-on-climate-inequity">.</a>
+    <a href="/speaker-archive">.</a>
     <a href="/can-fashion-influencers-persuade-us-to-consume-less">.</a>
     <a href="/404">.</a>
   </div>
