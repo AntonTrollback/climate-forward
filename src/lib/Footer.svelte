@@ -1,6 +1,6 @@
 <script>
   import { onMount, setContext } from 'svelte'
-  import Purr from './Purr.svelte'
+  // import Purr from './Purr.svelte'
   import logo from './utils/logo.js'
   import resolve from './utils/resolve.js'
   import whitespace from './utils/whitespace.js'
@@ -106,7 +106,7 @@
         {/each}
       </ul>
     {/if}
-    <Purr />
+    
     <p>{@html copyright ? whitespace(copyright) : ''}</p>
   </nav>
 

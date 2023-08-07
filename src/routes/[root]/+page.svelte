@@ -14,7 +14,7 @@
   export let speaker = null
   export let session = null
 
-  const { page, event, settings } = data
+  const { page, event, settings, allSpeakers } = data
 
   const current = page || event
 
@@ -63,22 +63,30 @@
   <Meta page={current} {settings} />
 </svelte:head>
 
-<Menu
-  branding={current.data.branding}
-  keeptop={current.data.keeptop}
-  stacked={current.data.stacked}
-  slices={current.data.menu}
-  button={current.data.button_text
-    ? { link: current.data.link, text: current.data.button_text }
-    : null} />
+{#if !current.data.noframework}
+  <Menu
+    branding={current.data.branding}
+    keeptop={current.data.keeptop}
+    stacked={current.data.stacked}
+    slices={current.data.menu}
+    button={current.data.button_text
+      ? { link: current.data.link, text: current.data.button_text }
+      : null} />
+{:else}
+  <div style="margin-top: calc(var(--space-block-xl) * 1.25)" />
+{/if}
 
 {#if event}
   <Event {settings} {event} {dialog} {session} {speaker} />
 {:else if page}
-  <Slices slices={page.data.body} />
+  <Slices slices={page.data.body} {allSpeakers} />
 {/if}
 
-<Footer
-  {links}
-  branding={current.data.branding}
-  copyright={settings.data.copyright} />
+{#if !current.data.noframework}
+  <Footer
+    {links}
+    branding={current.data.branding}
+    copyright={settings.data.copyright} />
+{:else}
+  <div style="margin-top: calc(var(--space-block-xl) * 2)" />
+{/if}

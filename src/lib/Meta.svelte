@@ -43,7 +43,8 @@
     let image = getImage(doc)
     if (settings && !image) image = getImage(settings)
 
-    let noindex = doc.data.noindex || settings?.data.noindex
+    // let noindex = doc.data.noindex || settings?.data.noindex
+    let noindex = true
 
     return { title, desc, image, noindex }
   }

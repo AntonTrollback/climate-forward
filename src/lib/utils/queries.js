@@ -100,6 +100,11 @@ export const page = dedent`
           sponsor ${sponsor}
         }
       }
+      ...on speaker_dump {
+        non-repeat {
+          ...non-repeatFields
+        }
+      }
       ...on sponsors {
         repeat {
           ...repeatFields

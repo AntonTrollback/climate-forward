@@ -13,6 +13,7 @@
   import ScrollTarget from './ScrollTarget.svelte'
   import SectionIntro from './SectionIntro.svelte'
   import Speakers from './Speakers.svelte'
+  import SpeakerDetails from './SpeakerDetails.svelte'
   import Sponsor from './Sponsor.svelte'
   import Sponsors from './Sponsors.svelte'
   import Stream from './Stream.svelte'
@@ -26,6 +27,7 @@
     /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i
 
   export let slices
+  export let allSpeakers
   export let sessions = null
 
   $: groups = slices?.reduce(function (groups, slice) {
@@ -78,6 +80,17 @@
               title={slice.primary.heading}
               type={slice.primary.map_type}
               text={slice.primary.text} />
+          </div>
+        {/if}
+
+        {#if slice.slice_type === 'speaker_dump'}
+          <div class="u-container">
+            {#each allSpeakers as speaker}
+              <Divider size="lg" solid />
+              <div style="max-width: 61rem; margin-top: var(--space-block-md)">
+                <SpeakerDetails {speaker} imageLink />
+              </div>
+            {/each}
           </div>
         {/if}
 

@@ -7,6 +7,7 @@
 
   export let speaker
   export let sessions = null
+  export let imageLink = null
   let upcoming = true
 
   if (sessions) {
@@ -47,10 +48,18 @@
           width={speaker.data.image.dimensions.width}
           height={speaker.data.image.dimensions.height}
           alt="Portrait of {asText(speaker.data.name)}" />
+        {#if imageLink}
+          <a
+            href={speaker.data.image.url}
+            download
+            target="_blank"
+            rel="noreferrer"
+            class="u-trigger u-spaceMd">Download headshot</a>
+        {/if}
       {/if}
     </figure>
 
-    {#if speaker.data.bio}
+    {#if speaker.data.bio?.length}
       <RichText class="u-spaceMd" fields={speaker.data.bio} />
     {/if}
   </div>

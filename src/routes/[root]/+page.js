@@ -5,7 +5,8 @@ import { page as pageQuery, event as eventQuery } from '$lib/utils/queries.js'
 export async function load({ fetch, params }) {
   try {
     const client = createClient('climateforward', { fetch })
-    const [settings, ...responses] = await Promise.all([
+    const [allSpeakers, settings, ...responses] = await Promise.all([
+      client.getAllByType('speaker'),
       client.getSingle('settings'),
       client.get({
         predicates: [predicate.at('my.event.uid', params.root)],
@@ -30,7 +31,7 @@ export async function load({ fetch, params }) {
       .filter((result) => result.uid === params.root)
 
     if (!first) throw new Error('Not found')
-    return { [first.type]: first, settings }
+    return { [first.type]: first, settings, allSpeakers }
   } catch (err) {
     throw error(404, 'Not found')
   }
