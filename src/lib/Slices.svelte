@@ -24,7 +24,7 @@
   const YOUTUBE_VIDEO =
     /https?:\/\/(?:www\.)?youtu(?:be\.com|\.be)\/(?:embed\/|watch\?v=)?(.+?)(?:\/|$|&|<)/
   const VIMEO_VIDEO =
-    /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^\/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_\-]+)?/i
+    /https?:\/\/(?:www\.|player\.)?vimeo.com\/(?:channels\/(?:\w+\/)?|groups\/(?:[^/]*)\/videos\/|album\/(?:\d+)\/video\/|video\/|)(\d+)(?:[a-zA-Z0-9_-]+)?/i
 
   export let slices
   export let allSpeakers
@@ -48,7 +48,7 @@
 {#each groups as group}
   <ScrollTarget id={group.id || 'start'}>
     <svelte:fragment>
-      {#each group.slices as slice, index}
+      {#each group.slices as slice}
         {#if slice.slice_type === 'events'}
           <div class="u-container">
             <EventList props={slice.primary} items={slice.items} />

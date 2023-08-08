@@ -1,4 +1,7 @@
 <script context="module">
+  import { getContext } from 'svelte'
+  import resolve from './utils/resolve.js'
+
   export const LINK = Symbol('LINK')
 
   export function linkResolver(document) {
@@ -28,9 +31,6 @@
 </script>
 
 <script>
-  import { getContext } from 'svelte'
-  import resolve from './utils/resolve.js'
-
   export let onclick = null
   export let document = null
 

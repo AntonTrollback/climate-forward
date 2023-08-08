@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit'
-import { createClient, predicate } from '@prismicio/client'
+import { createClient } from '@prismicio/client'
 import { page as pageQuery } from '$lib/utils/queries.js'
 
 export async function load({ fetch, params }) {

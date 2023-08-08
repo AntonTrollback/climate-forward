@@ -1,4 +1,4 @@
-import { error, redirect } from '@sveltejs/kit'
+import { error } from '@sveltejs/kit'
 import { createClient } from '@prismicio/client'
 import { load as eventLoader } from '../../+page.js'
 import { session as sessionFields } from '$lib/utils/queries.js'

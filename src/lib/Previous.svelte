@@ -2,7 +2,6 @@
   import Link from './Link.svelte'
   import { asText } from '@prismicio/helpers'
   import src from './utils/src.js'
-  import { session } from './utils/queries'
 
   export let sessions = []
   export let limit = 4
@@ -79,7 +78,7 @@
       <details>
         <summary class="u-expand">See all sessions</summary>
         <div class="grid">
-          {#each sessionsWithVideo.slice(limit || 4) as session, index}
+          {#each sessionsWithVideo.slice(limit || 4) as session}
             <div class="item">
               <div class="body">
                 <figure>

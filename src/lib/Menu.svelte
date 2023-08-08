@@ -1,10 +1,8 @@
 <script>
-  import { isSameDay } from 'date-fns'
   import logo from './utils/logo.js'
   import { current } from './Event.svelte'
   import { active } from './ScrollTarget.svelte'
   import Link from './Link.svelte'
-  import { asDate } from '@prismicio/helpers'
   import { onMount } from 'svelte'
 
   export let slices
@@ -18,16 +16,6 @@
   let sticky
   let scroll
   let locked
-
-  $: sessions = $current?.data.sessions
-    .map((item) => item.session)
-    .filter((session) =>
-      session.data?.start_date_time
-        ? (session.id && !session.isBroken && session.data.is_streamed) ||
-          isSameDay(asDate(session.data.start_date_time), Date.now()) ||
-          isSameDay(asDate(session.data.end_date_time), Date.now())
-        : false
-    )
 
   function onresize() {
     const styles = window.getComputedStyle(document.documentElement)
