@@ -1,3 +1,4 @@
 /a-new-climate/events/*                 /:splat 302
 /climate-forward/events/*               /:splat 302
 /climate-forward/*                      /:splat 302
+/                                       /speaker-archive 302
