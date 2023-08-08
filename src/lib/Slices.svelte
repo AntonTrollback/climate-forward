@@ -33,11 +33,14 @@
   function lastnameSort(a, b) {
     a = asText(a.data.name).split(' ').pop()
     b = asText(b.data.name).split(' ').pop()
-    console.log(a, b)
     return a.localeCompare(b)
   }
 
-  let sorted = allSpeakers.slice().sort(lastnameSort)
+  let sorted = []
+
+  if (allSpeakers) {
+    sorted = allSpeakers.slice().sort(lastnameSort)
+  }
 
   $: groups = slices?.reduce(function (groups, slice) {
     const last = groups[groups.length - 1]

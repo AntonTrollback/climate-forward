@@ -65,6 +65,51 @@
 <hr class="u-hiddenVisually" />
 
 <footer class="Footer">
+  <h2 class="u-hiddenVisually">Page Information</h2>
+  <nav class="u-container">
+    {#if branding === 'Climate Events'}
+      <a class="logo" href="/" on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times Climate Events</span>
+        <br /><br />
+        {@html logo('climate-events')}
+      </a>
+    {:else if branding === 'Climate Forward'}
+      <a class="logo" href="/" on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times Climate Forward</span>
+        <br /><br />
+        {@html logo('climate-forward')}
+      </a>
+    {:else if branding === 'A New Climate'}
+      <a class="logo" href="/a-new-climate-busan" on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times A New Climate</span>
+        <br /><br />
+        {@html logo('a-new-climate')}
+      </a>
+    {:else if branding === 'Climate Hub'}
+      <a
+        class="logo climatehub"
+        bind:this={videoLogo}
+        href="/a-new-climate-busan"
+        on:click={scrollTop}>
+        <span class="u-hiddenVisually">The New York Times Climate Hub</span>
+        <br /><br />
+        {@html logo('climate-hub')}
+      </a>
+    {/if}
+    {#if links?.length > 0}
+      <h3 class="u-hiddenVisually">Navigation</h3>
+      <ul class="list">
+        {#each links as link}
+          <li class="item">
+            <Link href={link.href} class="link">{link.text}</Link>
+          </li>
+        {/each}
+      </ul>
+    {/if}
+
+    <p>{@html copyright ? whitespace(copyright) : ''}</p>
+  </nav>
+
   <div class="u-hidden" style="display: none" aria-hidden="true">
     <a href="/speaker-archive">.</a>
     <a href="/404">.</a>
