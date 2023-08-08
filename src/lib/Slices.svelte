@@ -30,6 +30,15 @@
   export let allSpeakers
   export let sessions = null
 
+  function lastnameSort(a, b) {
+    a = asText(a.data.name).split(' ').pop()
+    b = asText(b.data.name).split(' ').pop()
+    console.log(a, b)
+    return a.localeCompare(b)
+  }
+
+  let sorted = allSpeakers.slice().sort(lastnameSort)
+
   $: groups = slices?.reduce(function (groups, slice) {
     const last = groups[groups.length - 1]
     if (slice.slice_type === 'scroll_target') {
@@ -51,7 +60,7 @@
       {#each group.slices as slice}
         {#if slice.slice_type === 'speaker_dump'}
           <div class="u-container">
-            {#each allSpeakers as speaker}
+            {#each sorted as speaker}
               <Divider size="lg" solid />
               <div style="max-width: 61rem; margin-top: var(--space-block-md)">
                 <SpeakerDetails {speaker} imageLink />
